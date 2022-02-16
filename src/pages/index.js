@@ -1,7 +1,7 @@
 // import Content from '../components/content';
 import Breadcumb from '../components/breadcumb';
 import Statistics from '../components/statistics';
-import AreaChart from '../components/chart';
+// import AreaChart from '../components/chart';
 import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
 
 export default function HomePage() {
@@ -80,7 +80,7 @@ export default function HomePage() {
                 className="p-4 rounded-3xl"
                 style={{ backgroundColor: '#fee4cb' }}
               >
-                <AreaChart/>
+                {/* <AreaChart/> */}
               </div>
             </div>
           </div>
