@@ -1,0 +1,48 @@
+{
+  "name": "dauntless-admin",
+  "version": "1.0.0",
+  "author": {
+    "name": "Perfcreg Solution"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phemieny7/dauntless-admin.git"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint && eslint '*/**/*.{js,jsx}' --fix",
+    "prepare": "husky install",
+    "format": "prettier '*/**/*.{js,jsx}' --write"
+  },
+  "dependencies": {
+    "@reach/portal": "^0.16.0",
+    "chart.js": "^3.7.1",
+    "next": "^12.0.7",
+    "next-themes": "^0.0.15",
+    "react": "^17.0.2",
+    "react-charts": "^3.0.0-beta.35",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.5.0",
+    "eslint-config-next": "^12.0.7",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.4",
+    "postcss": "^8.4.5",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.7"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "yarn lint",
+      "yarn format"
+    ]
+  }
+}
