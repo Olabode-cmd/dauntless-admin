@@ -1,7 +1,7 @@
 // import Content from '../components/content';
-import Breadcumb from "../components/breadcumb";
-import Statistics from "../components/statistics";
-import AreaChart from "../components/chart";
+import Breadcumb from '../components/breadcum';
+import Statistics from '../components/statistics';
+import AreaChart from '../components/chart';
 import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
 
 export default function HomePage() {
