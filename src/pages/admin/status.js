@@ -1,10 +1,10 @@
-import DashboardLayout from '../../dashboard/AgentLayout';
+import AgentLayout from '../../dashboard/AgentLayout';
 import Content from '../../components/content';
 
 export default function StatusPage() {
   return (
-  <DashboardLayout>
+  <AgentLayout>
     <Content title="Status" />
-  </DashboardLayout>
+  </AgentLayout>
   );
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import DashboardLayout from '../../dashboard/AdminLayout';
 
 function Login() {
   return (
