@@ -9,15 +9,15 @@ function Login() {
             <span className="text-xl font-medium text-white">Login</span>
         </div>
         <form className="mt-4">
-            <label for="email" className="block">
+            <label htmlFor="email" className="block">
                 <span className="text-sm text-white">Email</span>
-                <input type="email" id="email" name="email" autocomplete="username"
+                <input type="email" id="email" name="email" autoComplete="username"
                     className="block w-full px-3 py-2 mt-1 text-white bg-gray-700 rounded-md focus:outline-none focus:shadow-outline focus:bg-gray-800"
                     required />
             </label>
-            <label for="password" className="block mt-3">
+            <label htmlFor="password" className="block mt-3">
                 <span className="text-sm text-white">Password</span>
-                <input type="password" id="password" name="password" autocomplete="current-password"
+                <input type="password" id="password" name="password" autoComplete="current-password"
                     className="block w-full px-3 py-2 mt-1 text-white bg-gray-700 rounded-md focus:outline-none focus:shadow-outline focus:bg-gray-800"
                     required />
             </label>

@@ -9,9 +9,9 @@ function Forget() {
             <span className="text-xl font-medium text-white">Reset Password</span>
         </div>
         <form className="mt-4">
-            <label for="email" className="block">
+            <label htmlFor="email" className="block">
                 <span className="text-sm text-white">Email</span>
-                <input type="email" id="email" name="email" autocomplete="username"
+                <input type="email" id="email" name="email" autoComplete="username"
                     className="block w-full px-3 py-2 mt-1 text-white bg-gray-700 rounded-md focus:outline-none focus:shadow-outline focus:bg-gray-800"
                     required />
             </label>

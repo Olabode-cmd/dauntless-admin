@@ -9,15 +9,15 @@ function Reset() {
             <span className="text-xl font-medium text-white">Reset Password</span>
         </div>
         <form className="mt-4">
-            <label for="email" className="block">
+            <label htmlFor="password1" className="block">
                 <span className="text-sm text-white">Password</span>
-                <input type="password" id="password" name="password1" autocomplete="current-password"
+                <input type="password" id="password" name="password1" autoComplete="current-password"
                     className="block w-full px-3 py-2 mt-1 text-white bg-gray-700 rounded-md focus:outline-none focus:shadow-outline focus:bg-gray-800"
                     required />
             </label>
-            <label for="password" className="block mt-3">
+            <label htmlFor="password2" className="block mt-3">
                 <span className="text-sm text-white">Confirm Password</span>
-                <input type="password" id="password" name="password2" autocomplete="current-password"
+                <input type="password" id="password" name="password2" autoComplete="current-password"
                     className="block w-full px-3 py-2 mt-1 text-white bg-gray-700 rounded-md focus:outline-none focus:shadow-outline focus:bg-gray-800"
                     required />
             </label>
