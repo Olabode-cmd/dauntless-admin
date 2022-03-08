@@ -1,6 +1,6 @@
 import Overlay from './provider/overlay';
 import TopNavigation from './topnavigation';
-import SideNavigation from './sidenavigation';
+import SideNavigation from './adminroutes';
 import DashboardProvider from './provider/context';
 
 const style = {
@@ -9,8 +9,10 @@ const style = {
   main: `h-screen overflow-auto pb-36 pt-4 px-2 md:pb-8 md:pt-4 lg:pt-0 lg:px-4`,
 };
 
-export default function DashboardLayout({ children }) {
+export default function DashboardLayout({ children, page }) {
   return (
+    <>
+   
     <DashboardProvider>
       <div className={style.container}>
         <div className="flex items-start">
@@ -23,5 +25,6 @@ export default function DashboardLayout({ children }) {
         </div>
       </div>
     </DashboardProvider>
+    </>
   );
 }
