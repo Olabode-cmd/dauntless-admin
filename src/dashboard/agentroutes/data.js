@@ -1,37 +1,35 @@
-import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
+import * as Icon from 'react-icons/fi'
+import {RiExchangeLine} from 'react-icons/ri'
+// import { icons } from 'react-icons/lib';
 
 
 const data = [
   {
-    title: 'Users',
-    icon: <FiUserPlus size={'30px'}/>,
-    link: '/',
+    title: 'Home',
+    icon: <Icon.FiHome size={'20px'} color='gold'/>,
+    link: '/vendor',
+  },
+  {
+    title: 'Users accounts',
+    icon: <Icon.FiUsers size={'20px'} color='gold'/>,
+    link: '/admin/users',
   },
   {
     title: 'Trades',
-    icon: <FiDollarSign />,
-    link: '/admin/status',
+    icon: <RiExchangeLine size={'20px'} color='gold'/>,
+    link: '/admin/trades',
   },
-  // {
-  //   title: 'Archives',
-  //   icon: <ArchivesIcon />,
-  //   link: '/admin/archives',
-  // },
-  // {
-  //   title: 'Credits',
-  //   icon: <CreditsIcon />,
-  //   link: '/admin/credits',
-  // },
-  // {
-  //   title: 'Settings',
-  //   icon: <SettingsIcon />,
-  //   link: '/admin/settings',
-  // },
-  // {
-  //   title: 'Documentation',
-  //   icon: <DocumentationIcon />,
-  //   link: '/admin/documentation',
-  // },
+  {
+    title: 'Transactions',
+    icon: <Icon.FiDollarSign size={'20px'} color='gold' />,
+    link: '/admin/transactions',
+  },
+  {
+    title: 'Cards and Rates ',
+    icon: <Icon.FiCreditCard size={'20px'} color='gold'/>,
+    link: '/admin/settings',
+  },
+  
 ];
 
 export default data;
