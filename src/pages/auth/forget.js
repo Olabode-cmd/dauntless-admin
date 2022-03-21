@@ -3,7 +3,10 @@ import React from 'react'
 function Forget() {
   return (
      
-    <div className="flex items-center justify-center h-screen bg-gray-700 sm:px-6">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-700 sm:px-6">
+          <div className="logo my-8 inline-block">
+              <img src="/images/2.png" width={40} height={50} alt="Enoch Ndika" />
+          </div>
     <div className="w-full max-w-sm p-4 bg-gray-900 rounded-md shadow-md sm:p-6">
         <div className="flex items-center justify-center">
             <span className="text-xl font-medium text-white">Reset Password</span>
