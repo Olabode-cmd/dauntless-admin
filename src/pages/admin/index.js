@@ -26,7 +26,7 @@ export default function HomePage() {
                 <select className="text-sm font-bold rounded border-1 border-yellow-700 text-gray-600 h-10 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                   <option value="">Select Month</option>
                   {months.map((month, index) => (
-                    <option value={index}>{month}</option>
+                    <option value={index} key={index}>{month}</option>
                   ))}
                 </select>
                 {/* </div> */}
@@ -134,7 +134,7 @@ export default function HomePage() {
                   <select className="text-sm font-bold rounded border-1 border-yellow-700 text-gray-600 h-10 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                     <option value="">View Previous days</option>
                     {days.map((day, index) => (
-                      <option value={index}>{day}</option>
+                      <option value={index} key={index}>{day}</option>
                     ))}
                   </select>
                   {/* </div> */}
@@ -176,7 +176,7 @@ export default function HomePage() {
                       </td>
                       <td className="px-4 py-3 text-ms font-semibold border">#20000</td>
                       <td className="px-4 py-3 text-xs border">
-                        <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Acceptable </span>
+                        <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Completed </span>
                       </td>
                       <td className="px-4 py-3 text-sm border">6/4/2000</td>
                       <td className="px-4 py-3 text-sm border">

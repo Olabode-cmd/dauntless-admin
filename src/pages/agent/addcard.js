@@ -17,21 +17,21 @@ export default function AddCard() {
 
                     <div className="flex flex-wrap">
                         <div className="w-full md:w-5/12">
-                            <form novalidate="" action="" className="space-y-12 ng-untouched ng-pristine ng-valid">
+                            <form noValidate="" action="" className="space-y-12 ng-untouched ng-pristine ng-valid">
                                 <h2 className="text-center font-bold font-large">Add Card</h2>
                                 <div className="space-y-4">
                                     <div>
-                                        <label for="cardname" className="block mb-2 text-sm">Card Name</label>
+                                        <label htmlFor="cardname" className="block mb-2 text-sm">Card Name</label>
                                         <input type="text" name="cardname" id="cardName" placeholder="" className="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100" />
                                     </div>
                                     <div>
                                         <div className="flex justify-between mb-2">
-                                            <label for="rate" className="text-sm">Rate</label>
+                                            <label htmlFor="rate" className="text-sm">Rate</label>
                                         </div>
                                         <input type="text" name="rate" id="rate" placeholder="" className="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100" />
                                     </div>
                                     <div>
-                                        <label for="image" className="block mb-2 text-sm">Upload</label>
+                                        <label htmlFor="image" className="block mb-2 text-sm">Upload</label>
                                         <input class="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file"></input>
                                         {/* <input type="file" name="image" id="cardimage" placeholder="" className="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100" /> */}
                                     </div>

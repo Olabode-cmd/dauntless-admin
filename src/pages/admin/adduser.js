@@ -17,16 +17,16 @@ export default function AddUser() {
                     
                     <div className="flex flex-wrap">
                         <div className="w-full md:w-5/12">
-                            <form novalidate="" action="" className="space-y-12 ng-untouched ng-pristine ng-valid">
+                            <form noValidate="" action="" className="space-y-12 ng-untouched ng-pristine ng-valid">
                                 <h2 className="text-center font-bold font-large">Add User</h2>
                                 <div className="space-y-4">
                                     <div>
-                                        <label for="username" className="block mb-2 text-sm">Full Name</label>
+                                        <label htmlFor="username" className="block mb-2 text-sm">Full Name</label>
                                         <input type="text" name="username" id="username" placeholder="" className="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100" />
                                     </div>
                                     <div>
                                         <div className="flex justify-between mb-2">
-                                            <label for="email" className="text-sm">Email</label>
+                                            <label htmlFor="email" className="text-sm">Email</label>
                                         </div>
                                         <input type="text" name="email" id="email" placeholder="" className="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100" />
                                     </div>

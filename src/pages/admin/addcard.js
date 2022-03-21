@@ -17,21 +17,21 @@ export default function addCard() {
                     
                     <div className="flex flex-wrap">
                         <div className="w-full md:w-5/12">
-                            <form novalidate="" action="" className="space-y-12 ng-untouched ng-pristine ng-valid">
+                            <form noValidate="" action="" className="space-y-12 ng-untouched ng-pristine ng-valid">
                                 <h2 className="text-center font-bold font-large">Add Card</h2>
                                 <div className="space-y-4">
                                     <div>
-                                        <label for="cardname" className="block mb-2 text-sm">Card Name</label>
+                                        <label htmlFor="cardname" className="block mb-2 text-sm">Card Name</label>
                                         <input type="text" name="cardname" id="cardName" placeholder="" className="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100" />
 			                        </div>
 			                        <div>
 				                        <div className="flex justify-between mb-2">
-                                        <label for="rate" className="text-sm">Rate</label>
+                                        <label htmlFor="rate" className="text-sm">Rate</label>
                                     </div>
                                     <input type="text" name="rate" id="rate" placeholder="" className="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100" />
 			                    </div>
                                     <div>
-                                        <label for="image" className="block mb-2 text-sm">Upload</label>
+                                        <label htmlFor="image" className="block mb-2 text-sm">Upload</label>
                                         <input type="file" name="image" id="cardimage" placeholder="" className="w-full px-3 py-2 border rounded-md dark:border-coolGray-700 dark:bg-coolGray-900 dark:text-coolGray-100" />
                                     </div>
 		                    </div>
