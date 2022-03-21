@@ -1,55 +1,40 @@
 import React from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import faker from 'faker';
+import Chart from 'chart.js/auto';
+import {Bar} from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Bar Chart',
-    },
-  },
+const data = {
+    labels: ['Itunes', 'Google Play', 'Amazon', 'Vanilla', 'Visa', 'Apple', 'Steam'],
+    datasets: [
+        {
+            label: 'Trade Adtivity',
+            backgroundColor: 'rgba(217, 188, 41,0.3)',
+            borderColor: 'rgba(217,188, 41,1)',
+            borderWidth: 1,
+            hoverBackgroundColor: 'rgba(217, 188, 41,0.8)',
+            hoverBorderColor: 'rgba(217, 188, 41,1)',
+            borderCapStyle: 'round',
+            data: [65, 59, 80, 81, 56, 55, 40]
+        }
+    ]
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+class AreaChart extends React.Component {
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
-export function AreaChart() {
-  return <Bar options={options} data={data} />;
+    render() {
+        return (
+            <div>
+                <Bar
+                    data={data}
+                    width={100}
+                    height={50}
+                    options={{
+                        maintainAspectRatio: true
+                    }}
+                />
+            </div>
+        )
+    }
 }
+
+export default AreaChart;
