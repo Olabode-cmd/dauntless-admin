@@ -58,16 +58,14 @@ const Cards = (props) => {
             }
         },
         {
-            title: "Card Title", field: "name", headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
+            title: "Card Title", field: "name",
+            render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.name}</p>,
+            
         },
         {
-            title: "Counts", field: "count", headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
+            title: "Counts", field: "count",
+            render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.name}</p>,
+
         },
     ];
 
@@ -110,6 +108,17 @@ const Cards = (props) => {
         {
             title: "Status", field: "status",
             lookup: { true: "Available", false: "Unavailable" },
+            render: rowData =>{
+                return (
+                    <p className="text-xs">
+                        {
+                            lookup[rowData.status] === 'Available' ?
+                         (<span className="font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Available </span>) :
+                         (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Not Available </span>)
+                        }
+                    </p>
+                )
+            },
             headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
@@ -118,6 +127,8 @@ const Cards = (props) => {
         {
             title: 'Rate',
             field: 'rate',
+          render: rowData =><p className="text-ms font-semibold">#{rowData.rate}</p>,
+
             headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
@@ -140,6 +151,7 @@ const Cards = (props) => {
 
     useEffect(() => {
         setData(sdata)
+        setCardType(sdataCardType)
     }, [])
     return (
         <AdminLayout>
@@ -250,13 +262,13 @@ const Cards = (props) => {
                                     <MaterialTable
                                         title="Cards"
                                         columns={columnCardType}
-                                        data={sdataCardType}
-                                        key={sdataCardType.id}
+                                        data={cardType}
+                                        key={cardType.id}
                                         editable={{
                                             onRowAdd: newData =>
                                                 new Promise((resolve, reject) => {
                                                     setTimeout(() => {
-                                                        setData([...data, newData]);
+                                                        setCardType([...cardType, newData]);
 
                                                         resolve();
                                                     }, 1000)
@@ -264,10 +276,10 @@ const Cards = (props) => {
                                             onRowUpdate: (newData, oldData) =>
                                                 new Promise((resolve, reject) => {
                                                     setTimeout(() => {
-                                                        const dataUpdate = [...data];
+                                                        const dataUpdate = [...cardType];
                                                         const index = oldData.tableData.id;
                                                         dataUpdate[index] = newData;
-                                                        setData([...dataUpdate]);
+                                                        setCardType([...dataUpdate]);
 
                                                         resolve();
                                                     }, 1000)

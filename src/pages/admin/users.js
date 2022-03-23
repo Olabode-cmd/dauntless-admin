@@ -2,9 +2,10 @@
 import Breadcumb from '../../components/breadcumb';
 import Statistics from '../../components/statistics';
 // import AreaChart from '../../components/chart';
-import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
+import { FiUserPlus, FiDollarSign, FiActivity, FiSave } from 'react-icons/fi'
 import AdminLayout from '../../dashboard/AdminLayout';
-import MaterialTable from 'material-table';
+import MaterialTable, { Column } from "@material-table/core";
+
 
 export default function Users() {
 
@@ -27,7 +28,7 @@ export default function Users() {
                                             columns={[
                                                 { title: 'Name', field: 'name' },
                                                 { title: 'Surname', field: 'surname' },
-                                                { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
+                                                { title: 'Birth Year', field: 'birthYear'},
                                                 {
                                                     title: 'Birth Place',
                                                     field: 'birthCity',
@@ -35,12 +36,12 @@ export default function Users() {
                                                 },
                                             ]}
                                             data={[
-                                                { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-                                                { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
+                                                {id:1, name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+                                                {id:2, name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
                                             ]}
                                             actions={[
                                                 {
-                                                    icon: 'save',
+                                                    icon: `${<FiSave />}`,
                                                     tooltip: 'Save User',
                                                     onClick: (event, rowData) => alert("You saved " + rowData.name)
                                                 },
