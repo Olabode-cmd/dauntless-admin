@@ -1,147 +1,334 @@
 // import Content from '../components/content';
+import React, { useState, useEffect } from 'react';
 import Breadcumb from '../../components/breadcumb';
 import Statistics from '../../components/statistics';
 // import AreaChart from '../../components/chart';
 import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
 import AdminLayout from '../../dashboard/AdminLayout';
 import { Helmet } from "react-helmet"
+import MaterialTable, { Column } from "@material-table/core";
+import { Tab } from '@headlessui/react'
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import { FiCamera } from 'react-icons/fi';
+import IconButton from '@mui/material/IconButton';
+// import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
 
-export default function Cards() {
 
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+const Input = styled('input')({
+    display: 'none',
+});
+
+const Cards = (props) => {
+    const lookup = { true: "Available", false: "Unavailable" };
+
+    const [data, setData] = useState([])
+    const [cardType, setCardType] = useState([])
+
+
+    const columns = [
+        {
+            title: 'Card',
+            field: 'imageUrl',
+            render: rowData => <img src={rowData.imageUrl} style={{ width: 40, borderRadius: '50%' }} />,
+            editComponent: props => (
+                <Stack direction="row" alignItems="center" spacing={2}>
+                    <label htmlFor="contained-button-file">
+                        <Input accept="image/*" id="contained-button-file" multiple type="file" />
+                        <Button variant="contained" component="span" color="warning">
+                            Upload
+                        </Button>
+                    </label>
+                    <label htmlFor="icon-button-file">
+                        <Input accept="image/*" id="icon-button-file" type="file" />
+                        <IconButton color="primary" aria-label="upload picture" component="span">
+                            <FiCamera color='gold' />
+                        </IconButton>
+                    </label>
+                </Stack>
+            ),
+            headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
+        {
+            title: "Card Title", field: "name", headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
+        {
+            title: "Counts", field: "count", headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
+    ];
+
+    const columnCardType = [
+        {
+            title: 'Card',
+            field: 'card',
+            lookup: { 1: 'Amazon', 2: 'Itunes', 3: 'GooglePlay' },
+            headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
+
+        {
+            title: 'Code',
+            field: 'code',
+            headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
+
+        {
+            title: 'Card Type',
+            field: 'type',
+            lookup: { 1: 'Physical', 2: 'E-code', 3: 'Virtual' },
+            headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
+
+        {
+            title: "Card Name", field: "name", headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
+        {
+            title: "Status", field: "status",
+            lookup: { true: "Available", false: "Unavailable" },
+            headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
+        {
+            title: 'Rate',
+            field: 'rate',
+            headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
+    ];
+
+    const sdata = [
+        { id: 1, imageUrl: "https://avatars0.githubusercontent.com/u/7895451?s=460&v=4", name: "Itunes", count: 1987, availability: true },
+        { id: 2, imageUrl: "https://avatars0.githubusercontent.com/u/7895451?s=460&v=4", name: "Amazon", count: 2000, availability: false }
+    ];
+
+    const sdataCardType = [
+        { id: 1, code:'Amaz001', card: 1, type: 1, name: "Amazon Canada", status: true, rate: "300" },
+        { id: 2, code:'Amaz002', card: 1, type: 2, name: "Amazon India", status: false, rate: "400" },
+        { id: 3, code:'Amaz003', card: 1, type: 3, name: "Amazon United Kingdom", status: true, rate: "500" },
+        { id: 4, code:'Itu001',  card: 2, type: 1, name: "Itunes Canada", status: true, rate: "300" },
+        { id: 5, code:'Itu001', card: 2, type: 2, name: "Itunes India", status: false, rate: "400" },
+    ]
+
+    useEffect(() => {
+        setData(sdata)
+    }, [])
     return (
         <AdminLayout>
 
             <div className="flex flex-wrap">
-                <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
-                    <Breadcumb title={'Cards'} />
-                    <div className="flex flex-wrap items-center pb-8">
-                        <div className="grid gap-12 mb-12 md:grid-cols-12 xl:grid-cols-4">
-                            <div className="min-w-0 rounded-lg border-4  shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                                <div className="p-4 flex items-center">
-                                    <div className="p-3 rounded-full text-orange-500 dark:text-orange-100 bg-orange-100 dark:bg-orange-500 mr-4">
-                                        <FiUserPlus color="white" size={20} />
-                                    </div>
-                                    <div>
-                                        <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
-                                            Total clients
-                                        </p>
-                                        <p className="text-lg font-semibold  text-gray-700 dark:text-gray-200">
-                                            6389
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="min-w-0 rounded-lg border-4 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                                <div className="p-4 flex items-center">
-                                    <div className="p-3 rounded-full text-green-500 dark:text-green-100 bg-green-100 dark:bg-green-500 mr-4">
-                                        <FiDollarSign />
-                                    </div>
-                                    <div>
-                                        <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                            Account balance
-                                        </p>
-                                        <p className="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                            # 46,760.89
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="min-w-0 rounded-lg border-4 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                                <div className="p-4 flex items-center">
-                                    <div className="p-3 rounded-full text-blue-500 dark:text-blue-100 bg-blue-100 dark:bg-blue-500 mr-4">
-                                        <FiActivity />
-                                    </div>
-                                    <div>
-                                        <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                            Trades
-                                        </p>
-                                        <p className="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                            376
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="min-w-0 rounded-lg border-4 shadow-xs overflow-hidden bg-white dark:bg-gray-800">
-                                <div className="p-4 flex items-center">
-                                    <div className="p-3 rounded-full text-teal-500 dark:text-teal-100 bg-teal-100 dark:bg-teal-500 mr-4">
-                                        <svg fill="currentColor" viewBox="0 0 20 20" className="w-5 h-5">
-                                            <path fillRule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clipRule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                            Pending contacts
-                                        </p>
-                                        <p className="text-lg font-semibold text-gray-700 dark:text-gray-200">35</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+                    <Breadcumb title={'Cards and rates'} />
+                    <div className="flex flex-row justify-between">
+                        <h1>Add and update cards rate</h1>
                     </div>
-                    <div className="flex flex-wrap">
-                        <div className="w-full md:w-12/12">
-                            <div className="p-2">
-                                <div
-                                    className="p-4 rounded-3xl"
+                    <div className="px-2 sm:px-0">
+                        <Tab.Group>
+                            <Tab.List className="flex p-1 space-x-1 bg-yellow-600 rounded-xl">
+                                {/* {Object.keys(categories).map((category) => ( */}
+                                <Tab
+                                    // key={category}
+                                    className={({ selected }) =>
+                                        classNames(
+                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+                                            selected
+                                                ? 'bg-white shadow'
+                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                                        )
+                                    }
                                 >
-                                    <div className="shadow-lg rounded-lg overflow-hidden">
-                                        <div className="py-3 px-5 bg-gray-50 flex justify-between">
-                                            <div className="text-black font-medium">Cards</div>
+                                    Cards
+                                </Tab>
 
-                                            <div className="flex items-center justify-center px-5 py-2 border border-transparent text-base font-small rounded-md text-white bg-yellow-500 hover:bg-yellow-600 md:py-2 md:text-lg md:px-6">
-                                                Add Card
-                                            </div>
-                                        </div>
+                                <Tab
+                                    // key={category}
+                                    className={({ selected }) =>
+                                        classNames(
+                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+                                            selected
+                                                ? 'bg-white shadow'
+                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                                        )
+                                    }
+                                >
+                                    Card Types
+                                </Tab>
 
-                                        <table className="table-fixed border border-slate-500 w-full">
-                                            <thead>
-                                                <tr>
-                                                    <th className="border border-slate-600 py-3 bg-slate-700">Card</th>
-                                                    <th className="border border-slate-600 py-3 bg-slate-700">Rate</th>
-                                                    <th className="border border-slate-600 py-3 bg-slate-700">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td className="border border-slate-700 py-3 px-3">iTunes Card</td>
-                                                    <td className="border border-slate-700 py-3 px-3">$500</td>
-                                                    <td className="border border-slate-700 py-3 px-3">
-                                                        <button className="bg-yellow-500 py-2 px-5 text-white mx-1 rounded-md">Update</button>
-                                                        <button className="bg-red-600 py-2 px-5 text-white mx-1 rounded-md">Delete</button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="border border-slate-700 py-3 px-3">Amazon Gift Cards</td>
-                                                    <td className="border border-slate-700 py-3 px-3">$500</td>
-                                                    <td className="border border-slate-700 py-3 px-3">
-                                                        <button className="bg-yellow-500 py-2 px-5 text-white mx-1 rounded-md">Update</button>
-                                                        <button className="bg-red-600 py-2 px-5 text-white mx-1 rounded-md">Delete</button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="border border-slate-700 py-3 px-3">eBay Gift Cards</td>
-                                                    <td className="border border-slate-700 py-3 px-3">$398</td>
-                                                    <td className="border border-slate-700 py-3 px-3">
-                                                        <button className="bg-yellow-500 py-2 px-5 text-white mx-1 rounded-md">Update</button>
-                                                        <button className="bg-red-600 py-2 px-5 text-white mx-1 rounded-md">Delete</button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
+                                {/* <Tab
+                                    // key={category}
+                                    className={({ selected }) =>
+                                        classNames(
+                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+                                            selected
+                                                ? 'bg-white shadow'
+                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                                        )
+                                    }
+                                >
+                                    Rates
+                                </Tab> */}
+                            </Tab.List>
+                            <Tab.Panels className="mt-2">
+                                <Tab.Panel
+                                    // key={idx}
+                                    className={classNames(
+                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
+                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+                                    )}
+                                >
+                                    <MaterialTable
+                                        title="Cards"
+                                        columns={columns}
+                                        data={data}
+                                        key={data.id}
+                                        editable={{
+                                            onRowAdd: newData =>
+                                                new Promise((resolve, reject) => {
+                                                    setTimeout(() => {
+                                                        setData([...data, newData]);
 
-                                        </table>
-                                    </div>
+                                                        resolve();
+                                                    }, 1000)
+                                                }),
+                                            onRowUpdate: (newData, oldData) =>
+                                                new Promise((resolve, reject) => {
+                                                    setTimeout(() => {
+                                                        const dataUpdate = [...data];
+                                                        const index = oldData.tableData.id;
+                                                        dataUpdate[index] = newData;
+                                                        setData([...dataUpdate]);
 
+                                                        resolve();
+                                                    }, 1000)
+                                                }),
+                                        }}
+                                        options={{
+                                            actionsColumnIndex: -1
+                                        }}
+                                    />
 
-                                </div>
-                            </div>
-                        </div>
+                                </Tab.Panel>
 
+                                <Tab.Panel
+                                    // key={idx}
+                                    className={classNames(
+                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
+                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+                                    )}
+                                >
+                                    <MaterialTable
+                                        title="Cards"
+                                        columns={columnCardType}
+                                        data={sdataCardType}
+                                        key={sdataCardType.id}
+                                        editable={{
+                                            onRowAdd: newData =>
+                                                new Promise((resolve, reject) => {
+                                                    setTimeout(() => {
+                                                        setData([...data, newData]);
+
+                                                        resolve();
+                                                    }, 1000)
+                                                }),
+                                            onRowUpdate: (newData, oldData) =>
+                                                new Promise((resolve, reject) => {
+                                                    setTimeout(() => {
+                                                        const dataUpdate = [...data];
+                                                        const index = oldData.tableData.id;
+                                                        dataUpdate[index] = newData;
+                                                        setData([...dataUpdate]);
+
+                                                        resolve();
+                                                    }, 1000)
+                                                }),
+                                        }}
+                                        options={{
+                                            actionsColumnIndex: -1
+                                        }}
+                                    />
+                                </Tab.Panel>
+                            </Tab.Panels>
+                        </Tab.Group>
                     </div>
 
                 </div>
-            </div>
 
+                <div className="w-full mt-8 lg:mt-0 lg:w-4/12 lg:pl-4">
+                    <div className="dark:bg-gray-800 bg-gray-300 rounded-3xl px-6 pt-6">
+                        <div className="flex text-white text-2xl pb-6 font-bold">
+                            <p className='dark:text-gray-100 text-black'>Today's Cards Log</p>
+                        </div>
+                        <div>
+                            <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+                                <img
+                                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                                    alt="profile image"
+                                    className="object-cover w-10 h-10 rounded-full"
+                                />
+                                <div className="pl-4 w-full">
+                                    <div className="flex items-center justify-between w-full">
+                                        <div className="dark:text-white text-black' font-medium">Admin 001</div>
+                                    </div>
+                                    <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                                        Update a card details 
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+                                <img
+                                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                                    alt="profile image"
+                                    className="object-cover w-10 h-10 rounded-full"
+                                />
+                                <div className="pl-4 w-full">
+                                    <div className="flex items-center justify-between w-full">
+                                        <div className="dark:text-white text-black' font-medium">Admin 002</div>
+                                    </div>
+                                    <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                                        increase card rate with Itu001 by 10% on 12/12/2020
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
         </AdminLayout>
     );
 }
+
+export default Cards
