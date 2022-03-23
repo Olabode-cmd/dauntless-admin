@@ -14,21 +14,21 @@ const data = [
     icon: <Icon.FiUsers size={'20px'} color='gold'/>,
     link: '/admin/users',
   },
-  // {
-  //   title: 'Trades',
-  //   icon: <RiExchangeLine size={'20px'} color='gold'/>,
-  //   link: '/admin/trades',
-  // },
+  {
+    title: 'Trades',
+    icon: <RiExchangeLine size={'20px'} color='gold'/>,
+    link: '/admin/trade',
+  },
   {
     title: 'Transactions',
     icon: <Icon.FiDollarSign size={'20px'} color='gold' />,
     link: '/admin/transactions',
   },
-  // {
-  //   title: 'Activities',
-  //   icon: <Icon.FiActivity size={'20px'} color='gold' />,
-  //   link: '/admin/credits',
-  // },
+  {
+    title: 'Activities',
+    icon: <Icon.FiActivity size={'20px'} color='gold' />,
+    link: '/admin/credits',
+  },
   {
     title: 'Cards and Rates ',
     icon: <Icon.FiCreditCard size={'20px'} color='gold'/>,

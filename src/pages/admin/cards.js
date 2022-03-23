@@ -63,7 +63,7 @@ const Cards = (props) => {
             
         },
         {
-            title: "Counts", field: "count",
+            title: "Counts", field: "count", editable:false,
             render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.count}</p>,
 
         },
