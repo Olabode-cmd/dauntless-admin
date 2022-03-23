@@ -64,7 +64,7 @@ const Cards = (props) => {
         },
         {
             title: "Counts", field: "count",
-            render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.name}</p>,
+            render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.count}</p>,
 
         },
     ];
@@ -137,8 +137,8 @@ const Cards = (props) => {
     ];
 
     const sdata = [
-        { id: 1, imageUrl: "https://avatars0.githubusercontent.com/u/7895451?s=460&v=4", name: "Itunes", count: 1987, availability: true },
-        { id: 2, imageUrl: "https://avatars0.githubusercontent.com/u/7895451?s=460&v=4", name: "Amazon", count: 2000, availability: false }
+        { id: 1, imageUrl: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg", name: "Itunes", count: 5, availability: true },
+        { id: 2, imageUrl: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u", name: "Amazon", count: 10, availability: false }
     ];
 
     const sdataCardType = [

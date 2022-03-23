@@ -170,7 +170,7 @@ export default function HomePage() {
                           </div>
                           <div>
                             <p className="font-semibold text-black">Sufyan</p>
-                            <p className="text-xs text-gray-600">Cus_1234429492</p>
+                            <p className="text-xs text-gray-600">Daunt001</p>
                           </div>
                         </div>
                       </td>
