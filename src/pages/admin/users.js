@@ -55,39 +55,39 @@ export default function Users() {
 
                     {
                         rowData.trade_count <= 10 && rowData.trade_count != 0 ? (
-                            <div class="rating">
-                                <input type="radio" name="rating-1" class="mask mask-star-2 bg-gray-400" disabled />
+                            <div className="rating">
+                                <input type="radio" name="rating-1" className="mask mask-star-2 bg-gray-400" disabled />
                             </div>
                         ) : rowData.trade_count <= 20 && rowData.trade_count > 10 ? (
-                            <div class="rating rating-half">
-                                <input type="radio" name="rating-1" class="mask mask-star-2 mask-half-1  bg-orange-400" disabled />
+                            <div className="rating rating-half">
+                                <input type="radio" name="rating-1" className="mask mask-star-2 mask-half-1  bg-orange-400" disabled />
                             </div>
                         ) : rowData.trade_count <= 25 && rowData.trade_count > 20 ? (
-                            <div class="rating">
-                                <input type="radio" name="rating-1" class="mask mask-star-2  bg-orange-400" disabled />
+                            <div className="rating">
+                                <input type="radio" name="rating-1" className="mask mask-star-2  bg-orange-400" disabled />
                             </div>
                         ) : rowData.trade_count <= 30 && rowData.trade_count > 25 ? (
-                            <div class="rating rating-half">
-                                <input type="radio" name="rating-1" class="rating-hidden" />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
+                            <div className="rating rating-half">
+                                <input type="radio" name="rating-1" className="rating-hidden" />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
                             </div>
                         ) : rowData.trade_count <= 40 && rowData.trade_count > 30 ? (
-                            <div class="rating rating-half">
-                                <input type="radio" name="rating-1" class="rating-hidden" />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
+                            <div className="rating rating-half">
+                                <input type="radio" name="rating-1" className="rating-hidden" />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
                             </div>
                         ) : rowData.trade_count <= 50 && rowData.trade_count > 40 ? (
-                            <div class="rating rating-half">
-                                <input type="radio" name="rating-1" class="rating-hidden" />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" class="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
+                            <div className="rating rating-half">
+                                <input type="radio" name="rating-1" className="rating-hidden" />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
+                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
                             </div>
                         ) : "NO RATING YET"
 
@@ -112,11 +112,11 @@ export default function Users() {
                     <div className="flex items-center">
                         {
                             rowData.status == 1 ? (
-                                <div class="badge badge-success gap-2">
+                                <div className="badge badge-success gap-2">
                                     Active
                                 </div>
                             ) : (
-                                <div class="badge badge-error gap-2">
+                                <div className="badge badge-error gap-2">
                                     Banned
                                 </div>
                             )
