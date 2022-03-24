@@ -1,10 +1,10 @@
 // import Content from '../components/content';
 import React, { useState, useEffect } from 'react';
-import Breadcumb from '../../components/breadcumb';
-import Statistics from '../../components/statistics';
+import Breadcumb from '../../../components/breadcumb';
+import Statistics from '../../../components/statistics';
 // import AreaChart from '../../components/chart';
 import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
-import AdminLayout from '../../dashboard/AdminLayout';
+import AdminLayout from '../../../dashboard/AdminLayout';
 import { Helmet } from "react-helmet"
 import MaterialTable, { Column } from "@material-table/core";
 import { Tab } from '@headlessui/react'

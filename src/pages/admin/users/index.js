@@ -1,9 +1,9 @@
 // import Content from '../components/content';
 import React, { useEffect } from 'react';
-import Breadcumb from '../../components/breadcumb';
-import Statistics from '../../components/statistics';
+import Breadcumb from '../../../components/breadcumb';
+import Statistics from '../../../components/statistics';
 import { FiUserPlus, FiDollarSign, FiActivity, FiSave } from 'react-icons/fi'
-import AdminLayout from '../../dashboard/AdminLayout';
+import AdminLayout from '../../../dashboard/AdminLayout';
 import MaterialTable, { Column } from "@material-table/core";
 import Icon from "@material-ui/core/Icon";
 import { forwardRef } from 'react';
@@ -230,8 +230,7 @@ export default function Users() {
                                                 rowData => ({
                                                     icon: 'Check',
                                                     tooltip: 'Delete User',
-                                                    onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
-                                                    disabled: rowData.birthYear < 2000
+                                                    onClick: (event, rowData) => Router.push(`/admin/user/${rowData.id}`),
                                                 })
                                             ]}
 

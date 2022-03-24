@@ -19,7 +19,7 @@ export default function HomePage() {
         <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
           <Breadcumb title={'Home'} />
           <div className="flex flex-row justify-between">
-            <h1>Welcome to super admin</h1>
+            <h1 className='dark:text-gray-100 text-black'>Welcome to super admin</h1>
             <div className="flex justify-center">
               <div>
                 {/* <div className="relative inline-flex self-center"> */}
@@ -42,7 +42,7 @@ export default function HomePage() {
               <p className='dark:text-gray-100 text-black'>Today's Payment Log</p>
             </div>
             <div>
-              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full dark:hover:bg-gray-700  hover:bg-gray-200">
                 <img
                   src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
                   alt="profile image"
@@ -50,15 +50,30 @@ export default function HomePage() {
                 />
                 <div className="pl-4 w-full">
                   <div className="flex items-center justify-between w-full">
-                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                    <div className="dark:text-white text-gray-800 font-medium">User 001</div>
                   </div>
-                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                  <p className="my-2 text-sm dark:text-gray-100 text-gray-800">
+                    Was paid #200.00 on 12/12/2020
+                  </p>
+                </div>
+              </div>
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full dark:hover:bg-gray-700 hover:bg-gray-200">
+                <img
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                  alt="profile image"
+                  className="object-cover w-10 h-10 rounded-full"
+                />
+                <div className="pl-4 w-full">
+                  <div className="flex items-center justify-between w-full">
+                    <div className="dark:text-white text-gray-800 font-medium">User 001</div>
+                  </div>
+                  <p className="my-2 text-sm dark:text-gray-100 text-gray-800">
                     Was paid #200.00 on 12/12/2020
                   </p>
                 </div>
               </div>
 
-              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full dark:hover:bg-gray-700 hover:bg-gray-200">
                 <img
                   src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
                   alt="profile image"
@@ -66,14 +81,14 @@ export default function HomePage() {
                 />
                 <div className="pl-4 w-full">
                   <div className="flex items-center justify-between w-full">
-                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                    <div className="dark:text-white text-gray-800 font-medium">User 001</div>
                   </div>
-                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                  <p className="my-2 text-sm dark:text-gray-100 text-gray-800">
                     Was paid #200.00 on 12/12/2020
                   </p>
                 </div>
               </div>
-              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full dark:hover:bg-gray-700 hover:bg-gray-200">
                 <img
                   src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
                   alt="profile image"
@@ -81,14 +96,14 @@ export default function HomePage() {
                 />
                 <div className="pl-4 w-full">
                   <div className="flex items-center justify-between w-full">
-                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                    <div className="dark:text-white text-gray-800 font-medium">User 001</div>
                   </div>
-                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                  <p className="my-2 text-sm dark:text-gray-100 text-gray-800">
                     Was paid #200.00 on 12/12/2020
                   </p>
                 </div>
               </div>
-              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full dark:hover:bg-gray-700 hover:bg-gray-200">
                 <img
                   src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
                   alt="profile image"
@@ -96,14 +111,14 @@ export default function HomePage() {
                 />
                 <div className="pl-4 w-full">
                   <div className="flex items-center justify-between w-full">
-                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                    <div className="dark:text-white text-gray-800 font-medium">User 001</div>
                   </div>
-                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                  <p className="my-2 text-sm dark:text-gray-100 text-gray-800">
                     Was paid #200.00 on 12/12/2020
                   </p>
                 </div>
               </div>
-              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full dark:hover:bg-gray-700 hover:bg-gray-200">
                 <img
                   src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
                   alt="profile image"
@@ -111,13 +126,14 @@ export default function HomePage() {
                 />
                 <div className="pl-4 w-full">
                   <div className="flex items-center justify-between w-full">
-                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                    <div className="dark:text-white text-gray-800 font-medium">User 001</div>
                   </div>
-                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                  <p className="my-2 text-sm dark:text-gray-100 text-gray-800">
                     Was paid #200.00 on 12/12/2020
                   </p>
                 </div>
-              </div></div>
+              </div>
+            </div>
           </div>
         </div>
 

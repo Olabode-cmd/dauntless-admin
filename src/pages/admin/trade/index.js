@@ -1,10 +1,10 @@
 // import Content from '../components/content';
 import React, { useState, useEffect } from 'react';
-import Breadcumb from '../../components/breadcumb';
-import Statistics from '../../components/statistics';
+import Breadcumb from '../../../components/breadcumb';
+import Statistics from '../../../components/statistics';
 // import AreaChart from '../../components/chart';
 import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
-import AdminLayout from '../../dashboard/AdminLayout';
+import AdminLayout from '../../../dashboard/AdminLayout';
 import { Helmet } from "react-helmet"
 import MaterialTable, { Column } from "@material-table/core";
 import { Tab } from '@headlessui/react'
@@ -15,6 +15,7 @@ import IconButton from '@mui/material/IconButton';
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 import moment from 'moment';
+import { useRouter } from 'next/router';
 
 
 function classNames(...classes) {
@@ -25,10 +26,12 @@ const Input = styled('input')({
 });
 
 const Index = (props) => {
-    const lookup = { true: "Available", false: "Unavailable" };
+    const Router = useRouter()
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState(props.data)
     const [cardType, setCardType] = useState([])
+    const [selectedRow, setSelectedRow] = useState(null);
+
 
 
     const columns = [
@@ -56,12 +59,22 @@ const Index = (props) => {
                         </div>
                         <div>
                             <p className="font-semibold text-black">{rowData.name}</p>
-                            <p className="text-xs text-gray-600">{rowData.card?.code} * {rowData.count}</p>
+                            <p className="text-xs text-gray-600">{rowData.card?.code}({rowData.card?.type}) * {rowData.count}</p>
                         </div>
                     </div>
                 )
             }
             
+        },
+        {title: "Duration", field:'created_at', editable:false,headerStyle: {  
+        backgroundColor: 'orange',
+        fontWeight: 'bold'},
+        render: (rowData) => {
+            return (
+                <p className="text-sm font-semibold text-gray-600">{moment(rowData.created_at).fromNow()}</p>
+            )
+
+        }
         },
         {
             title: "User", field: "count", editable:false,headerStyle: {
@@ -105,15 +118,15 @@ const Index = (props) => {
                     <p className="text-xs">
                         {rowData.status === 1 ?
                          (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm"> Pending </span>):
-                         lookup[rowData.status] === 'Reviewing' ?
+                         rowData.status === 2 ?
                          (<span className="font-semibold leading-tight text-white bg-orange-300 rounded-sm"> Reviewing </span>):
-                         lookup[rowData.status] === 'Agent Redeeming' ?
+                         rowData.status === 3 ?
                          (<span className="font-semibold leading-tight text-white bg-amber-400 rounded-sm"> Agent Redeeming </span>):
-                         lookup[rowData.status] === 'Trade Completed' ?
+                         rowData.status === 4 ?
                          (<span className="font-semibold leading-tight text-white bg-green-600 rounded-sm"> Trade Completed </span>):
-                         lookup[rowData.status] === 'Trade Rejected' ?
+                         rowData.status === 5 ?
                          (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm"> Trade Rejected </span>):
-                         lookup[rowData.status] === 'Trade Paid' ?
+                         rowData.status === 6 ?
                          (<span className="font-semibold leading-tight text-white bg-yellow-900 rounded-sm"> Trade Paid </span>):
                          (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"> {lookup[rowData.status]} </span>)
                         }
@@ -121,7 +134,7 @@ const Index = (props) => {
                 )
             },
             headerStyle: {
-                // backgroundColor: 'yellow',
+                backgroundColor: 'orange',
                 fontWeight: 'bold',
             }
         },
@@ -193,22 +206,7 @@ const Index = (props) => {
             }
         },
     ];
-
-    const sdata = [
-        { id: 1, picture: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg", name: "itunes",
-            card:{
-                code: "Itunes_001",
-                type: "Physical",
-                name: "Uk 100",
-                image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
-
-            },
-            user:{
-                user_id: "Daunt_001",
-            },
-        rate: "340", count: 5, status: 1, },
-        { id: 2, picture: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u", name: "Amazon", count: 10, availability: false }
-    ];
+ 
 
     const sdataCardType = [
         { id: 1, code:'Amaz001', card: 1, type: 1, name: "Amazon Canada", status: true, rate: "300" },
@@ -218,10 +216,10 @@ const Index = (props) => {
         { id: 5, code:'Itu001', card: 2, type: 2, name: "Itunes India", status: false, rate: "400" },
     ]
 
-    useEffect(() => {
-        setData(sdata)
-        setCardType(sdataCardType)
-    }, [])
+    // useEffect(() => {
+    //     setData(props.data)
+    //     // setCardType(sdataCardType)
+    // }, [])
     return (
         <AdminLayout>
 
@@ -245,7 +243,7 @@ const Index = (props) => {
                                         )
                                     }
                                 >
-                                    Active Trades
+                                    Active Trades <span className="text-md text-green-500"> (3)</span>
                                 </Tab>
 
                                 <Tab
@@ -287,34 +285,32 @@ const Index = (props) => {
                                     )}
                                 >
                                     <MaterialTable
-                                        title="Cards"
+                                        title="Active Trades 🔥 "
                                         columns={columns}
                                         data={data}
                                         key={data.id}
-                                        editable={{
-                                            onRowAdd: newData =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        setData([...data, newData]);
-
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                            onRowUpdate: (newData, oldData) =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        const dataUpdate = [...data];
-                                                        const index = oldData.tableData.id;
-                                                        dataUpdate[index] = newData;
-                                                        setData([...dataUpdate]);
-
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                        }}
+            
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                                         options={{
-                                            actionsColumnIndex: -1
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color:'#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
                                         }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                             })
+                                        ]}
+                        
                                     />
 
                                 </Tab.Panel>
@@ -369,3 +365,65 @@ const Index = (props) => {
 }
 
 export default Index;
+
+
+export async function getStaticProps() {
+    // const res = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
+    // const data = await res.json()
+    // const resCardType = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
+    const data = [
+        { id: 1, picture: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg", name: "itunes",
+            card:{
+                code: "Itunes_001",
+                type: "Physical",
+                name: "Uk 100",
+                image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
+
+            },
+            user:{
+                user_id: "Daunt_001",
+            },
+        rate: "340", count: 5, status: 1, created_at: '2021-10-28T09:17:50.974Z' },
+        { id: 2, 
+            card:{
+                code: "Amaz_001",
+                type: "E-code",
+                name: "Uk 100",
+                image: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u",
+
+            },
+            user:{
+                user_id: "Daunt_002",
+            },
+            name: "Amazon", count: 10, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z' },
+        { id: 3,
+            card:{
+                code: "Google_001",
+                type: "Virtual",
+                name: "Uk 100",
+                image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+            },
+            user:{
+                user_id: "Daunt_003",
+            },
+            name: "Google", count: 10, rate:400, status: 5, created_at:'2021-12-04T18:32:10.62Z' },
+        { id: 4,
+            card:{
+                code: "Itunes_002",
+                type: "Physical",
+                name: "Uk 100",
+                image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
+            },
+            user:{
+                user_id: "Daunt_004",
+            },
+            name: "Itunes", count: 3, rate:300, status: 2, created_at:'2022-03-04T18:32:10.62Z' },
+    ];
+    return {
+        props: {
+            data,
+            // dataCardType
+        },
+        revalidate: 1
+    }
+}
