@@ -14,7 +14,8 @@ import { FiCamera } from 'react-icons/fi';
 import IconButton from '@mui/material/IconButton';
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
-
+import moment from 'moment';
+import { useRouter } from 'next/router';
 
 
 function classNames(...classes) {
@@ -24,142 +25,122 @@ const Input = styled('input')({
     display: 'none',
 });
 
-const Cards = (props) => {
-    const lookup = { true: "Available", false: "Unavailable" };
+const Index = (props) => {
+    const Router = useRouter()
 
-    const [data, setData] = useState([])
-    const [cardType, setCardType] = useState([])
+    const [data, setData] = useState(props.data)
+    const [selectedRow, setSelectedRow] = useState(null);
+
+
 
 
     const columns = [
         {
-            title: 'Card',
-            field: 'imageUrl',
-            render: rowData => <img src={rowData.imageUrl} style={{ width: 40, borderRadius: '50%' }} />,
-            editComponent: props => (
-                <Stack direction="row" alignItems="center" spacing={2}>
-                    <label htmlFor="contained-button-file">
-                        <Input accept="image/*" id="contained-button-file" multiple type="file" />
-                        <Button variant="contained" component="span" color="warning">
-                            Upload
-                        </Button>
-                    </label>
-                    <label htmlFor="icon-button-file">
-                        <Input accept="image/*" id="icon-button-file" type="file" />
-                        <IconButton color="primary" aria-label="upload picture" component="span">
-                            <FiCamera color='gold' />
-                        </IconButton>
-                    </label>
-                </Stack>
-            ),
+            title: 'Withdrawal ID',
+            field: 'id',
+            render: rowData => <p className="text-ms font-semibold">Withdral_00{rowData.id}</p>,
             headerStyle: {
-                // backgroundColor: 'yellow',
+                backgroundColor: 'orange',
                 fontWeight: 'bold',
+            },
+            editable: 'never',
+        },
+        {
+            title: "Amount 💰", field: "amount", editable: false, headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            },
+            render: (rowData) => {
+                return (
+                    <div className="flex text-sm tool-tip">
+                        <div>
+                            <p className="font-semibold text-black">{rowData.amount}</p>
+                        </div>
+                    </div>
+                )
+            }
+
+        },
+        {
+            title: "Duration ⏲", field: 'created_at', editable: false, headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold'
+            },
+            render: (rowData) => {
+                return (
+                    <p className="text-sm font-semibold text-gray-600">{moment(rowData.created_at).fromNow()}</p>
+                )
+
             }
         },
         {
-            title: "Card Title", field: "name",
-            render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.name}</p>,
-            
-        },
-        {
-            title: "Counts", field: "count", editable:false,
-            render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.count}</p>,
-
-        },
-    ];
-
-    const columnCardType = [
-        {
-            title: 'Card',
-            field: 'card',
-            lookup: { 1: 'Amazon', 2: 'Itunes', 3: 'GooglePlay' },
-            headerStyle: {
-                // backgroundColor: 'yellow',
+            title: "User 👷‍♂️", field: "user", editable: false, headerStyle: {
+                backgroundColor: 'orange',
                 fontWeight: 'bold',
+            },
+            render: (rowData) => {
+                return (
+                    <div className="flex text-sm">
+                        <div>
+                            <p className="font-semibold text-black">Daunt_00{rowData.id}</p>
+                        </div>
+                    </div>
+                )
             }
         },
 
         {
-            title: 'Code',
-            field: 'code',
-            headerStyle: {
-                // backgroundColor: 'yellow',
+            title: "Status 🔄", field: "status", headerStyle: {
+                backgroundColor: 'orange',
                 fontWeight: 'bold',
-            }
-        },
-
-        {
-            title: 'Card Type',
-            field: 'type',
-            lookup: { 1: 'Physical', 2: 'E-code', 3: 'Virtual' },
-            headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
-
-        {
-            title: "Card Name", field: "name", headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
-        {
-            title: "Status", field: "status",
-            lookup: { true: "Available", false: "Unavailable" },
-            render: rowData =>{
+            },
+            lookup: { 1: "Pending", 2: "Completed", 3: "Cancel" },
+            render: rowData => {
                 return (
                     <p className="text-xs">
-                        {
-                            lookup[rowData.status] === 'Available' ?
-                         (<span className="font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Available </span>) :
-                         (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Not Available </span>)
+                        {rowData.status === 1 ?
+                            (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm"> Pending </span>) :
+                            rowData.status === 2 ?
+                                (<span className="font-semibold leading-tight text-white bg-green-700 rounded-sm"> Completed </span>) :
+                                rowData.status === 3 ?
+                                    (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm"> Failed</span>) :
+                                    (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"></span>)
                         }
                     </p>
                 )
             },
             headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
-        {
-            title: 'Rate',
-            field: 'rate',
-          render: rowData =><p className="text-ms font-semibold">#{rowData.rate}</p>,
-
-            headerStyle: {
-                // backgroundColor: 'yellow',
+                backgroundColor: 'orange',
                 fontWeight: 'bold',
             }
         },
     ];
 
-    const sdata = [
-        { id: 1, imageUrl: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg", name: "Itunes", count: 5, availability: true },
-        { id: 2, imageUrl: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u", name: "Amazon", count: 10, availability: false }
-    ];
 
-    const sdataCardType = [
-        { id: 1, code:'Amaz001', card: 1, type: 1, name: "Amazon Canada", status: true, rate: "300" },
-        { id: 2, code:'Amaz002', card: 1, type: 2, name: "Amazon India", status: false, rate: "400" },
-        { id: 3, code:'Amaz003', card: 1, type: 3, name: "Amazon United Kingdom", status: true, rate: "500" },
-        { id: 4, code:'Itu001',  card: 2, type: 1, name: "Itunes Canada", status: true, rate: "300" },
-        { id: 5, code:'Itu001', card: 2, type: 2, name: "Itunes India", status: false, rate: "400" },
-    ]
+    let active = [];
+    let failed = [];
+    let completed = [];
 
-    useEffect(() => {
-        setData(sdata)
-        setCardType(sdataCardType)
-    }, [])
+    for (let i = 0; i < props.data.length; i++) {
+        if (props.data[i].status === 1) {
+            active.push(props.data[i]);
+        }
+        if (props.data[i].status === 2) {
+            completed.push(props.data[i]);
+        }
+        if (props.data[i].status === 3) {
+            failed.push(props.data[i]);
+        }
+    }
+
+
     return (
         <AdminLayout>
 
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
                     <Breadcumb title={'Trades'} />
-                    
+
                     <div className="px-2 sm:px-0">
                         <Tab.Group>
                             <Tab.List className="flex p-1 space-x-1 bg-yellow-600 rounded-xl">
@@ -176,7 +157,7 @@ const Cards = (props) => {
                                         )
                                     }
                                 >
-                                    Active Trades
+                                    Active Withdrawal <span className="text-md text-green-500">({active.length})</span>
                                 </Tab>
 
                                 <Tab
@@ -191,7 +172,8 @@ const Cards = (props) => {
                                         )
                                     }
                                 >
-                                   Completed Trades
+                                    Completed Withdrawal <span className="text-md text-green-500">({completed.length})</span>
+
                                 </Tab>
 
                                 <Tab
@@ -206,7 +188,8 @@ const Cards = (props) => {
                                         )
                                     }
                                 >
-                                    Flagged Trades
+                                    Failed Withdrawal <span className="text-md text-red-500">({failed.length})</span>
+
                                 </Tab>
                             </Tab.List>
                             <Tab.Panels className="mt-2">
@@ -218,34 +201,32 @@ const Cards = (props) => {
                                     )}
                                 >
                                     <MaterialTable
-                                        title="Cards"
+                                        title="Active Withdrawal 🔥"
                                         columns={columns}
-                                        data={data}
+                                        data={active}
                                         key={data.id}
-                                        editable={{
-                                            onRowAdd: newData =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        setData([...data, newData]);
 
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                            onRowUpdate: (newData, oldData) =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        const dataUpdate = [...data];
-                                                        const index = oldData.tableData.id;
-                                                        dataUpdate[index] = newData;
-                                                        setData([...dataUpdate]);
-
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                        }}
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                                         options={{
-                                            actionsColumnIndex: -1
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color: '#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
                                         }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                            })
+                                        ]}
+
                                     />
 
                                 </Tab.Panel>
@@ -258,34 +239,68 @@ const Cards = (props) => {
                                     )}
                                 >
                                     <MaterialTable
-                                        title="Cards"
-                                        columns={columnCardType}
-                                        data={cardType}
-                                        key={cardType.id}
-                                        editable={{
-                                            onRowAdd: newData =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        setCardType([...cardType, newData]);
+                                        title="Completed Withdrawals"
+                                        columns={columns}
+                                        data={completed}
+                                        key={data.id}
 
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                            onRowUpdate: (newData, oldData) =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        const dataUpdate = [...cardType];
-                                                        const index = oldData.tableData.id;
-                                                        dataUpdate[index] = newData;
-                                                        setCardType([...dataUpdate]);
-
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                        }}
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                                         options={{
-                                            actionsColumnIndex: -1
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color: '#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
                                         }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
+                                            })
+                                        ]}
+
+                                    />
+                                </Tab.Panel>
+                                <Tab.Panel
+                                    // key={idx}
+                                    className={classNames(
+                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
+                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+                                    )}
+                                >
+                                    <MaterialTable
+                                        title="Completed Trades"
+                                        columns={columns}
+                                        data={failed}
+                                        key={data.id}
+
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                                        options={{
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color: '#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
+                                        }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
+                                            })
+                                        ]}
+
                                     />
                                 </Tab.Panel>
                             </Tab.Panels>
@@ -299,4 +314,94 @@ const Cards = (props) => {
     );
 }
 
-export default Cards
+export default Index;
+
+
+export async function getStaticProps() {
+    // const res = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
+    // const data = await res.json()
+    // const resCardType = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
+    const data = [
+        {
+            id: 1,
+            user: {
+                user_id: "Daunt_001",
+            },
+            status: 1,
+            amount: '5000',
+            created_at: '2021-10-28T09:17:50.974Z'
+        },
+        {
+            id: 2,
+            user: {
+                user_id: "Daunt_002",
+            },
+            amount:'12000',
+            status: 3, 
+            created_at: '2021-12-04T18:32:10.62Z'
+        },
+        {
+            id: 3,
+            user: {
+                user_id: "Daunt_003",
+            },
+            amount:'9000',
+            status: 2, created_at: '2021-12-04T18:32:10.62Z'
+        },
+        {
+            id: 4,
+            user: {
+                user_id: "Daunt_004",
+            },
+            amount:'12000',
+            status: 2, 
+            created_at: '2022-03-04T18:32:10.62Z'
+        },
+
+        {
+            id: 5,
+            user: {
+                user_id: "Daunt_005",
+            },
+            amount:'12000',
+            status: 2, 
+            created_at: '2022-03-04T6:32:10.62Z'
+        },
+        {
+            id: 6,
+            user: {
+                user_id: "Daunt_001",
+            },
+            amount:'12000',
+            status: 3, 
+            created_at: '2021-12-04T18:32:10.62Z'
+        },
+        {
+            id: 7,
+            user: {
+                user_id: "Daunt_002",
+            },
+            amount:'12000',
+            status: 3, created_at: '2021-12-04T18:32:10.62Z'
+
+        },
+        {
+            id: 8,
+            user: {
+                user_id: "Daunt_002",
+            },
+            amount:'12000',
+            status: 3, created_at: '2021-12-31 1T18:32:10.62Z'
+
+        },
+
+
+    ];
+    return {
+        props: {
+            data,
+            // dataCardType
+        },
+        revalidate: 1
+    }
+}

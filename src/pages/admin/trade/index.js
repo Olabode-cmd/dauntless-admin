@@ -33,6 +33,7 @@ const Index = (props) => {
     const [selectedRow, setSelectedRow] = useState(null);
 
 
+   
 
     const columns = [
         {
@@ -216,10 +217,23 @@ const Index = (props) => {
         { id: 5, code:'Itu001', card: 2, type: 2, name: "Itunes India", status: false, rate: "400" },
     ]
 
-    // useEffect(() => {
-    //     setData(props.data)
-    //     // setCardType(sdataCardType)
-    // }, [])
+    let active = [];
+    let failed = [];
+    let completed = [];
+
+    for (let i = 0; i < props.data.length; i++) {
+        if (props.data[i].status === 1 || props.data[i].status === 2 || props.data[i].status === 3) {
+          active.push(props.data[i]);
+        }
+        if (props.data[i].status === 4) {
+          completed.push(props.data[i]);
+        }
+        if (props.data[i].status === 5) {
+          failed.push(props.data[i]);
+        }
+      }
+
+  
     return (
         <AdminLayout>
 
@@ -243,7 +257,7 @@ const Index = (props) => {
                                         )
                                     }
                                 >
-                                    Active Trades <span className="text-md text-green-500"> (3)</span>
+                                    Active Trades <span className="text-md text-green-500">({active.length})</span>
                                 </Tab>
 
                                 <Tab
@@ -258,7 +272,8 @@ const Index = (props) => {
                                         )
                                     }
                                 >
-                                   Completed Trades
+                                   Completed Trades <span className="text-md text-green-500">({completed.length})</span>
+
                                 </Tab>
 
                                 <Tab
@@ -273,7 +288,8 @@ const Index = (props) => {
                                         )
                                     }
                                 >
-                                    Flagged Trades
+                                    Failed Trades <span className="text-md text-red-500">({failed.length})</span>
+
                                 </Tab>
                             </Tab.List>
                             <Tab.Panels className="mt-2">
@@ -287,7 +303,7 @@ const Index = (props) => {
                                     <MaterialTable
                                         title="Active Trades 🔥 "
                                         columns={columns}
-                                        data={data}
+                                        data={active}
                                         key={data.id}
             
                                         onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
@@ -323,34 +339,68 @@ const Index = (props) => {
                                     )}
                                 >
                                     <MaterialTable
-                                        title="Cards"
-                                        columns={columnCardType}
-                                        data={cardType}
-                                        key={cardType.id}
-                                        editable={{
-                                            onRowAdd: newData =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        setCardType([...cardType, newData]);
-
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                            onRowUpdate: (newData, oldData) =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        const dataUpdate = [...cardType];
-                                                        const index = oldData.tableData.id;
-                                                        dataUpdate[index] = newData;
-                                                        setCardType([...dataUpdate]);
-
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                        }}
+                                        title="Completed Trades"
+                                        columns={columns}
+                                        data={completed}
+                                        key={data.id}
+            
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                                         options={{
-                                            actionsColumnIndex: -1
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color:'#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
                                         }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                             })
+                                        ]}
+                        
+                                    />
+                                </Tab.Panel>
+                                <Tab.Panel
+                                    // key={idx}
+                                    className={classNames(
+                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
+                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+                                    )}
+                                >
+                                    <MaterialTable
+                                        title="Completed Trades"
+                                        columns={columns}
+                                        data={failed}
+                                        key={data.id}
+            
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                                        options={{
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color:'#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
+                                        }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                             })
+                                        ]}
+                        
                                     />
                                 </Tab.Panel>
                             </Tab.Panels>
@@ -418,6 +468,62 @@ export async function getStaticProps() {
                 user_id: "Daunt_004",
             },
             name: "Itunes", count: 3, rate:300, status: 2, created_at:'2022-03-04T18:32:10.62Z' },
+
+            {
+                id:5,
+                card:{
+                    code: "Itunes_003",
+                    type: "Physical",
+                    name: "Uk 100",
+                    image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
+                },
+                user:{
+                    user_id: "Daunt_005",
+                },
+                name: "Itunes", count: 3, rate:300, status: 4, created_at:'2022-03-04T6:32:10.62Z' },
+            {
+                id:6,
+                card:{
+                    code: "Amazon_004",
+                    type: "E-code",
+                    name: "USA 100",
+                    image: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u",
+                },
+                user:{
+                    user_id: "Daunt_001",
+                },
+                name: "Amazon", count: 6, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z' 
+            },
+            {
+              id:7,
+              card:{
+                  code: "Amazon_002",
+                  type: "E-code",
+                  name: "USA 100",
+                  image: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u",
+              },
+                user:{
+                    user_id: "Daunt_002",
+                },
+                name: "Amazon", count: 6, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z'
+                      
+            },
+            {
+                id:8,
+                card:{
+                    code: "Amazon_002",
+                    type: "E-code",
+                    name: "USA 100",
+                    image: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u",
+                },
+                  user:{
+                      user_id: "Daunt_002",
+                  },
+                  name: "Amazon", count: 3, rate:400, status: 3, created_at:'2021-12-31 1T18:32:10.62Z'
+                        
+            },
+
+
     ];
     return {
         props: {
