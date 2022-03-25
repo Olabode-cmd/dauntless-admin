@@ -239,7 +239,7 @@ const Index = (props) => {
 
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
-                    <Breadcumb title={'Trades'} />
+                    <Breadcumb title={'Trades 📑 '} />
                     
                     <div className="px-2 sm:px-0">
                         <Tab.Group>

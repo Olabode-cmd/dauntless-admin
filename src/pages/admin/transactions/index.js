@@ -103,7 +103,7 @@ const Index = (props) => {
                             rowData.status === 2 ?
                                 (<span className="font-semibold leading-tight text-white bg-green-700 rounded-sm"> Completed </span>) :
                                 rowData.status === 3 ?
-                                    (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm"> Failed</span>) :
+                                    (<span className="px-2 py-3 font-semibold leading-tight text-white bg-red-700 rounded-sm"> Failed</span>) :
                                     (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"></span>)
                         }
                     </p>
@@ -139,7 +139,7 @@ const Index = (props) => {
 
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
-                    <Breadcumb title={'Trades'} />
+                    <Breadcumb title={'Withdrawal 🏦 '} />
 
                     <div className="px-2 sm:px-0">
                         <Tab.Group>
