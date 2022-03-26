@@ -11,19 +11,12 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Check from '@material-ui/icons/Check'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
 import moment from 'moment';
-<<<<<<< HEAD
 import {useRouter} from 'next/router';
-=======
-
->>>>>>> febb7e4480851872c6faa30e8ba9f9315a3017f6
 export default function Users() {
     const [state, setState] = React.useState({
         users: [],
     })
-<<<<<<< HEAD
     const Router = useRouter();
-=======
->>>>>>> febb7e4480851872c6faa30e8ba9f9315a3017f6
 
     const column = [
         { title: "customer_id", field: "customer_id", editable:false, headerStyle :{
