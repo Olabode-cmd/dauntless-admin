@@ -12,7 +12,7 @@ import Check from '@material-ui/icons/Check'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
 import moment from 'moment';
 import {useRouter} from 'next/router';
-export default function Users() {
+export default function Users(props) {
     const [state, setState] = React.useState({
         users: [],
     })
@@ -146,6 +146,80 @@ export default function Users() {
         }
     ]
 
+ 
+    useEffect(() => {
+        setState({
+            users: props.userData
+        })
+    }, [])
+    return (
+        <AdminLayout>
+
+            <div className="flex flex-wrap">
+                <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+                    <Breadcumb title={'Manage Users'} />
+                    <div className="flex flex-wrap">
+                        <div className="w-full md:w-12/12">
+                            <div className="p-2">
+                                <div
+                                    className="p-4 rounded-3xl"
+                                >
+                                    <div className="shadow-lg rounded-lg overflow-hidden">
+
+                                        <MaterialTable
+                                            icons={{
+                                                Check: () => <Check />
+                                                // DetailPanel: () => <ChevronRight />
+                                            }}
+                                            title="Manage Users"
+                                            columns={column}
+                                            data={state.users}
+                                            actions={[
+
+                                                rowData => ({
+                                                    icon: 'Check',
+                                                    tooltip: 'View User',
+                                                    onClick: (event, rowData) => Router.push(`/admin/users/${rowData.id}`),
+                                                })
+                                            ]}
+
+                                            editable={{
+                                                onRowUpdate: (newData, oldData) =>
+                                                    new Promise((resolve, reject) => {
+                                                        setTimeout(() => {
+                                                            const dataUpdate = [...state.users];
+                                                            const index = oldData.tableData.id;
+                                                            dataUpdate[index] = newData;
+                                                            setState({users: [...dataUpdate]});
+
+                                                            resolve();
+                                                        }, 1000)
+                                                    }),
+                                            }}
+                                            options={{
+                                                actionsColumnIndex: -1,
+                                                grouping: true
+                                            }}
+                                        />
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </AdminLayout>
+    );
+}
+
+export async function getStaticProps() {
     const userData = [{
         "id": 1,
         "name": "Leanne Graham",
@@ -196,77 +270,11 @@ export default function Users() {
 
     }
     ]
-    // const tableIcons = {
-    //     Save: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    // }
-    useEffect(() => {
-        setState({
-            users: userData
-        })
-    }, [])
-    return (
-        <AdminLayout>
-
-            <div className="flex flex-wrap">
-                <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
-                    <Breadcumb title={'Manage Users'} />
-                    <div className="flex flex-wrap">
-                        <div className="w-full md:w-12/12">
-                            <div className="p-2">
-                                <div
-                                    className="p-4 rounded-3xl"
-                                >
-                                    <div className="shadow-lg rounded-lg overflow-hidden">
-
-                                        <MaterialTable
-                                            icons={{
-                                                Check: () => <Check />
-                                                // DetailPanel: () => <ChevronRight />
-                                            }}
-                                            title="Manage Users"
-                                            columns={column}
-                                            data={state.users}
-                                            actions={[
-
-                                                rowData => ({
-                                                    icon: 'Check',
-                                                    tooltip: 'Delete User',
-                                                    onClick: (event, rowData) => Router.push(`/admin/user/${rowData.id}`),
-                                                })
-                                            ]}
-
-                                            editable={{
-                                                onRowUpdate: (newData, oldData) =>
-                                                    new Promise((resolve, reject) => {
-                                                        setTimeout(() => {
-                                                            const dataUpdate = [...state.users];
-                                                            const index = oldData.tableData.id;
-                                                            dataUpdate[index] = newData;
-                                                            setState({users: [...dataUpdate]});
-
-                                                            resolve();
-                                                        }, 1000)
-                                                    }),
-                                            }}
-                                            options={{
-                                                actionsColumnIndex: -1,
-                                                grouping: true
-                                            }}
-                                        />
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-        </AdminLayout>
-    );
+    return {
+        props: {
+            userData,
+            // dataCardType
+        },
+        revalidate: 1
+    }
 }
