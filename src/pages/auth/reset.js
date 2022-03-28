@@ -13,7 +13,7 @@ function Reset() {
         </div>
         <form className="mt-4">
             <label htmlFor="password1" className="block">
-                <span className="text-sm text-white">Password</span>
+                <span className="text-sm text-white">New Password</span>
                 <input type="password" id="password" name="password1" autoComplete="current-password"
                     className="block w-full px-3 py-2 mt-1 text-white bg-gray-700 rounded-md focus:outline-none focus:shadow-outline focus:bg-gray-800"
                     required />
