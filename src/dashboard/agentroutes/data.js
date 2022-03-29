@@ -1,29 +1,29 @@
-import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
 import * as Icon from 'react-icons/fi'
+import {RiExchangeLine} from 'react-icons/ri'
+// import { icons } from 'react-icons/lib';
 
 
 const data = [
   {
-    title: 'Users',
-    icon: <FiUserPlus size={'20px'} color="gold"/>,
-    link: '/agent',
+    title: 'Home',
+    icon: <Icon.FiHome size={'20px'} color='gold'/>,
+    link: '/agent/',
   },
   {
-    title: 'Cards and Rates ',
-    icon: <Icon.FiCreditCard size={'20px'} color='gold' />,
+    title: 'Cards and Rates',
+    icon: <Icon.FiCreditCard size={'20px'} color='gold'/>,
     link: '/agent/cards',
   },
   {
     title: 'Transactions',
-    icon: <Icon.FiDollarSign size={'20px'} color='gold' />,
+    icon: <Icon.FiDollarSign size={'20px'} color='gold'/>,
     link: '/agent/transactions',
   },
   {
     title: 'Users accounts',
-    icon: <Icon.FiUsers size={'20px'} color='gold' />,
+    icon: <Icon.FiUsers size={'20px'} color='gold'/>,
     link: '/agent/users',
   },
-  
 ];
 
 export default data;
