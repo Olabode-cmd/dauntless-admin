@@ -4,7 +4,7 @@ import Statistics from '../../components/statistics';
 import AreaChart from '../../components/chart';
 import DoughnutChart from '../../components/donut';
 import DropdownRender from '../../components/dropdown';
-import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
+import { FiUserPlus, FiDollarSign, FiActivity, FiEye, FiArrowUp, FiArrowDown } from 'react-icons/fi'
 import AgentLayout from '../../dashboard/AgentLayout';
 
 export default function HomePage() {
@@ -15,6 +15,7 @@ export default function HomePage() {
   return (
     <AgentLayout>
 
+<<<<<<< HEAD
       <div className="w-full lg:w-12/12 py-6 bg-gray-300 dark:bg-gray-800 px-6 rounded-3xl">
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-full max-w-6xl">
       
@@ -29,43 +30,168 @@ export default function HomePage() {
               <div className="flex items-center justify-between">
                 <span className="text-gray-500"> Cards traded last month</span>
                 <span className="text-green-500 text-sm font-semibold ml-2">+12.6%</span>
+=======
+
+      <div className="flex flex-wrap">
+        <div className="w-full lg:w-12/12 py-6 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-full max-w-6xl">
+        
+            <div className="flex items-center p-4 bg-white rounded">
+              <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
+                <FiArrowUp size={20} color={'red'}  className="w-6 h-6 fill-current text-red-700"/>
+              </div>
+              <div className="flex-grow flex flex-col ml-4">
+                <span className="text-xl font-bold">$8,430</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-500">Revenue last 30 days</span>
+                  <span className="text-green-500 text-sm font-semibold ml-2">+12.6%</span>
+                </div>
+>>>>>>> 79b0c334d5d984cd657afa4120419039fbb3f98f
               </div>
             </div>
-          </div>
-          
-          <div className="flex items-center p-4 bg-white rounded">
-            <div className="flex flex-shrink-0 items-center justify-center bg-red-200 h-16 w-16 rounded">
-              <svg className="w-6 h-6 fill-current text-red-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <div className="flex-grow flex flex-col ml-4">
-              <span className="text-xl font-bold">211</span>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-500">Sales last 30 days</span>
-                <span className="text-red-500 text-sm font-semibold ml-2">-8.1%</span>
+            
+            <div className="flex items-center p-4 bg-white rounded">
+              <div className="flex flex-shrink-0 items-center justify-center bg-red-200 h-16 w-16 rounded">
+              <FiArrowDown size={20} color={'red'}  className="w-6 h-6 fill-current text-red-700"/>
+
+              </div>
+              <div className="flex-grow flex flex-col ml-4">
+                <span className="text-xl font-bold">211</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-500">Sales last 30 days</span>
+                  <span className="text-red-500 text-sm font-semibold ml-2">-8.1%</span>
+                </div>
               </div>
             </div>
-          </div>
-          
-          <div className="flex items-center p-4 bg-white rounded">
-            <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
-              <svg className="w-6 h-6 fill-current text-green-700"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <div className="flex-grow flex flex-col ml-4">
-              <span className="text-xl font-bold">140</span>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-500">Customers last 30 days</span>
-                <span className="text-green-500 text-sm font-semibold ml-2">+28.4%</span>
+            
+            <div className="flex items-center p-4 bg-white rounded">
+              <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
+                <FiArrowUp size={20} color={'red'}  className="w-6 h-6 fill-current text-red-700"/>
+              </div>
+              <div className="flex-grow flex flex-col ml-4">
+                <span className="text-xl font-bold">140</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-500">Customers last 30 days</span>
+                  <span className="text-green-500 text-sm font-semibold ml-2">+28.4%</span>
+                </div>
               </div>
             </div>
+            
           </div>
-          
         </div>
       </div>
 
+<<<<<<< HEAD
+=======
+      <div className="flex flex-wrap py-6">
+        <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+          <Breadcumb title={'Home - Activity'} />
+          <div className="flex flex-row justify-between">
+            <h1>Agent Dashboard</h1>
+            <div className="flex justify-center">
+              <div>
+                {/* <div className="relative inline-flex self-center"> */}
+                <select className="text-sm font-bold rounded border-1 border-yellow-700 text-gray-600 h-10 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                  <option value="">Select Month</option>
+                  {months.map((month, index) => (
+                    <option value={index} key={index}>{month}</option>
+                  ))}
+                </select>
+                {/* </div> */}
+              </div>
+            </div>
+          </div>
+          <AreaChart />
+        </div>
+
+        <div className="w-full mt-8 lg:mt-0 lg:w-4/12 lg:pl-4">
+          <div className="dark:bg-gray-800 bg-gray-300 rounded-3xl px-6 pt-6">
+            <div className="flex text-white text-2xl pb-6 font-bold">
+              <p className='dark:text-gray-100 text-black'>Today's Payment Log</p>
+            </div>
+            <div>
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+                <img
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                  alt="profile image"
+                  className="object-cover w-10 h-10 rounded-full"
+                />
+                <div className="pl-4 w-full">
+                  <div className="flex items-center justify-between w-full">
+                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                  </div>
+                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                    Was paid #200.00 on 12/12/2020
+                  </p>
+                </div>
+              </div>
+
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+                <img
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                  alt="profile image"
+                  className="object-cover w-10 h-10 rounded-full"
+                />
+                <div className="pl-4 w-full">
+                  <div className="flex items-center justify-between w-full">
+                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                  </div>
+                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                    Was paid #200.00 on 12/12/2020
+                  </p>
+                </div>
+              </div>
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+                <img
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                  alt="profile image"
+                  className="object-cover w-10 h-10 rounded-full"
+                />
+                <div className="pl-4 w-full">
+                  <div className="flex items-center justify-between w-full">
+                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                  </div>
+                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                    Was paid #200.00 on 12/12/2020
+                  </p>
+                </div>
+              </div>
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+                <img
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                  alt="profile image"
+                  className="object-cover w-10 h-10 rounded-full"
+                />
+                <div className="pl-4 w-full">
+                  <div className="flex items-center justify-between w-full">
+                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                  </div>
+                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                    Was paid #200.00 on 12/12/2020
+                  </p>
+                </div>
+              </div>
+              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+                <img
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                  alt="profile image"
+                  className="object-cover w-10 h-10 rounded-full"
+                />
+                <div className="pl-4 w-full">
+                  <div className="flex items-center justify-between w-full">
+                    <div className="dark:text-white text-black' font-medium">User 001</div>
+                  </div>
+                  <p className="my-2 text-sm dark:text-gray-100 text-black'">
+                    Was paid #200.00 on 12/12/2020
+                  </p>
+                </div>
+              </div></div>
+          </div>
+        </div>
+
+      </div>
+
+>>>>>>> 79b0c334d5d984cd657afa4120419039fbb3f98f
       <div className="flex flex-wrap mt-8">
         <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
           <div className="flex flex-row justify-between">
