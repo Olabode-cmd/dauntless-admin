@@ -74,6 +74,16 @@ const Index = (props) => {
             }
         },
         {
+            title: 'Payment Type',
+            field: 'pay_id',
+            render: rowData => <p className="text-ms font-semibold">{rowData.pay_id}</p>,
+            headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            },
+            editable: 'never',
+        },
+        {
             title: "User 👷‍♂️", field: "user", editable: false, headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
@@ -99,11 +109,11 @@ const Index = (props) => {
                 return (
                     <p className="text-xs">
                         {rowData.status === 1 ?
-                            (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm"> Pending </span>) :
+                            (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm p-1"> Pending </span>) :
                             rowData.status === 2 ?
-                                (<span className="font-semibold leading-tight text-white bg-green-700 rounded-sm"> Completed </span>) :
+                                (<span className="font-semibold leading-tight text-white bg-green-700 rounded-sm p-1"> Completed </span>) :
                                 rowData.status === 3 ?
-                                    (<span className="px-2 py-3 font-semibold leading-tight text-white bg-red-700 rounded-sm"> Failed</span>) :
+                                    (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm p-1"> Failed</span>) :
                                     (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"></span>)
                         }
                     </p>
@@ -157,7 +167,22 @@ const Index = (props) => {
                                         )
                                     }
                                 >
-                                    Active Withdrawal <span className="text-md text-green-500">({active.length})</span>
+                                    Wallet Withdrawal <span className="text-md text-green-500">({active.length})</span>
+                                </Tab>
+
+                                <Tab
+                                    // key={category}
+                                    className={({ selected }) =>
+                                        classNames(
+                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+                                            selected
+                                                ? 'bg-white shadow'
+                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                                        )
+                                    }
+                                >
+                                    Instant Withdrawal <span className="text-md text-green-500">({active.length})</span>
                                 </Tab>
 
                                 <Tab
@@ -201,7 +226,45 @@ const Index = (props) => {
                                     )}
                                 >
                                     <MaterialTable
-                                        title="Active Withdrawal 🔥"
+                                        title="Wallet Withdrawal 🔥"
+                                        columns={columns}
+                                        data={active}
+                                        key={data.id}
+
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                                        options={{
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color: '#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
+                                        }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                            })
+                                        ]}
+
+                                    />
+
+                                </Tab.Panel>
+
+                                <Tab.Panel
+                                    // key={idx}
+                                    className={classNames(
+                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
+                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+                                    )}
+                                >
+                                    <MaterialTable
+                                        title="Instant Withdrawal 🔥"
                                         columns={columns}
                                         data={active}
                                         key={data.id}
@@ -267,6 +330,7 @@ const Index = (props) => {
 
                                     />
                                 </Tab.Panel>
+
                                 <Tab.Panel
                                     // key={idx}
                                     className={classNames(
@@ -275,7 +339,7 @@ const Index = (props) => {
                                     )}
                                 >
                                     <MaterialTable
-                                        title="Completed Trades"
+                                        title="Failed Withdrawals"
                                         columns={columns}
                                         data={failed}
                                         key={data.id}
@@ -329,6 +393,7 @@ export async function getStaticProps() {
             },
             status: 1,
             amount: '5000',
+            pay_id: "Instant Withdrawal",
             created_at: '2021-10-28T09:17:50.974Z'
         },
         {
@@ -337,7 +402,8 @@ export async function getStaticProps() {
                 user_id: "Daunt_002",
             },
             amount:'12000',
-            status: 3, 
+            status: 3,
+            pay_id: "Wallet",
             created_at: '2021-12-04T18:32:10.62Z'
         },
         {
@@ -346,6 +412,7 @@ export async function getStaticProps() {
                 user_id: "Daunt_003",
             },
             amount:'9000',
+            pay_id: "Wallet",
             status: 2, created_at: '2021-12-04T18:32:10.62Z'
         },
         {
@@ -354,6 +421,7 @@ export async function getStaticProps() {
                 user_id: "Daunt_004",
             },
             amount:'12000',
+            pay_id: "Wallet",
             status: 2, 
             created_at: '2022-03-04T18:32:10.62Z'
         },
@@ -364,7 +432,8 @@ export async function getStaticProps() {
                 user_id: "Daunt_005",
             },
             amount:'12000',
-            status: 2, 
+            status: 2,
+            pay_id: "Wallet",
             created_at: '2022-03-04T6:32:10.62Z'
         },
         {
@@ -373,7 +442,8 @@ export async function getStaticProps() {
                 user_id: "Daunt_001",
             },
             amount:'12000',
-            status: 3, 
+            status: 3,
+            pay_id: "Wallet",
             created_at: '2021-12-04T18:32:10.62Z'
         },
         {
@@ -382,6 +452,7 @@ export async function getStaticProps() {
                 user_id: "Daunt_002",
             },
             amount:'12000',
+            pay_id: "Wallet",
             status: 3, created_at: '2021-12-04T18:32:10.62Z'
 
         },
@@ -391,6 +462,7 @@ export async function getStaticProps() {
                 user_id: "Daunt_002",
             },
             amount:'12000',
+            pay_id: "Wallet",
             status: 3, created_at: '2021-12-31 1T18:32:10.62Z'
 
         },

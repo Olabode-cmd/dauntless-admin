@@ -18,7 +18,7 @@ export default function Users() {
     })
 
     const column = [
-        { title: "customer_id", field: "customer_id", editable:false, headerStyle :{
+        { title: "Customer ID", field: "customer_id", editable:false, headerStyle :{
             backgroundColor: 'orange',
             fontWeight:'bold',
         }, render: (rowData) => <p className="text-ms font-semibold">{rowData.customer_id}</p> },

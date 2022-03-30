@@ -19,7 +19,7 @@ export default function Users(props) {
     const Router = useRouter();
 
     const column = [
-        { title: "customer_id", field: "customer_id", editable:false, headerStyle :{
+        { title: "Customer ID", field: "customer_id", editable:false, headerStyle :{
             backgroundColor: 'orange',
             fontWeight:'bold',
         }, render: (rowData) => <p className="text-ms font-semibold">{rowData.customer_id}</p> },
@@ -27,7 +27,7 @@ export default function Users(props) {
         {
             title: "User", field: "picture",editable:false,
             headerStyle :{
-                backgroundColor: 'orange',
+                backgroundColor: 'orange',                                                                                                                                                                                                                                                                                  
                 fontWeight:'bold',
             },
             render: (rowData) => {

@@ -67,6 +67,16 @@ const Index = (props) => {
             }
             
         },
+        {
+            title: 'Payment Type',
+            field: 'pay_id',
+            render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.pay_id}</p>,
+            headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            },
+            editable: 'never',
+        },
         {title: "Duration", field:'created_at', editable:false,headerStyle: {  
         backgroundColor: 'orange',
         fontWeight: 'bold'},
@@ -118,15 +128,15 @@ const Index = (props) => {
                 return (
                     <p className="text-xs">
                         {rowData.status === 1 ?
-                         (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm"> Pending </span>):
+                         (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm p-1"> Pending </span>):
                          rowData.status === 2 ?
-                         (<span className="font-semibold leading-tight text-white bg-orange-300 rounded-sm"> Reviewing </span>):
+                         (<span className="font-semibold leading-tight text-white bg-orange-300 rounded-sm p-1"> Reviewing </span>):
                          rowData.status === 3 ?
-                         (<span className="font-semibold leading-tight text-white bg-amber-400 rounded-sm"> Agent Redeeming </span>):
+                         (<span className="font-semibold leading-tight text-white bg-amber-400 rounded-sm p-1"> Agent Redeeming </span>):
                          rowData.status === 4 ?
-                         (<span className="font-semibold leading-tight text-white bg-green-600 rounded-sm"> Trade Completed </span>):
+                         (<span className="font-semibold leading-tight text-white bg-green-600 rounded-sm p-1"> Trade Completed </span>):
                          rowData.status === 5 ?
-                         (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm"> Trade Rejected </span>):
+                         (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm p-1"> Trade Rejected </span>):
                          rowData.status === 6 ?
                          (<span className="font-semibold leading-tight text-white bg-yellow-900 rounded-sm"> Trade Paid </span>):
                          (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"> {lookup[rowData.status]} </span>)
@@ -245,6 +255,7 @@ const Index = (props) => {
                         <Tab.Group>
                             <Tab.List className="flex p-1 space-x-1 bg-yellow-600 rounded-xl">
                                 {/* {Object.keys(categories).map((category) => ( */}
+
                                 <Tab
                                     // key={category}
                                     className={({ selected }) =>
@@ -323,7 +334,8 @@ const Index = (props) => {
                                             rowData => ({
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
-                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                                // onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
                                              })
                                         ]}
                         
@@ -361,12 +373,14 @@ const Index = (props) => {
                                             rowData => ({
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
-                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
+                                                // onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                              })
                                         ]}
                         
                                     />
                                 </Tab.Panel>
+                                
                                 <Tab.Panel
                                     // key={idx}
                                     className={classNames(
@@ -397,7 +411,8 @@ const Index = (props) => {
                                             rowData => ({
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
-                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
+                                                // onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                              })
                                         ]}
                         
@@ -433,7 +448,7 @@ export async function getStaticProps() {
             user:{
                 user_id: "Daunt_001",
             },
-        rate: "340", count: 5, status: 1, created_at: '2021-10-28T09:17:50.974Z' },
+        rate: "340", count: 5, pay_id: "Wallet", status: 1, created_at: '2021-10-28T09:17:50.974Z' },
         { id: 2, 
             card:{
                 code: "Amaz_001",
@@ -445,7 +460,7 @@ export async function getStaticProps() {
             user:{
                 user_id: "Daunt_002",
             },
-            name: "Amazon", count: 10, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z' },
+            name: "Amazon", count: 10, pay_id: "Wallet", rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z' },
         { id: 3,
             card:{
                 code: "Google_001",
@@ -456,7 +471,7 @@ export async function getStaticProps() {
             user:{
                 user_id: "Daunt_003",
             },
-            name: "Google", count: 10, rate:400, status: 5, created_at:'2021-12-04T18:32:10.62Z' },
+            name: "Google", count: 10, pay_id: "Instant Withdrawal", rate:400, status: 5, created_at:'2021-12-04T18:32:10.62Z' },
         { id: 4,
             card:{
                 code: "Itunes_002",
@@ -467,7 +482,7 @@ export async function getStaticProps() {
             user:{
                 user_id: "Daunt_004",
             },
-            name: "Itunes", count: 3, rate:300, status: 2, created_at:'2022-03-04T18:32:10.62Z' },
+            name: "Itunes", count: 3, pay_id: "Wallet", rate:300, status: 2, created_at:'2022-03-04T18:32:10.62Z' },
 
             {
                 id:5,
@@ -480,7 +495,7 @@ export async function getStaticProps() {
                 user:{
                     user_id: "Daunt_005",
                 },
-                name: "Itunes", count: 3, rate:300, status: 4, created_at:'2022-03-04T6:32:10.62Z' },
+                name: "Itunes", count: 3, pay_id: "Instant Withdrawal", rate:300, status: 4, created_at:'2022-03-04T6:32:10.62Z' },
             {
                 id:6,
                 card:{
@@ -492,7 +507,7 @@ export async function getStaticProps() {
                 user:{
                     user_id: "Daunt_001",
                 },
-                name: "Amazon", count: 6, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z' 
+                name: "Amazon", count: 6, pay_id: "Wallet", rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z' 
             },
             {
               id:7,
@@ -505,7 +520,7 @@ export async function getStaticProps() {
                 user:{
                     user_id: "Daunt_002",
                 },
-                name: "Amazon", count: 6, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z'
+                name: "Amazon", count: 6, pay_id: "Instant Withdrawal", rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z'
                       
             },
             {
@@ -519,7 +534,7 @@ export async function getStaticProps() {
                   user:{
                       user_id: "Daunt_002",
                   },
-                  name: "Amazon", count: 3, rate:400, status: 3, created_at:'2021-12-31 1T18:32:10.62Z'
+                  name: "Amazon", count: 3, pay_id: "Wallet", rate:400, status: 3, created_at:'2021-12-31 1T18:32:10.62Z'
                         
             },
 
