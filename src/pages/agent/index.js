@@ -15,22 +15,6 @@ export default function HomePage() {
   return (
     <AgentLayout>
 
-<<<<<<< HEAD
-      <div className="w-full lg:w-12/12 py-6 bg-gray-300 dark:bg-gray-800 px-6 rounded-3xl">
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-full max-w-6xl">
-      
-          <div className="flex items-center p-4 bg-white rounded">
-            <div className="flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded">
-              <svg className="w-6 h-6 fill-current text-green-700"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <div className="flex-grow flex flex-col ml-4">
-              <span className="text-xl font-bold">$8,430</span>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-500"> Cards traded last month</span>
-                <span className="text-green-500 text-sm font-semibold ml-2">+12.6%</span>
-=======
 
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 py-6 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
@@ -46,7 +30,6 @@ export default function HomePage() {
                   <span className="text-gray-500">Revenue last 30 days</span>
                   <span className="text-green-500 text-sm font-semibold ml-2">+12.6%</span>
                 </div>
->>>>>>> 79b0c334d5d984cd657afa4120419039fbb3f98f
               </div>
             </div>
             
@@ -81,8 +64,6 @@ export default function HomePage() {
         </div>
       </div>
 
-<<<<<<< HEAD
-=======
       <div className="flex flex-wrap py-6">
         <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
           <Breadcumb title={'Home - Activity'} />
@@ -191,7 +172,6 @@ export default function HomePage() {
 
       </div>
 
->>>>>>> 79b0c334d5d984cd657afa4120419039fbb3f98f
       <div className="flex flex-wrap mt-8">
         <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
           <div className="flex flex-row justify-between">

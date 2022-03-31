@@ -5,14 +5,9 @@ import { RiExchangeLine } from 'react-icons/ri'
 
 const data = [
     {
-        title: 'Home',
-        icon: <Icon.FiHome size={'20px'} color='gold' />,
-        link: '/support/',
-    },
-    {
         title: 'Chats',
         icon: <Icon.FiUser size={'20px'} color='gold' />,
-        link: '/support/chats',
+        link: '/support/',
     },
     {
         title: 'Transactions',
