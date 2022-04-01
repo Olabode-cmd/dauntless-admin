@@ -6,6 +6,7 @@ import DoughnutChart from '../../components/donut';
 import DropdownRender from '../../components/dropdown';
 import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
 import SupportLayout from '../../dashboard/SupportLayout';
+import { FaFileArchive, FaImage } from "react-icons/fa";
 
 export default function HomePage() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -148,45 +149,20 @@ export default function HomePage() {
                 </a>
               </div>
 
-              <div className="w-full py-3 px-3 flex items-center justify-between border-t border-gray-300">
+              <div className="w-full bg-slate-800 py-3 px-3 flex items-center justify-between border-t border-gray-300">
 
                 <input aria-placeholder="Escribe un mensaje aquí" placeholder="Type your message here and hit enter to send"
                   className="py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700" type="text" name="message" required />
                 <div className="flex flex-row">
                   <button className="focus:outline-none flex items-center justify-center h-10 w-8 hover:text-blue-600  text-blue-400">
-                    <svg
-                      className="w-5 h-5 "
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
-                      ></path>
-                    </svg>
+                    
+                    <FaFileArchive className="w-4 h-4 fill-current text-cyan-500" />
                   </button>
                   <button
                     id="capture"
                     className="focus:outline-none flex items-center justify-center h-10 w-8 hover:text-green-600 text-green-400 ml-1 mr-2"
                   >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      ></path>
-                    </svg>
+                    <FaImage className="w-5 h-5 fill-current text-green-500" />
                   </button>
                 </div>
               </div>
