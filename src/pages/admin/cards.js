@@ -100,7 +100,7 @@ const Cards = (props) => {
         },
 
         {
-            title: "Card Name", field: "name", headerStyle: {
+            title: "Country", field: "name", headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
             }
