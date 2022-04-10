@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from 'next-themes'
 import { FiSunrise, FiMoon } from 'react-icons/fi'
-import { AiFillAndroid, AiFillApple } from "react-icons/ai";
+import { AiFillAndroid, AiFillApple, AiOutlineMenuFold } from "react-icons/ai";
 import Head from 'next/head'
 
 function Index() {
@@ -9,36 +9,35 @@ function Index() {
 
   return (
     <div>
-      <div class="navbar bg-base-100">
-        <div class="navbar-start">
-          <div class="dropdown">
-            <label tabindex="0" class="btn btn-ghost btn-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+      {/* <div className="navbar bg-base-100">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabindex="0" className="btn btn-ghost btn-circle">
+             <AiOutlineMenuFold size={'20px'} color='gold' />
             </label>
-            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+            <ul tabindex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               <li><a>Homepage</a></li>
               <li><a>Portfolio</a></li>
               <li><a>About</a></li>
             </ul>
           </div>
         </div>
-        <div class="navbar-center">
-          <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <div className="navbar-center">
+          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
         </div>
-        <div class="navbar-end">
-          <button class="btn btn-ghost btn-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        <div className="navbar-end">
+          <button className="btn btn-ghost btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           </button>
-          <button class="btn btn-ghost btn-circle">
-            <div class="indicator">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-              <span class="badge badge-xs badge-primary indicator-item"></span>
+          <button className="btn btn-ghost btn-circle">
+            <div className="indicator">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+              <span className="badge badge-xs badge-primary indicator-item"></span>
             </div>
           </button>
         </div>
-      </div>
+      </div> */}
 
       <section className="bg-slate-100 dark:bg-slate-900">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
@@ -50,9 +49,9 @@ function Index() {
               <br className="hidden md:inline lg:hidden" /> sweet deals, discount and more. Anywhere in the world.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-              <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded bg-yellow-400 hover:bg-yellow-600 text-slate-100 flex items-center justify-center">
+              <a href="#" className="px-8 py-3 text-lg font-semibold rounded bg-yellow-400 hover:bg-yellow-600 text-slate-100 flex items-center justify-center">
                 <AiFillAndroid /> <span className="inline-block">&nbsp; Android</span></a>
-              <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
+              <a href="#" className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
                 <AiFillApple /> &nbsp; iOS App</a>
             </div>
           </div>
@@ -63,7 +62,7 @@ function Index() {
       </section>
 
 
-      <section className="mt-8 mb-6 px-16 md:px-36">
+      {/* <section className="mt-8 mb-6 px-16 md:px-36">
         <span className="block mb-2 text-xs font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
         <h2 className="text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
@@ -94,9 +93,9 @@ function Index() {
             voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem
             libero minus atque tenetur enim pariatur cupiditate commodi in beatae, ipsa eligendi? Quis, saepe.</p>
         </div>
-      </section>
+      </section> */}
 
-      <section className="dark:bg-coolGray-800 dark:text-coolGray-100">
+      {/* <section className="dark:bg-coolGray-800 dark:text-coolGray-100">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
             <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">About
@@ -113,9 +112,9 @@ function Index() {
             <img src="images/cards.jpg" alt="" className="object-contain rounded h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="bg-slate-100 dark:bg-slate-900 px-16 md:px-36">
+      {/* <section className="bg-slate-100 dark:bg-slate-900 px-16 md:px-36">
         <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Filter Cards</span>
 
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
@@ -186,9 +185,9 @@ function Index() {
           </div>
         </div>
 
-      </section>
+      </section> */}
 
-      <section className="bg-slate-100 dark:bg-slate-900  px-4 md:px-36">
+      {/* <section className="bg-slate-100 dark:bg-slate-900  px-4 md:px-36">
         <div className="max-w-5xl mx-auto pt-4 px-6 sm:px-6 lg:px-8 mb-12">
           <div className="w-full rounded p-8 sm:p-6">
             <p className="text-5xl font-bold leading-7 text-center text-white">Contact me</p>
@@ -224,9 +223,9 @@ function Index() {
             </form>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <footer className="-mt-12">
+      {/* <footer className="-mt-12">
         <div className="bg-zinc-900">
           <div className="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 text-center">
             <div className="mb-8 lg:grid-cols-6 inline-block">
@@ -282,7 +281,7 @@ function Index() {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
 
 
