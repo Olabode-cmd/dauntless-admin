@@ -25,7 +25,7 @@ export default function Users(props) {
         }, render: (rowData) => <p className="text-ms font-semibold">{rowData.customer_id}</p> },
         // { title: "Name", field: "name" },
         {
-            title: "User", field: "picture",editable:false,
+            title: "User", editable:false,
             headerStyle :{
                 backgroundColor: 'orange',                                                                                                                                                                                                                                                                                  
                 fontWeight:'bold',

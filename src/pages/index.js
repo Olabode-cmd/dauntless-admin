@@ -4,7 +4,7 @@ import { FiSunrise, FiMoon } from 'react-icons/fi'
 import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 import Head from 'next/head'
 
-function Home() {
+function Index() {
   const { theme, setTheme } = useTheme()
 
   return (
@@ -50,7 +50,7 @@ function Home() {
         </div>
       </nav>
 
-      {/* <section className="bg-slate-100 dark:bg-slate-900">
+      <section className="bg-slate-100 dark:bg-slate-900">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
             <h1 className="text-5xl font-bold leading-none sm:text-6xl dark:text-slate-100 text-zinc-900">Welcome to <br />
@@ -70,7 +70,7 @@ function Home() {
             <img src="images/undraw-cards.svg" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
-	    </section> */}
+	    </section>
 
       {/* <div class="carousel w-full h-screen">
         <div id="slide1" class="carousel-item relative w-full">
@@ -103,7 +103,7 @@ function Home() {
         </div>
       </div> */}
 
-      {/* <section className="mt-8 mb-6 px-16 md:px-36">
+      <section className="mt-8 mb-6 px-16 md:px-36">
         <span className="block mb-2 text-xs font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
         <h2 className="text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
@@ -371,7 +371,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </footer> */}
+      </footer>
     </div>
     
 
@@ -379,4 +379,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Index

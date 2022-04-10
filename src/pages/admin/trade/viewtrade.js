@@ -155,7 +155,7 @@ export default function HomePage() {
                                 </Dialog.Title>
                                 <div className="mt-2">
                                     <p className="text-sm text-center text-gray-500">
-                                       Why do you want to query this trade? Kindly fill in the answers below
+                                        Why do you want to query this trade? Kindly fill in the answers below
                                     </p>
                                     <div className="text-center my-2">
                                         <textarea className="w-full h-24 resize-none rounded p-2" placeholder="What is your query about?" />
@@ -188,11 +188,11 @@ export default function HomePage() {
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12 pt-6 pb-24 bg-gray-300 dark:bg-gray-800 px-6 rounded-3xl">
                     <Breadcumb title={'Trade'} />
-                    
+
                     <div className="flex-col h-full flex justify-between">
                         <div className="flex flex-wrap">
                             <div className="w-full lg:w-3/12 mx-3">
-                                <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="card image"/>
+                                <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="card image" />
                             </div>
 
                             <div className="w-full lg:w-3/12 mx-3">
@@ -210,10 +210,10 @@ export default function HomePage() {
                             <button type="button" className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-green-400 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                 Confirm Trade
                             </button>
-                            
+
                             <button type="button"
                                 onClick={openModal}
-                                 className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                 Query Trade
                             </button>
 
@@ -226,7 +226,7 @@ export default function HomePage() {
                             </button>
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div className="w-full mt-8 lg:mt-0 lg:w-3/12 lg:pl-4 bg-gray-300 dark:bg-gray-800 rounded-3xl px-6 mx-4">
@@ -236,13 +236,13 @@ export default function HomePage() {
                                 <span className="mt-10 text-4xl font-extrabold text-white">Tony Stark</span>
                             </div>
                             <div className="flex justify-center">
-                            <img className="object-cover w-24 h-24 mt-4 border-4 border-blue-600 rounded-full" src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg" />
+                                <img className="object-cover w-24 h-24 mt-4 border-4 border-blue-600 rounded-full" src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg" />
                             </div>
                         </div>
                         <div className="px-6 py-4 bg-slate-200">
                             <div className="flex justify-center mt-10 mb-4 text-xl font-medium"></div>
                             <div className="flex w-full text-gray-600 text-center">
-                                
+
                                 <div className="font-bold"> Trade 001</div>
                             </div>
 
@@ -269,7 +269,7 @@ export default function HomePage() {
             </div>
 
 
-           
+
         </AdminLayout>
     );
 }
