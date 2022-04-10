@@ -1,6 +1,3 @@
-import Head from 'next/head';
-import 'tailwindcss/tailwind.css';
-import DashboardLayout from '../dashboard/AdminLayout';
 import { ThemeProvider } from 'next-themes'
 
 function MyApp({ Component, pageProps }) {
