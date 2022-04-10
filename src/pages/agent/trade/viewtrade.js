@@ -106,6 +106,8 @@ export default function HomePage() {
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12 pt-6 pb-24 bg-gray-300 dark:bg-gray-800 px-6 rounded-3xl">
                     <Breadcumb title={'Trade'} />
+
+                    
                     
                     <div className="flex-col h-full flex justify-between">
                         <div className="flex flex-wrap">
