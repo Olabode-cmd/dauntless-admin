@@ -15,11 +15,6 @@ const data = [
     link: '/agent/cards',
   },
   {
-    title: 'Trades',
-    icon: <RiExchangeLine size={'20px'} color='gold' />,
-    link: '/agent/trade',
-  },
-  {
     title: 'Transactions',
     icon: <Icon.FiDollarSign size={'20px'} color='gold'/>,
     link: '/agent/transactions',

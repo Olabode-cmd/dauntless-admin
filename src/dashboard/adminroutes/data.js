@@ -7,7 +7,7 @@ const data = [
   {
     title: 'Home',
     icon: <Icon.FiHome size={'20px'} color='gold'/>,
-    link: '/',
+    link: '/admin',
   },
   {
     title: 'Users accounts',
