@@ -62,42 +62,12 @@ function Index() {
                 <AiFillApple /> &nbsp; iOS App</a>
             </div>
           </div>
-          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-            <img src="images/undraw-cards.svg" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
+          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-112 xl:h-112 2xl:h-128">
+            <img src="images/credit-card.png" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
 	    </section>
 
-      {/* <div class="carousel w-full h-screen">
-        <div id="slide1" class="carousel-item relative w-full">
-          <img src="https://api.lorem.space/image/car?w=800&h=200&hash=8B7BCDC2" class="w-full" />
-            <div class="absolute flex justify-between transform translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide4" class="btn btn-circle">❮</a>
-              <a href="#slide2" class="btn btn-circle">❯</a>
-            </div>
-        </div>
-        <div id="slide2" class="carousel-item relative w-full">
-          <img src="https://api.lorem.space/image/car?w=800&h=200&hash=500B67FB" class="w-full" />
-            <div class="absolute flex justify-between transform translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide1" class="btn btn-circle">❮</a>
-              <a href="#slide3" class="btn btn-circle">❯</a>
-            </div>
-        </div>
-        <div id="slide3" class="carousel-item relative w-full">
-          <img src="https://api.lorem.space/image/car?w=800&h=200&hash=A89D0DE6" class="w-full" />
-            <div class="absolute flex justify-between transform translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide2" class="btn btn-circle">❮</a>
-              <a href="#slide4" class="btn btn-circle">❯</a>
-            </div>
-        </div>
-        <div id="slide4" class="carousel-item relative w-full">
-          <img src="https://api.lorem.space/image/car?w=800&h=200&hash=225E6693" class="w-full" />
-            <div class="absolute flex justify-between transform translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide3" class="btn btn-circle">❮</a>
-              <a href="#slide1" class="btn btn-circle">❯</a>
-            </div>
-        </div>
-      </div> */}
 
       <section className="mt-8 mb-6 px-16 md:px-36">
         <span className="block mb-2 text-xs font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
@@ -122,7 +92,34 @@ function Index() {
             </p>
           </div>
         </div>
+
+        <div className="p-8 space-y-8 rounded-md lg:col-span-full lg:py-12 dark:bg-slate-900">
+          <h2 className="text-5xl font-bold dark:text-slate-200">Trade with us</h2>
+          <p className="dark:text-coolGray-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Nesciunt facilis quod accusantium beatae cum nam adipisci reiciendis omnis possimus error quo animi 
+          voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem 
+          libero minus atque tenetur enim pariatur cupiditate commodi in beatae, ipsa eligendi? Quis, saepe.</p>
+        </div>
       </section>
+
+      <section className="dark:bg-coolGray-800 dark:text-coolGray-100">
+        <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
+          <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
+            <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">About 
+              <span className="text-yellow-400">Dauntless</span> Trading Platform
+            </h1>
+            <p className="mt-6 mb-8 text-lg sm:mb-12">Dictum aliquam porta in condimentum ac integer
+              <br className="hidden md:inline lg:hidden" />turpis pulvinar, est scelerisque ligula sem
+            </p>
+            <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+              <a href="#" className="px-8 py-3 text-lg font-semibold border rounded dark:border-coolGray-100">Read More</a>
+            </div>
+          </div>
+          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+            <img src="images/cards.jpg" alt="" className="object-contain rounded h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
+			</div>
+		</div>
+	</section>
 
       <section className="bg-slate-100 dark:bg-slate-900 px-16 md:px-36">
         <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Filter Cards</span>
@@ -235,86 +232,10 @@ function Index() {
         </div>
       </section>
 
-      <footer className="m-0">
-        <div className="bg-gray-900">
-          <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-            <div className="grid row-gap-10 mb-8 lg:grid-cols-6">
-              <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
-                <div>
-                  <p className="font-medium tracking-wide text-gray-300">Category</p>
-                  <ul className="mt-2 space-y-2">
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">News</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">World</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Games</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">References</a>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <p className="font-medium tracking-wide text-gray-300">Apples</p>
-                  <ul className="mt-2 space-y-2">
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Web</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">eCommerce</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Business</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Entertainment</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Portfolio</a>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <p className="font-medium tracking-wide text-gray-300">Cherry</p>
-                  <ul className="mt-2 space-y-2">
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Media</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Brochure</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Nonprofit</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Educational</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Projects</a>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <p className="font-medium tracking-wide text-gray-300">Business</p>
-                  <ul className="mt-2 space-y-2">
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Infopreneur</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Personal</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Wiki</a>
-                    </li>
-                    <li>
-                      <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">Forum</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+      <footer className="-mt-12">
+        <div className="bg-zinc-900">
+          <div className="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 text-center">
+            <div className="mb-8 lg:grid-cols-6 inline-block">
               <div className="md:max-w-md lg:col-span-2">
                 <span className="text-base font-medium tracking-wide text-gray-300">Subscribe for updates</span>
                 <form className="flex flex-col mt-4 md:flex-row">
