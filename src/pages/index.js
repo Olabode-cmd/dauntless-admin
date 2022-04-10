@@ -103,7 +103,7 @@ function Index() {
         </div>
       </div> */}
 
-      <section className="mt-8 mb-6 px-16 md:px-36">
+      {/* <section className="mt-8 mb-6 px-16 md:px-36">
         <span className="block mb-2 text-xs font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
         <h2 className="text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
@@ -371,7 +371,7 @@ function Index() {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
     
 
