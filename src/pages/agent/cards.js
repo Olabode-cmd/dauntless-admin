@@ -74,6 +74,7 @@ const Cards = (props) => {
             title: 'Card',
             field: 'card',
             lookup: { 1: 'Amazon', 2: 'Itunes', 3: 'GooglePlay' },
+            editable:false,
             headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
@@ -83,6 +84,7 @@ const Cards = (props) => {
         {
             title: 'Code',
             field: 'code',
+            editable:false,
             headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
@@ -92,7 +94,8 @@ const Cards = (props) => {
         {
             title: 'Card Type',
             field: 'type',
-            lookup: { 1: 'Physical', 2: 'E-code', 3: 'Virtual' },
+            editable:false,
+            lookup: { 1: 'Physical', 2: 'E-code' },
             headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
@@ -103,7 +106,8 @@ const Cards = (props) => {
             title: "Card Name", field: "name", headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
-            }
+            },
+            editable:false,
         },
         {
             title: "Status", field: "status",
@@ -157,7 +161,7 @@ const Cards = (props) => {
         <AgentLayout>
 
             <div className="flex flex-wrap">
-                <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+                <div className="w-full bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
                     <Breadcumb title={'Cards and rates'} />
                     <div className="flex flex-row justify-between">
                         <h1>Add and update cards rate</h1>
@@ -225,25 +229,25 @@ const Cards = (props) => {
                                         data={data}
                                         key={data.id}
                                         editable={{
-                                            onRowAdd: newData =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        setData([...data, newData]);
+                                            // onRowAdd: newData =>
+                                            //     new Promise((resolve, reject) => {
+                                            //         setTimeout(() => {
+                                            //             setData([...data, newData]);
 
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                            onRowUpdate: (newData, oldData) =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        const dataUpdate = [...data];
-                                                        const index = oldData.tableData.id;
-                                                        dataUpdate[index] = newData;
-                                                        setData([...dataUpdate]);
+                                            //             resolve();
+                                            //         }, 1000)
+                                            // //     }),
+                                            // onRowUpdate: (newData, oldData) =>
+                                            //     new Promise((resolve, reject) => {
+                                            //         setTimeout(() => {
+                                            //             const dataUpdate = [...data];
+                                            //             const index = oldData.tableData.id;
+                                            //             dataUpdate[index] = newData;
+                                            //             setData([...dataUpdate]);
 
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
+                                            //             resolve();
+                                            //         }, 1000)
+                                            //     }),
                                         }}
                                         options={{
                                             actionsColumnIndex: -1
@@ -265,14 +269,7 @@ const Cards = (props) => {
                                         data={cardType}
                                         key={cardType.id}
                                         editable={{
-                                            onRowAdd: newData =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        setCardType([...cardType, newData]);
-
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
+                                           
                                             onRowUpdate: (newData, oldData) =>
                                                 new Promise((resolve, reject) => {
                                                     setTimeout(() => {
@@ -296,7 +293,7 @@ const Cards = (props) => {
 
                 </div>
                 
-                <div className="flex flex-col w-full mt-8 lg:mt-0 lg:w-4/12">
+                {/* <div className="flex flex-col w-full mt-8 lg:mt-0 lg:w-4/12">
                     <div className="w-full lg:pl-4">
                     <div className="dark:bg-gray-800 bg-gray-300 rounded-3xl px-6 pt-6">
                         <div className="flex dark:text-gray-100 text-black text-2xl pb-6 font-bold">
@@ -352,7 +349,7 @@ const Cards = (props) => {
                         </div>
                     </div>
                     </div>
-                </div>
+                </div> */}
                 
 
                 

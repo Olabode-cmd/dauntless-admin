@@ -12,7 +12,7 @@ import React, { Fragment, useState } from 'react'
 // import "daisyui";
 // import { Helmet } from "react-helmet"
 
-export default function HomePage() {
+export default function Id() {
     const role = ['seun', 'tope', 'sade',];
     const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
 
