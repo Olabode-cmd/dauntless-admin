@@ -135,182 +135,185 @@ const Index = (props) => {
 
 
     return (
-        <SupportLayout>
+        <h1>
+      Life is good
+    </h1>
+        // <SupportLayout>
 
-            <div className="flex flex-wrap">
-                <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
-                    <Breadcumb title={'Withdrawal 🏦 '} />
+        //     <div className="flex flex-wrap">
+        //         <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+        //             <Breadcumb title={'Withdrawal 🏦 '} />
 
-                    <div className="px-2 sm:px-0">
-                        <Tab.Group>
-                            <Tab.List className="flex p-1 space-x-1 bg-yellow-600 rounded-xl">
-                                {/* {Object.keys(categories).map((category) => ( */}
-                                <Tab
-                                    // key={category}
-                                    className={({ selected }) =>
-                                        classNames(
-                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
-                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
-                                            selected
-                                                ? 'bg-white shadow'
-                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
-                                        )
-                                    }
-                                >
-                                    Active Withdrawal <span className="text-md text-green-500">({active.length})</span>
-                                </Tab>
+        //             <div className="px-2 sm:px-0">
+        //                 <Tab.Group>
+        //                     <Tab.List className="flex p-1 space-x-1 bg-yellow-600 rounded-xl">
+        //                         {/* {Object.keys(categories).map((category) => ( */}
+        //                         <Tab
+        //                             // key={category}
+        //                             className={({ selected }) =>
+        //                                 classNames(
+        //                                     'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+        //                                     'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+        //                                     selected
+        //                                         ? 'bg-white shadow'
+        //                                         : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+        //                                 )
+        //                             }
+        //                         >
+        //                             Active Withdrawal <span className="text-md text-green-500">({active.length})</span>
+        //                         </Tab>
 
-                                <Tab
-                                    // key={category}
-                                    className={({ selected }) =>
-                                        classNames(
-                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
-                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
-                                            selected
-                                                ? 'bg-white shadow'
-                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
-                                        )
-                                    }
-                                >
-                                    Completed Withdrawal <span className="text-md text-green-500">({completed.length})</span>
+        //                         <Tab
+        //                             // key={category}
+        //                             className={({ selected }) =>
+        //                                 classNames(
+        //                                     'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+        //                                     'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+        //                                     selected
+        //                                         ? 'bg-white shadow'
+        //                                         : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+        //                                 )
+        //                             }
+        //                         >
+        //                             Completed Withdrawal <span className="text-md text-green-500">({completed.length})</span>
 
-                                </Tab>
+        //                         </Tab>
 
-                                <Tab
-                                    // key={category}
-                                    className={({ selected }) =>
-                                        classNames(
-                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
-                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
-                                            selected
-                                                ? 'bg-white shadow'
-                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
-                                        )
-                                    }
-                                >
-                                    Failed Withdrawal <span className="text-md text-red-500">({failed.length})</span>
+        //                         <Tab
+        //                             // key={category}
+        //                             className={({ selected }) =>
+        //                                 classNames(
+        //                                     'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+        //                                     'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+        //                                     selected
+        //                                         ? 'bg-white shadow'
+        //                                         : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+        //                                 )
+        //                             }
+        //                         >
+        //                             Failed Withdrawal <span className="text-md text-red-500">({failed.length})</span>
 
-                                </Tab>
-                            </Tab.List>
-                            <Tab.Panels className="mt-2">
-                                <Tab.Panel
-                                    // key={idx}
-                                    className={classNames(
-                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
-                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
-                                    )}
-                                >
-                                    <MaterialTable
-                                        title="Active Withdrawal 🔥"
-                                        columns={columns}
-                                        data={active}
-                                        key={data.id}
+        //                         </Tab>
+        //                     </Tab.List>
+        //                     <Tab.Panels className="mt-2">
+        //                         <Tab.Panel
+        //                             // key={idx}
+        //                             className={classNames(
+        //                                 'bg-white dark:bg-gray-700 rounded-xl p-3',
+        //                                 'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+        //                             )}
+        //                         >
+        //                             <MaterialTable
+        //                                 title="Active Withdrawal 🔥"
+        //                                 columns={columns}
+        //                                 data={active}
+        //                                 key={data.id}
 
-                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
-                                        options={{
-                                            actionsColumnIndex: -1,
-                                            rowStyle: {
-                                                backgroundColor: '#fafafa',
-                                                color: '#'
-                                            },
-                                            rowStyle: rowData => ({
-                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
-                                            }),
-                                            grouping: true,
-                                        }}
-                                        actions={[
+        //                                 onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+        //                                 options={{
+        //                                     actionsColumnIndex: -1,
+        //                                     rowStyle: {
+        //                                         backgroundColor: '#fafafa',
+        //                                         color: '#'
+        //                                     },
+        //                                     rowStyle: rowData => ({
+        //                                         backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+        //                                     }),
+        //                                     grouping: true,
+        //                                 }}
+        //                                 actions={[
 
-                                            rowData => ({
-                                                icon: 'visibility',
-                                                tooltip: 'View Trade',
-                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
-                                            })
-                                        ]}
+        //                                     rowData => ({
+        //                                         icon: 'visibility',
+        //                                         tooltip: 'View Trade',
+        //                                         onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+        //                                     })
+        //                                 ]}
 
-                                    />
+        //                             />
 
-                                </Tab.Panel>
+        //                         </Tab.Panel>
 
-                                <Tab.Panel
-                                    // key={idx}
-                                    className={classNames(
-                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
-                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
-                                    )}
-                                >
-                                    <MaterialTable
-                                        title="Completed Withdrawals"
-                                        columns={columns}
-                                        data={completed}
-                                        key={data.id}
+        //                         <Tab.Panel
+        //                             // key={idx}
+        //                             className={classNames(
+        //                                 'bg-white dark:bg-gray-700 rounded-xl p-3',
+        //                                 'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+        //                             )}
+        //                         >
+        //                             <MaterialTable
+        //                                 title="Completed Withdrawals"
+        //                                 columns={columns}
+        //                                 data={completed}
+        //                                 key={data.id}
 
-                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
-                                        options={{
-                                            actionsColumnIndex: -1,
-                                            rowStyle: {
-                                                backgroundColor: '#fafafa',
-                                                color: '#'
-                                            },
-                                            rowStyle: rowData => ({
-                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
-                                            }),
-                                            grouping: true,
-                                        }}
-                                        actions={[
+        //                                 onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+        //                                 options={{
+        //                                     actionsColumnIndex: -1,
+        //                                     rowStyle: {
+        //                                         backgroundColor: '#fafafa',
+        //                                         color: '#'
+        //                                     },
+        //                                     rowStyle: rowData => ({
+        //                                         backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+        //                                     }),
+        //                                     grouping: true,
+        //                                 }}
+        //                                 actions={[
 
-                                            rowData => ({
-                                                icon: 'visibility',
-                                                tooltip: 'View Trade',
-                                                onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
-                                            })
-                                        ]}
+        //                                     rowData => ({
+        //                                         icon: 'visibility',
+        //                                         tooltip: 'View Trade',
+        //                                         onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
+        //                                     })
+        //                                 ]}
 
-                                    />
-                                </Tab.Panel>
-                                <Tab.Panel
-                                    // key={idx}
-                                    className={classNames(
-                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
-                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
-                                    )}
-                                >
-                                    <MaterialTable
-                                        title="Completed Trades"
-                                        columns={columns}
-                                        data={failed}
-                                        key={data.id}
+        //                             />
+        //                         </Tab.Panel>
+        //                         <Tab.Panel
+        //                             // key={idx}
+        //                             className={classNames(
+        //                                 'bg-white dark:bg-gray-700 rounded-xl p-3',
+        //                                 'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+        //                             )}
+        //                         >
+        //                             <MaterialTable
+        //                                 title="Completed Trades"
+        //                                 columns={columns}
+        //                                 data={failed}
+        //                                 key={data.id}
 
-                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
-                                        options={{
-                                            actionsColumnIndex: -1,
-                                            rowStyle: {
-                                                backgroundColor: '#fafafa',
-                                                color: '#'
-                                            },
-                                            rowStyle: rowData => ({
-                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
-                                            }),
-                                            grouping: true,
-                                        }}
-                                        actions={[
+        //                                 onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+        //                                 options={{
+        //                                     actionsColumnIndex: -1,
+        //                                     rowStyle: {
+        //                                         backgroundColor: '#fafafa',
+        //                                         color: '#'
+        //                                     },
+        //                                     rowStyle: rowData => ({
+        //                                         backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+        //                                     }),
+        //                                     grouping: true,
+        //                                 }}
+        //                                 actions={[
 
-                                            rowData => ({
-                                                icon: 'visibility',
-                                                tooltip: 'View Trade',
-                                                onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
-                                            })
-                                        ]}
+        //                                     rowData => ({
+        //                                         icon: 'visibility',
+        //                                         tooltip: 'View Trade',
+        //                                         onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
+        //                                     })
+        //                                 ]}
 
-                                    />
-                                </Tab.Panel>
-                            </Tab.Panels>
-                        </Tab.Group>
-                    </div>
+        //                             />
+        //                         </Tab.Panel>
+        //                     </Tab.Panels>
+        //                 </Tab.Group>
+        //             </div>
 
-                </div>
-            </div>
+        //         </div>
+        //     </div>
 
-        </SupportLayout>
+        // </SupportLayout>
     );
 }
 
