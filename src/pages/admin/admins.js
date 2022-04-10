@@ -14,7 +14,7 @@ import moment from 'moment';
 
 export default function Admins() {
     const [state, setState] = React.useState({
-        users: [],
+        admins: [],
     })
 
     const column = [
@@ -26,7 +26,7 @@ export default function Admins() {
         },
         // { title: "Name", field: "name" },
         {
-            title: "Admin", field: "picture", editable: false,
+            title: "Admin", field: "picture",
             headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
@@ -40,69 +40,17 @@ export default function Admins() {
                         </div>
                         <div>
                             <p className="font-semibold text-black">{rowData.name}</p>
-                            <p className="text-xs text-gray-600">Joined {moment(rowData.created_at).fromNow()}</p>
+                            {/* <p className="text-xs text-gray-600">Joined {moment(rowData.created_at).fromNow()}</p> */}
                         </div>
                     </div>
                 )
             }
         },
         {
-            title: "Rating", field: "trade_count", editable: false,
-            headerStyle: {
+            title: "Role", field: "role", headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
-            },
-            render: rowData => (
-                <div className="flex items-center">
-
-                    {
-                        rowData.trade_count <= 10 && rowData.trade_count != 0 ? (
-                            <div className="rating">
-                                <input type="radio" name="rating-1" className="mask mask-star-2 bg-gray-400" disabled />
-                            </div>
-                        ) : rowData.trade_count <= 20 && rowData.trade_count > 10 ? (
-                            <div className="rating rating-half">
-                                <input type="radio" name="rating-1" className="mask mask-star-2 mask-half-1  bg-orange-400" disabled />
-                            </div>
-                        ) : rowData.trade_count <= 25 && rowData.trade_count > 20 ? (
-                            <div className="rating">
-                                <input type="radio" name="rating-1" className="mask mask-star-2  bg-orange-400" disabled />
-                            </div>
-                        ) : rowData.trade_count <= 30 && rowData.trade_count > 25 ? (
-                            <div className="rating rating-half">
-                                <input type="radio" name="rating-1" className="rating-hidden" />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                            </div>
-                        ) : rowData.trade_count <= 40 && rowData.trade_count > 30 ? (
-                            <div className="rating rating-half">
-                                <input type="radio" name="rating-1" className="rating-hidden" />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
-                            </div>
-                        ) : rowData.trade_count <= 50 && rowData.trade_count > 40 ? (
-                            <div className="rating rating-half">
-                                <input type="radio" name="rating-1" className="rating-hidden" />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
-                                <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
-                            </div>
-                        ) : "NO RATING YET"
-
-
-                    }
-                </div>
-            )
-        },
-        {
-            title: "Verified", field: "verified", editable: false, headerStyle: {
-                backgroundColor: 'orange',
-                fontWeight: 'bold',
-            }, lookup: { true: "Yes", false: "No" }
+            }, lookup: { 1: "Admin", 2: "Vendor", 3: "Accountant", 4: "Support" }
         },
         {
             title: "Status", field: "status",
@@ -129,24 +77,6 @@ export default function Admins() {
                 )
             },
         },
-        {
-            title: "Available Balance", editable: false, field: "available_balance", headerStyle: {
-                backgroundColor: 'orange',
-                fontWeight: 'bold',
-            },
-            render: rowData => {
-                return (
-                    <div className="flex items-center">
-                        {
-                            rowData.available_balance != 0 || rowData.available_balance == null ? (
-                                <p className="text-ms font-semibold">{rowData.available_balance}</p>) : (
-                                <p className="text-ms font-semibold">0</p>
-                            )
-                        }
-                    </div>
-                )
-            }
-        }
     ]
 
     const adminData = [{
@@ -156,9 +86,7 @@ export default function Admins() {
         "customer_id": "daunt001",
         "created_at": "2020-01-01",
         "status": 1,
-        "verified": true,
-        'available_balance': 40000,
-        "trade_count": 11,
+        "role": 1,
         "picture": `https://randomuser.me/api/portraits/thumb/men/1.jpg`
     },
     {
@@ -167,10 +95,8 @@ export default function Admins() {
         "username": "Antonette",
         "customer_id": "daunt002",
         "created_at": "2020-01-02",
-        "verified": false,
+        "role": 4,
         "status": 1,
-        "trade_count": 2,
-        'available_balance': 32000,
         "picture": `https://randomuser.me/api/portraits/thumb/men/2.jpg`
     },
     {
@@ -179,10 +105,8 @@ export default function Admins() {
         "username": "Samantha",
         "customer_id": "daunt003",
         "created_at": "2020-01-03",
-        "verified": true,
-        "trade_count": 41,
-        'available_balance': 15000,
-        "picture": `https://randomuser.me/api/portraits/thumb/men/3.jpg`
+        "role": 2,
+        "picture": `https://randomuser.me/api/portraits/thumb/men/3.jpg`,
     },
     {
         "id": 4,
@@ -191,10 +115,7 @@ export default function Admins() {
         "username": "Okorosha",
         "created_at": "2021-01-23",
         "status": 2,
-        "trade_count": 21,
-        "verified": true,
-        'available_balance': 0,
-
+        "role": 1,
         "picture": `https://randomuser.me/api/portraits/thumb/men/4.jpg`
 
     }
@@ -267,10 +188,10 @@ export default function Admins() {
                                                 onRowUpdate: (newData, oldData) =>
                                                     new Promise((resolve, reject) => {
                                                         setTimeout(() => {
-                                                            const dataUpdate = [...state.users];
+                                                            const dataUpdate = [...state.admins];
                                                             const index = oldData.tableData.id;
                                                             dataUpdate[index] = newData;
-                                                            setState({ users: [...dataUpdate] });
+                                                            setState({ admins: [...dataUpdate] });
 
                                                             resolve();
                                                         }, 1000)
