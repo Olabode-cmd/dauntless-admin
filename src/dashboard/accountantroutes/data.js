@@ -8,11 +8,6 @@ const data = [
         icon: <Icon.FiHome size={'20px'} color="gold" />,
         link: '/accountant',
     },
-    {
-        title: 'Transactions',
-        icon: <Icon.FiDollarSign size={'20px'} color='gold' />,
-        link: '/accountant/transactions',
-    },
 ];
 
 export default data;
