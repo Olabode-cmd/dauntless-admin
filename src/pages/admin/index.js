@@ -16,7 +16,7 @@ export default function HomePage() {
     <AdminLayout>
 
       <div className="flex flex-wrap">
-      <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+        <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
           <div className="flex flex-row justify-between">
             <p className='dark:text-gray-100 text-black text-2xl pb-6 font-bold'>Trades</p>
             <div className="pr-4">
@@ -74,9 +74,9 @@ export default function HomePage() {
                       <td className="px-4 py-3 text-sm border">
                         <a className="cursor-pointer bg-orange-600 hover:bg-orange-500 text-orange-100 py-2 px-4 rounded inline-flex items-center">
                           <span>
-                          <FiEye
-                        size={20}
-                         />
+                            <FiEye
+                              size={20}
+                            />
                           </span>
                         </a>
 
@@ -194,7 +194,7 @@ export default function HomePage() {
       </div>
 
       <div className="flex flex-wrap mt-8">
-      <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+        <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
           <Breadcumb title={'Home'} />
           <div className="flex flex-row justify-between">
             <h1 className='dark:text-gray-100 text-black'>Welcome to super admin</h1>
