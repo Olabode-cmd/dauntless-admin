@@ -39,7 +39,7 @@ function Index() {
         </div>
       </div> */}
 
-      <section className="bg-slate-100 dark:bg-slate-900">
+      {/* <section className="bg-slate-100 dark:bg-slate-900">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
             <h1 className="text-5xl font-bold leading-none sm:text-6xl dark:text-slate-100 text-zinc-900">Welcome to <br />
@@ -59,7 +59,7 @@ function Index() {
             <img src="images/credit-card.png" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
-      </section>
+      </section> */}
 
 
       {/* <section className="mt-8 mb-6 px-16 md:px-36">
