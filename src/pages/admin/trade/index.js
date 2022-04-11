@@ -221,15 +221,15 @@ const Index = (props) => {
     let failed = [];
     let completed = [];
 
-    for (let i = 0; i < props.data.length; i++) {
-        if (props.data[i].status === 1 || props.data[i].status === 2 || props.data[i].status === 3) {
-          active.push(props.data[i]);
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].status === 1 || data[i].status === 2 || data[i].status === 3) {
+          active.push(data[i]);
         }
-        if (props.data[i].status === 4) {
-          completed.push(props.data[i]);
+        if (data[i].status === 4) {
+          completed.push(data[i]);
         }
-        if (props.data[i].status === 5) {
-          failed.push(props.data[i]);
+        if (data[i].status === 5) {
+          failed.push(data[i]);
         }
       }
 
