@@ -9,7 +9,7 @@ function Index() {
 
   return (
     <div>
-      {/* <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabindex="0" className="btn btn-ghost btn-circle">
@@ -37,9 +37,9 @@ function Index() {
             </div>
           </button>
         </div>
-      </div> */}
+      </div>
 
-      {/* <section className="bg-slate-100 dark:bg-slate-900">
+      <section className="bg-slate-100 dark:bg-slate-900">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
             <h1 className="text-5xl font-bold leading-none sm:text-6xl dark:text-slate-100 text-zinc-900">Welcome to <br />
@@ -59,10 +59,10 @@ function Index() {
             <img src="images/credit-card.png" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
-      </section> */}
+      </section>
 
 
-      {/* <section className="mt-8 mb-6 px-16 md:px-36">
+      <section className="mt-8 mb-6 px-16 md:px-36">
         <span className="block mb-2 text-xs font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
         <h2 className="text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
@@ -93,9 +93,9 @@ function Index() {
             voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem
             libero minus atque tenetur enim pariatur cupiditate commodi in beatae, ipsa eligendi? Quis, saepe.</p>
         </div>
-      </section> */}
+      </section>
 
-      {/* <section className="dark:bg-coolGray-800 dark:text-coolGray-100">
+      <section className="dark:bg-coolGray-800 dark:text-coolGray-100">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
             <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">About
@@ -112,9 +112,9 @@ function Index() {
             <img src="images/cards.jpg" alt="" className="object-contain rounded h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
-      </section> */}
+      </section>
 
-      {/* <section className="bg-slate-100 dark:bg-slate-900 px-16 md:px-36">
+      <section className="bg-slate-100 dark:bg-slate-900 px-16 md:px-36">
         <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Filter Cards</span>
 
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
@@ -185,9 +185,9 @@ function Index() {
           </div>
         </div>
 
-      </section> */}
+      </section>
 
-      {/* <section className="bg-slate-100 dark:bg-slate-900  px-4 md:px-36">
+      <section className="bg-slate-100 dark:bg-slate-900  px-4 md:px-36">
         <div className="max-w-5xl mx-auto pt-4 px-6 sm:px-6 lg:px-8 mb-12">
           <div className="w-full rounded p-8 sm:p-6">
             <p className="text-5xl font-bold leading-7 text-center text-white">Contact me</p>
@@ -223,9 +223,9 @@ function Index() {
             </form>
           </div>
         </div>
-      </section> */}
+      </section>
 
-      {/* <footer className="-mt-12">
+      <footer className="-mt-12">
         <div className="bg-zinc-900">
           <div className="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 text-center">
             <div className="mb-8 lg:grid-cols-6 inline-block">
@@ -281,7 +281,7 @@ function Index() {
             </div>
           </div>
         </div>
-      </footer> */}
+      </footer>
     </div>
 
 

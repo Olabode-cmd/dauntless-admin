@@ -292,69 +292,7 @@ const Cards = (props) => {
                     </div>
 
                 </div>
-                
-                {/* <div className="flex flex-col w-full mt-8 lg:mt-0 lg:w-4/12">
-                    <div className="w-full lg:pl-4">
-                    <div className="dark:bg-gray-800 bg-gray-300 rounded-3xl px-6 pt-6">
-                        <div className="flex dark:text-gray-100 text-black text-2xl pb-6 font-bold">
-                        <p>Traffic Sources</p>
-
-                        </div>
-
-                        <div>
-                        <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full ">
-                            <DoughnutChart />
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div className="w-full mt-8 lg:pl-4">
-                    <div className="dark:bg-gray-800 bg-gray-300 rounded-3xl px-6 pt-6">
-                        <div className="flex text-white text-2xl pb-6 font-bold">
-                            <p className='dark:text-gray-100 text-black'>Today's Cards Log</p>
-                        </div>
-                        <div>
-                            <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
-                                <img
-                                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
-                                    alt="profile image"
-                                    className="object-cover w-10 h-10 rounded-full"
-                                />
-                                <div className="pl-4 w-full">
-                                    <div className="flex items-center justify-between w-full">
-                                        <div className="dark:text-white text-black' font-medium">Admin 001</div>
-                                    </div>
-                                    <p className="my-2 text-sm dark:text-gray-100 text-black'">
-                                        Update a card details 
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
-                                <img
-                                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
-                                    alt="profile image"
-                                    className="object-cover w-10 h-10 rounded-full"
-                                />
-                                <div className="pl-4 w-full">
-                                    <div className="flex items-center justify-between w-full">
-                                        <div className="dark:text-white text-black' font-medium">Admin 002</div>
-                                    </div>
-                                    <p className="my-2 text-sm dark:text-gray-100 text-black'">
-                                        increase card rate with Itu001 by 10% on 12/12/2020
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div> */}
-                
-
-                
-
-            </div>
+              </div>
 
         </AgentLayout>
     );
