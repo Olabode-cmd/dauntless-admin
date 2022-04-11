@@ -418,7 +418,9 @@ export default Index;
 
 
 export async function getStaticProps() {
-    
+    // const res = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
+    // const data = await res.json()
+    // const resCardType = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
     const data = [
         { id: 1, picture: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg", name: "itunes",
             card:{
