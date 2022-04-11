@@ -151,7 +151,6 @@ const Index = (props) => {
                 fontWeight: 'bold',
             }
         },
-
         {
             title: 'Code',
             field: 'code',
