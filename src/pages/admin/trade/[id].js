@@ -417,116 +417,13 @@ const Index = (props) => {
 export default Index;
 
 
-export async function getStaticProps() {
-    const data = [
-        { id: 1, picture: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg", name: "itunes",
-            card:{
-                code: "Itunes_001",
-                type: "Physical",
-                name: "Uk 100",
-                image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
-
-            },
-            user:{
-                user_id: "Daunt_001",
-            },
-        rate: "340", count: 5, status: 1, created_at: '2021-10-28T09:17:50.974Z' },
-        { id: 2, 
-            card:{
-                code: "Amaz_001",
-                type: "E-code",
-                name: "Uk 100",
-                image: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u",
-
-            },
-            user:{
-                user_id: "Daunt_002",
-            },
-            name: "Amazon", count: 10, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z' },
-        { id: 3,
-            card:{
-                code: "Google_001",
-                type: "Virtual",
-                name: "Uk 100",
-                image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-            },
-            user:{
-                user_id: "Daunt_003",
-            },
-            name: "Google", count: 10, rate:400, status: 5, created_at:'2021-12-04T18:32:10.62Z' },
-        { id: 4,
-            card:{
-                code: "Itunes_002",
-                type: "Physical",
-                name: "Uk 100",
-                image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
-            },
-            user:{
-                user_id: "Daunt_004",
-            },
-            name: "Itunes", count: 3, rate:300, status: 2, created_at:'2022-03-04T18:32:10.62Z' },
-
-            {
-                id:5,
-                card:{
-                    code: "Itunes_003",
-                    type: "Physical",
-                    name: "Uk 100",
-                    image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
-                },
-                user:{
-                    user_id: "Daunt_005",
-                },
-                name: "Itunes", count: 3, rate:300, status: 4, created_at:'2022-03-04T6:32:10.62Z' },
-            {
-                id:6,
-                card:{
-                    code: "Amazon_004",
-                    type: "E-code",
-                    name: "USA 100",
-                    image: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u",
-                },
-                user:{
-                    user_id: "Daunt_001",
-                },
-                name: "Amazon", count: 6, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z' 
-            },
-            {
-              id:7,
-              card:{
-                  code: "Amazon_002",
-                  type: "E-code",
-                  name: "USA 100",
-                  image: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u",
-              },
-                user:{
-                    user_id: "Daunt_002",
-                },
-                name: "Amazon", count: 6, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z'
-                      
-            },
-            {
-                id:8,
-                card:{
-                    code: "Amazon_002",
-                    type: "E-code",
-                    name: "USA 100",
-                    image: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u",
-                },
-                  user:{
-                      user_id: "Daunt_002",
-                  },
-                  name: "Amazon", count: 3, rate:400, status: 3, created_at:'2021-12-31 1T18:32:10.62Z'
-                        
-            },
-
-
-    ];
+export async function getServerSideProps(context) {
+  
     return {
         props: {
-            data,
+            // data,
             // dataCardType
         },
-        revalidate: 1
+        // revalidate: 1
     }
 }
