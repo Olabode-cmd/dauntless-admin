@@ -1,16 +1,8 @@
-// import Content from '../components/content';
 import Breadcumb from '../../../components/breadcumb';
-import Statistics from '../../../components/statistics';
-import AreaChart from '../../../components/chart';
-import DoughnutChart from '../../../components/donut';
-import DropdownRender from '../../../components/dropdown';
-import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
 import AdminLayout from '../../../dashboard/AdminLayout';
 import { Dialog, Transition } from '@headlessui/react'
-// import {} from 'react'
 import React, { Fragment, useState } from 'react'
-// import "daisyui";
-// import { Helmet } from "react-helmet"
+
 
 export default function HomePage() {
     const role = ['seun', 'tope', 'sade',];

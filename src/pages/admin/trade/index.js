@@ -1,11 +1,8 @@
 // import Content from '../components/content';
 import React, { useState, useEffect } from 'react';
 import Breadcumb from '../../../components/breadcumb';
-import Statistics from '../../../components/statistics';
-// import AreaChart from '../../components/chart';
-import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
 import AdminLayout from '../../../dashboard/AdminLayout';
-import { Helmet } from "react-helmet"
+// import { Helmet } from "react-helmet"
 import MaterialTable, { Column } from "@material-table/core";
 import { Tab } from '@headlessui/react'
 import { styled } from '@mui/material/styles';
@@ -239,13 +236,10 @@ const Index = (props) => {
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
                     <Breadcumb title={'Trades 📑 '} />
-                    
                     <div className="px-2 sm:px-0">
                         <Tab.Group>
                             <Tab.List className="flex p-1 space-x-1 bg-yellow-600 rounded-xl">
-                                {/* {Object.keys(categories).map((category) => ( */}
                                 <Tab
-                                    // key={category}
                                     className={({ selected }) =>
                                         classNames(
                                             'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
@@ -356,7 +350,6 @@ const Index = (props) => {
                                             grouping: true,
                                         }}
                                         actions={[
-
                                             rowData => ({
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
@@ -480,7 +473,6 @@ export async function getStaticProps() {
                 },
                 name: "Itunes", count: 3, rate:300, status: 4, created_at:'2022-03-04T6:32:10.62Z' 
             },
-
     ];
     return {
         props: {
