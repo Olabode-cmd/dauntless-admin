@@ -11,7 +11,7 @@ export default function Navbar() {
     };
 
   return (
-      <nav className="bg-white shadow dark:bg-gray-800">
+      <nav className="bg-white shadow dark:bg-gray-800 sticky top-0">
           <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
               <div className="flex items-center justify-between">
                   <div>

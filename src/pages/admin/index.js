@@ -16,7 +16,7 @@ export default function HomePage() {
     <AdminLayout>
 
       <div className="flex flex-wrap">
-      <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+      <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl overflow-y-scroll">
           <div className="flex flex-row justify-between">
             <p className='dark:text-gray-100 text-black text-2xl pb-6 font-bold'>Trades</p>
             <div className="pr-4">
