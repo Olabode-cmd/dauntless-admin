@@ -18,21 +18,6 @@ export default function HomePage() {
 
     const [isOpen, setIsOpen] = useState(false)
 
-    // function closeFaultModal() {
-    //     setIsOpen(false)
-    // }
-
-    // function openFaultModal() {
-    //     setIsOpen(true)
-    // }
-
-    // function closeQueryModal() {
-    //     setIsOpen(false)
-    // }
-
-    // function openQueryModal() {
-    //     setIsOpen(true)
-    // }
 
     return (
         <AdminLayout>
