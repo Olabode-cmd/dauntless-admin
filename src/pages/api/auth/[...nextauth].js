@@ -1,23 +1,11 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import Server from "../lib/service";
+import { Server } from "../lib/service";
 
-const options = {
+export default NextAuth({
   pages: {
     error: "/auth/login",
     signIn: "/auth/login",
-  },
-  jwt: {
-    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
-  },
-  session: {
-    jwt: true,
-  },
-  cookies: {
-    sessionToken: {
-      name: `next-auth.session-token`,
-      options: { httpOnly: false },
-    },
   },
   providers: [
     CredentialsProvider({
@@ -37,50 +25,41 @@ const options = {
             },
           }
         );
-        // console.log(result);
         const user = result.data.user;
         const token = result.data.message.token;
         const tokenExpires = result.data.message.expires_at;
-        return {
-          user,
-          token,
-          tokenExpires,
-        };
+        // console.log(user)
+        if (result.status === 200) {
+          return {
+            user,
+            token,
+            tokenExpires,
+          };
+        }
+        // console.log(result)
+        return null;
       },
     })
   ],
   callbacks: {
-    signIn: async function signIn(user, account) {
-      if (account.id === "credentials" && user.token) {
-        const result = await Server.get("/", {
-          headers: {
-            accept: "*/*",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
-        console.log(result)
-        // if (result) {
-        //   user.role = result.data.message.role_id;
-        // }
-        return true;
-      }
-      return false;
-    },
-    jwt: async function jwt(token, user) {
+    jwt: ({ token, user }) => {
       if (user) {
+        // console.log(user);
         token = {
           accessToken: user.token,
+          expiresIn: user.tokenExpires,
           user: {
-            id: user.id,
-            email: user.email,
-            role: user.role,
-          },
+            id: user.user.id,
+            name: user.user.name,
+            email: user.user.email,
+            role: user.user.role_id,
+          }
         };
       }
-      return token;
+      // console.log(token)
+      return {...token};
     },
-    session: async function session (session, token) {
+    session: async ({ session, token }) => {
       const result = await Server.get("/", {
         headers: {
           accept: "*/*",
@@ -88,15 +67,21 @@ const options = {
           Authorization: `Bearer ${token.accessToken}`,
         },
       });
-      if (result.status === 200) {
-      session.accessToken = token.accessToken;
-      session.user = token.user;
-      session.role = token.user.role;
-      return session;
-      }
+      if (token || result.status === 200) {
+       session.user = token.user;
+       session.accessToken = token.accessToken;
+       return session
+     }
+      return null
     },
   },
-};
-const Auth = (req, res) => NextAuth(req, res, options);
+  secret: process.env.NEXTAUTH_SECRET,
+  jwt: {
+    secret: 'test',
+    expiresIn: "1d",
+    encryption: true
+  }
+});
 
-export default Auth;
+
+// export default NextAuth({

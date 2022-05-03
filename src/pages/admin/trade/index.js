@@ -13,6 +13,8 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import moment from 'moment';
 import { useRouter } from 'next/router';
+import { Server } from '../../api/lib/service'
+import { getSession } from 'next-auth/react'
 
 
 function classNames(...classes) {
@@ -28,15 +30,13 @@ const Index = (props) => {
     const [data, setData] = useState(props.data)
     const [cardType, setCardType] = useState([])
     const [selectedRow, setSelectedRow] = useState(null);
-
-
-   
+    const sle = (id) => props.cards.filter(card => card.id === id);
 
     const columns = [
         {
             title: 'Trade ID',
             field: 'id',
-            render: rowData => <p className="px-4 py-3 text-ms font-semibold">Trade_00{rowData.id}</p>,
+            render: rowData => <p className="px-4 py-3 text-ms font-semibold">Trade00{rowData.id}</p>,
             headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
@@ -44,38 +44,42 @@ const Index = (props) => {
             editable: 'never',
         },
         {
-            title: "Card Info", field: "name", editable:false,headerStyle: {
+            title: "Card Info", field: "name", editable: false, headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
             },
             render: (rowData) => {
                 return (
-                    <div className="flex text-sm tool-tip" data-tip={rowData.card?.type}>
+                    <div className="flex items-center text-sm">
                         <div className="relative w-8 h-8 mr-3 rounded-full md:block">
-                            <img className="object-cover w-full h-full rounded-full" src={rowData.card?.image} alt="" loading="lazy" />
-                            <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                            <img className="object-cover w-full h-full rounded-full" src={sle(rowData?.cardType?.card_id)[0].picture} alt="" loading="lazy" />
+                            <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                { }
+                            </div>
                         </div>
                         <div>
-                            <p className="font-semibold text-black">{rowData.name}</p>
-                            <p className="text-xs text-gray-600">{rowData.card?.code}({rowData.card?.type}) * {rowData.count}</p>
+                            <p className="font-semibold text-black">{rowData?.cardType?.name}</p>
+                            <p className="text-xs text-gray-600">{sle(rowData?.cardType?.card_id)[0].name}</p>
                         </div>
                     </div>
                 )
             }
-            
-        },
-        {title: "Duration", field:'created_at', editable:false,headerStyle: {  
-        backgroundColor: 'orange',
-        fontWeight: 'bold'},
-        render: (rowData) => {
-            return (
-                <p className="text-sm font-semibold text-gray-600">{moment(rowData.created_at).fromNow()}</p>
-            )
 
-        }
         },
         {
-            title: "User", field: "count", editable:false,headerStyle: {
+            title: "Duration", field: 'created_at', editable: false, headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold'
+            },
+            render: (rowData) => {
+                return (
+                    <p className="text-sm font-semibold text-gray-600">{moment(rowData.created_at).fromNow()}</p>
+                )
+
+            }
+        },
+        {
+            title: "User", field: "count", editable: false, headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
             },
@@ -83,22 +87,7 @@ const Index = (props) => {
                 return (
                     <div className="flex text-sm">
                         <div>
-                            <p className="font-semibold text-black">Daunt_00{rowData.id}</p>
-                        </div>
-                    </div>
-                )
-            }
-        },
-
-        {title: "Rate", field: "count", editable:false,headerStyle: {
-                backgroundColor: 'orange',
-                fontWeight: 'bold',
-            },
-            render: (rowData) => {
-                return (
-                    <div className="flex text-sm">
-                        <div>
-                            <p className="text-black">{rowData.rate}</p>
+                            <p className="font-semibold text-black">Daunt_00{rowData.user?.id}</p>
                         </div>
                     </div>
                 )
@@ -106,27 +95,64 @@ const Index = (props) => {
         },
 
         {
-            title: "Status", field: "status",headerStyle: {
+            title: "Total", field: "total", editable: false, headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
             },
-            lookup: { 1: "Pending", 2: "Reviewing", 3: "Agent Redeeming", 4: "Trade Completed", 5: "Trade Rejected", 6: "Trade Paid",  },
-            render: rowData =>{
+            render: (rowData) => {
+                return (
+                    <div className="flex text-sm">
+                        <div>
+                            <p className="font-semibold text-black">&#8358; {rowData.total}</p>
+                        </div>
+                    </div>
+                )
+            }
+        },
+
+        {
+            title: "Status", field: "status", headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            },
+            lookup: { 1: "Pending", 2: "Reviewing", 3: "Agent Redeeming", 4: "Trade Completed", 5: "Trade Rejected", 6: "Trade Paid", },
+            render: rowData => {
                 return (
                     <p className="text-xs">
-                        {rowData.status === 1 ?
-                         (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm"> Pending </span>):
-                         rowData.status === 2 ?
-                         (<span className="font-semibold leading-tight text-white bg-orange-300 rounded-sm"> Reviewing </span>):
-                         rowData.status === 3 ?
-                         (<span className="font-semibold leading-tight text-white bg-amber-400 rounded-sm"> Agent Redeeming </span>):
-                         rowData.status === 4 ?
-                         (<span className="font-semibold leading-tight text-white bg-green-600 rounded-sm"> Trade Completed </span>):
-                         rowData.status === 5 ?
-                         (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm"> Trade Rejected </span>):
-                         rowData.status === 6 ?
-                         (<span className="font-semibold leading-tight text-white bg-yellow-900 rounded-sm"> Trade Paid </span>):
-                         (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"> {lookup[rowData.status]} </span>)
+                        {rowData.tradeStatus.id === 1 ?
+                            (<span className="font-semibold leading-tight text-white bg-green-500 rounded-sm"> Pending </span>) :
+                            rowData.tradeStatus.id === 2 ?
+                                (<span className="font-semibold leading-tight text-white bg-gray-700 rounded-sm"> Pending </span>) :
+                                rowData.tradeStatus.id === 3 ?
+                                    (<span className="font-semibold leading-tight text-white bg-amber-400 rounded-sm"> Agent Redeeming </span>) :
+                                    rowData.tradeStatus.id === 4 ?
+                                        (<span className="font-semibold leading-tight text-white bg-green-600 rounded-sm"> Trade Completed </span>) :
+                                        rowData.tradeStatus.id === 5 ?
+                                            (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm"> Trade Rejected </span>) :
+                                            rowData.status === 6 ?
+                                                (<span className="font-semibold leading-tight text-white bg-yellow-900 rounded-sm"> Trade Paid </span>) :
+                                                (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"> {lookup[rowData.status]} </span>)
+                        }
+                    </p>
+                )
+            },
+            headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            }
+        },
+        {
+            title: "Type", field: "payment", headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            },
+            lookup: { true: "Instant Withdrawal", false: "Wallet" },
+            render: rowData => {
+                return (
+                    <p className="text-xs">
+                        {rowData.payment === true ?
+                            (<span className="font-semibold leading-tight text-white bg-green-500 rounded-sm"> Withdraw </span>) :
+                            (<span className="font-semibold leading-tight text-white bg-gray-700 rounded-sm"> Wallet </span>)
                         }
                     </p>
                 )
@@ -176,13 +202,13 @@ const Index = (props) => {
         {
             title: "Status", field: "status",
             lookup: { true: "Available", false: "Unavailable" },
-            render: rowData =>{
+            render: rowData => {
                 return (
                     <p className="text-xs">
                         {
                             lookup[rowData.status] === 'Available' ?
-                         (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"> Available </span>) :
-                         (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Not Available </span>)
+                                (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"> Available </span>) :
+                                (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Not Available </span>)
                         }
                     </p>
                 )
@@ -195,7 +221,7 @@ const Index = (props) => {
         {
             title: 'Rate',
             field: 'rate',
-          render: rowData =><p className="text-ms font-semibold">#{rowData.rate}</p>,
+            render: rowData => <p className="text-ms font-semibold">#{rowData.rate}</p>,
 
             headerStyle: {
                 // backgroundColor: 'yellow',
@@ -203,33 +229,26 @@ const Index = (props) => {
             }
         },
     ];
- 
 
-    const sdataCardType = [
-        { id: 1, code:'Amaz001', card: 1, type: 1, name: "Amazon Canada", status: true, rate: "300" },
-        { id: 2, code:'Amaz002', card: 1, type: 2, name: "Amazon India", status: false, rate: "400" },
-        { id: 3, code:'Amaz003', card: 1, type: 3, name: "Amazon United Kingdom", status: true, rate: "500" },
-        { id: 4, code:'Itu001',  card: 2, type: 1, name: "Itunes Canada", status: true, rate: "300" },
-        { id: 5, code:'Itu001', card: 2, type: 2, name: "Itunes India", status: false, rate: "400" },
-    ]
+
 
     let active = [];
     let failed = [];
     let completed = [];
 
     for (let i = 0; i < data.length; i++) {
-        if (data[i].status === 1 || data[i].status === 2 || data[i].status === 3) {
-          active.push(data[i]);
+        if (data[i].tradeStatus.id === 2) {
+            active.push(data[i]);
         }
-        if (data[i].status === 4) {
-          completed.push(data[i]);
+        if (data[i].tradeStatus.id === 1) {
+            completed.push(data[i]);
         }
-        if (data[i].status === 5) {
-          failed.push(data[i]);
+        if (data[i].tradeStatus.id === 3) {
+            failed.push(data[i]);
         }
-      }
+    }
 
-  
+
     return (
         <AdminLayout>
 
@@ -265,7 +284,7 @@ const Index = (props) => {
                                         )
                                     }
                                 >
-                                   Completed Trades <span className="text-md text-green-500">({completed.length})</span>
+                                    Completed Trades <span className="text-md text-green-500">({completed.length})</span>
 
                                 </Tab>
 
@@ -298,13 +317,13 @@ const Index = (props) => {
                                         columns={columns}
                                         data={active}
                                         key={data.id}
-            
+
                                         onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                                         options={{
                                             actionsColumnIndex: -1,
                                             rowStyle: {
                                                 backgroundColor: '#fafafa',
-                                                color:'#'
+                                                color: '#'
                                             },
                                             rowStyle: rowData => ({
                                                 backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
@@ -317,9 +336,9 @@ const Index = (props) => {
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
                                                 onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
-                                             })
+                                            })
                                         ]}
-                        
+
                                     />
 
                                 </Tab.Panel>
@@ -336,13 +355,13 @@ const Index = (props) => {
                                         columns={columns}
                                         data={completed}
                                         key={data.id}
-            
+
                                         onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                                         options={{
                                             actionsColumnIndex: -1,
                                             rowStyle: {
                                                 backgroundColor: '#fafafa',
-                                                color:'#'
+                                                color: '#'
                                             },
                                             rowStyle: rowData => ({
                                                 backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
@@ -354,9 +373,9 @@ const Index = (props) => {
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
                                                 onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
-                                             })
+                                            })
                                         ]}
-                        
+
                                     />
                                 </Tab.Panel>
                                 <Tab.Panel
@@ -371,13 +390,13 @@ const Index = (props) => {
                                         columns={columns}
                                         data={failed}
                                         key={data.id}
-            
+
                                         onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                                         options={{
                                             actionsColumnIndex: -1,
                                             rowStyle: {
                                                 backgroundColor: '#fafafa',
-                                                color:'#'
+                                                color: '#'
                                             },
                                             rowStyle: rowData => ({
                                                 backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
@@ -390,9 +409,9 @@ const Index = (props) => {
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
                                                 onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
-                                             })
+                                            })
                                         ]}
-                        
+
                                     />
                                 </Tab.Panel>
                             </Tab.Panels>
@@ -409,76 +428,19 @@ const Index = (props) => {
 export default Index;
 
 
-export async function getStaticProps() {
-    // const res = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
-    // const data = await res.json()
-    // const resCardType = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
-    const data = [
-        { id: 1, picture: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg", name: "itunes",
-            card:{
-                code: "Itunes_001",
-                type: "Physical",
-                name: "Uk 100",
-                image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
-
-            },
-            user:{
-                user_id: "Daunt_001",
-            },
-        rate: "340", count: 5, status: 1, created_at: '2021-10-28T09:17:50.974Z' },
-        { id: 2, 
-            card:{
-                code: "Amaz_001",
-                type: "E-code",
-                name: "Uk 100",
-                image: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u",
-            },
-            user:{
-                user_id: "Daunt_002",
-            },
-            name: "Amazon", count: 10, rate:400, status: 3, created_at:'2021-12-04T18:32:10.62Z' },
-        { id: 3,
-            card:{
-                code: "Google_001",
-                type: "Virtual",
-                name: "Uk 100",
-                image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-            },
-            user:{
-                user_id: "Daunt_003",
-            },
-            name: "Google", count: 10, rate:400, status: 5, created_at:'2021-12-04T18:32:10.62Z' },
-        { id: 4,
-            card:{
-                code: "Itunes_002",
-                type: "Physical",
-                name: "Uk 100",
-                image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
-            },
-            user:{
-                user_id: "Daunt_004",
-            },
-            name: "Itunes", count: 3, rate:300, status: 2, created_at:'2022-03-04T18:32:10.62Z' },
-
-            {
-                id:5,
-                card:{
-                    code: "Itunes_003",
-                    type: "Physical",
-                    name: "Uk 100",
-                    image: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg",
-                },
-                user:{
-                    user_id: "Daunt_005",
-                },
-                name: "Itunes", count: 3, rate:300, status: 4, created_at:'2022-03-04T6:32:10.62Z' 
-            },
-    ];
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    const trades = await Server.get('/admin/card-transactions', {
+        headers: {
+            Authorization: `Bearer ${session?.accessToken}`,
+        },
+    });
+    const card = await Server.get('/card')
+    console.log(trades.data.message);
     return {
         props: {
-            data,
-            // dataCardType
+            data: trades.data.message,
+            cards: card.data.message
         },
-        revalidate: 1
     }
 }

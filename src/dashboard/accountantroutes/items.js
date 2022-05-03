@@ -3,6 +3,9 @@ import { useRouter } from 'next/router';
 
 import data from './data';
 import { useToggle } from '../provider/context';
+import { signOut } from "next-auth/react";
+import { FiPower } from 'react-icons/fi'
+
 
 const style = {
     title: `mx-4 text-sm`,
@@ -34,6 +37,21 @@ export default function SidenavItems() {
                         </a>
                     </Link>
                 ))}
+            </li>
+            <li>
+                <button onClick={() => signOut({
+                    callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/auth/login`
+                })}>
+
+                    <a className={style.link}>
+                        <div className="p-2">
+                            <span>{<FiPower color='gold' />}</span>
+                        </div>
+                        <span className={`${style.title} ${open ? style.open : style.close}`}>
+                            Logout
+                        </span>
+                    </a>
+                </button>
             </li>
         </ul>
     );
