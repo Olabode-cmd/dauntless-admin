@@ -1,11 +1,11 @@
 import React from "react";
-import { useTheme } from 'next-themes'
+// import { useTheme } from 'next-themes'
 import { FiSunrise, FiMoon, FiMenu } from 'react-icons/fi'
 import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 import Navbar from '../components/navbar';
 
 function Index() {
-  const { theme, setTheme } = useTheme()
+  // const { theme, setTheme } = useTheme()
   
   return (
     <div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { SessionProvider } from 'next-auth/react';
 // import { useSession } from "next-auth/react"
-
 // create new context
 const Context = React.createContext({});
 
@@ -35,7 +35,7 @@ export default function DashboardProvider({ children }) {
   //   return;
 
   // }, [status]);
-  
+
 
   // close side navigation when route changes
   React.useEffect(() => {
@@ -66,9 +66,11 @@ export default function DashboardProvider({ children }) {
   }, [open, ref]);
 
   return (
-    <Context.Provider value={{ open, ref, toggle }}>
-      {children}
-    </Context.Provider>
+    // <SessionProvider>
+      <Context.Provider value={{ open, ref, toggle }}>
+        {children}
+      </Context.Provider>
+    // </SessionProvider>
   );
 }
 

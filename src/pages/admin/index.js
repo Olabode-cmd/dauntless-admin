@@ -37,11 +37,11 @@ export default function HomePage(props) {
       } else if (day === "A year ago") {
         return date === lastYear;
       } else {
-        return true;
+        return day === "24 hours ago";
       }
     });
     setTrades(filtered);
-  }, [typeValue]);
+  }, []);
 
   // filter by month
   const filterMonth = useCallback((month) => {
@@ -91,7 +91,7 @@ export default function HomePage(props) {
       }
     });
     setTrades(filtered);
-  }, [graphValue]);
+  }, []);
 
   // loop through each card id and count total time it appears in each trade and put into an array of graphdata
   const graphDataArray = () => props.cards.map(card => {
@@ -118,7 +118,7 @@ export default function HomePage(props) {
   useEffect(() => {
     filterDay('24 hours ago')
     filterMonth(moment().format('MMMM'))
-  }, [])
+  },[])
 
  
   const data = {

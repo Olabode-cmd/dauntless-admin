@@ -1,5 +1,5 @@
 // import Head from 'next/head';
-import { SessionProvider } from "next-auth/react"
+// import { SessionProvider } from "next-auth/react"
 import 'tailwindcss/tailwind.css';
 // import DashboardLayout from '../dashboard/AdminLayout';
 import { ThemeProvider } from 'next-themes'
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     // <SessionProvider session={session}>
     <ThemeProvider attribute="class">
       <Head>
-        {/* Import CSS for nprogress */}
+        Import CSS for nprogress
         <link rel="stylesheet" type="text/css" href="/nprogress.css" />
       </Head>
       <Component {...pageProps} />
