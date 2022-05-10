@@ -6,8 +6,10 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer'
 import { RiSpamLine } from "react-icons/ri";
 
+
 function Index() {
   const { theme, setTheme } = useTheme()
+
 
   return (
     <div>
@@ -30,66 +32,65 @@ function Index() {
                 <AiFillApple /> &nbsp; iOS App</a>
             </div>
           </div>
-          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-112 xl:h-112 2xl:h-128">
+          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-112 xl:h-112 2xl:h-128 hidden md:flex">
             <img src="images/credit-card.png" alt="" className="object-contain h-auto rotate-12 dark:bg-coolGray-500" />
           </div>
         </div>
 	    </section>
 
 
-      <section className="mt-8 mb-6 px-16 md:px-36">
-        <span className="block mb-2 text-xs font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
+      <section className="pt-8 pb-6 px-16 md:px-36 bgimg">
+        <span className="block mb-2 text-sm font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
         <h2 className="text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
-          <div className="flex flex-col p-8 space-y-4 rounded-md bg-slate-900">
-            <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-yellow-400 text-slate-200">1</div>
-            <p className="text-2xl font-bold text-slate-200">Trusted.</p>
+
+          <div className="card-info space-y-4 p-8">
+            <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full">1</span>
+            <h3 className="text-2xl font-bold">Trusted.</h3>
             <p>Trade with high confidence, as we assure you the highest level of encryption and professionally audited exchange system.</p>
           </div>
-          <div className="flex flex-col p-8 space-y-4 rounded-md bg-slate-900">
-            <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-yellow-400 text-slate-200">2</div>
-            <p className="text-2xl font-bold text-slate-200">Instant Payment</p>
+
+          <div className="card-info space-y-4 p-8">
+            <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full">2</span>
+            <h3 className="text-2xl font-bold">Instant Payment</h3>
             <p>Using state-of-the-art payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
           </div>
-          <div className="flex flex-col p-8 space-y-4 rounded-md bg-slate-900">
-            <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-yellow-400 text-slate-200">3</div>
+
+          <div className="card-info space-y-4 p-8">
+            <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full">3</span>
           
-            <p className="text-2xl font-bold text-slate-200">Cross-Platform Availiability</p>
+            <p className="text-2xl font-bold">Cross-Platform Availiability</p>
             <p>Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
           </div>
         </div>
 
-        {/* <div className="p-8 space-y-8 rounded-md lg:col-span-full lg:py-12 dark:bg-slate-900">
-          <h2 className="text-5xl font-bold dark:text-slate-200">Trade with us</h2>
-          <p className="dark:text-coolGray-400">
-            In Nigeria, gift card exchange has taken on a new face, and we're doing rather well at it. We attempt to deliver the best possible gift card rates in Nigeria by using customer-oriented conversion.
-
-            <br />
-            Dauntless allows you to trade gift cards from a variety of retailers,
-            including iTunes, Amazon, Steam Wallet, Google Play, Apple Store, eBay, Walmart, Sephora,
-            OneVanilla, Nordstrom, Target, JCPenney, Best Buy, Nike, Hotels.com, Macy's, Gamestop,
-            Xbox, Vanilla, G2A, American Express (AMEX), OffGamers, Foot Locker, Visa, Play Station,
-            and others.
-          </p>
-        </div> */}
       </section>
 
-      <section className="dark:bg-slate-800 dark:text-coolGray-100 mt-4 py-4">
-        <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0">
-            <img src="images/workflow.gif" alt="" className="object-contain rounded w-full" />
+      <section className="dark:bg-slate-800 dark:text-coolGray-100 mt-4">
+        <div className="container flex flex-col justify-centermx-auto lg:flex-row lg:justify-between">
+          <div className="flex-1 flex justify-center p-6 mt-8 lg:mt-0 bg-slate-200">
+            <img src="images/workflow.gif" alt="animated character" className="object-contain rounded w-7/12 m-auto" />
           </div>
 
-          <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-            <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Trade with us on
+          <div className="flex-1">
+            <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
+              <h1 className="text-3xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Trade with us on
               <span className="text-yellow-400"> Dauntless</span> Platform
             </h1>
-            <p className="mt-6 mb-8 text-lg sm:mb-12">Our payment system is amazingly coherent. You get your money almost instantly, no fees attached and no limits.
+            <p className="mt-6 text-lg sm:mb-3 medium-font">
+              Dauntless allows you to trade gift cards from a variety of retailers,
+              including iTunes, Amazon, Steam Wallet, Google Play, Apple Store, eBay, Walmart, Sephora,
+              OneVanilla, Nordstrom, Target, JCPenney, Best Buy, Nike, Hotels.com, Macy's, Gamestop,
+              Xbox, Vanilla, G2A, American Express (AMEX), OffGamers, Foot Locker, Visa, Play Station,
+              and others.
+            </p>
+            <p className="mt-2 text-lg sm:mb-12 medium-font">Our payment system is amazingly coherent. You get your money almost instantly, no fees attached and no limits.
               <br /> Don't worry about rates. We offer the best payout for your assets based on the current market value.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
               <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
                 Read More</a>
+            </div>
             </div>
           </div>
         </div>
@@ -170,7 +171,7 @@ function Index() {
       </section>
 
       <section className="dark:bg-coolGray-800 dark:text-coolGray-100 mt-4 py-4">
-        <span className="block text-xs font-medium  uppercase lg:text-center text-yellow-400">Download App</span>
+        <span className="block text-sm font-medium  uppercase lg:text-center text-yellow-400">Download App</span>
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
             <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Download
@@ -229,6 +230,89 @@ function Index() {
           </div>
         </div>
       </section>
+
+      {/* <section className="bg-slate-900 py-10 lg:py-[120px]">
+        <div className="container">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4">
+              <div className="flex flex-wrap justify-center items-center">
+                <a1598
+                  href="javascript:void(0)"
+                  className="
+                  w-[150px]
+                  2xl:w-[180px]
+                  py-5
+                  flex
+                  items-center
+                  justify-center
+                  mx-4
+                  "
+                >
+                  <img
+                    src="https://cdn.tailgrids.com/1.0/assets/images/brands/graygrids.svg"
+                    alt="image"
+                    className="w-full h-10"
+                  />
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  className="
+                  w-[150px]
+                  2xl:w-[180px]
+                  py-5
+                  flex
+                  items-center
+                  justify-center
+                  mx-4
+                  "
+                >
+                  <img
+                    src="https://cdn.tailgrids.com/1.0/assets/images/brands/lineicons.svg"
+                    alt="image"
+                    className="w-full h-10"
+                  />
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  className="
+                  w-[150px]
+                  2xl:w-[180px]
+                  py-5
+                  flex
+                  items-center
+                  justify-center
+                  mx-4
+                  "
+                >
+                  <img
+                    src="https://cdn.tailgrids.com/1.0/assets/images/brands/uideck.svg"
+                    alt="image"
+                    className="w-full h-10"
+                  />
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  className="
+                  w-[150px]
+                  2xl:w-[180px]
+                  py-5
+                  flex
+                  items-center
+                  justify-center
+                  mx-4
+                  "
+                >
+                  <img
+                    src="https://cdn.tailgrids.com/1.0/assets/images/brands/ayroui.svg"
+                    alt="image"
+                    className="w-full h-10"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
 
       {/* FOOTER */}
       <Footer />

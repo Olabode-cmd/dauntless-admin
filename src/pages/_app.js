@@ -3,6 +3,8 @@ import 'tailwindcss/tailwind.css';
 import DashboardLayout from '../dashboard/AdminLayout';
 import { ThemeProvider } from 'next-themes'
 
+import './background.css';
+
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider attribute="class">

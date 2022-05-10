@@ -31,7 +31,7 @@ export default function Footer() {
                   </div>
                   <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row">
                       <p className="text-sm text-gray-500">
-                          © Copyright 2020 Lorem Inc. All rights reserved.
+                          © Copyright 2022 Dauntless Inc. All rights reserved.
                       </p>
                       <div className="flex items-center mt-4 space-x-4 sm:mt-0">
                           <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-teal-accent-400">
