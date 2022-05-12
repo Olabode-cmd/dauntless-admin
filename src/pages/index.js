@@ -3,10 +3,13 @@ import React from "react";
 import { FiSunrise, FiMoon, FiMenu } from 'react-icons/fi'
 import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 import Navbar from '../components/navbar';
+import Footer from '../components/footer'
+import { RiSpamLine } from "react-icons/ri";
+
 
 function Index() {
   // const { theme, setTheme } = useTheme()
-  
+
   return (
     <div>
       <Navbar />
@@ -26,34 +29,35 @@ function Index() {
                 <AiFillApple /> &nbsp; iOS App</a>
             </div>
           </div>
-          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-112 xl:h-112 2xl:h-128">
-            <img src="images/credit-card.png" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
+          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-112 xl:h-112 2xl:h-128 hidden md:flex">
+            <img src="images/credit-card.png" alt="" className="object-contain h-auto rotate-12 dark:bg-coolGray-500" />
           </div>
         </div>
       </section>
 
 
-      <section className="mt-8 mb-6 px-16 md:px-36">
-        <span className="block mb-2 text-xs font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
+      <section className="pt-8 pb-6 px-16 md:px-36 bgimg">
+        <span className="block mb-2 text-sm font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
         <h2 className="text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
-          <div className="flex flex-col p-8 space-y-4 rounded-md bg-slate-900">
-            <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-yellow-400 text-slate-200">1</div>
-            <p className="text-2xl font-semibold">
-              <b>Nulla.</b> <br /> Nostrum, corrupti blanditiis. Illum, architecto?
-            </p>
+
+          <div className="card-info space-y-4 p-8">
+            <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full">1</span>
+            <h3 className="text-2xl font-bold">Trusted.</h3>
+            <p>Trade with high confidence, as we assure you the highest level of encryption and professionally audited exchange system.</p>
           </div>
-          <div className="flex flex-col p-8 space-y-4 rounded-md bg-slate-900">
-            <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-yellow-400 text-slate-200">2</div>
-            <p className="text-2xl font-semibold">
-              <b>Accusantium.</b> <br /> Vitae saepe atque neque sunt eius dolor veniam alias debitis?
-            </p>
+
+          <div className="card-info space-y-4 p-8">
+            <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full">2</span>
+            <h3 className="text-2xl font-bold">Instant Payment</h3>
+            <p>Using state-of-the-art payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
           </div>
-          <div className="flex flex-col p-8 space-y-4 rounded-md bg-slate-900">
-            <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-yellow-400 text-slate-200">3</div>
-            <p className="text-2xl font-semibold">
-              <b>Maxime.</b> <br /> Expedita temporibus culpa reprehenderit doloribus consectetur odio!
-            </p>
+
+          <div className="card-info space-y-4 p-8">
+            <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full">3</span>
+
+            <p className="text-2xl font-bold">Cross-Platform Availiability</p>
+            <p>Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
           </div>
         </div>
 
@@ -62,30 +66,33 @@ function Index() {
           <p className="dark:text-coolGray-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             Nesciunt facilis quod accusantium beatae cum nam adipisci reiciendis omnis possimus error quo animi
             voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem
-            libero minus atque tenetur enim pariatur cupiditate commodi in beatae, ipsa eligendi? Quis, saepe.</p>
+          </p>
         </div>
-      </section>
 
-      <section className="dark:bg-coolGray-800 dark:text-coolGray-100">
-        <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-          <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-            <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">About
-              <span className="text-yellow-400">Dauntless</span> Trading Platform
+        <div className="flex-1">
+          <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
+            <h1 className="text-3xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Trade with us on
+              <span className="text-yellow-400"> Dauntless</span> Platform
             </h1>
-            <p className="mt-6 mb-8 text-lg sm:mb-12">Dictum aliquam porta in condimentum ac integer
-              <br className="hidden md:inline lg:hidden" />turpis pulvinar, est scelerisque ligula sem
+            <p className="mt-6 text-lg sm:mb-3 medium-font">
+              Dauntless allows you to trade gift cards from a variety of retailers,
+              including iTunes, Amazon, Steam Wallet, Google Play, Apple Store, eBay, Walmart, Sephora,
+              OneVanilla, Nordstrom, Target, JCPenney, Best Buy, Nike, Hotels.com, Macy's, Gamestop,
+              and others.
+            </p>
+            <p className="mt-2 text-lg sm:mb-12 medium-font">Our payment system is amazingly coherent. You get your money almost instantly, no fees attached and no limits.
+              <br /> Don't worry about rates. We offer the best payout for your assets based on the current market value.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-              <a href="#" className="px-8 py-3 text-lg font-semibold border rounded dark:border-coolGray-100">Read More</a>
+              <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
+                Read More</a>
             </div>
-          </div>
-          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-            <img src="images/cards.jpg" alt="" className="object-contain rounded h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
       </section>
 
-      <section className="bg-slate-100 dark:bg-slate-900 px-16 md:px-36">
+
+      <section className="bg-slate-100 dark:bg-slate-900 px-16 pb-16 md:px-36">
         <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Filter Cards</span>
 
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
@@ -158,10 +165,33 @@ function Index() {
 
       </section>
 
+      <section className="dark:bg-coolGray-800 dark:text-coolGray-100 mt-4 py-4">
+        <span className="block text-sm font-medium  uppercase lg:text-center text-yellow-400">Download App</span>
+        <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
+          <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
+            <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Download
+              <span className="text-yellow-400"> Dauntless</span> Mobile App
+            </h1>
+            <p className="mt-6 mb-8 text-lg sm:mb-12">Experience the best of Dauntless as you download our mobile application to your phone or tablet.
+              <br /> Available for iOS and Android operating systems.
+            </p>
+            <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+              <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded bg-yellow-400 hover:bg-yellow-600 text-slate-100 flex items-center justify-center">
+                <AiFillAndroid /> <span className="inline-block">&nbsp; Android</span></a>
+              <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
+                <AiFillApple /> &nbsp; iOS App</a>
+            </div>
+          </div>
+          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+            <img src="images/cards.jpg" alt="" className="object-contain rounded h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
+          </div>
+        </div>
+      </section>
+
       <section className="bg-slate-100 dark:bg-slate-900  px-4 md:px-36">
         <div className="max-w-5xl mx-auto pt-4 px-6 sm:px-6 lg:px-8 mb-12">
           <div className="w-full rounded p-8 sm:p-6">
-            <p className="text-5xl font-bold leading-7 text-center text-white">Contact me</p>
+            <p className="text-5xl font-bold leading-7 text-center text-white">Contact Us</p>
             <form action="" method="post">
               <div className="md:flex items-center mt-12">
                 <div className="w-full md:w-1/2 flex flex-col">
@@ -183,7 +213,7 @@ function Index() {
               <div>
                 <div className="w-full flex flex-col mt-8">
                   <label className="font-semibold leading-none text-gray-300">Message</label>
-                  <textarea type="text" className="h-40 text-base leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-800 border-0 rounded"></textarea>
+                  <textarea type="text" className="h-40 text-base leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-800 border-0 rounded resize-none"></textarea>
                 </div>
               </div>
               <div className="flex items-center justify-center w-full">
@@ -195,65 +225,8 @@ function Index() {
           </div>
         </div>
       </section>
-
-      <footer className="-mt-12">
-        <div className="bg-zinc-900">
-          <div className="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 text-center">
-            <div className="mb-8 lg:grid-cols-6 inline-block">
-              <div className="md:max-w-md lg:col-span-2">
-                <span className="text-base font-medium tracking-wide text-gray-300">Subscribe for updates</span>
-                <form className="flex flex-col mt-4 md:flex-row">
-                  <input
-                    placeholder="Email"
-                    required=""
-                    type="text"
-                    className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                  />
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-yellow-400 hover:bg-yellow-700 focus:shadow-outline focus:outline-none"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-                <p className="mt-4 text-sm text-gray-500">
-                  Bacon ipsum dolor amet short ribs pig sausage prosciuto chicken spare ribs salami.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row">
-              <p className="text-sm text-gray-500">
-                © Copyright 2020 Lorem Inc. All rights reserved.
-              </p>
-              <div className="flex items-center mt-4 space-x-4 sm:mt-0">
-                <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-teal-accent-400">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path
-                      d="M24,4.6c-0.9,0.4-1.8,0.7-2.8,0.8c1-0.6,1.8-1.6,2.2-2.7c-1,0.6-2,1-3.1,1.2c-0.9-1-2.2-1.6-3.6-1.6 c-2.7,0-4.9,2.2-4.9,4.9c0,0.4,0,0.8,0.1,1.1C7.7,8.1,4.1,6.1,1.7,3.1C1.2,3.9,1,4.7,1,5.6c0,1.7,0.9,3.2,2.2,4.1 C2.4,9.7,1.6,9.5,1,9.1c0,0,0,0,0,0.1c0,2.4,1.7,4.4,3.9,4.8c-0.4,0.1-0.8,0.2-1.3,0.2c-0.3,0-0.6,0-0.9-0.1c0.6,2,2.4,3.4,4.6,3.4 c-1.7,1.3-3.8,2.1-6.1,2.1c-0.4,0-0.8,0-1.2-0.1c2.2,1.4,4.8,2.2,7.5,2.2c9.1,0,14-7.5,14-14c0-0.2,0-0.4,0-0.6 C22.5,6.4,23.3,5.5,24,4.6z"
-                    ></path>
-                  </svg>
-                </a>
-                <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-teal-accent-400">
-                  <svg viewBox="0 0 30 30" fill="currentColor" className="h-6">
-                    <circle cx="15" cy="15" r="4"></circle>
-                    <path
-                      d="M19.999,3h-10C6.14,3,3,6.141,3,10.001v10C3,23.86,6.141,27,10.001,27h10C23.86,27,27,23.859,27,19.999v-10   C27,6.14,23.859,3,19.999,3z M15,21c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S18.309,21,15,21z M22,9c-0.552,0-1-0.448-1-1   c0-0.552,0.448-1,1-1s1,0.448,1,1C23,8.552,22.552,9,22,9z"
-                    ></path>
-                  </svg>
-                </a>
-                <a href="/" className="text-gray-500 transition-colors duration-300 hover:text-teal-accent-400">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5">
-                    <path
-                      d="M22,0H2C0.895,0,0,0.895,0,2v20c0,1.105,0.895,2,2,2h11v-9h-3v-4h3V8.413c0-3.1,1.893-4.788,4.659-4.788 c1.325,0,2.463,0.099,2.795,0.143v3.24l-1.918,0.001c-1.504,0-1.795,0.715-1.795,1.763V11h4.44l-1,4h-3.44v9H22c1.105,0,2-0.895,2-2 V2C24,0.895,23.105,0,22,0z"
-                    ></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <Footer />
+    </div >
 
 
 

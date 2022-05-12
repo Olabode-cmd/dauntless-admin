@@ -1,5 +1,7 @@
 import React from 'react';
 import { FiSunrise, FiMoon, FiMenu } from 'react-icons/fi'
+// import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -10,8 +12,9 @@ export default function Navbar() {
         default: `h-screen overflow-y-auto text-white top-0 lg:absolute bg-gray-900 lg:block lg:z-40`,
     };
 
+
   return (
-      <nav className="bg-white shadow dark:bg-gray-800">
+      <nav className="bg-white shadow dark:bg-gray-800 sticky top-0 z-40">
           <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
               <div className="flex items-center justify-between">
                   <div>
@@ -27,9 +30,9 @@ export default function Navbar() {
 
               <div className="items-center md:flex">
                   <div className={isOpen ? style.open : style.close}>
-                      <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0" href="#">Home</a>
-                      <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0" href="#">About Us</a>
-                      <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0" href="#">Privacy Policy</a>
+                      <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"><Link href="/">Home</Link></a>
+                      <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"><Link href="/about">About Us</Link></a>
+                      <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">Sign In</a>
 
                       <label htmlFor="Toggle2" className="inline-flex items-center mx-2 space-x-4 cursor-pointer dark:text-coolGray-100 block pr-5">
                           <span><FiSunrise size={'20px'} color="gold" /></span>
