@@ -334,8 +334,8 @@ const Index = (props) => {
                                             rowData => ({
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
-                                                // onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
-                                                onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                                // onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
                                              })
                                         ]}
                         
@@ -373,8 +373,8 @@ const Index = (props) => {
                                             rowData => ({
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
-                                                onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
-                                                // onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                                // onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                              })
                                         ]}
                         
@@ -411,8 +411,8 @@ const Index = (props) => {
                                             rowData => ({
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
-                                                onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
-                                                // onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
+                                                // onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
+                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                              })
                                         ]}
                         

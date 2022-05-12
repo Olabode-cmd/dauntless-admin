@@ -1,148 +1,407 @@
 // import Content from '../components/content';
+import React, { useState, useEffect } from 'react';
 import Breadcumb from '../../components/breadcumb';
 import Statistics from '../../components/statistics';
-import AreaChart from '../../components/chart';
-import DoughnutChart from '../../components/donut';
-import DropdownRender from '../../components/dropdown';
-import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
+// import AreaChart from '../../components/chart';
+import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
 import AccountantLayout from '../../dashboard/AccountantLayout';
+import { Helmet } from "react-helmet"
+import MaterialTable, { Column } from "@material-table/core";
+import { Tab } from '@headlessui/react'
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import { FiCamera } from 'react-icons/fi';
+import IconButton from '@mui/material/IconButton';
+// import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
+import moment from 'moment';
+import { useRouter } from 'next/router';
 
-export default function HomePage() {
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
-  const role = ['seun', 'tope', 'sade',];
 
-  return (
-    <AccountantLayout>
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+const Input = styled('input')({
+    display: 'none',
+});
 
-      <div className="flex flex-wrap mt-8">
-        <div className="w-full mt-8 lg:mt-0 lg:w-4/12 lg:pl-4">
-          <div className="dark:bg-gray-800 bg-gray-300 rounded-3xl px-6 pt-6">
-            <div className="flex dark:text-gray-100 text-black text-2xl pb-6 font-bold">
-              <p>Traffic Sources</p>
+const Index = (props) => {
+    const Router = useRouter()
 
-            </div>
+    const [data, setData] = useState(props.data)
+    const [selectedRow, setSelectedRow] = useState(null);
 
-            <div>
-              <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full ">
-                <DoughnutChart />
-              </div>
-            </div>
-          </div>
-          <div>
 
-          </div>
-        </div>
 
-        <div className="w-full lg:w-7/12 bg-gray-300 dark:bg-gray-800  mx-3 py-6 px-6 rounded-3xl">
-          <Breadcumb title={'Activity Log'} />
-          <div className="flex flex-row justify-between">
-              <div>
-                  {/* <div className="relative inline-flex self-center"> */}
-                  <select className="text-sm font-bold rounded border-1 border-yellow-700 text-gray-600 h-10 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                      <option value="">Select Options</option>
-                      {days.map((month, index) => (
-                          <option value={index} key={index}>{month}</option>
-                      ))}
-                  </select>
-                  {/* </div> */}
-              </div>
-              <div className="pr-5">
-                  {/* <div className="relative inline-flex self-center"> */}
-                  <select className="text-sm font-bold rounded border-1 border-yellow-700 text-gray-600 h-10 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                      <option value="">Select Admin</option>
-                      {role.map((month, index) => (
-                          <option value={index} key={index}>{month}</option>
-                      ))}
-                  </select>
-                  {/* </div> */}
-              </div>
-          </div>
-                    <div className="mt-10 max-h-96 overflow-x-auto ">
-                        {/* <!-- Card 1 --> */}
-                        <div className="transform transition cursor-pointer hover:-translate-y-2 ml-10 relative flex items-center px-6 py-4 bg-blue-600 text-white rounded mb-10 flex-col md:flex-row space-y-4 md:space-y-0">
-                            {/* <!-- Dot Follwing the Left Vertical Line --> */}
-                            <div className="w-5 h-5 bg-blue-600 absolute -left-10 transform -translate-x-2/4 rounded-full z-10 mt-2 md:mt-0"></div>
 
-                            {/* <!-- Line that connecting the box with the vertical line --> */}
-                            <div className="w-10 h-1 bg-blue-300 absolute -left-10 z-0"></div>
-
-                            {/* <!-- Content that showing in the box --> */}
-                            <div className="flex-auto">
-                                <h1 className="text-lg">22 hours ago</h1>
-                                <h1 className="text-md font-bold">Admin 001 view trade 001</h1>
-                            </div>
-                            {/* <a href="#" className="text-center text-white hover:text-gray-300">Download materials</a> */}
-                        </div>
-
-                        {/* <!-- Card 2 --> */}
-                        <div className="transform transition cursor-pointer hover:-translate-y-2 ml-10 relative flex items-center px-6 py-4 bg-pink-600 text-white rounded mb-10 flex-col md:flex-row space-y-4 md:space-y-0">
-                            {/* <!-- Dot Follwing the Left Vertical Line --> */}
-                            <div className="w-5 h-5 bg-pink-600 absolute -left-10 transform -translate-x-2/4 rounded-full z-10 mt-2 md:mt-0"></div>
-
-                            {/* <!-- Line that connecting the box with the vertical line --> */}
-                            <div className="w-10 h-1 bg-pink-300 absolute -left-10 z-0"></div>
-
-                            {/* <!-- Content that showing in the box --> */}
-                            <div className="flex-auto">
-                                <h1 className="text-lg">22 hours ago</h1>
-                                <h1 className="text-md font-bold">Admin 001 view trade 001</h1>
-                                {/* <h3></h3> */}
-                            </div>
-                        </div>
-
-                        {/* <!-- Card 3 --> */}
-                        <div className="transform transition cursor-pointer hover:-translate-y-2 ml-10 relative flex items-center px-6 py-4 bg-green-600 text-white rounded mb-10 flex-col md:flex-row space-y-4 md:space-y-0">
-                            {/* <!-- Dot Follwing the Left Vertical Line --> */}
-                            <div className="w-5 h-5 bg-green-600 absolute -left-10 transform -translate-x-2/4 rounded-full z-10 mt-2 md:mt-0"></div>
-
-                            {/* <!-- Line that connecting the box with the vertical line --> */}
-                            <div className="w-10 h-1 bg-green-300 absolute -left-10 z-0"></div>
-
-                            {/* <!-- Content that showing in the box --> */}
-                            <div className="flex-auto">
-                                <h1 className="text-lg">22 hours ago</h1>
-                                <h1 className="text-md font-bold">Admin 001 view trade 001</h1>
-                            </div>
-                            {/* <a href="#" className="text-center text-white hover:text-gray-300">Download materials</a> */}
-                        </div>
-
-                        {/* <!-- Card 4 --> */}
-                        <div className="transform transition cursor-pointer hover:-translate-y-2 ml-10 relative flex items-center px-6 py-4 bg-purple-600 text-white rounded mb-10 flex-col md:flex-row space-y-4 md:space-y-0">
-                            {/* <!-- Dot Follwing the Left Vertical Line --> */}
-                            <div className="w-5 h-5 bg-purple-600 absolute -left-10 transform -translate-x-2/4 rounded-full z-10 mt-2 md:mt-0"></div>
-
-                            {/* <!-- Line that connecting the box with the vertical line --> */}
-                            <div className="w-10 h-1 bg-purple-300 absolute -left-10 z-0"></div>
-
-                            {/* <!-- Content that showing in the box --> */}
-                            <div className="flex-auto">
-                                <h1 className="text-lg">22 hours ago</h1>
-                                <h1 className="text-md font-bold">Admin 001 view trade 001</h1>
-                            </div>
-                            <a href="#" className="text-center text-white hover:text-gray-300">Download materials</a>
-                        </div>
-
-                        {/* <!-- Card 5 --> */}
-                        <div className="transform transition cursor-pointer hover:-translate-y-2 ml-10 relative flex items-center px-6 py-4 bg-yellow-600 text-white rounded mb-10 flex-col md:flex-row">
-                            {/* <!-- Dot Follwing the Left Vertical Line --> */}
-                            <div className="w-5 h-5 bg-yellow-600 absolute -left-10 transform -translate-x-2/4 rounded-full z-10 -mt-2 md:mt-0"></div>
-
-                            {/* <!-- Line that connecting the box with the vertical line --> */}
-                            <div className="w-10 h-1 bg-yellow-300 absolute -left-10 z-0"></div>
-
-                            {/* <!-- Content that showing in the box --> */}
-                            <div className="flex-auto">
-                                <h1 className="text-lg">22 hours ago</h1>
-                                <h1 className="text-md font-bold">Admin 001 view trade 001</h1>
-                            </div>
+    const columns = [
+        {
+            title: 'Withdrawal ID',
+            field: 'id',
+            render: rowData => <p className="text-ms font-semibold">Withdral_00{rowData.id}</p>,
+            headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            },
+            editable: 'never',
+        },
+        {
+            title: "Amount 💰", field: "amount", editable: false, headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            },
+            render: (rowData) => {
+                return (
+                    <div className="flex text-sm tool-tip">
+                        <div>
+                            <p className="font-semibold text-black">{rowData.amount}</p>
                         </div>
                     </div>
+                )
+            }
 
-        </div>
-      </div>
+        },
+        {
+            title: "Duration ⏲", field: 'created_at', editable: false, headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold'
+            },
+            render: (rowData) => {
+                return (
+                    <p className="text-sm font-semibold text-gray-600">{moment(rowData.created_at).fromNow()}</p>
+                )
+
+            }
+        },
+        {
+            title: "User 👷‍♂️", field: "user", editable: false, headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            },
+            render: (rowData) => {
+                return (
+                    <div className="flex text-sm">
+                        <div>
+                            <p className="font-semibold text-black">Daunt_00{rowData.id}</p>
+                        </div>
+                    </div>
+                )
+            }
+        },
+
+        {
+            title: "Status 🔄", field: "status", headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            },
+            lookup: { 1: "Pending", 2: "Completed", 3: "Cancel" },
+            render: rowData => {
+                return (
+                    <p className="text-xs">
+                        {rowData.status === 1 ?
+                            (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm"> Pending </span>) :
+                            rowData.status === 2 ?
+                            (<span className="font-semibold leading-tight text-white bg-green-700 rounded-sm"> Completed </span>) :
+                            rowData.status === 3 ?
+                            (<span className="px-2 py-3 font-semibold leading-tight text-white bg-red-700 rounded-sm"> Failed</span>) :
+                            (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"></span>)
+                        }
+                    </p>
+                )
+            },
+            headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            }
+        },
+    ];
 
 
-    </AccountantLayout>
-  );
+    let active = [];
+    let failed = [];
+    let completed = [];
+
+    for (let i = 0; i < props.data.length; i++) {
+        if (props.data[i].status === 1) {
+            active.push(props.data[i]);
+        }
+        if (props.data[i].status === 2) {
+            completed.push(props.data[i]);
+        }
+        if (props.data[i].status === 3) {
+            failed.push(props.data[i]);
+        }
+    }
+
+
+    return (
+        <AccountantLayout>
+
+            <div className="flex flex-wrap">
+                <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+                    <Breadcumb title={'Withdrawal 🏦 '} />
+
+                    <div className="px-2 sm:px-0">
+                        <Tab.Group>
+                            <Tab.List className="flex p-1 space-x-1 bg-yellow-600 rounded-xl">
+                                {/* {Object.keys(categories).map((category) => ( */}
+                                <Tab
+                                    // key={category}
+                                    className={({ selected }) =>
+                                        classNames(
+                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+                                            selected
+                                                ? 'bg-white shadow'
+                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                                        )
+                                    }
+                                >
+                                    Active Withdrawal <span className="text-md text-green-500">({active.length})</span>
+                                </Tab>
+
+                                <Tab
+                                    // key={category}
+                                    className={({ selected }) =>
+                                        classNames(
+                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+                                            selected
+                                                ? 'bg-white shadow'
+                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                                        )
+                                    }
+                                >
+                                    Completed Withdrawal <span className="text-md text-green-500">({completed.length})</span>
+
+                                </Tab>
+
+                                <Tab
+                                    // key={category}
+                                    className={({ selected }) =>
+                                        classNames(
+                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
+                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
+                                            selected
+                                                ? 'bg-white shadow'
+                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                                        )
+                                    }
+                                >
+                                    Failed Withdrawal <span className="text-md text-red-500">({failed.length})</span>
+
+                                </Tab>
+                            </Tab.List>
+                            <Tab.Panels className="mt-2">
+                                <Tab.Panel
+                                    // key={idx}
+                                    className={classNames(
+                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
+                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+                                    )}
+                                >
+                                    <MaterialTable
+                                        title="Active Withdrawal 🔥"
+                                        columns={columns}
+                                        data={active}
+                                        key={data.id}
+
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                                        options={{
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color: '#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
+                                        }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/accountant/withdrawal`),
+                                            })
+                                        ]}
+
+                                    />
+
+                                </Tab.Panel>
+
+                                <Tab.Panel
+                                    // key={idx}
+                                    className={classNames(
+                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
+                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+                                    )}
+                                >
+                                    <MaterialTable
+                                        title="Completed Withdrawals"
+                                        columns={columns}
+                                        data={completed}
+                                        key={data.id}
+
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                                        options={{
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color: '#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
+                                        }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/accountant/withdrawal`),
+                                            })
+                                        ]}
+
+                                    />
+                                </Tab.Panel>
+                                <Tab.Panel
+                                    // key={idx}
+                                    className={classNames(
+                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
+                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
+                                    )}
+                                >
+                                    <MaterialTable
+                                        title="Completed Trades"
+                                        columns={columns}
+                                        data={failed}
+                                        key={data.id}
+
+                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                                        options={{
+                                            actionsColumnIndex: -1,
+                                            rowStyle: {
+                                                backgroundColor: '#fafafa',
+                                                color: '#'
+                                            },
+                                            rowStyle: rowData => ({
+                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
+                                            }),
+                                            grouping: true,
+                                        }}
+                                        actions={[
+
+                                            rowData => ({
+                                                icon: 'visibility',
+                                                tooltip: 'View Trade',
+                                                onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
+                                            })
+                                        ]}
+
+                                    />
+                                </Tab.Panel>
+                            </Tab.Panels>
+                        </Tab.Group>
+                    </div>
+
+                </div>
+            </div>
+
+        </AccountantLayout>
+    );
+}
+
+export default Index;
+
+
+export async function getStaticProps() {
+    // const res = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
+    // const data = await res.json()
+    // const resCardType = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
+    const data = [
+        {
+            id: 1,
+            user: {
+                user_id: "Daunt_001",
+            },
+            status: 1,
+            amount: '5000',
+            created_at: '2021-10-28T09:17:50.974Z'
+        },
+        {
+            id: 2,
+            user: {
+                user_id: "Daunt_002",
+            },
+            amount:'12000',
+            status: 3, 
+            created_at: '2021-12-04T18:32:10.62Z'
+        },
+        {
+            id: 3,
+            user: {
+                user_id: "Daunt_003",
+            },
+            amount:'9000',
+            status: 2, created_at: '2021-12-04T18:32:10.62Z'
+        },
+        {
+            id: 4,
+            user: {
+                user_id: "Daunt_004",
+            },
+            amount:'12000',
+            status: 2, 
+            created_at: '2022-03-04T18:32:10.62Z'
+        },
+
+        {
+            id: 5,
+            user: {
+                user_id: "Daunt_005",
+            },
+            amount:'12000',
+            status: 2, 
+            created_at: '2022-03-04T6:32:10.62Z'
+        },
+        {
+            id: 6,
+            user: {
+                user_id: "Daunt_001",
+            },
+            amount:'12000',
+            status: 3, 
+            created_at: '2021-12-04T18:32:10.62Z'
+        },
+        {
+            id: 7,
+            user: {
+                user_id: "Daunt_002",
+            },
+            amount:'12000',
+            status: 3, created_at: '2021-12-04T18:32:10.62Z'
+
+        },
+        {
+            id: 8,
+            user: {
+                user_id: "Daunt_002",
+            },
+            amount:'12000',
+            status: 3, created_at: '2021-12-31 1T18:32:10.62Z'
+
+        },
+
+
+    ];
+    return {
+        props: {
+            data,
+            // dataCardType
+        },
+        revalidate: 1
+    }
 }
