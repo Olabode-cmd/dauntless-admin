@@ -140,7 +140,7 @@ export default function Users(props) {
                 return (
                     <div className="flex items-center">
                         {
-                            rowData.userWallet.amount != '0' ? (
+                        rowData.userWallet !== undefined || rowData.userWallet.amount != '0'  ? (
                                 <p className="text-ms font-semibold">{rowData.available_balance}</p>) : (
                                 <p className="text-ms font-semibold">0</p>
                             )
