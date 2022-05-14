@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { signIn, getSession } from "next-auth/react"
+import { signIn, getSession, signOut } from "next-auth/react"
 import { ToastContainer, toast } from "react-toastify";
-
-// import logo from './images/logo.png'
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -92,34 +90,29 @@ function Login() {
             </div>
 
         </>
-
-
     )
 }
 
 export default Login
-
-
 export async function getServerSideProps(context) {
     const session = await getSession(context);
-    // console.log(session)
     if (session?.user?.role == 1) {
-      return {
-        props: {},
-        redirect: {
-          destination: "/admin",
-          permanent: false,
-        },
-      };
-    }else if (session?.user?.role == 2) {
-      return {
-        props: {},
-        redirect: {
-          destination: "/agent",
-          permanent: false,
-        },
-      };
-    }else if (session?.user?.role == 3) {
+        return {
+            props: {},
+            redirect: {
+                destination: "/admin",
+                permanent: false,
+            },
+        };
+    } else if (session?.user?.role == 2) {
+        return {
+            props: {},
+            redirect: {
+                destination: "/agent",
+                permanent: false,
+            },
+        };
+    } else if (session?.user?.role == 3) {
         return {
             props: {},
             redirect: {
@@ -127,7 +120,7 @@ export async function getServerSideProps(context) {
                 permanent: false,
             },
         };
-    }else if (session?.user?.role == 4) {
+    } else if (session?.user?.role == 4) {
         return {
             props: {},
             redirect: {
@@ -135,12 +128,11 @@ export async function getServerSideProps(context) {
                 permanent: false,
             },
         };
-    }else{
+    } else {
         return {
-        props: {
-        session
-        },
-      };
+            props: {
+                session: session,
+            },
+        }
     }
-    
-  }
+}

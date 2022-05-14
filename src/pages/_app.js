@@ -4,7 +4,6 @@ import 'tailwindcss/tailwind.css';
 // import DashboardLayout from '../dashboard/AdminLayout';
 import { ThemeProvider } from 'next-themes'
 import Router from 'next/router'
-import Link from 'next/link'
 import Head from 'next/head'
 import NProgress from 'nprogress'
 import './background.css';

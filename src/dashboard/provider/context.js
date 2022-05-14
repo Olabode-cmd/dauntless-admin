@@ -1,7 +1,5 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { SessionProvider } from 'next-auth/react';
-// import { useSession } from "next-auth/react"
 // create new context
 const Context = React.createContext({});
 

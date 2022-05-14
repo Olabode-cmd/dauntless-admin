@@ -39,10 +39,7 @@ export default function SidenavItems() {
                 ))}
             </li>
             <li>
-                <button onClick={() => signOut({
-                    callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/auth/login`
-                })}>
-
+                <button>
                     <a className={style.link}>
                         <div className="p-2">
                             <span>{<FiPower color='gold' />}</span>

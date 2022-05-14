@@ -10,9 +10,11 @@ import AdminLayout from '../../dashboard/AdminLayout';
 import { Server } from '../api/lib/service';
 import { getSession } from 'next-auth/react';
 import moment from 'moment';
+import Error from 'next/error'
 // import { Helmet } from "react-helmet"
 
 export default function HomePage(props) {
+
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["24 hours ago", "A week ago", "A month ago", "A year ago"];
   const [trades, setTrades] = useState([]);
@@ -113,14 +115,13 @@ export default function HomePage(props) {
     filterMonth(graphValue)
   }, [graphValue])
 
-
-
   useEffect(() => {
     filterDay('24 hours ago')
     filterMonth(moment().format('MMMM'))
-  },[])
+  }, [])
 
- 
+
+
   const data = {
     labels: [...props.cards.map(card => card.name)],
     datasets: [
@@ -164,8 +165,8 @@ export default function HomePage(props) {
           }),
         ],
         borderWidth: 2,
-        
-  
+
+
       },
     ],
   };
@@ -173,11 +174,7 @@ export default function HomePage(props) {
   return (
     <AdminLayout>
       <div className="flex flex-wrap">
-<<<<<<< HEAD
         <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
-=======
-      <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl overflow-y-scroll">
->>>>>>> olabode
           <div className="flex flex-row justify-between">
             <p className='dark:text-gray-100 text-black text-2xl pb-6 font-bold'>Trades</p>
             <div className="pr-4">
@@ -331,19 +328,21 @@ export default function HomePage(props) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
+  // console.log(session)
   const trades = await Server.get('/admin/card-transactions', {
     headers: {
       Authorization: `Bearer ${session?.accessToken}`,
     },
   });
-
+  const errorCode = trades.status != 200 ? true : false;
   const cards = await Server.get('/card')
-  console.log(trades.data.message[0])
+  // console.log(trades.data.message[0])
   return {
     props: {
-      trades: trades.data.message,
+      trades: [],
       cards: cards.data.message,
       paymentLog: 'google',
+      errorCode,
     },
   };
 }

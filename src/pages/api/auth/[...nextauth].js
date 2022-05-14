@@ -60,14 +60,7 @@ export default NextAuth({
       return {...token};
     },
     session: async ({ session, token }) => {
-      const result = await Server.get("/", {
-        headers: {
-          accept: "*/*",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token.accessToken}`,
-        },
-      });
-      if (token || result.status === 200) {
+      if (token && token?.exp  <= Date.now()) {
        session.user = token.user;
        session.accessToken = token.accessToken;
        return session

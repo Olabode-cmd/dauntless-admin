@@ -5,14 +5,19 @@ import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer'
 import { RiSpamLine } from "react-icons/ri";
+import {signOut, useSession} from 'next-auth/react'
 
 
 function Index() {
-  // const { theme, setTheme } = useTheme()
+  const { data: session, status } = useSession()
 
   return (
     <div>
-      <Navbar />
+      <Navbar
+          login={
+            status === 'authenticated' ? (true ) : ( false )
+          }
+      />
       <section className="bg-slate-100 dark:bg-slate-900">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">

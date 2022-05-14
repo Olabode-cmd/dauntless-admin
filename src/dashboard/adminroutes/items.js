@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import data from './data';
 import { useToggle } from '../provider/context';
-import { signOut } from "next-auth/react";
+// import { signOut } from "next-auth/react";
 import { FiPower } from 'react-icons/fi'
 
 
@@ -39,8 +39,8 @@ export default function SidenavItems() {
                 ))}
             </li>
             <li>
-                <button onClick={() => signOut({
-                    callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/auth/login`
+            <button onClick={() => signOut({
+                    callbackUrl: `/auth/login`
                 })}>
 
                     <a className={style.link}>

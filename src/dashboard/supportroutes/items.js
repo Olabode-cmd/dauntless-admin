@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import data from './data';
 import { useToggle } from '../provider/context';
-import { signOut } from "next-auth/react";
+// import { signOut } from "next-auth/react";
 import { FiPower } from 'react-icons/fi'
 
 

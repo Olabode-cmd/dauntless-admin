@@ -52,9 +52,9 @@ const Index = (props) => {
                 return (
                     <div className="flex items-center text-sm">
                         <div className="relative w-8 h-8 mr-3 rounded-full md:block">
-                            <img className="object-cover w-full h-full rounded-full" src={sle(rowData?.cardType?.card_id)[0].picture} alt="" loading="lazy" />
+                            <img className="object-cover w-full h-full rounded-full" src={`${sle(rowData?.cardType?.card_id)[0].picture}`} alt=""/>
                             <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
-                                { }
+                               {/* { sle(rowData?.cardType?.card_id)[0].picture } */}
                             </div>
                         </div>
                         <div>
@@ -336,12 +336,7 @@ const Index = (props) => {
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
                                                 onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
-<<<<<<< HEAD
                                             })
-=======
-                                                // onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
-                                             })
->>>>>>> olabode
                                         ]}
 
                                     />
@@ -377,14 +372,8 @@ const Index = (props) => {
                                             rowData => ({
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
-<<<<<<< HEAD
                                                 onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                             })
-=======
-                                                // onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
-                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
-                                             })
->>>>>>> olabode
                                         ]}
 
                                     />
@@ -419,14 +408,8 @@ const Index = (props) => {
                                             rowData => ({
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
-<<<<<<< HEAD
                                                 onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                             })
-=======
-                                                // onClick: (event, rowData) => Router.push(`/admin/trade/viewtrade`),
-                                                onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
-                                             })
->>>>>>> olabode
                                         ]}
 
                                     />
