@@ -6,33 +6,27 @@ import DropdownRender from '../../../components/dropdown';
 import { FiUserPlus, FiDollarSign, FiActivity, FiEye, FiCopy } from 'react-icons/fi'
 import AdminLayout from '../../../dashboard/AdminLayout';
 import { Dialog, Transition } from '@headlessui/react'
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react'
+import { getSession } from 'next-auth/react'
+import { Server } from '../../api/lib/service';
+import moment from 'moment';
 
-
-
-export default function HomePage() {
+const TradeId = (props) => {
     const role = ['seun', 'tope', 'sade',];
     const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
     
     const [copy, setCopy] = useState('')
 
+    const sle = (id) => props.card.filter(card => card.id === id);
+
+  
     const [isOpen, setIsOpen] = useState(false)
-
-    const myFunction = async(e) => {
-        e.preventDefault()
-        /* Get the text field */
-        // setCopy(e.target.innerText)
-        /* Select the text field */
-        textArea.select();
-        document.execCommand('copy');
-        // This is just personal preference.
-        // I prefer to not show the whole text area selected.
-        e.target.focus();
-        setCopy(e.target.innerText)
-
-
-        /* Alert the copied text */
-        alert("Copied the text!");
+    const [data, setData] = useState({})
+    useEffect(() => {
+        setData(props.trade[0])
+    }
+        , [])
+  
     return (
         <AdminLayout>
 
@@ -65,157 +59,9 @@ export default function HomePage() {
             </div>
 
 
-            <Transition appear show={isOpen} as={Fragment}>
-                <Dialog
-                    as="div"
-                    className="fixed inset-0 z-10 overflow-y-auto"
-                    onClose={closeModal1}
-                >
-                    <div className="min-h-screen px-4 text-center">
-                        <Transition.Child
-                            as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                        >
-                            <Dialog.Overlay className="fixed inset-0" />
-                        </Transition.Child>
-
-                        {/* This element is to trick the browser into centering the modal contents. */}
-                        <span
-                            className="inline-block h-screen align-middle"
-                            aria-hidden="true"
-                        >
-                            &#8203;
-                        </span>
-                        <Transition.Child
-                            as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0 scale-95"
-                            enterTo="opacity-100 scale-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100 scale-100"
-                            leaveTo="opacity-0 scale-95"
-                        >
-                            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                                <Dialog.Title
-                                    as="h3"
-                                    className="text-lg text-center font-bold leading-6 text-gray-900"
-                                >
-                                    Fault Trade
-                                </Dialog.Title>
-                                <div className="mt-2">
-                                    <p className="text-sm text-center text-gray-500">
-                                        Are you sure you want to cancel this trade? If yes, kindly fill in the answers below
-                                    </p>
-                                    <div className="text-center my-2">
-                                        <textarea className="w-full h-24 resize-none rounded p-2" placeholder="Why are you faulting this trade?" />
-                                    </div>
-                                </div>
-
-                                <div className="mt-8 text-center">
-                                    <button
-                                        type="button"
-                                        className="inline-flex mx-2 justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                                        onClick={closeModal1}
-                                    >
-                                        Cancel
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="inline-flex mx-2 justify-center px-4 py-2 text-sm font-medium text-green-900 bg-green-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                                        onClick={closeModal1}
-                                    >
-                                        Send
-                                    </button>
-                                </div>
-                            </div>
-                        </Transition.Child>
-                    </div>
-                </Dialog>
-            </Transition>
-
-            <Transition appear show={isOpen} as={Fragment}>
-                <Dialog
-                    as="div"
-                    className="fixed inset-0 z-10 overflow-y-auto"
-                    onClose={closeModal}
-                >
-                    <div className="min-h-screen px-4 text-center">
-                        <Transition.Child
-                            as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                        >
-                            <Dialog.Overlay className="fixed inset-0" />
-                        </Transition.Child>
-
-                        {/* This element is to trick the browser into centering the modal contents. */}
-                        <span
-                            className="inline-block h-screen align-middle"
-                            aria-hidden="true"
-                        >
-                            &#8203;
-                        </span>
-                        <Transition.Child
-                            as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0 scale-95"
-                            enterTo="opacity-100 scale-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100 scale-100"
-                            leaveTo="opacity-0 scale-95"
-                        >
-                            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                                <Dialog.Title
-                                    as="h3"
-                                    className="text-lg text-center font-bold leading-6 text-gray-900"
-                                >
-                                    Query Trade
-                                </Dialog.Title>
-                                <div className="mt-2">
-                                    <p className="text-sm text-center text-gray-500">
-                                       Why do you want to query this trade? Kindly fill in the answers below
-                                    </p>
-                                    <div className="text-center my-2">
-                                        <textarea className="w-full h-24 resize-none rounded p-2" placeholder="What is your query about?" />
-                                    </div>
-                                </div>
-
-                                <div className="mt-8 text-center">
-                                    <button
-                                        type="button"
-                                        className="inline-flex mx-2 justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                                        onClick={closeModal}
-                                    >
-                                        Cancel Query
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="inline-flex mx-2 justify-center px-4 py-2 text-sm font-medium text-green-900 bg-green-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                                        onClick={closeModal}
-                                    >
-                                        Send
-                                    </button>
-                                </div>
-                            </div>
-                        </Transition.Child>
-                    </div>
-                </Dialog>
-            </Transition>
-
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12 pt-6 pb-24 bg-gray-300 dark:bg-gray-800 px-6 rounded-3xl">
-                    <Breadcumb title={'Trade'} />
+                    <Breadcumb title={`Trade00${data.id}`} />
 
                     <div className="flex-col h-full flex justify-between">
                         <div className="flex flex-wrap">
@@ -284,6 +130,33 @@ export default function HomePage() {
                                 Fault Trade
                             </button>
                         </div>
+
+                        <div className="flex justify-between dark:text-gray-100 text-black  items-center">
+                            <h5 className="text-1xl font-bold">Card Info: <span className="text-slate-100 font-normal">{sle(data.cardType?.card_id).name}</span></h5>
+                        </div>
+                        {
+                            data.tradeStatus?.name !== 'complete' && (
+                                <div className="flex justify-between">
+
+                                    <button type="button" className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-green-400 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                        Confirm Trade
+                                    </button>
+
+                                    <a href="#my-modal-2" type="button"
+                                        className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                        Query Trade
+                                    </a>
+
+                                    <a href="#my-modal-1" type="button"
+                                        className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-400 border border-transparent rounded-md hover:bg-red-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+                                    >
+                                        Fault Trade
+                                    </a>
+                                </div>
+
+                            )
+                        }
+
                     </div>
 
                 </div>
@@ -292,7 +165,7 @@ export default function HomePage() {
                     <div className="max-w-sm pb-5 mx-auto mt-4 overflow-hidden rounded-lg shadow-lg bg-slate-700">
                         <div className="h-40 bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-600">
                             <div className="flex justify-center">
-                                <span className="mt-10 text-4xl font-extrabold text-white">Tony Stark</span>
+                                <span className="mt-10 text-2xl font-extrabold text-white">{data.user?.full_name}</span>
                             </div>
                             <div className="flex justify-center">
                                 <img className="object-cover w-24 h-24 mt-4 border-4 border-blue-600 rounded-full" src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg" />
@@ -302,17 +175,26 @@ export default function HomePage() {
                             <div className="flex justify-center mt-10 mb-4 text-xl font-medium"></div>
                             <div className="flex w-full text-gray-600 text-center">
 
-                                <div className="font-bold"> Trade 001</div>
+                                <div className="font-bold"> Trade 00{data.id}</div>
                             </div>
 
                             <div className="flex my-1 text-gray-600">
-                                <div>Total Amount: <span className="font-bold">$450</span> </div>
+                                <div>Total Amount: <span className="font-bold">{data.total}</span> </div>
                             </div>
 
                             <div className="flex text-gray-600">
-                                <div>Comment: <span className="font-bold">Fast Payout</span></div>
+                                <div>Comment: <span className="font-bold">{data.comment}</span></div>
+                            </div>
+
+                            <div className="flex text-gray-600">
+                                <div>created : <span className="font-bold">{moment(data.created_at).calendar()}</span></div>
+                            </div>
+
+                            <div className="flex text-gray-600">
+                                <div>Last Updated : <span className="font-bold">{moment(data.updated_at).calendar()}</span></div>
                             </div>
                         </div>
+
                         <div className="flex justify-center mt-2">
                             <button type="button" className="inline-flex items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                 View Profile
@@ -331,4 +213,26 @@ export default function HomePage() {
 
         </AdminLayout>
     );
+}
+
+export default TradeId;
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    const token = session?.accessToken;
+    const id = context.params.id;
+    const req = await Server.get(`/admin/card-transaction/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    const card = await Server.get('/card')
+    // console.log(req.data.message);
+
+    return {
+        props: {
+            trade: req.data.message,
+            card: card.data.message
+        },
+    };
 }
