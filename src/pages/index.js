@@ -69,13 +69,8 @@ function Index() {
           </div>
 
           <div className="card-info space-y-4 p-8">
-<<<<<<< HEAD
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaMobileAlt /> </span>
           
-=======
-            <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full">3</span>
-
->>>>>>> 9a1d98ee70a13e7de0969989af1c1053b8771ef7
             <p className="text-2xl font-bold">Cross-Platform Availiability</p>
             <p>Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
           </div>
@@ -89,7 +84,6 @@ function Index() {
           </p>
         </div>
 
-<<<<<<< HEAD
       <section className="dark:bg-slate-800 dark:text-coolGray-100 mt-4">
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
           <div className="flex-1 justify-center p-6 mt-8 lg:mt-0">
@@ -100,11 +94,6 @@ function Index() {
           <div className="flex-1">
             <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
               <h1 className="text-3xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Trade with us on
-=======
-        <div className="flex-1">
-          <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
-            <h1 className="text-3xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Trade with us on
->>>>>>> 9a1d98ee70a13e7de0969989af1c1053b8771ef7
               <span className="text-yellow-400"> Dauntless</span> Platform
             </h1>
             <p className="mt-6 text-lg sm:mb-3 medium-font">
@@ -121,6 +110,7 @@ function Index() {
                 Read More</a>
             </div>
           </div>
+        </div>
         </div>
       </section>
 
@@ -309,12 +299,9 @@ function Index() {
           </div>
         </div>
       </section>
-<<<<<<< HEAD
 
 
       {/* FOOTER */}
-=======
->>>>>>> 9a1d98ee70a13e7de0969989af1c1053b8771ef7
       <Footer />
     </div >
 
