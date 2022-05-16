@@ -105,24 +105,24 @@ const Cards = (props) => {
             }
         },
 
-        {
-            title: 'Code',
-            field: 'code',
-            headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
-
         // {
-        //     title: 'Card Type',
-        //     field: 'type',
-        //     lookup: { 1: 'Physical', 2: 'E-code', },
+        //     title: 'Type',
+        //     field: 'type_id',
         //     headerStyle: {
         //         // backgroundColor: 'yellow',
         //         fontWeight: 'bold',
         //     }
         // },
+
+        {
+            title: 'Card Type',
+            field: 'type_id',
+            lookup: { 2: 'Physical', 1: 'E-code', },
+            headerStyle: {
+                // backgroundColor: 'yellow',
+                fontWeight: 'bold',
+            }
+        },
 
         {
             title: "Country", field: "name", headerStyle: {

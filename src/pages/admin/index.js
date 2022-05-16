@@ -11,12 +11,11 @@ import { Server } from '../api/lib/service';
 import { getSession } from 'next-auth/react';
 import moment from 'moment';
 import Error from 'next/error'
-// import { Helmet } from "react-helmet"
 
 export default function HomePage(props) {
 
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const days = ["24 hours ago", "A week ago", "A month ago", "A year ago"];
+  const days = ["Today", "A week ago", "A month ago", "A year ago"];
   const [trades, setTrades] = useState([]);
   const [typeValue, setTypeValue] = React.useState('');
   const [graphValue, setGraphValue] = React.useState('');
@@ -26,11 +25,10 @@ export default function HomePage(props) {
     const filtered = props.trades.filter(trade => {
       const date = moment(trade.created_at).format('YYYY-MM-DD');
       const today = moment().format('YYYY-MM-DD');
-      // const yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
       const lastWeek = moment().subtract(7, 'days').format('YYYY-MM-DD');
       const lastMonth = moment().subtract(30, 'days').format('YYYY-MM-DD');
       const lastYear = moment().subtract(365, 'days').format('YYYY-MM-DD');
-      if (day === "24 hours ago") {
+      if (day === "Today") {
         return date === today;
       } else if (day === "A week ago") {
         return date === lastWeek;
@@ -94,19 +92,29 @@ export default function HomePage(props) {
     });
     setTrades(filtered);
   }, []);
-
-  // loop through each card id and count total time it appears in each trade and put into an array of graphdata
-  const graphDataArray = () => props.cards.map(card => {
-    const filtered = props.trades.filter(trade => (trade.cardType.card_id === card.id));
-    const total = filtered.length;
+ 
+  // loop through each card id and count total time it appears in each trade by there types and put into an array of graphdata
+  const graphDataArray = (x) => props.cards.map(card => {
+    const filtered = props.trades.filter(trade => (trade.cardType.card_id === card.id && trade.cardType.type_id === x));
     const all = {
       name: card.name,
-      total: total
+      type : x == 1 ? "Ecode" : "Physical",
+      total: filtered.length
     }
-    return all.total;
+    return all.total
+  });
+
+  const dounutDataArray = () => props.cards.map(card => {
+    const filtered = props.trades.filter(trade => (trade.cardType.card_id === card.id));
+    const all = {
+      name: card.name,
+      total: filtered.length
+    }
+    return all.total
   });
 
   const sle = (id) => props.cards.filter(card => card.id === id);
+
   useEffect(() => {
     filterDay(typeValue)
   }, [typeValue])
@@ -116,9 +124,10 @@ export default function HomePage(props) {
   }, [graphValue])
 
   useEffect(() => {
-    filterDay('24 hours ago')
-    filterMonth(moment().format('MMMM'))
+    filterDay('Today')
   }, [])
+
+
 
 
 
@@ -127,13 +136,13 @@ export default function HomePage(props) {
     datasets: [
       {
         label: 'Physical',
-        backgroundColor: 'rgba(217, 188, 41,0.3)',
-        borderColor: 'rgba(217,188, 41,1)',
+        backgroundColor: 'rgba(217, 188, 41, 0.3)',
+        borderColor: 'rgba(217,188, 41, 1)',
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(217, 188, 41,0.8)',
         hoverBorderColor: 'rgba(217, 188, 41,1)',
         borderCapStyle: 'round',
-        data: [...graphDataArray(1)]
+        data: [...graphDataArray(2)]
       },
       {
         label: 'Ecode',
@@ -143,7 +152,7 @@ export default function HomePage(props) {
         hoverBackgroundColor: 'rgba(123, 138, 22,0.8)',
         hoverBorderColor: 'rgba(123, 138, 22,1)',
         borderCapStyle: 'round',
-        data: [...graphDataArray(2)]
+        data: [...graphDataArray(1)]
       },
     ]
   };
@@ -152,15 +161,15 @@ export default function HomePage(props) {
     datasets: [
       {
         label: '# of Votes',
-        data: [...graphDataArray()],
+        data: [...dounutDataArray()],
         backgroundColor: [
-          ...graphDataArray().map(() => {
+          ...dounutDataArray().map(() => {
             return '#' + Math.floor(Math.random() * 16777215).toString(16);
           }),
         ],
         borderColor: [
-          //loop graphDataArray through to generate random hexa color
-          graphDataArray().map(() => {
+          //loop dounutDataArray through to generate random hexa color
+          dounutDataArray().map(() => {
             return '#' + Math.floor(Math.random() * 16777215).toString(16);
           }),
         ],
@@ -227,7 +236,8 @@ export default function HomePage(props) {
                               </div>
                               <div>
                                 <p className="font-semibold text-black">{trade?.cardType?.name}</p>
-                                <p className="text-xs text-gray-600">{sle(trade?.cardType?.card_id)[0].name}</p>
+                                <p className="text-xs text-gray-600">{sle(trade?.cardType?.card_id)[0].name} * {trade?.count}</p>
+                                <p className="text-md text-gray-600">{trade?.cardType?.type_id == 1 ? "Ecode" : "Physical Card"}</p>
                               </div>
                             </div>
                           </td>
@@ -256,7 +266,7 @@ export default function HomePage(props) {
                           <td className="px-4 py-3 text-sm border">{moment(trade?.updated_at).calendar()}</td>
 
                           <td className="px-4 py-3 text-sm border">
-                            <a className="cursor-pointer bg-orange-600 hover:bg-orange-500 text-orange-100 py-2 px-4 rounded inline-flex items-center">
+                            <a className="cursor-pointer bg-orange-600 hover:bg-orange-500 text-orange-100 py-2 px-4 rounded inline-flex items-center" href={`admin/trade/${trade?.id}`}>
                               <span>
                                 <FiEye
                                   size={20}
@@ -284,19 +294,11 @@ export default function HomePage(props) {
       <div className="flex flex-wrap mt-8">
         <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
           <div className="flex flex-row justify-between">
-            <h1 className='dark:text-gray-100 text-black'>View Analytics</h1>
+            <h1 className='dark:text-gray-100 text-black'>Card Trade Analytics</h1>
             <div className="flex justify-center">
               <div>
                 {/* <div className="relative inline-flex self-center"> */}
-                <select className="text-sm font-bold rounded border-1 border-yellow-700 text-gray-600 h-10 w-60 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
-                  value={graphValue}
-                  onChange={(e) => setGraphValue(e.target.value)}
-                >
-                  <option value="">Select Month</option>
-                  {months.map((month, index) => (
-                    <option value={index} key={index}>{month}</option>
-                  ))}
-                </select>
+                {/*  */}
                 {/* </div> */}
               </div>
             </div>
@@ -334,12 +336,13 @@ export async function getServerSideProps(context) {
       Authorization: `Bearer ${session?.accessToken}`,
     },
   });
+  // const type = await Server.get('/type')
   const errorCode = trades.status != 200 ? true : false;
   const cards = await Server.get('/card')
   // console.log(trades.data.message[0])
   return {
     props: {
-      trades: [],
+      trades: trades.data.message,
       cards: cards.data.message,
       paymentLog: 'google',
       errorCode,
