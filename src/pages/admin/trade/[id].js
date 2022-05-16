@@ -4,62 +4,79 @@ import Statistics from '../../../components/statistics';
 import AreaChart from '../../../components/chart';
 import DoughnutChart from '../../../components/donut';
 import DropdownRender from '../../../components/dropdown';
-import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
+import { FiUserPlus, FiDollarSign, FiActivity, FiEye, FiCopy } from 'react-icons/fi'
 import AdminLayout from '../../../dashboard/AdminLayout';
 import { Dialog, Transition } from '@headlessui/react'
-// import {} from 'react'
-import React, { Fragment, useState } from 'react'
-// import "daisyui";
-// import { Helmet } from "react-helmet"
+import React, { Fragment, useState } from 'react';
+
+
 
 export default function HomePage() {
     const role = ['seun', 'tope', 'sade',];
     const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
+    
+    const [copy, setCopy] = useState('')
 
     const [isOpen, setIsOpen] = useState(false)
 
+    const myFunction = async(e) => {
+        e.preventDefault()
+        /* Get the text field */
+        // setCopy(e.target.innerText)
+        /* Select the text field */
+        textArea.select();
+        document.execCommand('copy');
+        // This is just personal preference.
+        // I prefer to not show the whole text area selected.
+        e.target.focus();
+        setCopy(e.target.innerText)
+
+
+        /* Alert the copied text */
+        alert("Copied the text!");
+    }
 
     return (
         <AdminLayout>
 
-        <div className="modal" id="my-modal-2">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg text-yellow-400">Query Trade.</h3>
-            <p className="py-4">Kindly say why you want to query this trade.</p>
-            <div className="form">
-                <textarea className="w-full rounded py-2 px-3 resize-none h-36"></textarea>
+            <div className="modal" id="my-modal-2">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg text-yellow-400">Query Trade.</h3>
+                    <p className="py-4">Kindly say why you want to query this trade.</p>
+                    <div className="form">
+                        <textarea className="w-full rounded py-2 px-3 resize-none h-36"></textarea>
+                    </div>
+                    <div className="modal-action flex">
+                        <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
+                        <a href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</a>
+                    </div>
+                </div>
             </div>
-            <div className="modal-action flex">
-              <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
-              <a href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</a>
-            </div>
-          </div>
-        </div>
 
-        <div className="modal" id="my-modal-1">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Fault Trade</h3>
-            <p className="py-4">Kindly say why you want to fault this trade</p>
-            <div className="form">
-                <textarea className="w-full rounded py-2 px-3 resize-none h-36"></textarea>
+            <div className="modal" id="my-modal-1">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Fault Trade</h3>
+                    <p className="py-4">Kindly say why you want to fault this trade</p>
+                    <div className="form">
+                        <textarea className="w-full rounded py-2 px-3 resize-none h-36"></textarea>
+                    </div>
+                    <div className="modal-action">
+                        <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
+                        <a href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</a>
+                    </div>
+                </div>
             </div>
-            <div className="modal-action">
-              <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
-              <a href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</a>
-            </div>
-          </div>
-        </div>
 
-      
+
 
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12 pt-6 pb-24 bg-gray-300 dark:bg-gray-800 px-6 rounded-3xl">
                     <Breadcumb title={'Trade'} />
-                    
+
                     <div className="flex-col h-full flex justify-between">
                         <div className="flex flex-wrap">
                             <div className="w-full lg:w-3/12 mx-3">
-                                <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="card image"/>
+                                <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="card image" />
                             </div>
 
                             <div className="w-full lg:w-3/12 mx-3">
@@ -71,8 +88,33 @@ export default function HomePage() {
                             </div>
                         </div>
 
-              {/* <a href="#my-modal-2" className="btn">Open modal</a> */}
-            
+                        <div className="flex flex-wrap">
+                            <div className="w-full lg:w-5/12 p-4 bgStyle" style={{ backgroundImage: `linear-gradient(to right, #0f172ac7, #312e81a6), url("https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-256.png")`}}>
+                                <div className="flex justify-between my-4">
+                                    <p className="text-sm" id="myInput">Lorem ipsum dolor </p>
+                                    <FiCopy onClick={myFunction} className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
+                                </div>
+
+                                <div className="flex justify-between my-4">
+                                    <p className="text-sm">473872-382832-18292 </p>
+                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
+                                </div>
+
+                                <div className="flex justify-between my-4">
+                                    <p className="text-sm">Lorem ipsum dolor </p>
+                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
+                                </div>
+
+                                <div className="flex justify-between my-4">
+                                    <p className="text-sm">Lorem ipsum dolor </p>
+                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {/* <a href="#my-modal-2" className="btn">Open modal</a> */}
+
 
                         <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">Trade incomplete</span></h5>
 
@@ -80,9 +122,9 @@ export default function HomePage() {
                             <button type="button" className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-green-400 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                 Confirm Trade
                             </button>
-                            
+
                             <a href="#my-modal-2" type="button"
-                                 className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                 Query Trade
                             </a>
 
@@ -93,7 +135,7 @@ export default function HomePage() {
                             </a>
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div className="w-full mt-8 lg:mt-0 lg:w-3/12 lg:pl-4 bg-gray-300 dark:bg-gray-800 rounded-3xl px-6 mx-4">
@@ -103,13 +145,13 @@ export default function HomePage() {
                                 <span className="mt-10 text-4xl font-extrabold text-white">Tony Stark</span>
                             </div>
                             <div className="flex justify-center">
-                            <img className="object-cover w-24 h-24 mt-4 border-4 border-blue-600 rounded-full" src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg" />
+                                <img className="object-cover w-24 h-24 mt-4 border-4 border-blue-600 rounded-full" src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg" />
                             </div>
                         </div>
                         <div className="px-6 py-4 bg-slate-200">
                             <div className="flex justify-center mt-10 mb-4 text-xl font-medium"></div>
                             <div className="flex w-full text-gray-600 text-center">
-                                
+
                                 <div className="font-bold"> Trade 001</div>
                             </div>
 
@@ -136,7 +178,7 @@ export default function HomePage() {
             </div>
 
 
-           
+
         </AdminLayout>
     );
 }
