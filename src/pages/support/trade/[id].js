@@ -1,69 +1,41 @@
+// import Content from '../components/content';
 import Breadcumb from '../../../components/breadcumb';
 import Statistics from '../../../components/statistics';
 import AreaChart from '../../../components/chart';
 import DoughnutChart from '../../../components/donut';
 import DropdownRender from '../../../components/dropdown';
-import { FiUserPlus, FiDollarSign, FiActivity, FiEye, FiCopy } from 'react-icons/fi'
+import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
 import AdminLayout from '../../../dashboard/AdminLayout';
 import { Dialog, Transition } from '@headlessui/react'
-import React, { Fragment, useState } from 'react';
+// import {} from 'react'
+import React, { Fragment, useState } from 'react'
+// import "daisyui";
+// import { Helmet } from "react-helmet"
 
-
-
-export default function HomePage() {
+export default function Id() {
     const role = ['seun', 'tope', 'sade',];
     const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
-    
-    const [copy, setCopy] = useState('')
 
     const [isOpen, setIsOpen] = useState(false)
 
-    const myFunction = async(e) => {
-        e.preventDefault()
-        /* Get the text field */
-        // setCopy(e.target.innerText)
-        /* Select the text field */
-        textArea.select();
-        document.execCommand('copy');
-        // This is just personal preference.
-        // I prefer to not show the whole text area selected.
-        e.target.focus();
-        setCopy(e.target.innerText)
+    function closeModal1() {
+        setIsOpen(false)
+    }
 
+    function openModal1() {
+        setIsOpen(true)
+    }
 
-        /* Alert the copied text */
-        alert("Copied the text!");
+    function closeModal() {
+        setIsOpen(false)
+    }
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
     return (
         <AdminLayout>
-
-            <div className="modal" id="my-modal-2">
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg text-yellow-400">Query Trade.</h3>
-                    <p className="py-4">Kindly say why you want to query this trade.</p>
-                    <div className="form">
-                        <textarea className="w-full rounded py-2 px-3 resize-none h-36"></textarea>
-                    </div>
-                    <div className="modal-action flex">
-                        <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
-                        <a href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</a>
-                    </div>
-                </div>
-            </div>
-
-            <div className="modal" id="my-modal-1">
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg">Fault Trade</h3>
-                    <p className="py-4">Kindly say why you want to fault this trade</p>
-                    <div className="form">
-                        <textarea className="w-full rounded py-2 px-3 resize-none h-36"></textarea>
-                    </div>
-                    <div className="modal-action">
-                        <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
-                        <a href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</a>
-                    </div>
-                </div>
-            </div>
-
 
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog
@@ -183,7 +155,7 @@ export default function HomePage() {
                                 </Dialog.Title>
                                 <div className="mt-2">
                                     <p className="text-sm text-center text-gray-500">
-                                       Why do you want to query this trade? Kindly fill in the answers below
+                                        Why do you want to query this trade? Kindly fill in the answers below
                                     </p>
                                     <div className="text-center my-2">
                                         <textarea className="w-full h-24 resize-none rounded p-2" placeholder="What is your query about?" />
@@ -232,34 +204,6 @@ export default function HomePage() {
                             </div>
                         </div>
 
-                        <div className="flex flex-wrap">
-                            <div className="w-full lg:w-5/12 p-4 bgStyle" style={{ backgroundImage: `linear-gradient(to right, #0f172ac7, #312e81a6), url("https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-256.png")`}}>
-                                <div className="flex justify-between my-4">
-                                    <p className="text-sm" id="myInput">Lorem ipsum dolor </p>
-                                    <FiCopy onClick={myFunction} className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-
-                                <div className="flex justify-between my-4">
-                                    <p className="text-sm">473872-382832-18292 </p>
-                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-
-                                <div className="flex justify-between my-4">
-                                    <p className="text-sm">Lorem ipsum dolor </p>
-                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-
-                                <div className="flex justify-between my-4">
-                                    <p className="text-sm">Lorem ipsum dolor </p>
-                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        {/* <a href="#my-modal-2" className="btn">Open modal</a> */}
-
-
                         <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">Trade incomplete</span></h5>
 
                         <div className="flex">
@@ -267,12 +211,9 @@ export default function HomePage() {
                                 Confirm Trade
                             </button>
 
-                            <a href="#my-modal-2" type="button"
-                                className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
-                            </a>
                             <button type="button"
                                 onClick={openModal}
-                                 className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                 Query Trade
                             </button>
 

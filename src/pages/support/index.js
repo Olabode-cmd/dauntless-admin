@@ -13,6 +13,7 @@ export default function HomePage() {
   const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
 
   return (
+   
     <SupportLayout>
 
 

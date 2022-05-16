@@ -26,35 +26,22 @@ const data = {
           borderCapStyle: 'round',
           data: [12, 15, 40, 22, 56, 85, 20]
         },
-        {
-          label: 'Virtual',
-          backgroundColor: 'rgba(13, 138, 22,0.3)',
-          borderColor: 'rgba(13, 138, 22,1)',
-          borderWidth: 1,
-          hoverBackgroundColor: 'rgba(13, 138, 22,0.8)',
-          hoverBorderColor: 'rgba(13, 138, 22,1)',
-          borderCapStyle: 'round',
-          data: [19, 43, 21, 54, 36, 25, 60]
-        }
     ]
 };
 
-class AreaChart extends React.Component {
-
-    render() {
-        return (
-            <div>
-                <Bar
-                    data={data}
-                    width={100}
-                    height={50}
-                    options={{
-                        maintainAspectRatio: true
-                    }}
-                />
-            </div>
-        )
-    }
+const AreaChart = (props) => {
+    return (
+        <div>
+            <Bar
+                data={props.data}
+                width={100}
+                height={50}
+                options={{
+                    maintainAspectRatio: true
+                }}
+            />
+        </div>
+    )
 }
 
 export default AreaChart;

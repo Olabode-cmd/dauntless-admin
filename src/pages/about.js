@@ -7,7 +7,6 @@ import Footer from '../components/footer'
 
 function About () {
     const { theme, setTheme } = useTheme()
-
     return (
         <div>
             <Navbar />

@@ -335,7 +335,7 @@ const Index = (props) => {
                                                 icon: 'visibility',
                                                 tooltip: 'View Trade',
                                                 // onClick: (event, rowData) => Router.push(`/agent/trade/${rowData.id}`),
-                                                onClick: (event, rowData) => Router.push(`/agent/trade/viewtrade`),
+                                                // onClick: (event, rowData) => Router.push(`/agent/trade/viewtrade`),
                                              })
                                         ]}
                         

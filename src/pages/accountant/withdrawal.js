@@ -4,10 +4,8 @@ import { RiBankFill } from 'react-icons/ri'
 import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
 import AccountantLayout from '../../dashboard/AccountantLayout';
 import { Dialog, Transition } from '@headlessui/react'
-// import {} from 'react'
 import React, { Fragment, useState } from 'react'
-// import "daisyui";
-// import { Helmet } from "react-helmet"
+
 
 export default function HomePage() {
     const role = ['seun', 'tope', 'sade',];

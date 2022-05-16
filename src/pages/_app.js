@@ -1,16 +1,35 @@
-import Head from 'next/head';
+// import Head from 'next/head';
+import { SessionProvider } from "next-auth/react"
 import 'tailwindcss/tailwind.css';
-import DashboardLayout from '../dashboard/AdminLayout';
+// import DashboardLayout from '../dashboard/AdminLayout';
 import { ThemeProvider } from 'next-themes'
-
+import Router from 'next/router'
+import Head from 'next/head'
+import NProgress from 'nprogress'
 import './background.css';
 
-function MyApp({ Component, pageProps }) {
+Router.events.on('routeChangeStart', (url) => {
+  console.log(`Loading: ${url}`)
+  NProgress.start()
+})
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
+
+// function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+
+function MyApp({ Component,  pageProps: { session, ...pageProps } }) {
   return (
+    <SessionProvider session={session}>
     <ThemeProvider attribute="class">
-        <Component {...pageProps} />
+      <Head>
+        Import CSS for nprogress
+        <link rel="stylesheet" type="text/css" href="/nprogress.css" />
+      </Head>
+      <Component {...pageProps} />
     </ThemeProvider>
+  </SessionProvider>
+
   );
 }
 
-export default MyApp;
+export default MyApp

@@ -14,6 +14,11 @@ const data = [
         icon: <Icon.FiDollarSign size={'20px'} color='gold' />,
         link: '/support/transactions',
     },
+    {
+        title: 'Trades',
+        icon: <RiExchangeLine size={'20px'} color='gold'/>,
+        link: '/admin/trade',
+    },
 ];
 
 export default data;

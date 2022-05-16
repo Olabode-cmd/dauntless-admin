@@ -5,7 +5,7 @@ import { useToggle } from '../provider/context';
 
 const style = {
     mobilePosition: {
-        left: 'left-0 ',
+        left: 'left-0',
         right: 'right-0 lg:left-0',
     },
     container: `pb-32 lg:pb-12`,

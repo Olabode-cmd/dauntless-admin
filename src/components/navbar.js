@@ -4,7 +4,7 @@ import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 // import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-export default function Navbar() {
+export default function Navbar({login}) {
     const [isOpen, setIsOpen] = React.useState(false)
     const toggle = () => setIsOpen(!isOpen)
     const style = {
@@ -29,8 +29,21 @@ export default function Navbar() {
                   </div>
               </div>
 
+<<<<<<< HEAD
               
             <div className={isOpen ? style.open : style.close}>
+=======
+              <div className="items-center md:flex">
+                  <div className={isOpen ? style.open : style.close}>
+                      <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"><Link href="/">Home</Link></a>
+                      <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"><Link href="/about">About Us</Link></a>
+                      {/* <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">Sign In</a> */}
+                        <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">{
+                            login ? <Link href="/auth/logout">Logout</Link> : <Link href="/auth/login">Login</Link>
+
+                        }</a>
+
+>>>>>>> 9a1d98ee70a13e7de0969989af1c1053b8771ef7
 
                 <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 mx-2 md:mx-6 md:my-0"><Link href="/">Home</Link></a>
                 <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 mx-2 md:mx-6 md:my-0"><Link href="/about">About Us</Link></a>

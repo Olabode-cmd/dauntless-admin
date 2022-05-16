@@ -1,24 +1,26 @@
 import React from "react";
-import { useTheme } from 'next-themes'
+// import { useTheme } from 'next-themes'
 import { FiSunrise, FiMoon, FiMenu } from 'react-icons/fi'
 import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 import { FaHandshake, FaDollarSign, FaMobileAlt } from "react-icons/fa";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer'
 import { RiSpamLine } from "react-icons/ri";
+import {signOut, useSession} from 'next-auth/react'
 
 // FaHandshake
 
 
 function Index() {
-  const { theme, setTheme } = useTheme()
-
+  const { data: session, status } = useSession()
 
   return (
     <div>
-      <Navbar />
-
-
+      <Navbar
+          login={
+            status === 'authenticated' ? (true ) : ( false )
+          }
+      />
       <section className="bg-slate-100 dark:bg-slate-900">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-8 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
@@ -29,9 +31,9 @@ function Index() {
               <br className="hidden md:inline lg:hidden" /> sweet deals, discount and more. Anywhere in the world.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-              <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded bg-yellow-400 hover:bg-yellow-600 text-slate-100 flex items-center justify-center">
+              <a href="#" className="px-8 py-3 text-lg font-semibold rounded bg-yellow-400 hover:bg-yellow-600 text-slate-100 flex items-center justify-center">
                 <AiFillAndroid /> <span className="inline-block">&nbsp; Android</span></a>
-              <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
+              <a href="#" className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
                 <AiFillApple /> &nbsp; iOS App</a>
             </div>
           </div>
@@ -44,7 +46,7 @@ function Index() {
             <img src="images/card-float3.png" alt="" className="card-float three" />
           </div>
         </div>
-	    </section>
+      </section>
 
       {/* h-72 sm:h-80 lg:h-112 xl:h-112 2xl:h-128 */}
 
@@ -67,15 +69,27 @@ function Index() {
           </div>
 
           <div className="card-info space-y-4 p-8">
+<<<<<<< HEAD
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaMobileAlt /> </span>
           
+=======
+            <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full">3</span>
+
+>>>>>>> 9a1d98ee70a13e7de0969989af1c1053b8771ef7
             <p className="text-2xl font-bold">Cross-Platform Availiability</p>
             <p>Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
           </div>
         </div>
 
-      </section>
+        <div className="p-8 space-y-8 rounded-md lg:col-span-full lg:py-12 dark:bg-slate-900">
+          <h2 className="text-5xl font-bold dark:text-slate-200">Trade with us</h2>
+          <p className="dark:text-coolGray-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Nesciunt facilis quod accusantium beatae cum nam adipisci reiciendis omnis possimus error quo animi
+            voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem
+          </p>
+        </div>
 
+<<<<<<< HEAD
       <section className="dark:bg-slate-800 dark:text-coolGray-100 mt-4">
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
           <div className="flex-1 justify-center p-6 mt-8 lg:mt-0">
@@ -86,13 +100,17 @@ function Index() {
           <div className="flex-1">
             <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
               <h1 className="text-3xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Trade with us on
+=======
+        <div className="flex-1">
+          <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
+            <h1 className="text-3xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Trade with us on
+>>>>>>> 9a1d98ee70a13e7de0969989af1c1053b8771ef7
               <span className="text-yellow-400"> Dauntless</span> Platform
             </h1>
             <p className="mt-6 text-lg sm:mb-3 medium-font">
               Dauntless allows you to trade gift cards from a variety of retailers,
               including iTunes, Amazon, Steam Wallet, Google Play, Apple Store, eBay, Walmart, Sephora,
               OneVanilla, Nordstrom, Target, JCPenney, Best Buy, Nike, Hotels.com, Macy's, Gamestop,
-              Xbox, Vanilla, G2A, American Express (AMEX), OffGamers, Foot Locker, Visa, Play Station,
               and others.
             </p>
             <p className="mt-2 text-lg sm:mb-12 medium-font">Our payment system is amazingly coherent. You get your money almost instantly, no fees attached and no limits.
@@ -102,7 +120,6 @@ function Index() {
               <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
                 Read More</a>
             </div>
-            </div>
           </div>
         </div>
       </section>
@@ -110,7 +127,7 @@ function Index() {
 
       <section className="bg-slate-100 dark:bg-slate-900 px-16 pb-16 md:px-36">
         <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Filter Cards</span>
-        
+
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
           <select className="select max-w-xs mt-1">
             <option selected>iTunes</option>
@@ -178,7 +195,7 @@ function Index() {
             </div>
           </div>
         </div>
-        
+
       </section>
 
       <section className="dark:bg-coolGray-800 dark:text-coolGray-100 mt-4 py-4">
@@ -292,14 +309,17 @@ function Index() {
           </div>
         </div>
       </section>
+<<<<<<< HEAD
 
 
       {/* FOOTER */}
+=======
+>>>>>>> 9a1d98ee70a13e7de0969989af1c1053b8771ef7
       <Footer />
-    </div>
-    
+    </div >
 
-    
+
+
   )
 }
 
