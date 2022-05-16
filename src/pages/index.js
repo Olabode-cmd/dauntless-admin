@@ -83,6 +83,7 @@ function Index() {
             voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem
           </p>
         </div>
+      </section>
 
       <section className="dark:bg-slate-800 dark:text-coolGray-100 mt-4">
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">

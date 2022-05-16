@@ -82,7 +82,7 @@ const TradeId = (props) => {
                             <div className="w-full lg:w-5/12 p-4 bgStyle" style={{ backgroundImage: `linear-gradient(to right, #0f172ac7, #312e81a6), url("https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-256.png")`}}>
                                 <div className="flex justify-between my-4">
                                     <p className="text-sm" id="myInput">Lorem ipsum dolor </p>
-                                    <FiCopy onClick={myFunction} className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
+                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
                                 </div>
 
                                 <div className="flex justify-between my-4">
