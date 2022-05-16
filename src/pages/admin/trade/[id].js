@@ -3,7 +3,8 @@ import AdminLayout from '../../../dashboard/AdminLayout';
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Fragment, useEffect, useState } from 'react'
 import { getSession } from 'next-auth/react'
-import { Server } from '../../api/lib/service';
+import { Server, imageLoader, CardLoader } from '../../api/lib/service';
+import Image from 'next/image';
 import moment from 'moment';
 
 const TradeId = (props) => {
@@ -16,12 +17,12 @@ const TradeId = (props) => {
     const [data, setData] = useState({})
     useEffect(() => {
         setData(props.trade[0])
-    }
-        , [])
-    function closeModal1() {
-        setIsOpen(false)
-    }
+    }, [])
+    const obj = JSON.parse(props.trade[0].data)
+    const image = Object.values(obj);
 
+
+    console.log(CardLoader(props.card, data.cardType?.card_id)[0]?.name)
 
     return (
         <AdminLayout>
@@ -60,24 +61,31 @@ const TradeId = (props) => {
 
                     <div className="flex-col h-full flex justify-between">
                         <div className="flex flex-wrap">
-                            <div className="w-full lg:w-3/12 mx-3">
-                                <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="card image" />
-                            </div>
-
-                            <div className="w-full lg:w-3/12 mx-3">
-                                <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="card image" />
-                            </div>
-
-                            <div className="w-full lg:w-3/12 mx-3">
-                                <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="card image" />
-                            </div>
+                            {
+                                data.cardType?.type_id === 1 ? (
+                                    'life is good'
+                                ) : (
+                                    image.map((item, index) => (
+                                        <div className="w-3/12 mx-3">
+                                            <Image
+                                                loader={imageLoader}
+                                                src={item}
+                                                width={500}
+                                                height={700}
+                                                key={index}
+                                            />
+                                        </div>
+                                    )
+                                    )
+                                )
+                            }
                         </div>
                         <div className="flex justify-between dark:text-gray-100 text-black  items-center mb-2">
                             <h5 className="text-2xl font-bold">Status: <span className="text-slate-100 font-normal">{data.tradeStatus?.name}</span></h5>
                         </div>
 
                         <div className="flex justify-between dark:text-gray-100 text-black  items-center">
-                            <h5 className="text-1xl font-bold">Card Info: <span className="text-slate-100 font-normal">{sle(data.cardType?.card_id).name}</span></h5>
+                            <h5 className="text-1xl font-bold">Card Info: <span className="text-slate-100 font-normal">{CardLoader(props.card, data.cardType?.card_id)[0]?.name} {data.cardType?.type_id == 1 ? 'E-code': 'Physical Card'}</span></h5>
                         </div>
                         {
                             data.tradeStatus?.name !== 'complete' && (
