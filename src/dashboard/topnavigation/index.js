@@ -71,13 +71,13 @@ export default function TopNavigation() {
 
 
 
-            <a href="#" className="block relative">
+            {/* <a href="#" className="block relative">
               <img
                 alt="Maurice Lokumba"
                 src="/images/1.jpg"
                 className="h-10 mx-auto object-cover rounded-full w-10"
               />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

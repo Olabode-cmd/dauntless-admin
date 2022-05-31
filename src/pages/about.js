@@ -20,7 +20,7 @@ function About () {
                         <p className="mt-6 mb-8 text-lg sm:mb-12 text-zinc-900 dark:text-slate-400">About Us</p>
                     </div>
                     <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-112 xl:h-112 2xl:h-128">
-                        <img src="images/statistics.gif" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 rounded" />
+                        <img src="images/about-img.png" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 rounded" />
                     </div>
                 </div>
             </section>
@@ -33,93 +33,29 @@ function About () {
                     </div>
                     <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
                         <div>
-                            <h3 className="text-2xl font-bold tracking-tight sm:text-3xl dark:text-coolGray-50">Ad vix debet docendi</h3>
-                            <p className="mt-3 text-lg dark:text-coolGray-400">Ne dicta praesent ocurreret has, diam theophrastus at pro. Eos etiam regione ut, persius eripuit quo id. Sit te euismod tacimates.</p>
-                            <div className="mt-12 space-y-12">
-                                <div className="flex">
-                                    <div className="flex-shrink-0">
-                                        <div className="flex items-center justify-center w-12 h-12 rounded-md dark:bg-yellow-400 dark:text-slate-200">
-                                            <AiOutlineCheck size={"20px"} />
-                                        </div>
-                                    </div>
-                                    <div className="ml-4">
-                                        <h4 className="text-lg font-medium leading-6 dark:text-coolGray-50">Per ei quaeque sensibus</h4>
-                                        <p className="mt-2 dark:text-coolGray-400">Ex usu illum iudico molestie. Pro ne agam facete mediocritatem, ridens labore facete mea ei. Pro id apeirian dignissim.</p>
-                                    </div>
-                                </div>
-                                <div className="flex">
-                                    <div className="flex-shrink-0">
-                                        <div className="flex items-center justify-center w-12 h-12 rounded-md dark:bg-yellow-400 dark:text-slate-200">
-                                            <AiOutlineCheck size={"20px"} />
-                                        </div>
-                                    </div>
-                                    <div className="ml-4">
-                                        <h4 className="text-lg font-medium leading-6 dark:text-coolGray-50">Cu imperdiet posidonium sed</h4>
-                                        <p className="mt-2 dark:text-coolGray-400">Amet utinam aliquando ut mea, malis admodum ocurreret nec et, elit tibique cu nec. Nec ex maluisset inciderint, ex quis.</p>
-                                    </div>
-                                </div>
-                                <div className="flex">
-                                    <div className="flex-shrink-0">
-                                        <div className="flex items-center justify-center w-12 h-12 rounded-md dark:bg-yellow-400 dark:text-slate-200">
-                                            <AiOutlineCheck size={"20px"} />
-                                        </div>
-                                    </div>
-                                    <div className="ml-4">
-                                        <h4 className="text-lg font-medium leading-6 dark:text-coolGray-50">Nulla omittam sadipscing mel ne</h4>
-                                        <p className="mt-2 dark:text-coolGray-400">At sed possim oporteat probatus, justo graece ne nec, minim commodo legimus ut vix. Ut eos iudico quando soleat, nam modus.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <h3 className="text-2xl font-bold tracking-tight sm:text-3xl dark:text-yellow-400">Ad vix debet docendi</h3>
+                            <p className="mt-6 space-y-12">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio at similique nam fugit culpa tenetur.
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, fugit voluptates.
+                                Commodi earum doloribus at ducimus aliquid deserunt dicta voluptate ea consequatur id.
+                            </p>
+                            <p className="mt-6 space-y-12">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio at similique nam fugit culpa tenetur.
+                                Commodi earum doloribus at ducimus aliquid deserunt dicta voluptate ea consequatur id.
+                            </p>
+                            <p className="mt-6 space-y-12">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio at similique nam fugit culpa tenetur.
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, fugit voluptates.
+                                Commodi earum doloribus at ducimus aliquid deserunt dicta voluptate ea consequatur id.
+                            </p>
+                            
                         </div>
                         <div aria-hidden="true" className="mt-10 lg:mt-0">
                             <img src="https://source.unsplash.com/random/360x480" alt="image" className="mx-auto rounded-lg shadow-lg dark:bg-coolGray-500" />
                         </div>
                     </div>
                     <div>
-                        <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
-                            <div className="lg:col-start-2">
-                                <h3 className="text-2xl font-bold tracking-tight sm:text-3xl dark:text-coolGray-50">Eam nibh gloriatur ex</h3>
-                                <p className="mt-3 text-lg dark:text-coolGray-400">Per odio fabellas consulatu cu. Utroque detracto mel ea, quo te latine theophrastus. Ea his tale nibh dissentias, mei exerci tamquam euripidis cu.</p>
-                                <div className="mt-12 space-y-12">
-                                    <div className="flex">
-                                        <div className="flex-shrink-0">
-                                            <div className="flex items-center justify-center w-12 h-12 rounded-md dark:bg-yellow-400 dark:text-slate-200">
-                                                <AiOutlineCheck size={"20px"} />
-                                            </div>
-                                        </div>
-                                        <div className="ml-4">
-                                            <h4 className="text-lg font-medium leading-6 dark:text-coolGray-50">Cibo augue offendit has ad</h4>
-                                            <p className="mt-2 dark:text-coolGray-400">An per velit appellantur, ut utinam minimum nominavi sit, odio nostro habemus ne nec. Ne sonet regione contentiones est.</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex">
-                                        <div className="flex-shrink-0">
-                                            <div className="flex items-center justify-center w-12 h-12 rounded-md dark:bg-yellow-400 dark:text-slate-200">
-                                                <AiOutlineCheck size={"20px"} />
-                                            </div>
-                                        </div>
-                                        <div className="ml-4">
-                                            <h4 className="text-lg font-medium leading-6 dark:text-coolGray-50">At eum ferri luptatum lobortis</h4>
-                                            <p className="mt-2 dark:text-coolGray-400">Te per quidam maiorum ocurreret, etiam delicatissimi usu ad. Ne has quod periculis. Te sit primis iisque efficiantur.</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex">
-                                        <div className="flex-shrink-0">
-                                            <div className="flex items-center justify-center w-12 h-12 rounded-md dark:bg-yellow-400 dark:text-slate-200">
-                                                <AiOutlineCheck size={"20px"} />
-                                            </div>
-                                        </div>
-                                        <div className="ml-4">
-                                            <h4 className="text-lg font-medium leading-6 dark:text-coolGray-50">Dicunt verterem evertitur eu sea</h4>
-                                            <p className="mt-2 dark:text-coolGray-400">Audire principes rationibus eam an, autem nominavi luptatum per te. Sumo fabulas vim eu, sonet saperet eleifend ut vix.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mt-10 lg:mt-0 lg:col-start-1 lg:row-start-1">
-                                <img src="https://source.unsplash.com/random/361x481" alt="" className="mx-auto rounded-lg shadow-lg dark:bg-coolGray-500" />
-                            </div>
-                        </div>
+                    
                     </div>
                 </div>
             </section>

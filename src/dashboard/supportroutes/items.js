@@ -40,7 +40,7 @@ export default function SidenavItems() {
             </li>
             <li>
                 <button onClick={() => signOut({
-                    callbackUrl: `/auth/login`
+                    callbackUrl: `/auth/logout`
                 })}>
 
                     <a className={style.link}>
