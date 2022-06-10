@@ -25,7 +25,6 @@ const TradeId = (props) => {
     const [data, setData] = useState({})
     useEffect(() => {
         setData(props.trade[0])
-<<<<<<< HEAD
     }, [])
     const obj = JSON.parse(props.trade[0].data)
     const image = Object.values(obj);
@@ -33,11 +32,6 @@ const TradeId = (props) => {
 
     console.log(CardLoader(props.card, data.cardType?.card_id)[0]?.name)
 
-=======
-    }
-        , [])
-  
->>>>>>> olabode
     return (
         <AdminLayout>
 
