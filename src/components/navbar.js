@@ -40,7 +40,7 @@ export default function Navbar({login}) {
 
               <div className={isOpen ? style.open : style.close}>    
                   <div className="mx-auto md:ml-auto flex justify-end">
-                      <a rel="noopener noreferrer" href="#" className="my-2 mx-4 text-md font-regular dark:text-slate-100 text-zinc-900 hover:text-yellow-400 flex items-center justify-center">
+                      <a rel="noopener noreferrer" href="/auth/login" className="my-2 mx-4 text-md font-regular dark:text-slate-100 text-zinc-900 hover:text-yellow-400 flex items-center justify-center">
                           Log In</a>
                       <a rel="noopener noreferrer" href="#" className="px-8 py-3 my-2 mx-1 text-md font-regular rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
                           <AiFillApple /> &nbsp; <AiFillAndroid /> &nbsp; Download App</a>
