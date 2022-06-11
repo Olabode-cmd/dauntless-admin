@@ -1,12 +1,12 @@
-import Server from "./lib/Server";
-import { getSession } from "next-auth/client";
+import {Server} from "./lib/service";
+import { getSession } from "next-auth/react";
 
 export default async (req, res) => {
   const session = await getSession({ req });
   const token = session?.accessToken;
   const {id,  name, rate} = req.body
   const result = await Server.post(
-    "/admin/create_card_rate",
+    "/admin/create-card-rate",
     {
       id,
       rate,

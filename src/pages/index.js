@@ -25,7 +25,7 @@ function Index() {
       {/* Modal */}
       <div className="modal" id="my-modal-1">
         <div className="modal-box w-50">
-          <iframe src="https://www.youtube.com/embed/stNnNjM-Rhk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" className="w-100" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/stNnNjM-Rhk" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" className="w-100" allowFullScreen></iframe>
         </div>
       </div>
 

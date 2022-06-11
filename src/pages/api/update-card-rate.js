@@ -1,5 +1,5 @@
-import Server from "./lib/Server";
-import { getSession } from "next-auth/client";
+import {Server} from "./lib/service";
+import { getSession } from "next-auth/react";
 
 export default async (req, res) => {
   const session = await getSession({ req });
@@ -7,7 +7,7 @@ export default async (req, res) => {
   const {id, card_id, name, rate} = req.body
   console.log(id)
   const result = await Server.put(
-    "/admin/update_card_rate",
+    "/admin/update-card-rate",
     {
       id: req.body.id,
       card_id: req.body.card_id,
