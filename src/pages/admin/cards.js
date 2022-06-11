@@ -1,6 +1,7 @@
 // import Content from '../components/content';
 import React, { useState, useEffect } from 'react';
 import Breadcumb from '../../components/breadcumb';
+import ActivityLog from '../../components/activitylog';
 import Statistics from '../../components/statistics';
 // import AreaChart from '../../components/chart';
 import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
@@ -398,6 +399,8 @@ const Cards = (props) => {
                                     </p>
                                 </div>
                             </div>
+
+                            <ActivityLog />
                         </div>
                     </div>
                 </div>

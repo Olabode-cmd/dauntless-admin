@@ -1,9 +1,10 @@
 // import Content from '../components/content';
 import React, { useEffect } from 'react';
-import Breadcumb from '../../components/breadcumb';
-import Statistics from '../../components/statistics';
+import Breadcumb from '../../../components/breadcumb';
+import Statistics from '../../../components/statistics';
+import { getSession } from 'next-auth/react';
 import { FiUserPlus, FiDollarSign, FiActivity, FiSave } from 'react-icons/fi'
-import AgentLayout from '../../dashboard/AgentLayout';
+import AgentLayout from '../../../dashboard/AgentLayout';
 import MaterialTable, { Column } from "@material-table/core";
 import Icon from "@material-ui/core/Icon";
 import { forwardRef } from 'react';
@@ -11,33 +12,37 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Check from '@material-ui/icons/Check'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
 import moment from 'moment';
+import { useRouter } from 'next/router';
+import { Server } from '../../api/lib/service';
 
-export default function Users() {
-    const [state, setState] = React.useState({
-        users: [],
-    })
+
+export default function Users(props) {
+    const [users, setUsers] = React.useState([]);
+    const Router = useRouter();
 
     const column = [
-        { title: "Customer ID", field: "customer_id", editable:false, headerStyle :{
-            backgroundColor: 'orange',
-            fontWeight:'bold',
-        }, render: (rowData) => <p className="text-ms font-semibold">{rowData.customer_id}</p> },
+        {
+            title: "Customer ID", field: "customer_id", editable: false, headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            }, render: (rowData) => <p className="text-ms font-semibold">{rowData.customer_id}</p>
+        },
         // { title: "Name", field: "name" },
         {
-            title: "User", field: "picture",editable:false,
-            headerStyle :{
+            title: "User", editable: false,
+            headerStyle: {
                 backgroundColor: 'orange',
-                fontWeight:'bold',
+                fontWeight: 'bold',
             },
             render: (rowData) => {
-                return ( 
+                return (
                     <div className="flex text-sm">
                         <div className="relative w-8 h-8 mr-3 rounded-full md:block">
                             <img className="object-cover w-full h-full rounded-full" src={rowData.picture} alt="" loading="lazy" />
                             <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
                         <div>
-                            <p className="font-semibold text-black">{rowData.name}</p>
+                            <p className="font-semibold text-black">{rowData.full_name}</p>
                             <p className="text-xs text-gray-600">Joined {moment(rowData.created_at).fromNow()}</p>
                         </div>
                     </div>
@@ -45,35 +50,35 @@ export default function Users() {
             }
         },
         {
-            title: "Rating", field: "trade_count", editable:false,
-            headerStyle :{
+            title: "Rating", field: "trade_count", editable: false,
+            headerStyle: {
                 backgroundColor: 'orange',
-                fontWeight:'bold',
+                fontWeight: 'bold',
             },
             render: rowData => (
                 <div className="flex items-center">
 
                     {
-                        rowData.trade_count <= 10 && rowData.trade_count != 0 ? (
+                        rowData.cardTransactions.length <= 10 && rowData.cardTransactions.length != 0 ? (
                             <div className="rating">
                                 <input type="radio" name="rating-1" className="mask mask-star-2 bg-gray-400" disabled />
                             </div>
-                        ) : rowData.trade_count <= 20 && rowData.trade_count > 10 ? (
+                        ) : rowData.cardTransactions.length <= 20 && rowData.cardTransactions.length > 10 ? (
                             <div className="rating rating-half">
                                 <input type="radio" name="rating-1" className="mask mask-star-2 mask-half-1  bg-orange-400" disabled />
                             </div>
-                        ) : rowData.trade_count <= 25 && rowData.trade_count > 20 ? (
+                        ) : rowData.cardTransactions.length <= 25 && rowData.cardTransactions.length > 20 ? (
                             <div className="rating">
                                 <input type="radio" name="rating-1" className="mask mask-star-2  bg-orange-400" disabled />
                             </div>
-                        ) : rowData.trade_count <= 30 && rowData.trade_count > 25 ? (
+                        ) : rowData.cardTransactions.length <= 30 && rowData.cardTransactions.length > 25 ? (
                             <div className="rating rating-half">
                                 <input type="radio" name="rating-1" className="rating-hidden" />
                                 <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
                                 <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
                                 <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
                             </div>
-                        ) : rowData.trade_count <= 40 && rowData.trade_count > 30 ? (
+                        ) : rowData.cardTransactions.length <= 40 && rowData.cardTransactions.length > 30 ? (
                             <div className="rating rating-half">
                                 <input type="radio" name="rating-1" className="rating-hidden" />
                                 <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
@@ -81,7 +86,7 @@ export default function Users() {
                                 <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
                                 <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-2" disabled />
                             </div>
-                        ) : rowData.trade_count <= 50 && rowData.trade_count > 40 ? (
+                        ) : rowData.cardTransactions.length <= 50 && rowData.cardTransactions.length > 40 ? (
                             <div className="rating rating-half">
                                 <input type="radio" name="rating-1" className="rating-hidden" />
                                 <input type="radio" name="rating-1" className="bg-orange-500 mask mask-star-2 mask-half-1" disabled />
@@ -96,16 +101,18 @@ export default function Users() {
                 </div>
             )
         },
-        { title: "Verified", field: "verified", editable:false, headerStyle :{
-            backgroundColor: 'orange',
-            fontWeight:'bold',
-        }, lookup: { true: "Yes", false: "No" } },
+        {
+            title: "Verified", field: "is_verified", editable: false, headerStyle: {
+                backgroundColor: 'orange',
+                fontWeight: 'bold',
+            }, lookup: { true: "Yes", false: "No" }
+        },
         {
             title: "Status", field: "status",
-            lookup: { 1: "Active", 2: "Banned" },
-            headerStyle :{
+            lookup: { true: "Active", false: "Banned" },
+            headerStyle: {
                 backgroundColor: 'orange',
-                fontWeight:'bold',
+                fontWeight: 'bold',
             },
             render: rowData => {
                 return (
@@ -126,82 +133,41 @@ export default function Users() {
             },
         },
         {
-            title: "Available Balance", editable:false, field: "available_balance",headerStyle :{
+            title: "Available Balance", editable: false, headerStyle: {
                 backgroundColor: 'orange',
-                fontWeight:'bold',
+                fontWeight: 'bold',
             },
             render: rowData => {
                 return (
                     <div className="flex items-center">
-                    {
-                        rowData.available_balance != 0 || rowData.available_balance == null ? (
-                            <p className="text-ms font-semibold">{rowData.available_balance}</p>) : (
+                        {
+                        rowData.userWallet !== undefined || rowData.userWallet.amount != '0'  ? (
+                                <p className="text-ms font-semibold">{rowData.available_balance}</p>) : (
                                 <p className="text-ms font-semibold">0</p>
                             )
-                    }
+                        }
                     </div>
                 )
             }
         }
     ]
 
-    const userData = [{
-        "id": 1,
-        "name": "Leanne Graham",
-        "username": "Bret",
-        "customer_id": "daunt001",
-        "created_at": "2020-01-01",
-        "status": 1,
-        "verified": true,
-        'available_balance': 40000,
-        "trade_count": 11,
-        "picture": `https://randomuser.me/api/portraits/thumb/men/1.jpg`
-    },
-    {
-        "id": 2,
-        "name": "Ervin Howell",
-        "username": "Antonette",
-        "customer_id": "daunt002",
-        "created_at": "2020-01-02",
-        "verified": false,
-        "status": 1,
-        "trade_count": 2,
-        'available_balance': 32000,
-        "picture": `https://randomuser.me/api/portraits/thumb/men/2.jpg`
-    },
-    {
-        "id": 3,
-        "name": "Clementine Bauch",
-        "username": "Samantha",
-        "customer_id": "daunt003",
-        "created_at": "2020-01-03",
-        "verified": true,
-        "trade_count": 41,
-        'available_balance': 15000,
-        "picture": `https://randomuser.me/api/portraits/thumb/men/3.jpg`
-    },
-    {
-        "id": 4,
-        "name": "Okoro Williams",
-        "customer_id": "daunt004",
-        "username": "Okorosha",
-        "created_at": "2021-01-23",
-        "status": 2,
-        "trade_count": 21,
-        "verified": true,
-        'available_balance': 0,
+    const updateStatus = React.useCallback(async(id, status) => {
+        const res = await fetch("/api/user_status", {
+            body: JSON.stringify({
+                id,
+                status,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "PUT",
+        });
+    });
 
-        "picture": `https://randomuser.me/api/portraits/thumb/men/4.jpg`
 
-    }
-    ]
-    // const tableIcons = {
-    //     Save: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    // }
     useEffect(() => {
-        setState({
-            users: userData
-        })
+        setUsers([...props.userData])
     }, [])
     return (
         <AgentLayout>
@@ -220,34 +186,37 @@ export default function Users() {
                                         <MaterialTable
                                             icons={{
                                                 Check: () => <Check />
-                                                // DetailPanel: () => <ChevronRight />
                                             }}
                                             title="Manage Users"
                                             columns={column}
-                                            data={state.users}
+                                            data={users}
                                             actions={[
-
-                                                rowData => ({
-                                                    icon: 'Check',
-                                                    tooltip: 'Delete User',
-                                                    onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
-                                                    disabled: rowData.birthYear < 2000
-                                                })
-
+                                                {
+                                                    icon: "visibility",
+                                                    tooltip: "View User",
+                                                    onClick: (event, rowData) => {
+                                                        if (rowData.is_verified == true) {
+                                                            Router.push(`/admin/users/${rowData.id}`);
+                                                        }
+                                                        null
+                                                    },
+                                                },
                                             ]}
 
                                             editable={{
                                                 onRowUpdate: (newData, oldData) =>
                                                     new Promise((resolve, reject) => {
-                                                        setTimeout(() => {
-                                                            const dataUpdate = [...state.users];
+                                                        setTimeout(async () => {
+                                                            const dataUpdate = [...users];
                                                             const index = oldData.tableData.id;
                                                             dataUpdate[index] = newData;
-                                                            setState({users: [...dataUpdate]});
-
+                                                            const id = dataUpdate[index].id;
+                                                            const status = dataUpdate[index].status;
+                                                            setUsers([...dataUpdate]);
+                                                            updateStatus(id, status);
                                                             resolve();
-                                                        }, 1000)
-                                                    }),
+                                                        }, 1000);
+                                                    })
                                             }}
                                             options={{
                                                 actionsColumnIndex: -1,
@@ -270,4 +239,20 @@ export default function Users() {
 
         </AgentLayout>
     );
+}
+
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    const user = await Server.get('/admin/users', {
+        headers: {
+            Authorization: `Bearer ${session?.accessToken}`,
+        },
+    });
+    // console.log(user.data.message);
+    return {
+        props: {
+            userData: user.data.message,
+        },
+    }
 }
