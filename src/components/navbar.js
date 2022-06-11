@@ -48,7 +48,7 @@ export default function Navbar({login}) {
                               href="https://dauntless.tawk.help/category/faq"
                               class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                           >
-                              FAQ
+                              FAQs
                           </Link>
                       </li>
                       <li>
