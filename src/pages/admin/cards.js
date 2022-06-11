@@ -305,9 +305,12 @@ const Cards = (props) => {
                                                         const index = oldData.tableData.id;
                                                         dataUpdate[index] = newData;
                                                         setData([...dataUpdate]);
-                                                        updateCard(newData.name, image)
+                                                        const id = newData.id;
+                                                        const name = newData.name;
+                                                        // console.log(newData)
+                                                        updateCard(id, name);
                                                         resolve();
-                                                    }, 1000)
+                                                      }, 1000);
                                                 }),
                                         }}
                                         options={{

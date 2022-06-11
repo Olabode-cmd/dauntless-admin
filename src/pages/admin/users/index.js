@@ -243,7 +243,7 @@ export async function getServerSideProps(context) {
             Authorization: `Bearer ${session?.accessToken}`,
         },
     });
-    // console.log(user.data.message);
+    console.log(user);
     return {
         props: {
             userData: user.data.message,

@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { Server } from "../lib/service";
+import { Server, nextLocalStorage } from "../lib/service";
 
 export default NextAuth({
   pages: {
@@ -28,8 +28,12 @@ export default NextAuth({
         const user = result.data.user;
         const token = result.data.message.token;
         const tokenExpires = result.data.message.expires_at;
-        // console.log(user)
         if (result.status === 200) {
+        nextLocalStorage()?.setItem('token', JSON.stringify(token))
+        nextLocalStorage()?.setItem('tokenExpires', JSON.stringify(tokenExpires))
+        nextLocalStorage()?.setItem('user', JSON.stringify(user?.role_id))
+
+
           return {
             user,
             token,
@@ -61,6 +65,7 @@ export default NextAuth({
     },
     session: async ({ session, token }) => {
       if (token && token?.exp  <= Date.now()) {
+      
        session.user = token.user;
        session.accessToken = token.accessToken;
        return session
