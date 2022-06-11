@@ -7,12 +7,19 @@ import { ThemeProvider } from 'next-themes'
 import Router from 'next/router'
 import Head from 'next/head'
 import './background.css';
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import {useEffect} from 'react'
 
 
 
 // function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
 function MyApp({ Component,  pageProps: { session, ...pageProps } }) {
+  useEffect(()=> {
+    AOS.init()
+    AOS.refresh()
+  }, [])
   return (
     <SessionProvider session={session}>
     <NextNProgress
