@@ -4,3 +4,9 @@ export const Server = axios.create({
     withCredentials: true
 });
 
+export const imageLoader = ({ src, width, quality }) => {
+    return `https://res.cloudinary.com/dauntless-exchange/${src}.jpg?w=${width}&q=${quality || 75}`;
+};
+
+export const CardLoader = (data, id) => data.filter(card => card.id === id);
+

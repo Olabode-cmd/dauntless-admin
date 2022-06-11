@@ -148,6 +148,27 @@ export default function Navbar({login}) {
                       )}
                   </div>
               </div>
+<<<<<<< HEAD
+=======
+
+              
+            <div className={isOpen ? style.open : style.close}>
+
+                <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 mx-2 md:mx-6 md:my-0"><Link href="/">Home</Link></a>
+                <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 mx-2 md:mx-6 md:my-0"><Link href="/about">About Us</Link></a>
+                <a className="my-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 mx-2 md:mx-6 md:my-0">Sign In</a>
+
+            </div>
+
+              <div className={isOpen ? style.open : style.close}>    
+                  <div className="mx-auto md:ml-auto flex justify-end">
+                      <a rel="noopener noreferrer" href="/auth/login" className="my-2 mx-4 text-md font-regular dark:text-slate-100 text-zinc-900 hover:text-yellow-400 flex items-center justify-center">
+                          Log In</a>
+                      <a rel="noopener noreferrer" href="#" className="px-8 py-3 my-2 mx-1 text-md font-regular rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
+                          <AiFillApple /> &nbsp; <AiFillAndroid /> &nbsp; Download App</a>
+                  </div> 
+              </div>
+>>>>>>> 733caa6366ef3d552144ae9888dd46f26873dc3e
           </div>
       </div>
 
