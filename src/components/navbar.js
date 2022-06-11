@@ -53,7 +53,7 @@ export default function Navbar({login}) {
                       </li>
                       <li>
                           <Link
-                              href="/"
+                              href="/auth/login"
                               aria-label="Sign in"
                               title="Sign in"
                               class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
