@@ -1,7 +1,7 @@
 // import Head from 'next/head';
 import { SessionProvider } from "next-auth/react"
-import 'tailwindcss/tailwind.css';import NextNProgress from "nextjs-progressbar";
-
+import 'tailwindcss/tailwind.css';
+import NextNProgress from "nextjs-progressbar";
 // import DashboardLayout from '../dashboard/AdminLayout';
 import { ThemeProvider } from 'next-themes'
 import Router from 'next/router'

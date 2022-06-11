@@ -19,7 +19,7 @@ export default function Navbar({login}) {
                               href="/"
                               aria-label="Our product"
                               title="Our product"
-                              class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                              class="font-medium tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"
                           >
                               Home
                           </Link>
@@ -27,7 +27,7 @@ export default function Navbar({login}) {
                       <li>
                           <Link
                               href="/about"
-                              class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                              class="font-medium tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"
                           >
                               About Us
                           </Link>
@@ -35,7 +35,7 @@ export default function Navbar({login}) {
                       <li>
                           <Link
                               href="https://dauntless.tawk.help/"
-                              class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                              class="font-medium tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"
                           >
                               Help Center
                           </Link>
@@ -46,7 +46,7 @@ export default function Navbar({login}) {
                     <li>
                           <Link
                               href="https://dauntless.tawk.help/category/faq"
-                              class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                              class="font-medium tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"
                           >
                               FAQs
                           </Link>
@@ -56,7 +56,7 @@ export default function Navbar({login}) {
                               href="/auth/login"
                               aria-label="Sign in"
                               title="Sign in"
-                              class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                              class="font-medium tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"
                           >
                               Sign in
                           </Link>
@@ -66,7 +66,7 @@ export default function Navbar({login}) {
                               href="/"
                               aria-label="Sign up"
                               title="Sign up"
-                              class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                              class="font-medium tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"
                           >
                               Sign up
                           </Link>
@@ -140,7 +140,7 @@ export default function Navbar({login}) {
                                           <li>
                                               <Link
                                                   href="https://dauntless.tawk.help/"
-                                                  class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                                  class="font-medium tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"
                                               >
                                                   Help Center
                                               </Link>
@@ -148,7 +148,7 @@ export default function Navbar({login}) {
                                           <li>
                                               <Link
                                                   href="https://dauntless.tawk.help/category/faq"
-                                                  class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                                  class="font-medium tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"
                                               >
                                                   FAQ
                                               </Link>

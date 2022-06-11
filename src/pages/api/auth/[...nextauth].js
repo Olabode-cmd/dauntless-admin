@@ -60,7 +60,7 @@ export default NextAuth({
       return {...token};
     },
     session: async ({ session, token }) => {
-      if (token && token?.exp  <= Date.now()) {
+      if (token) {
        session.user = token.user;
        session.accessToken = token.accessToken;
        return session
