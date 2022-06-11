@@ -1,8 +1,6 @@
 // import Head from 'next/head';
 import { SessionProvider } from "next-auth/react"
 import 'tailwindcss/tailwind.css';
-import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
-
 // import DashboardLayout from '../dashboard/AdminLayout';
 import { ThemeProvider } from 'next-themes'
 import Router from 'next/router'
@@ -29,10 +27,6 @@ function MyApp({ Component,  pageProps: { session, ...pageProps } }) {
       </Head>
       <Component {...pageProps} />
     </ThemeProvider>
-
-      <TawkMessengerReact
-        propertyId="62a3f92c7b967b117993f16e"
-        widgetId="1g588alp4" />
   </SessionProvider>
 
   

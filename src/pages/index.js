@@ -1,18 +1,21 @@
-import React from "react";
-// import { useTheme } from 'next-themes'
-import { FiSunrise, FiMoon, FiMenu } from 'react-icons/fi'
+import React, { useEffect } from "react";
 import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 import { FaHandshake, FaDollarSign, FaMobileAlt } from "react-icons/fa";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer'
-import { RiSpamLine } from "react-icons/ri";
 import {signOut, useSession} from 'next-auth/react'
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-// FaHandshake
 
 
 function Index() {
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
 
   return (
     <div>
@@ -23,9 +26,14 @@ function Index() {
       />
 
       {/* Modal */}
+
       <div className="modal" id="my-modal-1">
-        <div className="modal-box w-50">
-          <iframe src="https://www.youtube.com/embed/stNnNjM-Rhk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" className="w-100" allowfullscreen></iframe>
+        <div className="modal-box">
+          <iframe src="https://www.youtube.com/embed/stNnNjM-Rhk" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" className="w-100" allowFullScreen></iframe>
+
+          <div className="modal-action">
+            <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
+          </div>
         </div>
       </div>
 
@@ -65,19 +73,19 @@ function Index() {
         <h2 className="text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
 
-          <div className="card-info space-y-4 p-8">
+          <div className="card-info space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaHandshake /> </span>
             <h3 className="text-2xl font-bold">Trusted.</h3>
             <p>Trade with high confidence, as we assure you the highest level of encryption and professionally audited exchange system.</p>
           </div>
 
-          <div className="card-info space-y-4 p-8">
+          <div className="card-info space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaDollarSign /> </span>
             <h3 className="text-2xl font-bold">Instant Payment</h3>
             <p>Using state-of-the-art payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
           </div>
 
-          <div className="card-info space-y-4 p-8">
+          <div className="card-info space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaMobileAlt /> </span>
           
             <p className="text-2xl font-bold">Cross-Platform Availiability</p>
@@ -96,9 +104,8 @@ function Index() {
 
       <section className="dark:bg-slate-800 dark:text-coolGray-100 mt-4">
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
-          <div className="flex-1 justify-center p-6 mt-8 lg:mt-0">
+          <div className="flex-1 justify-center p-6 mt-8 lg:mt-0" data-aos="fade-right" data-aos-duration="1200">
             <img src="images/mobile.png" alt="smartphone" className="object-contain rounded w-7/12 m-auto" />
-            {/* <img src="images/workflow.gif" alt="animated character" className="object-contain rounded w-7/12 m-auto" /> */}
           </div>
 
           <div className="flex-1">
@@ -130,7 +137,7 @@ function Index() {
       </section>
 
 
-      <section className="bg-slate-100 dark:bg-slate-900 px-16 pb-16 md:px-36">
+      <section className="bg-slate-100 dark:bg-slate-900 px-16 pb-16 md:px-36" data-aos="fade-up" data-aos-duration="1200">
         <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Filter Cards</span>
 
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
@@ -160,7 +167,7 @@ function Index() {
 
         </div>
 
-        <div className="cards mt-8">
+        <div className="cards mt-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
           <span className="cardName mb-6 block text-slate-200 text-2xl font-bold">iTunes</span>
 
           <div className="p-8 space-y-4 rounded-md bg-gray-800 flex flex-wrap items-center">
@@ -204,9 +211,8 @@ function Index() {
       </section>
 
       <section className="dark:bg-coolGray-800 dark:text-coolGray-100 mt-4 py-4">
-        <span className="block text-sm font-medium  uppercase text-center text-yellow-400">Download App</span>
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-          <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
+          <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left" data-aos="fade-right">
             <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Download
               <span className="text-yellow-400"> Dauntless</span> Mobile App
             </h1>
@@ -220,60 +226,17 @@ function Index() {
                 <AiFillApple /> &nbsp; iOS App</a>
             </div>
           </div>
-          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+
+
+          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" data-aos="fade-left">
             <img src="images/cards.jpg" alt="" className="object-contain rounded h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
       </section>
 
-      {/* <section className="bg-slate-100 py-6 dark:bg-slate-900  px-4 md:px-36">
-        <div className="container flex items-center justify-center mx-auto lg:flex-row lg:justify-between">
-          <div className="mx-auto pt-4 px-0 sm:px-0 lg:px-3 mb-12 flex-1 justify-center">
-            <div className="w-full rounded p-8 sm:p-6">
-              <p className="text-5xl font-bold leading-7 text-center text-white l-height">Contact Us</p>
-              <form action="" method="post">
-                <div className="md:flex items-center mt-12">
-                  <div className="w-full md:w-1/2 flex flex-col">
-                    <label className="font-semibold leading-none text-gray-300">Name</label>
-                    <input type="text" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 bg-gray-800 rounded" />
-                  </div>
-                  <div className="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
-                    <label className="font-semibold leading-none text-gray-300">Phone</label>
-                    <input type="email" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 bg-gray-800 rounded" />
-                  </div>
-                </div>
-                <div className="md:flex items-center mt-8">
-                  <div className="w-full flex flex-col">
-                    <label className="font-semibold leading-none text-gray-300">Subject</label>
-                    <input type="text" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 bg-gray-800 rounded" />
-                  </div>
-
-                </div>
-                <div>
-                  <div className="w-full flex flex-col mt-8">
-                    <label className="font-semibold leading-none text-gray-300">Message</label>
-                    <textarea type="text" className="h-40 text-base leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-800 border-0 rounded resize-none"></textarea>
-                  </div>
-                </div>
-                <div className="flex items-center justify-center w-full">
-                  <button className="mt-9 font-semibold leading-none text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
-                    Send message
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div className="items-center relative text-center p-6 mt-8 lg:mt-0 flex-1">
-            <img src="images/smartphone.png" alt="" className="object-contain rounded w-7/12 m-auto" />
-          </div>
-        </div>
-        
-      </section> */}
-
       <section className="bg-slate-100 py-6 dark:bg-slate-900  px-4 md:px-4">
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
-          <div className="flex-1 justify-center p-6 mt-8 lg:mt-0">
+          <div className="flex-1 justify-center p-6 mt-8 lg:mt-0" data-aos="fade-up" data-aos-duration="1200">
             <div className="w-full rounded p-8 sm:p-6">
               <p className="text-5xl font-bold leading-7 text-center text-white l-height">Contact Us</p>
               <form action="" method="post">
@@ -309,7 +272,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="flex-1 hidden md:flex">
+          <div className="flex-1 hidden md:flex" data-aos="fade-up" data-aos-delay="300">
             <img src="images/smartphone.png" alt="" className="object-contain rounded w-12/12 m-auto" />
           </div>
         </div>

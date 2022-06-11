@@ -31,6 +31,7 @@
     "@popperjs/core": "2.9.1",
     "@reach/portal": "^0.16.0",
     "@tawk.to/tawk-messenger-react": "^2.0.1",
+    "aos": "^2.3.4",
     "axios": "^0.27.2",
     "chart.js": "^3.7.1",
     "daisyui": "^2.11.1",
