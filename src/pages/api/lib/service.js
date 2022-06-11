@@ -2,13 +2,13 @@ import axios from 'axios';
 const connect = axios.create({
     baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
     withCredentials: true,
-    timeout: 10000
+    timeout: 30000
 })
-connect.interceptors.response.use((res)=>{
-    console.log("olamide")
-, (error)=>{
-    console.log("motigbana")
-}});
+// connect.interceptors.response.use((res)=>{
+//     console.log("olamide")
+// , (error)=>{
+//     console.log("motigbana")
+// }});
 
 export const Server = connect;
 
