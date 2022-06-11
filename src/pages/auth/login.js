@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signIn, getSession, signOut } from "next-auth/react"
-import NextNProgress from 'nextjs-progressbar'
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -17,17 +16,17 @@ function Login() {
         signIn("credentials", {
             email,
             password,
-            redirect: false
+            redirect:false
         }).then((res) => {
-            setIsLoginStarted(!isLoginStarted)
-        })
+           
+            })
             .catch((error) => {
             });
     };
-
+    
     return (
         <>
-        
+            {/* <ToastContainer /> */}
             <div className="flex flex-col items-center justify-center h-screen bg-gray-700 sm:px-6">
 
                 <div className="logo my-8 inline-block">
@@ -79,9 +78,8 @@ function Login() {
                         </div>
                         <div className="mt-6">
                             <button type="submit"
-                                className="w-full px-4 py-2 text-sm text-center text-white bg-indigo-500 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700 ">
-                            Login
-                            </button>
+                                className="w-full px-4 py-2 text-sm text-center text-white bg-indigo-500 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700 ">Sign
+                                in</button>
                         </div>
                     </form>
                 </div>
