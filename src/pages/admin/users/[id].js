@@ -14,6 +14,9 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import moment from 'moment';
 import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/react';
+import { Server, imageLoader } from '../../api/lib/service';
+
 
 
 function classNames(...classes) {
@@ -23,15 +26,16 @@ const Input = styled('input')({
   display: 'none',
 });
 
-const Id = (props) => {
+const Id = ({ user, cards }) => {
   const Router = useRouter()
 
-  const [data, setData] = useState(props.data)
+  const [data, setData] = useState(user)
   const [cardType, setCardType] = useState([])
   const [selectedRow, setSelectedRow] = useState(null);
 
+  const sle = (id) => cards?.filter(card => card.id == id);
 
-
+  console.log(sle(2))
 
   return (
     <AdminLayout>
@@ -71,7 +75,8 @@ const Id = (props) => {
                     )
                   }
                 >
-                  Completed Trades <span className="text-md text-green-500"></span>
+                  Trades 
+                  <span className="text-md text-green-500"></span>
 
                 </Tab>
 
@@ -87,8 +92,7 @@ const Id = (props) => {
                     )
                   }
                 >
-                  Failed Trades <span className="text-md text-red-500"></span>
-
+                 Withdrawals <span className="text-md text-red-500"></span>
                 </Tab>
               </Tab.List>
               <Tab.Panels className="mt-2">
@@ -109,29 +113,28 @@ const Id = (props) => {
                         <div className="w-full pb-5 mt-4 overflow-hidden rounded-lg shadow-lg dark:bg-slate-300 bg-white">
                           <div className="h-40 bg-gradient-to-br from-orange-400 via-yellow-500 to-gray-600">
                             <div className="flex justify-center">
-                              <span className="mt-10 text-4xl font-extrabold  text-white">Femi Oyewo</span>
+                              <span className="mt-10 text-4xl font-extrabold  text-white">{user?.full_name}</span>
                             </div>
                             <div className="flex justify-center">
                               <img className="object-cover w-24 h-24 mt-4 border-4 border-orange-400 rounded-full" src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg" />
                             </div>
                           </div>
                           <div className="px-6 py-4">
-                            <div className="flex justify-center mt-10 mb-4 text-xl font-medium">Joined A year ago</div>
+                            <div className="flex justify-center mt-10 mb-4 text-xl font-medium">Joined {moment(user?.created_at).fromNow()}</div>
                             <div className="flex my-1 text-gray-600">
                               <AiOutlineMail size={20} className="h-5 mt-1 mr-2" />
-                              <span>email@email.com</span>
+                              <span>{user?.email}</span>
                             </div>
 
                             <div className="flex text-gray-600">
                               <AiOutlinePhone size={20} className="h-5 mt-1 mr-2" />
 
-                              <span>+91 1234567890</span>
+                              <span>{user?.phone_number}</span>
                             </div>
 
                             <div className="flex text-gray-600">
                               <AiOutlineUser size={20} className="h-5 mt-1 mr-2" />
-
-                              <span>Daunt001</span>
+                              <span>Daunt00{user?.id}</span>
                             </div>
                           </div>
                         </div>
@@ -140,35 +143,37 @@ const Id = (props) => {
                       <div className="flex-col mt-5 gap-7 text-sm">
                         <div
                           className="bg-yellow-50 flex justify-between items-center p-3 rounded-sm shadow-sm"
-                        >
-                          <div className="flex justify-start items-center gap-2">
-                            <RiBankFill color={'gold'} size={20} />
-                            <div>
-                              <p className="text-gray-700 font-bold tracking-wider pr-2">
-                                Guaranty Trusted Bank
-                              </p>
-                              <p className="text-gray-400 text-sm">0232882872</p>
-                            </div>
-                          </div>
+                        >{
+                            user?.userBanks?.length ?
+                              user?.userBanks.map((item) => (
+                                <div className="flex justify-start items-center gap-2">
+                                  <RiBankFill color={'gold'} size={20} />
+                                  <div>
+                                    <p className="text-gray-700 font-bold tracking-wider pr-2">
+                                      {item?.account_number}
+                                    </p>
+                                    <p className="text-gray-400 text-sm">{item?.account_name}</p>
+                                  </div>
+                                </div>
+                              )) :
+                              (
+                                <div className="flex justify-start items-center gap-2">
+                                  {/* <RiBankFill color={'gold'} size={20} /> */}
+                                  <div>
+                                    <p className="text-gray-700 font-bold tracking-wider pr-2">
+                                      User has No account yet
+                                    </p>
+                                    {/* <p className="text-gray-400 text-sm">0232882872</p> */}
+                                  </div>
+                                </div>
+                              )
+
+                          }
 
 
                         </div>
 
-                        <div
-                          className="bg-yellow-50 flex justify-between items-center p-3 rounded-sm shadow-sm mt-4"
-                        >
-                          <div className="flex justify-start items-center gap-2">
-                            <RiBankFill color={'gold'} size={20} />
-                            <div>
-                              <p className="text-gray-700 font-bold tracking-wider pr-2">
-                                Guaranty Trusted Bank
-                              </p>
-                              <p className="text-gray-400 text-sm">0232882872</p>
-                            </div>
-                          </div>
 
-
-                        </div>
                       </div>
                     </div>
                     {/* account card info */}
@@ -216,67 +221,85 @@ const Id = (props) => {
                   )}
                 >
 
-      <div className="flex flex-wrap mt-8">
-        <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
-          <div className="flex flex-row justify-between">
-            <p className='dark:text-gray-100 text-black text-2xl pb-6 font-bold'>Trades</p>
-          </div>
-          <section className="container mx-auto p-6 font-mono">
-            <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
-              <div className="w-full overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100  uppercase border-b border-gray-600">
-                      <th className="px-4 py-3">Reference Id</th>
-                      <th className="px-4 py-3">Trade Type</th>
-                      <th className="px-4 py-3">Customer</th>
-                      <th className="px-4 py-3">Total</th>
-                      <th className="px-4 py-3">Status</th>
-                      <th className="px-4 py-3">Date</th>
-                      <th className="px-4 py-3">Action</th>
+                  <div className="flex flex-wrap mt-8">
+                    <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+                      <div className="flex flex-row justify-between">
+                        <p className='dark:text-gray-100 text-black text-2xl pb-6 font-bold'>Trades</p>
+                      </div>
+                      <section className="container mx-auto p-6 font-mono">
+                        <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+                          <div className="w-full overflow-x-auto">
+                            <table className="w-full">
+                              <thead>
+                                <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100  uppercase border-b border-gray-600">
+                                <th className="px-4 py-3">Reference Id</th>
+                                <th className="px-4 py-3">Trade Type</th>
+                                {/* <th className="px-4 py-3">Customer</th> */}
+                                <th className="px-4 py-3">Total</th>
+                                <th className="px-4 py-3">Status</th>
+                                <th className="px-4 py-3">Date</th>
+                                <th className="px-4 py-3">Updated</th>
+                                <th className="px-4 py-3">Action</th>
+                              </tr>
+                              </thead>
+                              <tbody className="bg-white">
+                                {
+                                  user?.cardTransactions?.length ?
+                                    user?.cardTransactions.map((item, index) => (
+                                      <tr className="text-gray-700" key={index}>
+                                        <td className="px-4 py-3 text-ms font-semibold border">Trade00{item?.id}</td>
+                                        <td className="px-4 py-3 border">
+                                          <div className="flex items-center text-sm">
+                                            <div className="relative w-8 h-8 mr-3 rounded-full md:block">
+                                              <img className="object-cover w-full h-full rounded-full" src={sle(item.card_type_id)[0]?.card?.picture} alt="" loading="lazy" />
+                                              <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                                { }
+                                              </div>
+                                            </div>
+                                            <div>
+                                              <p className="font-semibold text-black">{item?.name}</p>
+                                              <p className="text-xs text-gray-600">{sle(item?.card_type_id)[0]?.name} * {item?.count}</p>
+                                              <p className="text-md text-gray-600">{sle(item.card_type_id)[0]?.type?.name == "Ecode" ? "Ecode" : "Physical"}</p>
+                                            </div>
+                                          </div>
+                                        </td>
+                                        <td className="px-4 py-3 text-ms font-semibold border">#{item?.total}</td>
+                                        <td className="px-4 py-3 text-xs border">
+                                          {
+                                            item?.trade_status_id == 2 ? <span className="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-sm"> Pending </span>
+                                              : item?.trade_status_id == 1 ? <span className="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Failed </span>
+                                                : item?.trade_status_id == 3 ? <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Completed </span>
+                                                  : <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Processing </span>
+                                          }
+                                        </td>
+                                        <td className="px-4 py-3 text-sm border">{moment(item?.created_at).calendar()}</td>
+                                        <td className="px-4 py-3 text-sm border">{moment(item?.updated_at).calendar()}</td>
 
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white">
-                    <tr className="text-gray-700">
-                      <td className="px-4 py-3 text-ms font-semibold border">Trade001</td>
-                      <td className="px-4 py-3 text-ms border">Ecode</td>
-                      <td className="px-4 py-3 border">
-                        <div className="flex items-center text-sm">
-                          <div className="relative w-8 h-8 mr-3 rounded-full md:block">
-                            <img className="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                            <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                          </div>
-                          <div>
-                            <p className="font-semibold text-black">Sufyan</p>
-                            <p className="text-xs text-gray-600">Daunt001</p>
+                                        <td className="px-4 py-3 text-sm border">
+                                          <a className="cursor-pointer bg-orange-600 hover:bg-orange-500 text-orange-100 py-2 px-4 rounded inline-flex items-center" href={`..//${item?.id}`}>
+                                            <span>
+                                              <FiEye
+                                                size={20}
+                                              />
+                                            </span>
+                                          </a>
+
+                                        </td>
+
+                                      </tr>
+                                    )) : (
+                                      <tr>
+                                        <p>No Trade Yet</p>
+
+                                      </tr>
+                                    )}
+                              </tbody>
+                            </table>
                           </div>
                         </div>
-                      </td>
-                      <td className="px-4 py-3 text-ms font-semibold border">#20000</td>
-                      <td className="px-4 py-3 text-xs border">
-                        <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Completed </span>
-                      </td>
-                      <td className="px-4 py-3 text-sm border">6/4/2000</td>
-                      <td className="px-4 py-3 text-sm border">
-                        <a className="cursor-pointer bg-orange-600 hover:bg-orange-500 text-orange-100 py-2 px-4 rounded inline-flex items-center">
-                          <span>
-                          <FiEye
-                        size={20}
-                         />
-                          </span>
-                        </a>
-
-                      </td>
-
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
+                      </section>
+                    </div>
+                  </div>
 
                 </Tab.Panel>
                 <Tab.Panel
@@ -303,37 +326,20 @@ export default Id;
 
 
 export async function getServerSideProps(context) {
-  // const session = await getSession(context);
-  // if (!session) {
-  //   return {
-  //     props: {},
-  //     redirect: {
-  //       destination: '/login',
-  //       permanent: false
-  //     }
-  //   };
-  // }
-
-  // if (session.user.role != 2){
-  //   return {
-  //     props: {},
-  //     redirect: {
-  //       destination: '/error',
-  //       permanent: false
-  //     }
-  //   };
-  // }
-  // const token = session?.accessToken;
-  // const id = context.params.id;
-  // const coinData = await Server.get(`/admin/coin/${id}`, {
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // });
-  // const coin = await coinData.data.message;
+  const session = await getSession(context);
+  const token = session?.accessToken;
+  const id = context.params.id;
+  const req = await Server.get(`/admin/user/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const cards = await Server.get('/card/card-type')
+  const user = await req.data.message;
   return {
     props: {
-      // coin,
+      user,
+      cards: cards.data.message,
     },
   };
 }

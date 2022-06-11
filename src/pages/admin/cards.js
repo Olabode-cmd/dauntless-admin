@@ -189,18 +189,17 @@ const Cards = (props) => {
         });
     };
 
-    const createCardType = async (id, name, type, rate, ) => {
-        const res = await fetch("/api/create-card-rate", {
+    const createCardType = async (id, card_id, name, rate, type_id, status,) => {
+        const res = await fetch("/api/create-card-type", {
           body: JSON.stringify({
-            id,
-            name,
-            rate
+            id, card_id, name, rate, type_id, status,
           }),
           headers: {
             "Content-Type": "application/json",
           },
           method: "POST",
         });
+        console.log('motigbana')
     };
 
     const updateCardType = async (id, card_id, name, rate, status) => {
@@ -306,9 +305,12 @@ const Cards = (props) => {
                                                         const index = oldData.tableData.id;
                                                         dataUpdate[index] = newData;
                                                         setData([...dataUpdate]);
-                                                        updateCard(newData.name, image)
+                                                        const id = newData.id;
+                                                        const name = newData.name;
+                                                        // console.log(newData)
+                                                        updateCard(id, name);
                                                         resolve();
-                                                    }, 1000)
+                                                      }, 1000);
                                                 }),
                                         }}
                                         options={{
@@ -335,7 +337,7 @@ const Cards = (props) => {
                                                 new Promise((resolve, reject) => {
                                                     setTimeout(() => {
                                                         setCardType([...cardType, newData]);
-
+                                                        createCardType(newData)
                                                         resolve();
                                                     }, 1000)
                                                 }),
@@ -346,7 +348,7 @@ const Cards = (props) => {
                                                         const index = oldData.tableData.id;
                                                         dataUpdate[index] = newData;
                                                         setCardType([...dataUpdate]);
-
+                                                        updateCardType(newData)
                                                         resolve();
                                                     }, 1000)
                                                 }),

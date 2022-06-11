@@ -28,7 +28,7 @@ export default NextAuth({
         const user = result.data.user;
         const token = result.data.message.token;
         const tokenExpires = result.data.message.expires_at;
-        // console.log(user)
+        
         if (result.status === 200) {
           return {
             user,
@@ -37,7 +37,7 @@ export default NextAuth({
           };
         }
         // console.log(result)
-        return null;
+        return result;
       },
     })
   ],

@@ -4,19 +4,12 @@ import { FaHandshake, FaDollarSign, FaMobileAlt } from "react-icons/fa";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer'
 import {signOut, useSession} from 'next-auth/react'
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 
 
 
 function Index() {
   const { data: session, status } = useSession();
-
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
-
   return (
     <div>
       <Navbar
