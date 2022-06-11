@@ -31,13 +31,13 @@ function Index() {
       </div>
 
 
-      <section className="bg-slate-100 dark:bg-slate-900">
-        <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-8 lg:flex-row lg:justify-between">
+      <section className="bg-slate-100 dark:bg-slate-900 pt-12">
+        <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 sm:pt-24 lg:py-20 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-            <h1 className="text-5xl font-bold leading-none sm:text-6xl dark:text-slate-100 text-zinc-900">Welcome to <br />
+            <h1 className="text-3xl md:text-5xl font-bold leading-none dark:text-slate-100 text-zinc-900">Welcome to <br />
               <span className="text-yellow-400">Dauntless</span>.trade
             </h1>
-            <p className="mt-6 mb-8 text-lg sm:mb-12 text-zinc-900 dark:text-slate-400">Exchange your gift cards at your convenience,
+            <p className="mt-6 mb-8 text-sm md:text-lg sm:mb-12 text-zinc-900 dark:text-slate-400">Exchange your gift cards at your convenience,
               <br className="hidden md:inline lg:hidden" /> sweet deals, discount and more. Anywhere in the world.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
@@ -50,10 +50,10 @@ function Index() {
 
           
           <div className="items-center relative text-center p-6 mt-8 lg:mt-0 hidden md:flex">
-            <img src="images/header-img.png" alt="" className="header-img" />
-            <img src="images/card-float.png" alt="" className="card-float one" />
-            <img src="images/card-float2.png" alt="" className="card-float two" />
-            <img src="images/card-float3.png" alt="" className="card-float three" />
+            <img src="images/header-img.png" alt="" className="header-img" data-aos="fade-up" data-aos-duration="500" data-aos-delay="6000" />
+            <img src="images/card-float.png" alt="" className="card-float one" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="600" />
+            <img src="images/card-float2.png" alt="" className="card-float two" data-aos="fade-left" data-aos-duration="1700" data-aos-delay="800" />
+            <img src="images/card-float3.png" alt="" className="card-float three" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="800" />
           </div>
         </div>
       </section>
@@ -222,7 +222,7 @@ function Index() {
 
 
           <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" data-aos="fade-left">
-            <img src="images/cards.jpg" alt="" className="object-contain rounded h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
+            <img src="images/androidios.png" alt="" className="object-contain rounded h-76 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
       </section>

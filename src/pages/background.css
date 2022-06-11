@@ -36,7 +36,7 @@ nav {
     animation: floating 4s infinite linear;
 }
 .three {
-    top: 0;
+    top: 8%;
     right: 0;
     animation: appearing 2s linear forwards;
     animation-delay: 3s;
