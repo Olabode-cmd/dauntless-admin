@@ -1,17 +1,5 @@
-// import Content from '../components/content';
-import Breadcumb from '../../components/breadcumb';
-import Statistics from '../../components/statistics';
-import AreaChart from '../../components/chart';
-import DoughnutChart from '../../components/donut';
-import DropdownRender from '../../components/dropdown';
-import { FiUserPlus, FiDollarSign, FiActivity, FiEye, FiArrowUp, FiArrowDown } from 'react-icons/fi'
 import AgentLayout from '../../dashboard/AgentLayout';
-import { Server } from '../api/lib/service';
-import { getSession } from 'next-auth/react';
-import moment from 'moment';
 import React, { useState, useEffect, useCallback } from 'react';
-import Error from 'next/error';
-import { useRef } from 'react';
 import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 
 
