@@ -7,7 +7,6 @@ import {signOut, useSession} from 'next-auth/react'
 
 
 
-
 function Index() {
   const { data: session, status } = useSession();
   return (
@@ -66,36 +65,36 @@ function Index() {
         <h2 className="text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
 
-          <div className="card-info space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000">
+          <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaHandshake /> </span>
-            <h3 className="text-2xl font-bold">Trusted.</h3>
-            <p>Trade with high confidence, as we assure you the highest level of encryption and professionally audited exchange system.</p>
+            <h3 className="text-2xl font-bold text-slate-900 hover:text-white">Trusted.</h3>
+            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Trade with high confidence, as we assure you the highest level of encryption and professionally audited exchange system.</p>
           </div>
 
-          <div className="card-info space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+          <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaDollarSign /> </span>
-            <h3 className="text-2xl font-bold">Instant Payment</h3>
-            <p>Using state-of-the-art payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
+            <h3 className="text-2xl font-bold text-slate-900 hover:text-white">Instant Payment</h3>
+            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Using state-of-the-art payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
           </div>
 
-          <div className="card-info space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+          <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaMobileAlt /> </span>
           
-            <p className="text-2xl font-bold">Cross-Platform Availiability</p>
-            <p>Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
+            <h3 className="text-2xl font-bold text-slate-900 hover:text-white">Cross-Platform Availiability</h3>
+            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
           </div>
         </div>
       </section>
 
-        <div className="p-8 space-y-8 rounded-md lg:col-span-full lg:py-12 dark:bg-slate-900">
-          <h2 className="text-5xl font-bold dark:text-slate-200">Trade with us</h2>
-          <p className="dark:text-coolGray-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+        <div className="p-8 space-y-8 text-center lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
+          <h2 className="text-5xl font-bold text-slate-900 dark:text-slate-200">Trade with us</h2>
+          <p className="dark:text-slate-400 text-slate-700 w-9/12 inline-block">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             Nesciunt facilis quod accusantium beatae cum nam adipisci reiciendis omnis possimus error quo animi
             voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem
           </p>
         </div>
 
-      <section className="dark:bg-slate-800 dark:text-coolGray-100 mt-4">
+      <section className="bg-slate-200 dark:bg-slate-800 dark:text-coolGray-100">
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
           <div className="flex-1 justify-center p-6 mt-8 lg:mt-0" data-aos="fade-right" data-aos-duration="1200">
             <img src="images/mobile.png" alt="smartphone" className="object-contain rounded w-7/12 m-auto" />
@@ -103,16 +102,16 @@ function Index() {
 
           <div className="flex-1">
             <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
-              <h1 className="text-3xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Trade with us on
+              <h1 className="text-3xl font-bold leading-none sm:text-5xl text-slate-900 dark:text-slate-200">Trade with us on
               <span className="text-yellow-400"> Dauntless</span> Platform
             </h1>
-            <p className="mt-6 text-lg sm:mb-3 medium-font">
+            <p className="mt-6 text-lg sm:mb-3 medium-font text-slate-800 dark:text-slate-200">
               Dauntless allows you to trade gift cards from a variety of retailers,
               including iTunes, Amazon, Steam Wallet, Google Play, Apple Store, eBay, Walmart, Sephora,
               OneVanilla, Nordstrom, Target, JCPenney, Best Buy, Nike, Hotels.com, Macy's, Gamestop,
               and others.
             </p>
-            <p className="mt-2 text-lg sm:mb-12 medium-font">Our payment system is amazingly coherent. You get your money almost instantly, no fees attached and no limits.
+              <p className="mt-2 text-lg sm:mb-12 medium-font text-slate-800 dark:text-slate-200">Our payment system is amazingly coherent. You get your money almost instantly, no fees attached and no limits.
               <br /> Don't worry about rates. We offer the best payout for your assets based on the current market value.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
@@ -161,9 +160,9 @@ function Index() {
         </div>
 
         <div className="cards mt-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
-          <span className="cardName mb-6 block text-slate-200 text-2xl font-bold">iTunes</span>
+          <span className="cardName mb-6 block text-slate-800 dark:text-slate-200 text-2xl font-bold">iTunes</span>
 
-          <div className="p-8 space-y-4 rounded-md bg-gray-800 flex flex-wrap items-center">
+          <div className="p-8 space-y-4 rounded-md bg-slate-300 dark:bg-gray-800 flex flex-wrap items-center">
             <div className="w-full lg:w-4/12">
               <img className="rounded" src="https://images.macrumors.com/t/TPiNn40dI2FatwyOudkXpY5Msz8=/1600x900/smart/article-new/2016/12/iTunes-gift-card.jpg" alt="giftcard" />
             </div>
@@ -203,13 +202,13 @@ function Index() {
 
       </section>
 
-      <section className="dark:bg-coolGray-800 dark:text-coolGray-100 mt-4 py-4">
+      <section className="bg-slate-200 dark:bg-slate-800 dark:text-coolGray-100 py-4">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left" data-aos="fade-right">
-            <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-800 dark:text-slate-200">Download
+            <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-900 dark:text-slate-200">Download
               <span className="text-yellow-400"> Dauntless</span> Mobile App
             </h1>
-            <p className="mt-6 mb-8 text-lg sm:mb-12">Experience the best of Dauntless as you download our mobile application to your phone or tablet.
+            <p className="mt-6 mb-8 text-lg sm:mb-12 text-slate-800 dark:text-slate-200">Experience the best of Dauntless as you download our mobile application to your phone or tablet.
               <br /> Available for iOS and Android operating systems.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
@@ -231,29 +230,29 @@ function Index() {
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
           <div className="flex-1 justify-center p-6 mt-8 lg:mt-0" data-aos="fade-up" data-aos-duration="1200">
             <div className="w-full rounded p-8 sm:p-6">
-              <p className="text-5xl font-bold leading-7 text-center text-white l-height">Contact Us</p>
+              <p className="text-5xl font-bold leading-7 text-center text-slate-900 dark:text-slate-100 l-height">Contact Us</p>
               <form action="" method="post">
                 <div className="md:flex items-center mt-12">
                   <div className="w-full md:w-1/2 flex flex-col">
-                    <label className="font-semibold leading-none text-gray-300">Name</label>
-                    <input type="text" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 bg-gray-800 rounded" />
+                    <label className="font-semibold leading-none text-slate-800 dark:text-slate-100">Name</label>
+                    <input type="text" className="leading-none p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-800 rounded" />
                   </div>
                   <div className="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
-                    <label className="font-semibold leading-none text-gray-300">Phone</label>
-                    <input type="email" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 bg-gray-800 rounded" />
+                    <label className="font-semibold leading-none text-slate-800 dark:text-slate-100">Phone</label>
+                    <input type="email" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-800 rounded" />
                   </div>
                 </div>
                 <div className="md:flex items-center mt-8">
                   <div className="w-full flex flex-col">
-                    <label className="font-semibold leading-none text-gray-300">Subject</label>
-                    <input type="text" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 bg-gray-800 rounded" />
+                    <label className="font-semibold leading-none text-slate-800 dark:text-slate-100">Subject</label>
+                    <input type="text" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-800 rounded" />
                   </div>
 
                 </div>
                 <div>
                   <div className="w-full flex flex-col mt-8">
-                    <label className="font-semibold leading-none text-gray-300">Message</label>
-                    <textarea type="text" className="h-40 text-base leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-800 border-0 rounded resize-none"></textarea>
+                    <label className="font-semibold leading-none text-slate-800 dark:text-slate-100">Message</label>
+                    <textarea type="text" className="h-40 text-base leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-800 border-0 rounded resize-none"></textarea>
                   </div>
                 </div>
                 <div className="flex items-center justify-center w-full">
