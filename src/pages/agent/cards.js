@@ -1,11 +1,12 @@
 // import Content from '../components/content';
 import React, { useState, useEffect } from 'react';
 import Breadcumb from '../../components/breadcumb';
+import ActivityLog from '../../components/activitylog';
 import Statistics from '../../components/statistics';
 // import AreaChart from '../../components/chart';
-import DoughnutChart from '../../components/donut';
 import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
 import AgentLayout from '../../dashboard/AgentLayout';
+import { Helmet } from "react-helmet"
 import MaterialTable, { Column } from "@material-table/core";
 import { Tab } from '@headlessui/react'
 import { styled } from '@mui/material/styles';
@@ -14,7 +15,8 @@ import { FiCamera } from 'react-icons/fi';
 import IconButton from '@mui/material/IconButton';
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
-
+import { Server } from '../api/lib/service';
+import { getSession } from 'next-auth/react'
 
 
 function classNames(...classes) {
@@ -27,29 +29,52 @@ const Input = styled('input')({
 const Cards = (props) => {
     const lookup = { true: "Available", false: "Unavailable" };
 
-    const [data, setData] = useState([])
-    const [cardType, setCardType] = useState([])
+    const [data, setData] = useState([...props.cards]);
+    const [cardType, setCardType] = useState([...props.cardType]);
+    const [image, setImage] = useState('');
 
+    const uploadImage = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            setImage(e.target.result);
+        };
+        reader.readAsDataURL(file);
+
+        console.log(image)
+    }
+
+
+    const cardOptions = {};
+    data.map(option => {
+        const { id, name } = option;
+        cardOptions[id] = name
+    })
 
     const columns = [
         {
             title: 'Card',
-            field: 'imageUrl',
-            render: rowData => <img src={rowData.imageUrl} style={{ width: 40, borderRadius: '50%' }} />,
+            field: 'picture',
+            render: rowData => <img src={rowData.picture} style={{ width: 40, borderRadius: '50%' }} />,
             editComponent: props => (
                 <Stack direction="row" alignItems="center" spacing={2}>
                     <label htmlFor="contained-button-file">
-                        <Input accept="image/*" id="contained-button-file" multiple type="file" />
+                        <Input accept="image/*" id="contained-button-file" type="file" onChange={uploadImage} />
                         <Button variant="contained" component="span" color="warning">
                             Upload
+                            <FiCamera color='gold' size={30} style={{ paddingLeft: '10px', }} />
                         </Button>
                     </label>
-                    <label htmlFor="icon-button-file">
+                    {
+                        image &&
+                        <img src={image} style={{ width: 40, borderRadius: '50%' }} />
+                    }
+                    {/* <label htmlFor="icon-button-file">
                         <Input accept="image/*" id="icon-button-file" type="file" />
                         <IconButton color="primary" aria-label="upload picture" component="span">
                             <FiCamera color='gold' />
                         </IconButton>
-                    </label>
+                    </label> */}
                 </Stack>
             ),
             headerStyle: {
@@ -60,11 +85,11 @@ const Cards = (props) => {
         {
             title: "Card Title", field: "name",
             render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.name}</p>,
-            
+
         },
         {
-            title: "Counts", field: "count", editable:false,
-            render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.count}</p>,
+            title: "Counts", editable: false,
+            render: rowData => <p className="px-4 py-3 text-ms font-semibold">{rowData.cardTypes == undefined ? 0 : rowData.cardTypes.length}</p>,
 
         },
     ];
@@ -72,30 +97,27 @@ const Cards = (props) => {
     const columnCardType = [
         {
             title: 'Card',
-            field: 'card',
-            lookup: { 1: 'Amazon', 2: 'Itunes', 3: 'GooglePlay' },
-            editable:false,
+            field: "card.id",
+            lookup: cardOptions,
             headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
             }
         },
 
-        {
-            title: 'Code',
-            field: 'code',
-            editable:false,
-            headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
+        // {
+        //     title: 'Type',
+        //     field: 'type_id',
+        //     headerStyle: {
+        //         // backgroundColor: 'yellow',
+        //         fontWeight: 'bold',
+        //     }
+        // },
 
         {
             title: 'Card Type',
-            field: 'type',
-            editable:false,
-            lookup: { 1: 'Physical', 2: 'E-code' },
+            field: 'type_id',
+            lookup: { 2: 'Physical', 1: 'E-code', },
             headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
@@ -103,22 +125,21 @@ const Cards = (props) => {
         },
 
         {
-            title: "Card Name", field: "name", headerStyle: {
+            title: "Country", field: "name", headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
-            },
-            editable:false,
+            }
         },
         {
             title: "Status", field: "status",
             lookup: { true: "Available", false: "Unavailable" },
-            render: rowData =>{
+            render: rowData => {
                 return (
                     <p className="text-xs">
                         {
                             lookup[rowData.status] === 'Available' ?
-                         (<span className="font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Available </span>) :
-                         (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Not Available </span>)
+                                (<span className="font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Available </span>) :
+                                (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Not Available </span>)
                         }
                     </p>
                 )
@@ -131,7 +152,7 @@ const Cards = (props) => {
         {
             title: 'Rate',
             field: 'rate',
-          render: rowData =><p className="text-ms font-semibold">#{rowData.rate}</p>,
+            render: rowData => <p className="text-ms font-semibold">#{rowData.rate}</p>,
 
             headerStyle: {
                 // backgroundColor: 'yellow',
@@ -140,23 +161,63 @@ const Cards = (props) => {
         },
     ];
 
-    const sdata = [
-        { id: 1, imageUrl: "https://media.japan-codes.com/uploads/20150906173700/itunes1500.jpg", name: "Itunes", count: 5, availability: true },
-        { id: 2, imageUrl: "https://s.pacn.ws/1500/qb/amazon-gift-card-us-20-473915.2.jpg?o73x4u", name: "Amazon", count: 10, availability: false }
-    ];
+    const createCard = async (name, image) => {
+        const res = await fetch("/api/create-card", {
+            body: JSON.stringify({
+                image,
+                name,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+        });
+    };
 
-    const sdataCardType = [
-        { id: 1, code:'Amaz001', card: 1, type: 1, name: "Amazon Canada", status: true, rate: "300" },
-        { id: 2, code:'Amaz002', card: 1, type: 2, name: "Amazon India", status: false, rate: "400" },
-        { id: 3, code:'Amaz003', card: 1, type: 3, name: "Amazon United Kingdom", status: true, rate: "500" },
-        { id: 4, code:'Itu001',  card: 2, type: 1, name: "Itunes Canada", status: true, rate: "300" },
-        { id: 5, code:'Itu001', card: 2, type: 2, name: "Itunes India", status: false, rate: "400" },
-    ]
+    const updateCard = async (id, name, image) => {
+        const res = await fetch("/api/update-card", {
+            body: JSON.stringify({
+                id,
+                name,
+                image
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "PUT",
+        });
+    };
 
-    useEffect(() => {
-        setData(sdata)
-        setCardType(sdataCardType)
-    }, [])
+    const createCardType = async (id, name, type, rate,) => {
+        const res = await fetch("/api/create-card-rate", {
+            body: JSON.stringify({
+                id,
+                name,
+                rate
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+        });
+    };
+
+    const updateCardType = async (id, card_id, name, rate, status) => {
+        const res = await fetch("/api/update-card-rate", {
+            body: JSON.stringify({
+                id,
+                card_id,
+                name,
+                rate
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "PUT",
+        });
+        // console.log(id, card_id, name, rate)
+    };
+
     return (
         <AgentLayout>
 
@@ -229,25 +290,26 @@ const Cards = (props) => {
                                         data={data}
                                         key={data.id}
                                         editable={{
-                                            // onRowAdd: newData =>
-                                            //     new Promise((resolve, reject) => {
-                                            //         setTimeout(() => {
-                                            //             setData([...data, newData]);
-
-                                            //             resolve();
-                                            //         }, 1000)
-                                            // //     }),
-                                            // onRowUpdate: (newData, oldData) =>
-                                            //     new Promise((resolve, reject) => {
-                                            //         setTimeout(() => {
-                                            //             const dataUpdate = [...data];
-                                            //             const index = oldData.tableData.id;
-                                            //             dataUpdate[index] = newData;
-                                            //             setData([...dataUpdate]);
-
-                                            //             resolve();
-                                            //         }, 1000)
-                                            //     }),
+                                            onRowAdd: newData =>
+                                                new Promise((resolve, reject) => {
+                                                    setTimeout(() => {
+                                                        setData([...data, newData]);
+                                                        createCard(newData.name, image)
+                                                        setImage('')
+                                                        resolve();
+                                                    }, 1000)
+                                                }),
+                                            onRowUpdate: (newData, oldData) =>
+                                                new Promise((resolve, reject) => {
+                                                    setTimeout(() => {
+                                                        const dataUpdate = [...data];
+                                                        const index = oldData.tableData.id;
+                                                        dataUpdate[index] = newData;
+                                                        setData([...dataUpdate]);
+                                                        updateCard(newData.name, image)
+                                                        resolve();
+                                                    }, 1000)
+                                                }),
                                         }}
                                         options={{
                                             actionsColumnIndex: -1
@@ -269,7 +331,14 @@ const Cards = (props) => {
                                         data={cardType}
                                         key={cardType.id}
                                         editable={{
-                                           
+                                            onRowAdd: newData =>
+                                                new Promise((resolve, reject) => {
+                                                    setTimeout(() => {
+                                                        setCardType([...cardType, newData]);
+
+                                                        resolve();
+                                                    }, 1000)
+                                                }),
                                             onRowUpdate: (newData, oldData) =>
                                                 new Promise((resolve, reject) => {
                                                     setTimeout(() => {
@@ -299,3 +368,15 @@ const Cards = (props) => {
 }
 
 export default Cards
+
+export async function getServerSideProps(context) {
+    const card = await Server.get('/card')
+    const cardType = await Server.get('/card/card-type')
+    // console.log(cardType.data.message)
+    return {
+        props: {
+            cards: card.data.message,
+            cardType: cardType.data.message
+        }
+    }
+}

@@ -21,6 +21,15 @@ function Index() {
             status === 'authenticated' ? (true ) : ( false )
           }
       />
+
+      {/* Modal */}
+      <div className="modal" id="my-modal-1">
+        <div className="modal-box w-50">
+          <iframe src="https://www.youtube.com/embed/stNnNjM-Rhk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" className="w-100" allowfullscreen></iframe>
+        </div>
+      </div>
+
+
       <section className="bg-slate-100 dark:bg-slate-900">
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-8 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
@@ -75,6 +84,7 @@ function Index() {
             <p>Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
           </div>
         </div>
+      </section>
 
         <div className="p-8 space-y-8 rounded-md lg:col-span-full lg:py-12 dark:bg-slate-900">
           <h2 className="text-5xl font-bold dark:text-slate-200">Trade with us</h2>
@@ -83,7 +93,6 @@ function Index() {
             voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem
           </p>
         </div>
-      </section>
 
       <section className="dark:bg-slate-800 dark:text-coolGray-100 mt-4">
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
@@ -107,9 +116,14 @@ function Index() {
               <br /> Don't worry about rates. We offer the best payout for your assets based on the current market value.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-              <a rel="noopener noreferrer" href="#" className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
-                Read More</a>
+                <a href="#my-modal-1" type="button"
+                  className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center"
+                >
+                  Read More
+                </a>
             </div>
+
+              
           </div>
         </div>
         </div>
