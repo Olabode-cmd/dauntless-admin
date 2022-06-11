@@ -27,19 +27,33 @@ export default function Navbar({login}) {
                       <li>
                           <Link
                               href="/about"
-                              aria-label="Our product"
-                              title="Our product"
                               class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                           >
                               About Us
                           </Link>
                       </li>
+                      <li>
+                          <Link
+                              href="https://dauntless.tawk.help/"
+                              class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                          >
+                              Help Center
+                          </Link>
+                      </li>
                   </ul>
                   <img src="/images/2.png" width={30} />
                   <ul class="flex items-center hidden space-x-8 lg:flex">
+                    <li>
+                          <Link
+                              href="https://dauntless.tawk.help/category/faq"
+                              class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                          >
+                              FAQs
+                          </Link>
+                      </li>
                       <li>
                           <Link
-                              href="/"
+                              href="/auth/login"
                               aria-label="Sign in"
                               title="Sign in"
                               class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
@@ -118,11 +132,25 @@ export default function Navbar({login}) {
                                           <li>
                                               <Link
                                                   href="/about"
-                                                  aria-label="Our product"
-                                                  title="Our product"
                                                   class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                               >
                                                   About
+                                              </Link>
+                                          </li>
+                                          <li>
+                                              <Link
+                                                  href="https://dauntless.tawk.help/"
+                                                  class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                              >
+                                                  Help Center
+                                              </Link>
+                                          </li>
+                                          <li>
+                                              <Link
+                                                  href="https://dauntless.tawk.help/category/faq"
+                                                  class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                              >
+                                                  FAQ
                                               </Link>
                                           </li>
                                           <li>
