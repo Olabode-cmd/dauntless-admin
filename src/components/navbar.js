@@ -110,13 +110,13 @@ export default function Navbar({ login }) {
                                             <li>
                                                 <Link
                                                     href="/">
-                                                    <a class="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400">Home</a>
+                                                    <a class="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">Home</a>
                                                 </Link>
                                             </li>
                                             <li>
                                                 <Link
                                                     href="/about">
-                                                    <a class="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"> About Us</a>
+                                                    <a class="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400"> About Us</a>
                                                 </Link>
                                             </li>
                                             <li>
@@ -124,7 +124,7 @@ export default function Navbar({ login }) {
                                                     href="https://dauntless.tawk.help/">
 
                                                     <a target="_blank"
-                                                        class="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400">
+                                                        class="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">
                                                         Help Center</a>
                                                 </Link>
                                             </li>
@@ -132,7 +132,7 @@ export default function Navbar({ login }) {
                                                 <Link
                                                     href="https://dauntless.tawk.help/category/faq" >
                                                     <a target="_blank"
-                                                        class="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400">
+                                                        class="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">
                                                         FAQs
                                                     </a>
                                                 </Link>
@@ -140,13 +140,13 @@ export default function Navbar({ login }) {
                                             <li>
                                                 <Link
                                                     href="/auth/login">
-                                                    <a class="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400">Sign in</a>
+                                                    <a class="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">Sign in</a>
                                                 </Link>
                                             </li>
                                             <li>
                                                 <Link
                                                     href="/">
-                                                    <a class="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400">Sign up</a>
+                                                    <a class="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">Sign up</a>
                                                 </Link>
                                             </li>
                                         </ul>
