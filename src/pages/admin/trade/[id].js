@@ -81,22 +81,22 @@ const TradeId = (props) => {
                         <div className="flex flex-wrap">
                             <div className="w-full lg:w-5/12 p-4 bgStyle" style={{ backgroundImage: `linear-gradient(to right, #0f172ac7, #312e81a6), url("https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-256.png")`}}>
                                 <div className="flex justify-between my-4">
-                                    <p className="text-sm" id="myInput">Lorem ipsum dolor </p>
-                                    <FiCopy onClick={myFunction} className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-
-                                <div className="flex justify-between my-4">
-                                    <p className="text-sm">473872-382832-18292 </p>
+                                    <p className="text-md text-slate-200" id="myInput">Lorem ipsum dolor </p>
                                     <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
                                 </div>
 
                                 <div className="flex justify-between my-4">
-                                    <p className="text-sm">Lorem ipsum dolor </p>
+                                    <p className="text-md text-slate-200">473872-382832-18292 </p>
                                     <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
                                 </div>
 
                                 <div className="flex justify-between my-4">
-                                    <p className="text-sm">Lorem ipsum dolor </p>
+                                    <p className="text-md text-slate-200">Lorem ipsum dolor </p>
+                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
+                                </div>
+
+                                <div className="flex justify-between my-4">
+                                    <p className="text-md text-slate-200">Lorem ipsum dolor </p>
                                     <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
                                 </div>
                             </div>
@@ -108,28 +108,6 @@ const TradeId = (props) => {
 
                         <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">Trade incomplete</span></h5>
 
-                        <div className="flex">
-                            <button type="button" className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-green-400 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
-                                Confirm Trade
-                            </button>
-
-                            <a href="#my-modal-2" type="button"
-                                className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
-                            </a>
-                            <button type="button"
-                                onClick={openModal}
-                                 className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
-                                Query Trade
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={openModal1}
-                                className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-400 border border-transparent rounded-md hover:bg-red-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
-                            >
-                                Fault Trade
-                            </button>
-                        </div>
 
                         <div className="flex justify-between dark:text-gray-100 text-black  items-center">
                             <h5 className="text-1xl font-bold">Card Info: <span className="text-slate-100 font-normal">{sle(data.cardType?.card_id).name}</span></h5>
