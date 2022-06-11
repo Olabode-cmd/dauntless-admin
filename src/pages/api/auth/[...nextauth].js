@@ -5,7 +5,7 @@ import { Server } from "../lib/service";
 export default NextAuth({
   pages: {
     error: "/auth/login",
-    signIn: "/auth/login",
+    signin: "/auth/login",
   },
   providers: [
     CredentialsProvider({
