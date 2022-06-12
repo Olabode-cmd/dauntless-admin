@@ -48,7 +48,7 @@ function Index() {
           </div>
 
           
-          <div className="items-center relative text-center p-6 mt-8 lg:mt-0 hidden md:flex">
+          <div className="items-center relative text-center p-2 md:p-6 mt-4 md:mt-8 flex">
             <img src="images/header-img.png" alt="" className="header-img" data-aos="fade-up" data-aos-duration="500" data-aos-delay="6000" />
             <img src="images/card-float.png" alt="" className="card-float one" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="600" />
             <img src="images/card-float2.png" alt="" className="card-float two" data-aos="fade-left" data-aos-duration="1700" data-aos-delay="800" />
@@ -62,32 +62,32 @@ function Index() {
 
       <section className="pt-8 pb-6 px-16 md:px-36 bgimg">
         <span className="block mb-2 text-sm font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
-        <h2 className="text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
+        <h2 className="text-3xl md:text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
 
-          <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000">
+          <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 dark:hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaHandshake /> </span>
-            <h3 className="text-2xl font-bold text-slate-900 hover:text-white">Trusted.</h3>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Trusted.</h3>
             <p className="text-slate-700 dark:text-slate-100 hover:text-white">Trade with high confidence, as we assure you the highest level of encryption and professionally audited exchange system.</p>
           </div>
 
-          <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+          <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 dark:hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaDollarSign /> </span>
-            <h3 className="text-2xl font-bold text-slate-900 hover:text-white">Instant Payment</h3>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Instant Payment</h3>
             <p className="text-slate-700 dark:text-slate-100 hover:text-white">Using state-of-the-art payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
           </div>
 
-          <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+          <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 dark:hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaMobileAlt /> </span>
           
-            <h3 className="text-2xl font-bold text-slate-900 hover:text-white">Cross-Platform Availiability</h3>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Cross-Platform Availiability</h3>
             <p className="text-slate-700 dark:text-slate-100 hover:text-white">Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
           </div>
         </div>
       </section>
 
         <div className="p-8 space-y-8 text-center lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
-          <h2 className="text-5xl font-bold text-slate-900 dark:text-slate-200">Trade with us</h2>
+        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200">Trade with us</h2>
           <p className="dark:text-slate-400 text-slate-700 w-9/12 inline-block">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             Nesciunt facilis quod accusantium beatae cum nam adipisci reiciendis omnis possimus error quo animi
             voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem
@@ -102,7 +102,7 @@ function Index() {
 
           <div className="flex-1">
             <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
-              <h1 className="text-3xl font-bold leading-none sm:text-5xl text-slate-900 dark:text-slate-200">Trade with us on
+              <h1 className="text-2xl font-bold leading-none sm:text-5xl text-slate-900 dark:text-slate-200">Trade with us on
               <span className="text-yellow-400"> Dauntless</span> Platform
             </h1>
             <p className="mt-6 text-lg sm:mb-3 medium-font text-slate-800 dark:text-slate-200">
@@ -220,7 +220,7 @@ function Index() {
           </div>
 
 
-          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" data-aos="fade-left">
+          <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" data-aos="fade-up">
             <img src="images/androidios.png" alt="" className="object-contain rounded h-76 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 dark:bg-coolGray-500" />
           </div>
         </div>
