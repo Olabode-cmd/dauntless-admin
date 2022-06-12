@@ -25,6 +25,7 @@ function About () {
                 </div>
             </section>
 
+            
             <section className="dark:bg-coolGray-800 dark:text-coolGray-100 mb-8">
                 <div className="container max-w-xl p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
                     <div>
