@@ -25,12 +25,7 @@ function About () {
                 </div>
             </section>
 
-<<<<<<< HEAD
-            
-            <section className="dark:bg-coolGray-800 dark:text-coolGray-100 mb-8">
-=======
             <section className="bg-slate-200 dark:bg-slate-800 dark:text-coolGray-100 mb-8">
->>>>>>> olabode
                 <div className="container max-w-xl p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
                     <div>
                         <h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl text-zinc-900 dark:text-slate-200">About Dauntless</h2>
