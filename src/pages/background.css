@@ -30,6 +30,12 @@ nav {
     left: -35%;
     animation: floating 2.9s infinite linear;
 }
+@media(max-width: 768px) {
+    .one {
+        left: 0;
+        top: 45%;
+    }
+}
 .two {
     top: 60%;
     right: 0;

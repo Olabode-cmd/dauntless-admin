@@ -165,6 +165,18 @@ export default function Navbar({ login }) {
                                                     <a className="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">Sign up</a>
                                                 </Link>
                                             </li>
+                                            <li>
+                                                <label htmlFor="Toggle2" className="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100 block pr-5">
+                                                    <span><FiSunrise size={'20px'} color="white" /></span>
+                                                    <span className="relative">
+                                                        <input id="Toggle2" type="checkbox" className="hidden peer" onChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+                                                        <div className="w-10 h-4 rounded-full shadow bg-slate-200 dark:bg-coolGray-600 peer-unchecked:dark:bg-slate-500 peer-checked:dark:bg-violet-400"></div>
+                                                        <div className="absolute left-0 w-6 h-6 rounded-full shadow -inset-y-1 peer-checked:right-0 peer-checked:left-auto dark:bg-violet-400"></div>
+                                                    </span>
+                                                    <span><FiMoon size={'20px'} color="white" /></span>
+
+                                                </label>
+                                            </li>
                                         </ul>
                                     </nav>
                                 </div>
