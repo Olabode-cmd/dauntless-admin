@@ -6,10 +6,10 @@ export default function Logout() {
     const router = useRouter();
     React.useEffect(() => {
         signOut({
-            callbackUrl: `/auth/login`
+            callbackUrl: `/`
         })
             .then(() => {
-                router.push('/auth/login');
+                router.push('/');
             })
             .catch(err => {
                 console.error(err);

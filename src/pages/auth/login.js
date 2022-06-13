@@ -16,7 +16,7 @@ function Login() {
         signIn("credentials", {
             email,
             password,
-            redirect:false
+            // redirect:false
         }).then((res) => {
            
             })
@@ -92,6 +92,7 @@ function Login() {
 export default Login
 export async function getServerSideProps(context) {
     const session = await getSession(context);
+    console.log(session)
     if (session?.user?.role == 1) {
         return {
             props: {},

@@ -2,6 +2,40 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { Server } from "../lib/service";
 
+
+
+
+/**
+ * Takes a token, and returns a new token with updated
+ * `accessToken` and `accessTokenExpires`. If an error occurs,
+ * returns the old token and an error property
+ */
+ async function refreshAccessToken(token) {
+  //  console.log(token)
+  try {
+    const response = await Server.get('/', {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${token?.accessToken}`
+      },
+    })
+    if (response.status !== 200) {
+      throw Error
+    }
+
+   return {
+      ...token,
+    }
+  } 
+  catch (error){
+    return {
+      ...token,
+      error: 'RefreshAccessTokenError'
+    }
+  }
+}
+
+
 export default NextAuth({
   pages: {
     error: "/auth/login",
@@ -36,7 +70,6 @@ export default NextAuth({
             tokenExpires,
           };
         }
-        // console.log(result)
         return result;
       },
     })
@@ -44,10 +77,11 @@ export default NextAuth({
   callbacks: {
     jwt: ({ token, user }) => {
       if (user) {
-        // console.log(user);
+        const expire = new Date(user.tokenExpires)
+        const expireIn = Date.now() + expire * 1000
         token = {
           accessToken: user.token,
-          expiresIn: user.tokenExpires,
+          expiresIn : expireIn,
           user: {
             id: user.user.id,
             name: user.user.name,
@@ -56,25 +90,22 @@ export default NextAuth({
           }
         };
       }
-      // console.log(token)
-      return {...token};
+
+      
+      // Return previous token if the access token has not expired yet
+      if (Date.now() < token.expiresIn) {
+        return token
+      }
+      return refreshAccessToken(token)
     },
     session: async ({ session, token }) => {
-      if (token && token?.exp  <= Date.now()) {
-       session.user = token.user;
-       session.accessToken = token.accessToken;
-       return session
-     }
-      return null
+      session.user = token.user
+      session.accessToken = token.accessToken
+      session.error = token.error
+      // console.log("i the session works", session)
+      return session
     },
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-  jwt: {
-    secret: 'test',
-    expiresIn: "1d",
-    encryption: true
   }
 });
 
 
-// export default NextAuth({

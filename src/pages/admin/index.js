@@ -330,7 +330,14 @@ export default function HomePage(props) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  // console.log(session)
+  if(typeof session?.error !== 'undefined'){
+    return {
+      props: {},
+      redirect: {
+          destination: "/auth/logout",
+          permanent: false,
+      },
+  }}
   const trades = await Server.get('/admin/card-transactions', {
     headers: {
       Authorization: `Bearer ${session?.accessToken}`,
