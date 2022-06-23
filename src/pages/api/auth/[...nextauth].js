@@ -93,10 +93,10 @@ export default NextAuth({
 
       
       // Return previous token if the access token has not expired yet
-      if (Date.now() < token.expiresIn) {
-        return token
+      if (Date.now() > token.expiresIn) {
+        return refreshAccessToken(token)
       }
-      return refreshAccessToken(token)
+      return token
     },
     session: async ({ session, token }) => {
       session.user = token.user

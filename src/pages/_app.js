@@ -10,6 +10,14 @@ import './background.css';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import {useEffect} from 'react'
+import OneSignal from 'react-onesignal';
+
+const signal = async() => {
+  await OneSignal.init({
+    appId: '7f189fd0-f26b-4a61-9a74-b43b014aa321', allowLocalhostAsSecureOrigin: true
+  });
+  OneSignal.showSlidedownPrompt();
+}
 
 
 
@@ -19,6 +27,7 @@ function MyApp({ Component,  pageProps: { session, ...pageProps } }) {
   useEffect(()=> {
     AOS.init()
     AOS.refresh()
+    signal()
   }, [])
   return (
     <SessionProvider session={session}>

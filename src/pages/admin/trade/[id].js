@@ -12,15 +12,19 @@ import { Server, imageLoader, CardLoader } from '../../api/lib/service';
 import Image from 'next/image';
 import moment from 'moment';
 
+const bg = require('./bg.png');
+const logo = require('./2-fav.png');
+
+
+
 const TradeId = (props) => {
     const role = ['seun', 'tope', 'sade',];
     const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
-    
+
     const [copy, setCopy] = useState('')
 
     const sle = (id) => props.card.filter(card => card.id === id);
 
-  
     const [isOpen, setIsOpen] = useState(false)
     const [data, setData] = useState({})
     useEffect(() => {
@@ -29,8 +33,7 @@ const TradeId = (props) => {
     const obj = JSON.parse(props.trade[0].data)
     const image = Object.values(obj);
 
-
-    console.log(CardLoader(props.card, data.cardType?.card_id)[0]?.name)
+    console.log(bg.default.src)
 
     return (
         <AdminLayout>
@@ -72,16 +75,51 @@ const TradeId = (props) => {
                         <div className="flex flex-wrap">
                             {
                                 data.cardType?.type_id === 1 ? (
-                                    'life is good'
+                                    <div className="flex">
+                                        <div className="grid">
+                                        {image.map((item, index) => (
+                                            <div class="relative h-56 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg w-96 overflow-hidden m-3">
+                                                {/* <svg viewBox="0 0 220 192" width="220" height="192" fill="none" class="absolute -left-10 -top-16 text-blue-900 opacity-50">
+                                                    <defs>
+                                                        <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                            <rect x="0" y="0" width="4" height="4" fill="currentColor"></rect>
+                                                        </pattern>
+                                                    </defs>
+                                                    <rect width="220" height="192" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"></rect>
+                                                </svg> */}
+                                                {/* <svg viewBox="0 0 220 192" width="220" height="192" fill="none" class="absolute -right-20 -bottom-32 text-blue-900 opacity-50">
+                                                    <defs>
+                                                        <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                            <rect x="0" y="0" width="4" height="4" fill="currentColor"></rect>
+                                                        </pattern>
+                                                    </defs>
+                                                    <rect width="220" height="192" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"></rect>
+                                                </svg> */}
+                                                <img src={logo.default.src} alt="" class="absolute right-4 bottom-2 h-12" />
+                                                <div class="absolute top-10 left-8 text-black font-semibold text-center text-2xl space-x-1.5 h-12 w-16 bg-gradient-to-r from-yellow-400 to-yellow-200 opacity-90 rounded-lg overflow-hidden">
+                                                <span>{index + 1}</span>
+                                                </div>
+                                                <div class="absolute bottom-20 left-8 text-white font-semibold text-2xl space-x-1.5">
+                                                    <span>{item}</span>
+                                                </div>
+
+                                                <div class="absolute bottom-6 left-8 text-gray-200 font-semibold text-xl uppercase">
+                                                    <span>{CardLoader(props.card, data.cardType?.card_id)[0]?.name} {data.cardType?.type_id == 1 ? 'E-code' : 'Physical Card'}</span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        </div>
+                                    </div>
                                 ) : (
                                     image.map((item, index) => (
-                                        <div className="w-3/12 mx-3">
+                                        <div className="w-4/12 mx-4">
                                             <Image
                                                 loader={imageLoader}
                                                 src={item}
-                                                width={500}
-                                                height={700}
+                                                width={800}
+                                                height={800}
                                                 key={index}
+                                                className={"scale:100 hover:scale-75 ease-in duration-500 rounded shadow-sm min-h-48 bg-coolGray-500 aspect-square"}
                                             />
                                         </div>
                                     )
@@ -90,44 +128,13 @@ const TradeId = (props) => {
                             }
                         </div>
 
-                        <div className="flex flex-wrap">
-                            <div className="w-full lg:w-5/12 p-4 bgStyle" style={{ backgroundImage: `linear-gradient(to right, #0f172ac7, #312e81a6), url("https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-256.png")`}}>
-                                <div className="flex justify-between my-4">
-                                    <p className="text-sm" id="myInput">Lorem ipsum dolor </p>
-                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-
-                                <div className="flex justify-between my-4">
-                                    <p className="text-sm">473872-382832-18292 </p>
-                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-
-                                <div className="flex justify-between my-4">
-                                    <p className="text-md text-slate-200">473872-382832-18292 </p>
-                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-
-                                <div className="flex justify-between my-4">
-                                    <p className="text-md text-slate-200">Lorem ipsum dolor </p>
-                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-
-                                <div className="flex justify-between my-4">
-                                    <p className="text-md text-slate-200">Lorem ipsum dolor </p>
-                                    <FiCopy className="text-slate-200 hover:text-yellow-400 transition hover:scale-150" />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        {/* <a href="#my-modal-2" className="btn">Open modal</a> */}
 
 
                         <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">Trade incomplete</span></h5>
 
 
                         <div className="flex justify-between dark:text-gray-100 text-black  items-center">
-                            <h5 className="text-1xl font-bold">Card Info: <span className="text-slate-100 font-normal">{CardLoader(props.card, data.cardType?.card_id)[0]?.name} {data.cardType?.type_id == 1 ? 'E-code': 'Physical Card'}</span></h5>
+                            <h5 className="text-1xl font-bold">Card Info: <span className="text-slate-100 font-normal">{CardLoader(props.card, data.cardType?.card_id)[0]?.name} {data.cardType?.type_id == 1 ? 'E-code' : 'Physical Card'}</span></h5>
                         </div>
                         {
                             data.tradeStatus?.name !== 'complete' && (
@@ -158,12 +165,13 @@ const TradeId = (props) => {
 
                 <div className="w-full mt-8 lg:mt-0 lg:w-3/12 lg:pl-4 bg-gray-300 dark:bg-gray-800 rounded-3xl px-6 mx-4">
                     <div className="max-w-sm pb-5 mx-auto mt-4 overflow-hidden rounded-lg shadow-lg bg-slate-700">
-                        <div className="h-40 bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-600">
+                        <div className="h-40 bg-gradient-to-br from-yellow-400 via-yellow-500 to-black-600">
                             <div className="flex justify-center">
                                 <span className="mt-10 text-2xl font-extrabold text-white">{data.user?.full_name}</span>
                             </div>
                             <div className="flex justify-center">
-                                <img className="object-cover w-24 h-24 mt-4 border-4 border-blue-600 rounded-full" src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg" />
+                                {/* <img className="object-cover w-24 h-24 mt-4 border-4 border-blue-600 rounded-full" src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg" /> */}
+                                <img src={imageLoader({ src: data.user?.picture, width: 100, height: 100 })} className="object-cover w-24 h-24 mt-4 border-4 border-yellow-100 rounded-full" />
                             </div>
                         </div>
                         <div className="px-6 py-4 bg-slate-200">
@@ -191,21 +199,13 @@ const TradeId = (props) => {
                         </div>
 
                         <div className="flex justify-center mt-2">
-                            <button type="button" className="inline-flex items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                            <button type="button" className="inline-flex items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-500 border border-transparent rounded-md hover:bg-yellow-900 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                 View Profile
                             </button>
                         </div>
                     </div>
-
-                    <div>
-
-                    </div>
                 </div>
-
             </div>
-
-
-
         </AdminLayout>
     );
 }

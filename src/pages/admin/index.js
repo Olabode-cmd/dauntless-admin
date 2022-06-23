@@ -7,10 +7,11 @@ import DoughnutChart from '../../components/donut';
 import DropdownRender from '../../components/dropdown';
 import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
 import AdminLayout from '../../dashboard/AdminLayout';
-import { Server } from '../api/lib/service';
+import { Server, imageLoader } from '../api/lib/service';
 import { getSession } from 'next-auth/react';
 import moment from 'moment';
 import Error from 'next/error'
+import Image from 'next/image' 
 
 export default function HomePage(props) {
 
@@ -244,7 +245,15 @@ export default function HomePage(props) {
                           <td className="px-4 py-3 border">
                             <div className="flex items-center text-sm">
                               <div className="relative w-8 h-8 mr-3 rounded-full md:block">
-                                <img className="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
+                                {/* <img className="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" /> */}
+                                <Image
+                                                loader={imageLoader}
+                                                src={trade?.user?.picture}
+                                                width={500}
+                                                height={500}
+                                                // key={index}
+                                                className="object-cover w-full h-full rounded-full"
+                                            />
                                 <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                               </div>
                               <div>
@@ -295,13 +304,6 @@ export default function HomePage(props) {
         <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
           <div className="flex flex-row justify-between">
             <h1 className='dark:text-gray-100 text-black'>Card Trade Analytics</h1>
-            <div className="flex justify-center">
-              <div>
-                {/* <div className="relative inline-flex self-center"> */}
-                {/*  */}
-                {/* </div> */}
-              </div>
-            </div>
           </div>
           <AreaChart data={data} />
         </div>
@@ -330,6 +332,7 @@ export default function HomePage(props) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
+  console.log(session);
   if(typeof session?.error !== 'undefined'){
     return {
       props: {},
