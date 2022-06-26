@@ -4,6 +4,7 @@ import Breadcumb from '../../../components/breadcumb';
 import AdminLayout from '../../../dashboard/AdminLayout';
 // import { Helmet } from "react-helmet"
 import MaterialTable, { Column } from "@material-table/core";
+import Visibility from '@material-ui/icons/Visibility'
 import { Tab } from '@headlessui/react'
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -120,18 +121,18 @@ const Index = (props) => {
                 return (
                     <p className="text-xs">
                         {rowData.tradeStatus.id === 1 ?
-                            (<span className="font-semibold leading-tight text-white bg-green-500 rounded-sm"> Pending </span>) :
+                            (<span className="font-semibold leading-tight text-white bg-gray-700 rounded-sm p-2"> Pending </span>) :
                             rowData.tradeStatus.id === 2 ?
-                                (<span className="font-semibold leading-tight text-white bg-gray-700 rounded-sm"> Pending </span>) :
+                                (<span className="font-semibold leading-tight text-white bg-green-700 rounded-sm p-2"> Reviewing </span>) :
                                 rowData.tradeStatus.id === 3 ?
-                                    (<span className="font-semibold leading-tight text-white bg-amber-400 rounded-sm"> Agent Redeeming </span>) :
+                                    (<span className="font-semibold leading-tight text-white bg-amber-400 rounded-sm p-2"> Agent Redeeming </span>) :
                                     rowData.tradeStatus.id === 4 ?
-                                        (<span className="font-semibold leading-tight text-white bg-green-600 rounded-sm"> Trade Completed </span>) :
+                                        (<span className="font-semibold leading-tight text-white bg-green-400 rounded-sm p-2"> Trade Completed </span>) :
                                         rowData.tradeStatus.id === 5 ?
-                                            (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm"> Trade Rejected </span>) :
+                                            (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm p-2"> Trade Rejected </span>) :
                                             rowData.status === 6 ?
-                                                (<span className="font-semibold leading-tight text-white bg-yellow-900 rounded-sm"> Trade Paid </span>) :
-                                                (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"> {lookup[rowData.status]} </span>)
+                                                (<span className="font-semibold leading-tight text-white bg-yellow-900 rounded-sm p-2"> Trade Paid </span>) :
+                                                (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm p-2"> {lookup[rowData.status]} </span>)
                         }
                     </p>
                 )
@@ -151,8 +152,8 @@ const Index = (props) => {
                 return (
                     <p className="text-xs">
                         {rowData.payment === true ?
-                            (<span className="font-semibold leading-tight text-white bg-green-500 rounded-sm"> Withdraw </span>) :
-                            (<span className="font-semibold leading-tight text-white bg-gray-700 rounded-sm"> Wallet </span>)
+                            (<span className="font-semibold leading-tight text-white bg-green-500 rounded-sm p-2"> Withdraw </span>) :
+                            (<span className="font-semibold leading-tight text-white bg-gray-700 rounded-sm p-2"> Wallet </span>)
                         }
                     </p>
                 )
@@ -332,7 +333,7 @@ const Index = (props) => {
                                         actions={[
 
                                             rowData => ({
-                                                icon: 'visibility',
+                                                icon: Visibility,
                                                 tooltip: 'View Trade',
                                                 onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                             })
@@ -359,7 +360,7 @@ const Index = (props) => {
                                         options={{
                                             actionsColumnIndex: -1,
                                             rowStyle: {
-                                                backgroundColor: '#fafafa',
+                                                backgroundColor: '#FF0000',
                                                 color: '#'
                                             },
                                             rowStyle: rowData => ({
@@ -369,7 +370,7 @@ const Index = (props) => {
                                         }}
                                         actions={[
                                             rowData => ({
-                                                icon: 'visibility',
+                                                icon: Visibility,
                                                 tooltip: 'View Trade',
                                                 onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                             })
@@ -385,7 +386,7 @@ const Index = (props) => {
                                     )}
                                 >
                                     <MaterialTable
-                                        title="Completed Trades"
+                                        title="Failed Trades"
                                         columns={columns}
                                         data={failed}
                                         key={data.id}
@@ -394,7 +395,7 @@ const Index = (props) => {
                                         options={{
                                             actionsColumnIndex: -1,
                                             rowStyle: {
-                                                backgroundColor: '#fafafa',
+                                                backgroundColor: '#FF0000',
                                                 color: '#'
                                             },
                                             rowStyle: rowData => ({
@@ -405,7 +406,7 @@ const Index = (props) => {
                                         actions={[
 
                                             rowData => ({
-                                                icon: 'visibility',
+                                                icon: Visibility,
                                                 tooltip: 'View Trade',
                                                 onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                             })
