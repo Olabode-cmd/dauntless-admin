@@ -9,7 +9,7 @@ import MaterialTable, { Column } from "@material-table/core";
 import Icon from "@material-ui/core/Icon";
 import { forwardRef } from 'react';
 import SaveAlt from '@material-ui/icons/SaveAlt';
-import Check from '@material-ui/icons/Check'
+import Visibility from '@material-ui/icons/Visibility'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
 import moment from 'moment';
 import { useRouter } from 'next/router';
@@ -141,7 +141,7 @@ export default function Users(props) {
                     <div className="flex items-center">
                         {
                         rowData.userWallet !== undefined || rowData.userWallet.amount != '0'  ? (
-                                <p className="text-ms font-semibold">{rowData.available_balance}</p>) : (
+                                <p className="text-ms font-semibold">{rowData.userWallet?.amount}</p>) : (
                                 <p className="text-ms font-semibold">0</p>
                             )
                         }
@@ -190,7 +190,7 @@ export default function Users(props) {
                                             data={users}
                                             actions={[
                                                 {
-                                                    icon: "visibility",
+                                                    icon: Visibility,
                                                     tooltip: "View User",
                                                     onClick: (event, rowData) => {
                                                       if (rowData.is_verified == true) {

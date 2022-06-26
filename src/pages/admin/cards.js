@@ -372,37 +372,37 @@ const Cards = (props) => {
                         <div>
                             <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
                                 <img
-                                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                                    src="https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-256.png"
                                     alt="profile image"
-                                    className="object-cover w-10 h-10 rounded-full"
+                                    className="object-cover w-10 h-10 rounded-full p-0 bg-white"
                                 />
                                 <div className="pl-4 w-full">
                                     <div className="flex items-center justify-between w-full">
-                                        <div className="dark:text-white text-black' font-medium">Admin 001</div>
+                                        <div className="dark:text-white text-black' font-medium">Bestselling Card</div>
                                     </div>
-                                    <p className="my-2 text-sm dark:text-gray-100 text-black'">
-                                        Update a card details
+                                    <p className="my-2 text-sm dark:text-gray-100 text-black">
+                                        iTunes
                                     </p>
                                 </div>
                             </div>
 
                             <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
                                 <img
-                                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
+                                    src="https://cdn3.iconfinder.com/data/icons/picons-social/57/67-amazon-256.png"
                                     alt="profile image"
-                                    className="object-cover w-10 h-10 rounded-full"
+                                    className="object-cover w-10 h-10 rounded-full bg-white"
                                 />
                                 <div className="pl-4 w-full">
                                     <div className="flex items-center justify-between w-full">
-                                        <div className="dark:text-white text-black' font-medium">Admin 002</div>
+                                        <div className="dark:text-white text-black' font-medium">Highest Rate</div>
                                     </div>
                                     <p className="my-2 text-sm dark:text-gray-100 text-black'">
-                                        increase card rate with Itu001 by 10% on 12/12/2020
+                                        Amazon (N500)
                                     </p>
                                 </div>
                             </div>
 
-                            <ActivityLog />
+                            {/* <ActivityLog /> */}
                         </div>
                     </div>
                 </div>

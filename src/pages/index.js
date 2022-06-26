@@ -48,7 +48,7 @@ function Index() {
           </div>
 
           
-          <div className="items-center relative text-center p-2 md:p-6 mt-4 md:mt-8 flex">
+          <div className="items-center relative text-center p-6 md:p-6 mt-4 md:mt-8 flex">
             <img src="images/header-img.png" alt="" className="header-img" data-aos="fade-up" data-aos-duration="500" data-aos-delay="6000" />
             <img src="images/card-float.png" alt="" className="card-float one" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="600" />
             <img src="images/card-float2.png" alt="" className="card-float two" data-aos="fade-left" data-aos-duration="1700" data-aos-delay="800" />
@@ -88,9 +88,10 @@ function Index() {
 
         <div className="p-8 space-y-8 text-center lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
         <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200">Trade with us</h2>
-          <p className="dark:text-slate-400 text-slate-700 w-9/12 inline-block">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Nesciunt facilis quod accusantium beatae cum nam adipisci reiciendis omnis possimus error quo animi
-            voluptas magni, at incidunt. Nulla ex at ullam corporis quidem adipisci vitae, perferendis dolorem
+          <p className="dark:text-slate-400 text-slate-700 w-9/12 inline-block">We provide the best value return for your gift card assets on Dauntless. 
+          We believe that everyone deserves the opportunity to profit, which motivates us to assist those who share this belief.
+          Our gift card rates are automatically updated to keep up with market rates. 
+          The goal is not only to make money, but also to ensure that every user has a fantastic experience while using the platform. 
           </p>
         </div>
 
