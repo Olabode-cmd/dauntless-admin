@@ -189,6 +189,7 @@ export default function Users(props) {
                                             columns={column}
                                             data={users}
                                             actions={[
+                                                
                                                 {
                                                     icon: Visibility,
                                                     tooltip: "View User",
