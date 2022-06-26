@@ -36,6 +36,7 @@ export default function Users(props) {
                 fontWeight: 'bold',
             },
             render: (rowData) => {
+                
                 return (
                     <div className="flex text-sm">
                         <div className="relative w-8 h-8 mr-3 rounded-full md:block">
@@ -170,6 +171,7 @@ export default function Users(props) {
     useEffect(() => {
         setUsers([...props.userData])
     }, [])
+
     return (
         <AgentLayout>
 
