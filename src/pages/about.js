@@ -33,25 +33,24 @@ function About () {
                     </div>
                     <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
                         <div>
-                            <h3 className="text-2xl font-bold tracking-tight sm:text-3xl text-yellow-400">Ad vix debet docendi</h3>
+                            <h3 className="text-2xl font-bold tracking-tight sm:text-3xl text-yellow-400">Why is Dauntless the best?</h3>
                             <p className="mt-6 space-y-12 text-slate-800 dark:text-slate-200">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio at similique nam fugit culpa tenetur.
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, fugit voluptates.
-                                Commodi earum doloribus at ducimus aliquid deserunt dicta voluptate ea consequatur id.
+                                A platform designed for YOU to trade, buy, and sell digital assets such as gift cards, Bitcoins, Tether, Litecoins, Dogecoins, Airtime, and Data topup.
+                                Payment options include Naira, Cedis, Bitcoin, and USDT. 
                             </p>
                             <p className="mt-6 space-y-12 text-slate-800 dark:text-slate-200">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio at similique nam fugit culpa tenetur.
-                                Commodi earum doloribus at ducimus aliquid deserunt dicta voluptate ea consequatur id.
+                                As a Dauntless user, you have access to highly secure Bitcoin, TETHER (USDT), Dogecoin, and Litecoin wallet addresses that are unique to each account
+                                and can be used to receive crypto from anywhere in the world at any time in exchange for naira or cedis.
                             </p>
                             <p className="mt-6 space-y-12 text-slate-800 dark:text-slate-200">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio at similique nam fugit culpa tenetur.
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, fugit voluptates.
-                                Commodi earum doloribus at ducimus aliquid deserunt dicta voluptate ea consequatur id.
+                                Dauntless is Nigeria's leading online gift card and cryptocurrency exchange platform.
+                                Thousands of customers across the country have tried and trusted it.
+                                No more losing hard-earned bitcoin and gift cards to rippers; instead, sell on Dauntless and rest easy. 
                             </p>
                             
                         </div>
                         <div aria-hidden="true" className="mt-10 lg:mt-0">
-                            <img src="https://source.unsplash.com/random/360x480" alt="image" className="mx-auto rounded-lg shadow-lg dark:bg-coolGray-500" />
+                            <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z2lmdCUyMGNhcmQlMjB0cmFkZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="image" className="mx-auto rounded-lg shadow-lg dark:bg-coolGray-500" />
                         </div>
                     </div>
                     <div>

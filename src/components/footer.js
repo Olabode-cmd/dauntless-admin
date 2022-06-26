@@ -25,7 +25,7 @@ export default function Footer() {
                               </button>
                           </form>
                           <p className="mt-4 text-sm text-gray-500">
-                              Bacon ipsum dolor amet short ribs pig sausage prosciuto chicken spare ribs salami.
+                              Get priceless emails packed with value offers every week. Don't miss out!
                           </p>
                       </div>
                   </div>
@@ -44,6 +44,9 @@ export default function Footer() {
                               <AiFillFacebook size={"25px"} />
                           </a>
                       </div>
+                  </div>
+                  <div className="w-full text-center text-sm text-white pb-2">
+                    <h1>Powered by Perfcreg Solutions.</h1>
                   </div>
               </div>
           </div>

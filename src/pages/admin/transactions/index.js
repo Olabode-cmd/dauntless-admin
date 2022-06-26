@@ -5,8 +5,8 @@ import Statistics from '../../../components/statistics';
 // import AreaChart from '../../components/chart';
 import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
 import AdminLayout from '../../../dashboard/AdminLayout';
-import { Helmet } from "react-helmet"
 import MaterialTable, { Column } from "@material-table/core";
+import Visibility from '@material-ui/icons/Visibility'
 import { Tab } from '@headlessui/react'
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -109,11 +109,11 @@ const Index = (props) => {
                 return (
                     <p className="text-xs">
                         {rowData.status === 1 ?
-                            (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm p-1"> Pending </span>) :
+                            (<span className="font-semibold leading-tight text-white bg-gray-700 rounded-sm p-2"> Pending </span>) :
                             rowData.status === 2 ?
-                                (<span className="font-semibold leading-tight text-white bg-green-700 rounded-sm p-1"> Completed </span>) :
+                                (<span className="font-semibold leading-tight text-white bg-green-500 rounded-sm p-2"> Completed </span>) :
                                 rowData.status === 3 ?
-                                    (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm p-1"> Failed</span>) :
+                                    (<span className="font-semibold leading-tight text-white bg-red-400 rounded-sm p-2"> Failed</span>) :
                                     (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"></span>)
                         }
                     </p>
@@ -247,8 +247,8 @@ const Index = (props) => {
                                         actions={[
 
                                             rowData => ({
-                                                icon: 'visibility',
-                                                tooltip: 'View Trade',
+                                                icon: Visibility,
+                                                tooltip: 'View Withdrawal',
                                                 onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`)
                                             })
                                         ]}
@@ -285,8 +285,8 @@ const Index = (props) => {
                                         actions={[
 
                                             rowData => ({
-                                                icon: 'visibility',
-                                                tooltip: 'View Trade',
+                                                icon: Visibility,
+                                                tooltip: 'View Withdrawal',
                                                 // onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
                                                 onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`)
 
@@ -325,8 +325,8 @@ const Index = (props) => {
                                         actions={[
 
                                             rowData => ({
-                                                icon: 'visibility',
-                                                tooltip: 'View Trade',
+                                                icon: Visibility,
+                                                tooltip: 'View Withdrawal',
                                                 // onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
                                                 onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`)
 
@@ -364,8 +364,8 @@ const Index = (props) => {
                                         actions={[
 
                                             rowData => ({
-                                                icon: 'visibility',
-                                                tooltip: 'View Trade',
+                                                icon: Visibility,
+                                                tooltip: 'View Withdrawal',
                                                 onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
                                             })
                                         ]}

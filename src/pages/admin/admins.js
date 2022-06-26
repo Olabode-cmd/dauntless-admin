@@ -8,7 +8,7 @@ import MaterialTable, { Column } from "@material-table/core";
 import Icon from "@material-ui/core/Icon";
 import { forwardRef } from 'react';
 import SaveAlt from '@material-ui/icons/SaveAlt';
-import Check from '@material-ui/icons/Check'
+import Delete from '@material-ui/icons/Delete'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
 import moment from 'moment';
 
@@ -168,7 +168,7 @@ export default function Admins() {
                                             actions={[
 
                                                 rowData => ({
-                                                    icon: 'Check',
+                                                    icon: Delete,
                                                     tooltip: 'Delete Admin',
                                                     onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
                                                     disabled: rowData.birthYear < 2000

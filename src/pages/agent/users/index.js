@@ -6,6 +6,7 @@ import { getSession } from 'next-auth/react';
 import { FiUserPlus, FiDollarSign, FiActivity, FiSave } from 'react-icons/fi'
 import AgentLayout from '../../../dashboard/AgentLayout';
 import MaterialTable, { Column } from "@material-table/core";
+import Visibility from '@material-ui/icons/Visibility'
 import Icon from "@material-ui/core/Icon";
 import { forwardRef } from 'react';
 import SaveAlt from '@material-ui/icons/SaveAlt';
@@ -132,7 +133,7 @@ export default function Users(props) {
                 )
             },
         },
-        {
+        { 
             title: "Available Balance", editable: false, headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
@@ -141,8 +142,8 @@ export default function Users(props) {
                 return (
                     <div className="flex items-center">
                         {
-                        rowData.userWallet !== undefined || rowData.userWallet.amount != '0'  ? (
-                                <p className="text-ms font-semibold">{rowData.available_balance}</p>) : (
+                            rowData.userWallet !== undefined || rowData.userWallet.amount != '0' ? (
+                                <p className="text-ms font-semibold">{rowData.userWallet?.amount}</p>) : (
                                 <p className="text-ms font-semibold">0</p>
                             )
                         }
@@ -192,11 +193,11 @@ export default function Users(props) {
                                             data={users}
                                             actions={[
                                                 {
-                                                    icon: "visibility",
+                                                    icon: Visibility,
                                                     tooltip: "View User",
                                                     onClick: (event, rowData) => {
                                                         if (rowData.is_verified == true) {
-                                                            Router.push(`/admin/users/${rowData.id}`);
+                                                            Router.push(`/agent/users/${rowData.id}`);
                                                         }
                                                         null
                                                     },
