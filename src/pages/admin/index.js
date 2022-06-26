@@ -12,6 +12,7 @@ import { getSession } from 'next-auth/react';
 import moment from 'moment';
 import Error from 'next/error'
 import Image from 'next/image' 
+import Head from "next/head";
 
 export default function HomePage(props) {
 
@@ -332,8 +333,8 @@ export default function HomePage(props) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  console.log(session);
-  if(typeof session?.error !== 'undefined'){
+  console.log(new Date(session.expires))
+  if(session?.error){
     return {
       props: {},
       redirect: {

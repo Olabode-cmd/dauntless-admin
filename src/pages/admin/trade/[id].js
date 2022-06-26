@@ -33,7 +33,28 @@ const TradeId = (props) => {
     const obj = JSON.parse(props.trade[0].data)
     const image = Object.values(obj);
 
-    console.log(bg.default.src)
+    const confirmTrade = async () => {
+        const confirm = prompt('Are you sure you want to proceed?', 'Yes', 'No')
+        if (confirm === 'Yes') {
+            fetch('/api/trade/confirm', {
+                body: JSON.stringify({
+                    id: props.trade[0].id
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "PUT",
+            }).then(res => {
+                console.log(res)
+                if (res.status == 200) {
+                    props.setTrade(res.data.data)
+                    setIsOpen(false)
+                }
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+    }
 
     return (
         <AdminLayout>
@@ -77,37 +98,21 @@ const TradeId = (props) => {
                                 data.cardType?.type_id === 1 ? (
                                     <div className="flex">
                                         <div className="grid">
-                                        {image.map((item, index) => (
-                                            <div class="relative h-56 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg w-96 overflow-hidden m-3">
-                                                {/* <svg viewBox="0 0 220 192" width="220" height="192" fill="none" class="absolute -left-10 -top-16 text-blue-900 opacity-50">
-                                                    <defs>
-                                                        <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                                            <rect x="0" y="0" width="4" height="4" fill="currentColor"></rect>
-                                                        </pattern>
-                                                    </defs>
-                                                    <rect width="220" height="192" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"></rect>
-                                                </svg> */}
-                                                {/* <svg viewBox="0 0 220 192" width="220" height="192" fill="none" class="absolute -right-20 -bottom-32 text-blue-900 opacity-50">
-                                                    <defs>
-                                                        <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                                            <rect x="0" y="0" width="4" height="4" fill="currentColor"></rect>
-                                                        </pattern>
-                                                    </defs>
-                                                    <rect width="220" height="192" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"></rect>
-                                                </svg> */}
-                                                <img src={logo.default.src} alt="" class="absolute right-4 bottom-2 h-12" />
-                                                <div class="absolute top-10 left-8 text-black font-semibold text-center text-2xl space-x-1.5 h-12 w-16 bg-gradient-to-r from-yellow-400 to-yellow-200 opacity-90 rounded-lg overflow-hidden">
-                                                <span>{index + 1}</span>
-                                                </div>
-                                                <div class="absolute bottom-20 left-8 text-white font-semibold text-2xl space-x-1.5">
-                                                    <span>{item}</span>
-                                                </div>
+                                            {image.map((item, index) => (
+                                                <div class="relative h-56 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg w-96 overflow-hidden m-3">
+                                                    <img src={logo.default.src} alt="" class="absolute right-4 bottom-2 h-12" />
+                                                    <div class="absolute top-10 left-8 text-black font-semibold text-center text-2xl space-x-1.5 h-12 w-16 bg-gradient-to-r from-yellow-400 to-yellow-200 opacity-90 rounded-lg overflow-hidden">
+                                                        <span>{index + 1}</span>
+                                                    </div>
+                                                    <div class="absolute bottom-20 left-8 text-white font-semibold text-2xl space-x-1.5">
+                                                        <span>{item}</span>
+                                                    </div>
 
-                                                <div class="absolute bottom-6 left-8 text-gray-200 font-semibold text-xl uppercase">
-                                                    <span>{CardLoader(props.card, data.cardType?.card_id)[0]?.name} {data.cardType?.type_id == 1 ? 'E-code' : 'Physical Card'}</span>
+                                                    <div class="absolute bottom-6 left-8 text-gray-200 font-semibold text-xl uppercase">
+                                                        <span>{CardLoader(props.card, data.cardType?.card_id)[0]?.name} {data.cardType?.type_id == 1 ? 'E-code' : 'Physical Card'}</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            ))}
                                         </div>
                                     </div>
                                 ) : (
@@ -130,17 +135,17 @@ const TradeId = (props) => {
 
 
 
-                        <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">Trade incomplete</span></h5>
+                        <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">Trade { data.tradeStatus?.name}</span></h5>
 
 
                         <div className="flex justify-between dark:text-gray-100 text-black  items-center">
                             <h5 className="text-1xl font-bold">Card Info: <span className="text-slate-100 font-normal">{CardLoader(props.card, data.cardType?.card_id)[0]?.name} {data.cardType?.type_id == 1 ? 'E-code' : 'Physical Card'}</span></h5>
                         </div>
                         {
-                            data.tradeStatus?.name !== 'complete' && (
+                            data.tradeStatus?.name !== 'completed' && (
                                 <div className="flex justify-between">
 
-                                    <button type="button" className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-green-400 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                    <button onClick={() => confirmTrade()} type="button" className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-green-400 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                         Confirm Trade
                                     </button>
 

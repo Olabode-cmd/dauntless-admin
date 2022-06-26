@@ -76,6 +76,7 @@ export default NextAuth({
   ],
   callbacks: {
     jwt: ({ token, user }) => {
+      console.log(user)
       if (user) {
         const expire = new Date(user.tokenExpires)
         const expireIn = Date.now() + expire * 1000
@@ -93,9 +94,10 @@ export default NextAuth({
 
       
       // Return previous token if the access token has not expired yet
-      if (Date.now() > token.expiresIn) {
+      if (Date.now() < token.expiresIn) {
         return refreshAccessToken(token)
       }
+     
       return token
     },
     session: async ({ session, token }) => {
