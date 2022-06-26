@@ -5,10 +5,75 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer'
 import {signOut, useSession} from 'next-auth/react'
 
+import Stack from '@mui/material/Stack';
+import { Server } from './api/lib/service';
+import { getSession } from 'next-auth/react'
+import { setRevalidateHeaders } from "next/dist/server/send-payload";
+
+const [amount, setAmount] = React.useState("");
+const [comment, setComment] = React.useState("");
+const [total, setTotal] = React.useState('');
+const [image, setImage] = React.useState([]);
+const [imageUrl, setImageUrl] = React.useState([]);
 
 
-function Index() {
-  const { data: session, status } = useSession();
+
+function Index({cards, cardType}) {
+  const { session: session, status } = useSession();
+  const [data, setData] = React.useState('');
+  // const cardOptions = {};
+  // cards.map(option => {
+  //   const { id, name } = option;
+  //   cardOptions[id] = name
+  // })
+
+  const isEqual = (a, b) => a.value === b.value;
+  const unique = (arr) => arr.reduce((result, a) =>
+    result.concat(result.some(b => isEqual(a, b)) ? [] : a)
+  , [])
+
+
+useEffect(() => {
+    const filter = cardType.map((data)=>({
+      key: data.id,
+      label: data.card?.name,
+      image: data.card?.picture,
+      rate: data.rate
+    }))
+    setData(unique(filter))
+  }, [cardType])
+
+
+  const cardBrandSelect = async (event) => {
+    setBrandValue(event.target.value);
+    setAmount("");
+    setTotal(0);
+    setImage([]);
+    const res = props.cards((card) => card.id === event.target.value);
+    setType(res.cardTypes);
+  }
+
+  const cardTypeSelect = async (event) => {
+    setTypeValue(event.target.value);
+    setAmount("");
+    setTotal(0);
+  };
+
+  //when price changes multiply th eamount by the rate
+  const priceChange = async (event) => {
+    setAmount(event.target.value);
+    const value = type.find((card) => card.id === typeValue);
+    if (type.length == 0 || typeValue == "") {
+      alert("Please select a Brand and card type");
+    } else if (value.rate == "0") {
+      setTotal("We are not accepting this card at this time")
+    } else {
+      setTypeId(value.id);
+      setRate(value.rate);
+      const sum = Number(event.target.value * value.rate);
+    }
+  };
+  
   return (
     <div>
       <Navbar
@@ -135,6 +200,11 @@ function Index() {
 
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
           <select className="select max-w-xs mt-1">
+            {
+              data.map((index, data)=>{
+                <option value={data.name} key={data.id}>{data.name}</option>
+              } )
+            }
             <option selected>iTunes</option>
             <option>ebay</option>
             <option>Bart</option>
@@ -282,3 +352,15 @@ function Index() {
 }
 
 export default Index
+
+export async function getServerSideProps(context) {
+  const card = await Server.get('/card')
+  const cardType = await Server.get('/card/card-type')
+
+  return {
+    props: {
+      cards: card.data.message,
+      cardType: cardType.data.message
+    }
+  }
+}
