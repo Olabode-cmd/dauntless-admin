@@ -10,19 +10,14 @@ const data = [
     link: '/agent/',
   },
   {
+    title: 'Trades',
+    icon: <RiExchangeLine size={'20px'} color='gold'/>,
+    link: '/agent/trade',
+  },
+  {
     title: 'Cards and Rates',
     icon: <Icon.FiCreditCard size={'20px'} color='gold'/>,
     link: '/agent/cards',
-  },
-  {
-    title: 'Transactions',
-    icon: <Icon.FiDollarSign size={'20px'} color='gold'/>,
-    link: '/agent/transactions',
-  },
-  {
-    title: 'Users accounts',
-    icon: <Icon.FiUsers size={'20px'} color='gold'/>,
-    link: '/agent/users',
   },
 ];
 

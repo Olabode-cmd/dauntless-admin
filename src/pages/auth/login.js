@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Router, { useRouter } from 'next/router'
-import { signIn, getSession, useSession } from "next-auth/react"
+import { signIn, getSession, useSession, signOut } from "next-auth/react"
 import { ToastContainer, toast } from 'react-toastify';
 
 function Login() {
@@ -13,7 +13,9 @@ function Login() {
 
     // redirect to dashboard if user is already logged in
     useEffect(() => {
-        console.log(session)
+        if (session?.error !== null) {
+           console.log(session?.error)
+        }
         if (session?.user?.role === 1) {
             Router.push("/admin");
         }

@@ -13,8 +13,10 @@ import Visibility from '@material-ui/icons/Visibility'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
 import moment from 'moment';
 import { useRouter } from 'next/router';
-import { Server,  imageLoader} from '../../api/lib/service';
+import { Server, imageLoader } from '../../api/lib/service';
+const user = require('../../../images/user.png');
 
+console.log(user);
 export default function Users(props) {
     const [users, setUsers] = React.useState([]);
     const Router = useRouter();
@@ -26,7 +28,7 @@ export default function Users(props) {
                 fontWeight: 'bold',
             }, render: (rowData) => <p className="text-ms font-semibold">{rowData.customer_id}</p>
         },
-        // { title: "Name", field: "name" },
+
         {
             title: "User", editable: false,
             headerStyle: {
@@ -37,7 +39,7 @@ export default function Users(props) {
                 return (
                     <div className="flex text-sm">
                         <div className="relative w-8 h-8 mr-3 rounded-full md:block">
-                            <img className="object-cover w-full h-full rounded-full" src={imageLoader({src: rowData.picture, height: 299, quality: 1})} alt="" loading="lazy" />
+                            <img className="object-cover w-full h-full rounded-full" src={rowData.picture !== null ? (imageLoader({ src: rowData.picture, height: 299, quality: 1 })) : user.default.src} alt="" loading="lazy" />
                             <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
                         <div>
@@ -104,7 +106,24 @@ export default function Users(props) {
             title: "Verified", field: "is_verified", editable: false, headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
-            }, lookup: { true: "Yes", false: "No" }
+            }, lookup: { true: "Yes", false: "No" },
+            render: rowData => {
+                return (
+                    <div className="flex items-center">
+                        {
+                            rowData.is_verified == true ? (
+                                <div className="badge badge-success gap-2">
+                                    Yes
+                                </div>
+                            ) : (
+                                <div className="badge badge-error gap-2">
+                                    Not Verified
+                                </div>
+                            )
+                        }
+                    </div>
+                )
+            },
         },
         {
             title: "Status", field: "status",
@@ -140,7 +159,7 @@ export default function Users(props) {
                 return (
                     <div className="flex items-center">
                         {
-                        rowData.userWallet !== undefined || rowData.userWallet.amount != '0'  ? (
+                            rowData.userWallet !== undefined || rowData.userWallet.amount != '0' ? (
                                 <p className="text-ms font-semibold">{rowData.userWallet?.amount}</p>) : (
                                 <p className="text-ms font-semibold">0</p>
                             )
@@ -151,7 +170,7 @@ export default function Users(props) {
         }
     ]
 
-    const updateStatus = React.useCallback(async(id, status) => {
+    const updateStatus = React.useCallback(async (id, status) => {
         const res = await fetch("/api/update-user", {
             body: JSON.stringify({
                 id,
@@ -186,17 +205,17 @@ export default function Users(props) {
                                             columns={column}
                                             data={users}
                                             actions={[
-                                                
+
                                                 {
                                                     icon: Visibility,
                                                     tooltip: "View User",
                                                     onClick: (event, rowData) => {
-                                                      if (rowData.is_verified == true) {
-                                                        Router.push(`/admin/users/${rowData.id}`);
-                                                      }
-                                                      null
+                                                        if (rowData.is_verified == true) {
+                                                            Router.push(`/admin/users/${rowData.id}`);
+                                                        }
+                                                        null
                                                     },
-                                                  },
+                                                },
                                             ]}
 
                                             editable={{
@@ -206,9 +225,9 @@ export default function Users(props) {
                                                             const dataUpdate = [...users];
                                                             const index = oldData.tableData.id;
                                                             dataUpdate[index] = newData;
-                                                            const id = dataUpdate[index].id;
-                                                            const status = dataUpdate[index].status;
                                                             setUsers([...dataUpdate]);
+                                                            const id = newData.id;
+                                                            const status = newData.status;
                                                             updateStatus(id, status);
                                                             resolve();
                                                         }, 1000);
