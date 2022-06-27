@@ -40,8 +40,6 @@ const Cards = (props) => {
             setImage(e.target.result);
         };
         reader.readAsDataURL(file);
-
-        console.log(image)
     }
 
 
@@ -55,6 +53,7 @@ const Cards = (props) => {
         {
             title: 'Card',
             field: 'picture',
+            editable: false,
             render: rowData => <img src={rowData.picture} style={{ width: 40, borderRadius: '50%' }} />,
             editComponent: props => (
                 <Stack direction="row" alignItems="center" spacing={2}>
@@ -99,6 +98,7 @@ const Cards = (props) => {
             title: 'Card',
             field: "card.id",
             lookup: cardOptions,
+            editable: false,
             headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
@@ -117,6 +117,7 @@ const Cards = (props) => {
         {
             title: 'Card Type',
             field: 'type_id',
+            editable: false,
             lookup: { 2: 'Physical', 1: 'E-code', },
             headerStyle: {
                 // backgroundColor: 'yellow',
@@ -128,7 +129,8 @@ const Cards = (props) => {
             title: "Country", field: "name", headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
-            }
+            },
+            editable: false,
         },
         {
             title: "Status", field: "status",
@@ -289,31 +291,6 @@ const Cards = (props) => {
                                         columns={columns}
                                         data={data}
                                         key={data.id}
-                                        editable={{
-                                            onRowAdd: newData =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        setData([...data, newData]);
-                                                        createCard(newData.name, image)
-                                                        setImage('')
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                            onRowUpdate: (newData, oldData) =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        const dataUpdate = [...data];
-                                                        const index = oldData.tableData.id;
-                                                        dataUpdate[index] = newData;
-                                                        setData([...dataUpdate]);
-                                                        updateCard(newData.name, image)
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
-                                        }}
-                                        options={{
-                                            actionsColumnIndex: -1
-                                        }}
                                     />
 
                                 </Tab.Panel>
@@ -331,14 +308,14 @@ const Cards = (props) => {
                                         data={cardType}
                                         key={cardType.id}
                                         editable={{
-                                            onRowAdd: newData =>
-                                                new Promise((resolve, reject) => {
-                                                    setTimeout(() => {
-                                                        setCardType([...cardType, newData]);
+                                            // onRowAdd: newData =>
+                                            //     new Promise((resolve, reject) => {
+                                            //         setTimeout(() => {
+                                            //             setCardType([...cardType, newData]);
 
-                                                        resolve();
-                                                    }, 1000)
-                                                }),
+                                            //             resolve();
+                                            //         }, 1000)
+                                            //     }),
                                             onRowUpdate: (newData, oldData) =>
                                                 new Promise((resolve, reject) => {
                                                     setTimeout(() => {
