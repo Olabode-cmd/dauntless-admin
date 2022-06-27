@@ -5,33 +5,35 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer'
 import {signOut, useSession} from 'next-auth/react'
 
-import Stack from '@mui/material/Stack';
+// import Stack from '@mui/material/Stack';
 import { Server } from './api/lib/service';
+import { getSession } from 'next-auth/react'
+// import { setRevalidateHeaders } from "next/dist/server/send-payload";
 
+// const [amount, setAmount] = React.useState("");
+// const [comment, setComment] = React.useState("");
+// const [total, setTotal] = React.useState('');
+// const [image, setImage] = React.useState([]);
+// const [imageUrl, setImageUrl] = React.useState([]);
 
 
 
 function Index({cards, cardType}) {
   const { session: session, status } = useSession();
-  const [data, setData] = useState([]);
-  const [type, setType] = useState([]);
+  // const [data, setData] = React.useState('');
+  // const cardOptions = {};
+  // cards.map(option => {
+  //   const { id, name } = option;
+  //   cardOptions[id] = name
+  // })
+
+//   const isEqual = (a, b) => a.value === b.value;
+//   const unique = (arr) => arr.reduce((result, a) =>
+//     result.concat(result.some(b => isEqual(a, b)) ? [] : a)
+//   , [])
 
 const [brand, setBrand] = useState('')
-
-useEffect(() => {
-  setData(cards);
-}, []);
-
-  const cardBrandSelect = async (event) => {
-    setBrand(event.target.value);
-    const cardType = data.filter((card)=> card.id == event.target.value);
-    console.log(cardType)
-    setType(cardType);
-  }
-
- 
-
-
+  
   return (
     <div>
       <Navbar
@@ -157,15 +159,17 @@ useEffect(() => {
         <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Cards Rate and Values</span>
 
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
-          <select className="select max-w-xs mt-1"
-          value={brand}
-          onChange={(e) => cardBrandSelect(e)}>
-          <option selected>Select a card</option>
-          {
-            data.map((item, index) => {
-              return <option key={index} value={item.id}>{item.name}</option>
-            })
-          }
+          <select className="select max-w-xs mt-1">
+            {/* {
+              data.map((index, data)=>{
+                <option value={data.name} key={data.id}>{data.name}</option>
+              } )
+            } */}
+            <option selected>iTunes</option>
+            <option>ebay</option>
+            <option>Bart</option>
+            <option>Lisa</option>
+            <option>Maggie</option>
           </select>
 {/*       
           <select className="select max-w-xs mt-1">
@@ -312,13 +316,14 @@ useEffect(() => {
 
 export default Index
 
-export async function getServerSideProps(context) {
-  const card = await Server.get('/card')
-  const cardType = await Server.get('/card/card-type')
-  return {
-    props: {
-      cards: card.data.message,
-      cardType: cardType.data.message
-    }
-  }
-}
+// export async function getServerSideProps(context) {
+//   const card = await Server.get('/card')
+//   const cardType = await Server.get('/card/card-type')
+
+//   return {
+//     props: {
+//       cards: card.data.message,
+//       cardType: cardType.data.message
+//     }
+//   }
+// }
