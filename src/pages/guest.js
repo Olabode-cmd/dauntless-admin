@@ -7,7 +7,6 @@ import { signOut, useSession } from 'next-auth/react'
 
 import Stack from '@mui/material/Stack';
 import { Server } from './api/lib/service';
-import { getSession } from 'next-auth/react'
 
 
 function Guest () {
