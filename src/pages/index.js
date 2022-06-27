@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 import { FaHandshake, FaDollarSign, FaMobileAlt } from "react-icons/fa";
 import Navbar from '../components/navbar';
@@ -7,73 +7,31 @@ import {signOut, useSession} from 'next-auth/react'
 
 import Stack from '@mui/material/Stack';
 import { Server } from './api/lib/service';
-import { getSession } from 'next-auth/react'
-import { setRevalidateHeaders } from "next/dist/server/send-payload";
 
-const [amount, setAmount] = React.useState("");
-const [comment, setComment] = React.useState("");
-const [total, setTotal] = React.useState('');
-const [image, setImage] = React.useState([]);
-const [imageUrl, setImageUrl] = React.useState([]);
 
 
 
 function Index({cards, cardType}) {
   const { session: session, status } = useSession();
-  const [data, setData] = React.useState('');
-  // const cardOptions = {};
-  // cards.map(option => {
-  //   const { id, name } = option;
-  //   cardOptions[id] = name
-  // })
+  const [data, setData] = useState([]);
+  const [type, setType] = useState([]);
 
-  const isEqual = (a, b) => a.value === b.value;
-  const unique = (arr) => arr.reduce((result, a) =>
-    result.concat(result.some(b => isEqual(a, b)) ? [] : a)
-  , [])
-
+const [brand, setBrand] = useState('')
 
 useEffect(() => {
-    const filter = cardType.map((data)=>({
-      key: data.id,
-      label: data.card?.name,
-      image: data.card?.picture,
-      rate: data.rate
-    }))
-    setData(unique(filter))
-  }, [cardType])
-
+  setData(cards);
+}, []);
 
   const cardBrandSelect = async (event) => {
-    setBrandValue(event.target.value);
-    setAmount("");
-    setTotal(0);
-    setImage([]);
-    const res = props.cards((card) => card.id === event.target.value);
-    setType(res.cardTypes);
+    setBrand(event.target.value);
+    const cardType = data.filter((card)=> card.id == event.target.value);
+    console.log(cardType)
+    setType(cardType);
   }
 
-  const cardTypeSelect = async (event) => {
-    setTypeValue(event.target.value);
-    setAmount("");
-    setTotal(0);
-  };
+ 
 
-  //when price changes multiply th eamount by the rate
-  const priceChange = async (event) => {
-    setAmount(event.target.value);
-    const value = type.find((card) => card.id === typeValue);
-    if (type.length == 0 || typeValue == "") {
-      alert("Please select a Brand and card type");
-    } else if (value.rate == "0") {
-      setTotal("We are not accepting this card at this time")
-    } else {
-      setTypeId(value.id);
-      setRate(value.rate);
-      const sum = Number(event.target.value * value.rate);
-    }
-  };
-  
+
   return (
     <div>
       <Navbar
@@ -194,24 +152,22 @@ useEffect(() => {
         </div>
       </section>
 
-
+          
       <section className="bg-slate-100 dark:bg-slate-900 px-16 pb-16 md:px-36" data-aos="fade-up" data-aos-duration="1200">
-        <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Filter Cards</span>
+        <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Cards Rate and Values</span>
 
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
-          <select className="select max-w-xs mt-1">
-            {
-              data.map((index, data)=>{
-                <option value={data.name} key={data.id}>{data.name}</option>
-              } )
-            }
-            <option selected>iTunes</option>
-            <option>ebay</option>
-            <option>Bart</option>
-            <option>Lisa</option>
-            <option>Maggie</option>
+          <select className="select max-w-xs mt-1"
+          value={brand}
+          onChange={(e) => cardBrandSelect(e)}>
+          <option selected>Select a card</option>
+          {
+            data.map((item, index) => {
+              return <option key={index} value={item.id}>{item.name}</option>
+            })
+          }
           </select>
-
+{/*       
           <select className="select max-w-xs mt-1">
             <option disabled selected>Select Currency</option>
             <option>Dollar</option>
@@ -226,50 +182,53 @@ useEffect(() => {
           </select>
 
 
-          <input type="number" className="input max-w-xs mt-1" placeholder="Enter Amount" />
+          <input type="number" className="input max-w-xs mt-1" placeholder="Enter Amount" /> */}
 
         </div>
-
-        <div className="cards mt-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
-          <span className="cardName mb-6 block text-slate-800 dark:text-slate-200 text-2xl font-bold">iTunes</span>
-
-          <div className="p-8 space-y-4 rounded-md bg-slate-300 dark:bg-gray-800 flex flex-wrap items-center">
-            <div className="w-full lg:w-4/12">
-              <img className="rounded" src="https://images.macrumors.com/t/TPiNn40dI2FatwyOudkXpY5Msz8=/1600x900/smart/article-new/2016/12/iTunes-gift-card.jpg" alt="giftcard" />
-            </div>
-
-            <div className="w-full lg:w-7/12 ml-2">
-              <div className="overflow-x-auto">
-                <table className="table w-full">
-
-                  <thead>
-                    <tr>
-                      <th>Total Amount</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                    <tr>
-                      <td>5</td>
-                      <td>$1500</td>
-                    </tr>
-
-                    <tr>
-                      <td>5</td>
-                      <td>$1500</td>
-                    </tr>
-
-                    <tr>
-                      <td>8</td>
-                      <td>$1500</td>
-                    </tr>
-                  </tbody>
-                </table>
+          {
+            type !== null && (
+              <div className="cards mt-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+              <span className="cardName mb-6 block text-slate-800 dark:text-slate-200 text-2xl font-bold">{type[0]?.name}</span>
+    
+              <div className="p-8 space-y-4 rounded-md bg-slate-300 dark:bg-gray-800 flex flex-wrap items-center">
+                <div className="w-full lg:w-4/12">
+                  <img className="rounded" src={type[0]?.picture} alt="giftcard" />
+                </div>
+    
+                <div className="w-full lg:w-7/12 ml-2">
+                  <div className="overflow-x-auto">
+                    <table className="table w-full">
+    
+                      <thead>
+                        <tr>
+                          <th>Cards</th>
+                          <th>Rate (rate in naira to dollars)</th>
+                          <th>Type</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        { type !== null &&
+                          type[0]?.cardTypes.map((item, index) => {
+                            return (
+                              <tr key={index}>
+                                <td>{item.name}</td>
+                                <td>{item.rate}/S</td>
+                                <td>{item.type_id == 1 ? 'Ecode' : 'Physical Card'}</td>
+                                <td>{item.status == 0 ? 'Not Taking Trading': 'Taking Trades'}</td>
+                              </tr>
+                            )
+                          })
+                        }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+            )
+          }
+        
 
       </section>
 
@@ -356,7 +315,6 @@ export default Index
 export async function getServerSideProps(context) {
   const card = await Server.get('/card')
   const cardType = await Server.get('/card/card-type')
-
   return {
     props: {
       cards: card.data.message,

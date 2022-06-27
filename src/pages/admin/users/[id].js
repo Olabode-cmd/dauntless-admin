@@ -116,7 +116,7 @@ const Id = ({ user, cards }) => {
                               <span className="mt-10 text-4xl font-extrabold  text-white">{user?.full_name}</span>
                             </div>
                             <div className="flex justify-center">
-                              <img className="object-cover w-24 h-24 mt-4 border-4 border-orange-400 rounded-full" src="https://im.indiatimes.in/content/2019/Jun/marvel_fans_start_a_petition_to_demand_robert_downey_jr_aka_tony_stark_aka_iron_man_back_1559715390_725x725.jpg" />
+                              <img className="object-cover w-24 h-24 mt-4 border-4 border-orange-400 rounded-full" src={imageLoader({src: user?.picture, width: 100, quality: 1})}/>
                             </div>
                           </div>
                           <div className="px-6 py-4">
@@ -267,8 +267,8 @@ const Id = ({ user, cards }) => {
                                         <td className="px-4 py-3 text-xs border">
                                           {
                                             item?.trade_status_id == 2 ? <span className="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-sm"> Pending </span>
-                                              : item?.trade_status_id == 1 ? <span className="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Failed </span>
-                                                : item?.trade_status_id == 3 ? <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Completed </span>
+                                              : item?.trade_status_id == 3 ? <span className="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Failed </span>
+                                                : item?.trade_status_id == 1 ? <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Completed </span>
                                                   : <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Processing </span>
                                           }
                                         </td>
@@ -276,7 +276,7 @@ const Id = ({ user, cards }) => {
                                         <td className="px-4 py-3 text-sm border">{moment(item?.updated_at).calendar()}</td>
 
                                         <td className="px-4 py-3 text-sm border">
-                                          <a className="cursor-pointer bg-orange-600 hover:bg-orange-500 text-orange-100 py-2 px-4 rounded inline-flex items-center" href={`..//${item?.id}`}>
+                                          <a className="cursor-pointer bg-orange-600 hover:bg-orange-500 text-orange-100 py-2 px-4 rounded inline-flex items-center" href={`../trade/${item?.id}`}>
                                             <span>
                                               <FiEye
                                                 size={20}

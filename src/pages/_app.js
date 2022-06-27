@@ -10,6 +10,8 @@ import './background.css';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import {useEffect} from 'react'
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function MyApp({ Component,  pageProps: { session, ...pageProps } }) {
   useEffect(()=> {

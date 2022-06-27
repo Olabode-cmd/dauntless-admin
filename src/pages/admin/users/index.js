@@ -13,7 +13,7 @@ import Visibility from '@material-ui/icons/Visibility'
 import { SvgIconProps } from '@material-ui/core/SvgIcon'
 import moment from 'moment';
 import { useRouter } from 'next/router';
-import { Server } from '../../api/lib/service';
+import { Server,  imageLoader} from '../../api/lib/service';
 
 export default function Users(props) {
     const [users, setUsers] = React.useState([]);
@@ -37,7 +37,7 @@ export default function Users(props) {
                 return (
                     <div className="flex text-sm">
                         <div className="relative w-8 h-8 mr-3 rounded-full md:block">
-                            <img className="object-cover w-full h-full rounded-full" src={rowData.picture} alt="" loading="lazy" />
+                            <img className="object-cover w-full h-full rounded-full" src={imageLoader({src: rowData.picture, height: 299, quality: 1})} alt="" loading="lazy" />
                             <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
                         <div>
@@ -152,7 +152,7 @@ export default function Users(props) {
     ]
 
     const updateStatus = React.useCallback(async(id, status) => {
-        const res = await fetch("/api/user_status", {
+        const res = await fetch("/api/update-user", {
             body: JSON.stringify({
                 id,
                 status,
@@ -182,9 +182,6 @@ export default function Users(props) {
                                     <div className="shadow-lg rounded-lg overflow-hidden">
 
                                         <MaterialTable
-                                            icons={{
-                                                Check: () => <Check/>
-                                            }}
                                             title="Manage Users"
                                             columns={column}
                                             data={users}

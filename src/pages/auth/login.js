@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signIn, getSession, signOut } from "next-auth/react"
+import { ToastContainer, toast } from 'react-toastify';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -12,21 +13,21 @@ function Login() {
         e.preventDefault();
         setLoginError("");
         setIsLoginStarted(true);
-        // toast.info("Processing request");
+        toast.info("Processing request");
         signIn("credentials", {
             email,
             password,
-            // redirect:false
-        }).then((res) => {
-           
+        }).then(() => {
+            toast.success("Login successful");
             })
             .catch((error) => {
+                toast.error("Error: " + error.message);
             });
     };
     
     return (
         <>
-            {/* <ToastContainer /> */}
+            <ToastContainer />
             <div className="flex flex-col items-center justify-center h-screen bg-gray-700 sm:px-6">
 
                 <div className="logo my-8 inline-block">
