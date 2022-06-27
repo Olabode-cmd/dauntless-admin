@@ -167,26 +167,10 @@ useEffect(() => {
             })
           }
           </select>
-{/*       
-          <select className="select max-w-xs mt-1">
-            <option disabled selected>Select Currency</option>
-            <option>Dollar</option>
-            <option>Euro</option>
-            <option>Pounds</option>
-            <option>Naira</option>
-          </select>
-
-          <select className="select max-w-xs mt-1">
-            <option disabled selected>eCode</option>
-            <option>Card Type</option>
-          </select>
-
-
-          <input type="number" className="input max-w-xs mt-1" placeholder="Enter Amount" /> */}
 
         </div>
           {
-            type !== null && (
+            type.length > 0 && (
               <div className="cards mt-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
               <span className="cardName mb-6 block text-slate-800 dark:text-slate-200 text-2xl font-bold">{type[0]?.name}</span>
     
@@ -208,8 +192,7 @@ useEffect(() => {
                         </tr>
                       </thead>
                       <tbody>
-                        { type !== null &&
-                          type[0]?.cardTypes.map((item, index) => {
+                        {type[0]?.cardTypes.map((item, index) => {
                             return (
                               <tr key={index}>
                                 <td>{item.name}</td>

@@ -8,10 +8,10 @@ export default function Logout() {
         signOut({
             callbackUrl: `/`
         })
-            .then(() => {
-                router.push('/');
-            })
-            .catch(err => {
+        .then(() => {
+            router.push('/auth/login');
+        })
+        .catch(err => {
                 console.error(err);
             });
     }, []);
