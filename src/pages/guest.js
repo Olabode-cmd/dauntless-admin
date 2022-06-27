@@ -7,11 +7,25 @@ import { signOut, useSession } from 'next-auth/react'
 
 import Stack from '@mui/material/Stack';
 import { Server } from './api/lib/service';
-import { getSession } from 'next-auth/react'
 
 
-function Guest () {
-    // const [data, setData] = useState([...props.cards]);
+function Guest({ cards, cardType }) {
+    const { session: session, status } = useSession();
+    const [data, setData] = useState([]);
+    const [type, setType] = useState([]);
+
+    const [brand, setBrand] = useState('')
+
+    useEffect(() => {
+        setData(cards);
+    }, []);
+
+    const cardBrandSelect = async (event) => {
+        setBrand(event.target.value);
+        const cardType = data.filter((card) => card.id == event.target.value);
+        console.log(cardType)
+        setType(cardType);
+    }
 
 
     return (
@@ -33,8 +47,8 @@ function Guest () {
             </section>
 
             <section className="bg-slate-200 py-6 dark:bg-slate-800  px-4 md:px-4">
-                <div className="container flex items-center justify-center mx-auto lg:flex-row lg:justify-between">
-                    <div className="w-full lg:w-7/12 justify-center p-6 mt-8 lg:mt-0" data-aos="fade-up" data-aos-duration="1200">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full items-center justify-center mx-auto lg:justify-between">
+                    <div className="justify-center p-6 mt-8 lg:mt-0 inline-block" data-aos="fade-up" data-aos-duration="1200">
                         <div className="w-full rounded p-8 sm:p-6">
                             <p className="text-2xl font-bold leading-7 text-center text-slate-900 dark:text-slate-100 l-height">Trade</p>
                             <form action="" method="post">
@@ -46,12 +60,15 @@ function Guest () {
                                     <div className="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
                                         <label className="font-semibold leading-none text-slate-800 dark:text-slate-100">Select Card</label>
                                         {/* <input type="email" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-600 rounded" /> */}
-                                        <select name="cards" id="card" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-600 rounded">
-                                            <option selected>iTunes</option>
-                                            <option>ebay</option>
-                                            <option>Bart</option>
-                                            <option>Lisa</option>
-                                            <option>Maggie</option>
+                                        <select className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-600 rounded"
+                                            value={brand}
+                                            onChange={(e) => cardBrandSelect(e)}>
+                                            <option selected>Select a card</option>
+                                            {
+                                                data.map((item, index) => {
+                                                    return <option key={index} value={item.id}>{item.name}</option>
+                                                })
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -90,53 +107,48 @@ function Guest () {
                         </div>
                     </div>
 
-                    <div className="w-full lg:w-6/12" data-aos="fade-up" data-aos-delay="300">
-                        <div className="lg:ml-2">
-                            <div className="overflow-x-auto">
-                                <table className="table w-full">
+                    {
+                        type.length > 0 && (
+                            <div className="cards mt-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                                <span className="cardName mb-6 block text-slate-800 dark:text-slate-200 text-2xl font-bold">{type[0]?.name}</span>
 
-                                    <thead>
-                                        <tr>
-                                            <th>Total Amount</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                <div className="p-8 space-y-4 rounded-md bg-slate-300 dark:bg-gray-600 flex flex-wrap items-center">
+                                    <div className="w-full lg:w-4/12">
+                                        <img className="rounded" src={type[0]?.picture} alt="giftcard" />
+                                    </div>
 
-                                        <tr>
-                                            <td>5</td>
-                                            <td>$1500</td>
-                                        </tr>
+                                    <div className="w-full lg:w-7/12 ml-2">
+                                        <div className="overflow-x-auto">
+                                            <table className="table w-full">
 
-                                        <tr>
-                                            <td>5</td>
-                                            <td>$1500</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>5</td>
-                                            <td>$1500</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>5</td>
-                                            <td>$1500</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>5</td>
-                                            <td>$1500</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>8</td>
-                                            <td>$1500</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Cards</th>
+                                                        <th>Rate (rate in naira to dollars)</th>
+                                                        <th>Type</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {type[0]?.cardTypes.map((item, index) => {
+                                                        return (
+                                                            <tr key={index}>
+                                                                <td>{item.name}</td>
+                                                                <td>{item.rate}/S</td>
+                                                                <td>{item.type_id == 1 ? 'Ecode' : 'Physical Card'}</td>
+                                                                <td>{item.status == 0 ? 'Not Taking Trading' : 'Taking Trades'}</td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        )
+                    }
                 </div>
             </section>
         </div>
@@ -144,3 +156,14 @@ function Guest () {
 }
 
 export default Guest
+
+export async function getServerSideProps(context) {
+    const card = await Server.get('/card')
+    const cardType = await Server.get('/card/card-type')
+    return {
+        props: {
+            cards: card.data.message,
+            cardType: cardType.data.message
+        }
+    }
+}

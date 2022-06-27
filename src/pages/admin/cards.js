@@ -304,10 +304,9 @@ const Cards = (props) => {
                                                         const dataUpdate = [...data];
                                                         const index = oldData.tableData.id;
                                                         dataUpdate[index] = newData;
-                                                        setData([...dataUpdate]);
+                                                        setData(...dataUpdate);
                                                         const id = newData.id;
                                                         const name = newData.name;
-                                                        // console.log(newData)
                                                         updateCard(id, name);
                                                         resolve();
                                                       }, 1000);

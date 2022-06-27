@@ -2,21 +2,25 @@ import {Server} from './lib/service'
 import { getSession } from "next-auth/react";
 
 export default async (req, res) => {
+  console.log(req.body)
   try {
     const session = await getSession({ req });
     const token = session?.accessToken;
-    const result = await Server.put('/admin/update-card', {
+    const result = await Server.put('/admin/user-status', {
       id: req.body.id,
-      name: req.body.name
+      status: req.body.status
     },
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
+    if (result.status === 200) {
+      
+    }
+    return  res.status(500).json({ error: result.data });
   } catch (error) {
-    res.redirect(['401',  ])
+    console.log(error)
   }
  
-  res.status(200).json({user: result})
 }

@@ -3,43 +3,39 @@ import { AiFillAndroid, AiFillApple } from "react-icons/ai";
 import { FaHandshake, FaDollarSign, FaMobileAlt } from "react-icons/fa";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer'
-import {signOut, useSession} from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
-// import Stack from '@mui/material/Stack';
+import Stack from '@mui/material/Stack';
 import { Server } from './api/lib/service';
-import { getSession } from 'next-auth/react'
-// import { setRevalidateHeaders } from "next/dist/server/send-payload";
-
-// const [amount, setAmount] = React.useState("");
-// const [comment, setComment] = React.useState("");
-// const [total, setTotal] = React.useState('');
-// const [image, setImage] = React.useState([]);
-// const [imageUrl, setImageUrl] = React.useState([]);
 
 
-
-function Index({cards, cardType}) {
+function Index({ cards, cardType }) {
   const { session: session, status } = useSession();
-  // const [data, setData] = React.useState('');
-  // const cardOptions = {};
-  // cards.map(option => {
-  //   const { id, name } = option;
-  //   cardOptions[id] = name
-  // })
+  const [data, setData] = useState([]);
+  const [type, setType] = useState([]);
 
-//   const isEqual = (a, b) => a.value === b.value;
-//   const unique = (arr) => arr.reduce((result, a) =>
-//     result.concat(result.some(b => isEqual(a, b)) ? [] : a)
-//   , [])
+  const [brand, setBrand] = useState('')
 
-const [brand, setBrand] = useState('')
-  
+  useEffect(() => {
+    setData(cards);
+  }, []);
+
+  const cardBrandSelect = async (event) => {
+    setBrand(event.target.value);
+    const cardType = data.filter((card) => card.id == event.target.value);
+    console.log(cardType)
+    setType(cardType);
+  }
+
+
+
+
   return (
     <div>
       <Navbar
-          login={
-            status === 'authenticated' ? (true ) : ( false )
-          }
+        login={
+          status === 'authenticated' ? (true) : (false)
+        }
       />
 
       {/* Modal */}
@@ -72,7 +68,7 @@ const [brand, setBrand] = useState('')
             </div>
           </div>
 
-          
+
           <div className="items-center relative text-center p-6 md:p-6 mt-4 md:mt-8 flex">
             <img src="images/header-img.png" alt="" className="header-img" data-aos="fade-up" data-aos-duration="500" data-aos-delay="6000" />
             <img src="images/card-float.png" alt="" className="card-float one" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="600" />
@@ -104,21 +100,21 @@ const [brand, setBrand] = useState('')
 
           <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 dark:hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaMobileAlt /> </span>
-          
+
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Cross-Platform Availiability</h3>
             <p className="text-slate-700 dark:text-slate-100 hover:text-white">Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
           </div>
         </div>
       </section>
 
-        <div className="p-8 space-y-8 text-center lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
+      <div className="p-8 space-y-8 text-center lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
         <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200">Trade with us</h2>
-          <p className="dark:text-slate-400 text-slate-700 w-9/12 inline-block">We provide the best value return for your gift card assets on Dauntless. 
+        <p className="dark:text-slate-400 text-slate-700 w-9/12 inline-block">We provide the best value return for your gift card assets on Dauntless.
           We believe that everyone deserves the opportunity to profit, which motivates us to assist those who share this belief.
-          Our gift card rates are automatically updated to keep up with market rates. 
-          The goal is not only to make money, but also to ensure that every user has a fantastic experience while using the platform. 
-          </p>
-        </div>
+          Our gift card rates are automatically updated to keep up with market rates.
+          The goal is not only to make money, but also to ensure that every user has a fantastic experience while using the platform.
+        </p>
+      </div>
 
       <section className="bg-slate-200 dark:bg-slate-800 dark:text-coolGray-100">
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
@@ -129,81 +125,63 @@ const [brand, setBrand] = useState('')
           <div className="flex-1">
             <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
               <h1 className="text-2xl font-bold leading-none sm:text-5xl text-slate-900 dark:text-slate-200">Trade with us on
-              <span className="text-yellow-400"> Dauntless</span> Platform
-            </h1>
-            <p className="mt-6 text-lg sm:mb-3 medium-font text-slate-800 dark:text-slate-200">
-              Dauntless allows you to trade gift cards from a variety of retailers,
-              including iTunes, Amazon, Steam Wallet, Google Play, Apple Store, eBay, Walmart, Sephora,
-              OneVanilla, Nordstrom, Target, JCPenney, Best Buy, Nike, Hotels.com, Macy's, Gamestop,
-              and others.
-            </p>
+                <span className="text-yellow-400"> Dauntless</span> Platform
+              </h1>
+              <p className="mt-6 text-lg sm:mb-3 medium-font text-slate-800 dark:text-slate-200">
+                Dauntless allows you to trade gift cards from a variety of retailers,
+                including iTunes, Amazon, Steam Wallet, Google Play, Apple Store, eBay, Walmart, Sephora,
+                OneVanilla, Nordstrom, Target, JCPenney, Best Buy, Nike, Hotels.com, Macy's, Gamestop,
+                and others.
+              </p>
               <p className="mt-2 text-lg sm:mb-12 medium-font text-slate-800 dark:text-slate-200">Our payment system is amazingly coherent. You get your money almost instantly, no fees attached and no limits.
-              <br /> Don't worry about rates. We offer the best payout for your assets based on the current market value.
-            </p>
-            <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
+                <br /> Don't worry about rates. We offer the best payout for your assets based on the current market value.
+              </p>
+              <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
                 <a href="#my-modal-1" type="button"
                   className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center"
                 >
                   Read More
                 </a>
-            </div>
+              </div>
 
-              
+
+            </div>
           </div>
-        </div>
         </div>
       </section>
 
-          
+
       <section className="bg-slate-100 dark:bg-slate-900 px-16 pb-16 md:px-36" data-aos="fade-up" data-aos-duration="1200">
         <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Cards Rate and Values</span>
 
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
-          <select className="select max-w-xs mt-1">
-            {/* {
-              data.map((index, data)=>{
-                <option value={data.name} key={data.id}>{data.name}</option>
-              } )
-            } */}
-            <option selected>iTunes</option>
-            <option>ebay</option>
-            <option>Bart</option>
-            <option>Lisa</option>
-            <option>Maggie</option>
             
+          <select className="select max-w-xs mt-1"
+            value={brand}
+            onChange={(e) => cardBrandSelect(e)}>
+            <option selected>Select a card</option>
+            {
+              data.map((item, index) => {
+                return <option key={index} value={item.id}>{item.name}</option>
+              })
+            }
           </select>
-{/*       
-          <select className="select max-w-xs mt-1">
-            <option disabled selected>Select Currency</option>
-            <option>Dollar</option>
-            <option>Euro</option>
-            <option>Pounds</option>
-            <option>Naira</option>
-          </select>
-
-          <select className="select max-w-xs mt-1">
-            <option disabled selected>eCode</option>
-            <option>Card Type</option>
-          </select>
-
-
-          <input type="number" className="input max-w-xs mt-1" placeholder="Enter Amount" /> */}
 
         </div>
-          {
-            type !== null && (
-              <div className="cards mt-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+        {
+          type.length > 0 && (
+            <div className="cards mt-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
               <span className="cardName mb-6 block text-slate-800 dark:text-slate-200 text-2xl font-bold">{type[0]?.name}</span>
-    
+
               <div className="p-8 space-y-4 rounded-md bg-slate-300 dark:bg-gray-800 flex flex-wrap items-center">
                 <div className="w-full lg:w-4/12">
                   <img className="rounded" src={type[0]?.picture} alt="giftcard" />
                 </div>
-    
+
                 <div className="w-full lg:w-7/12 ml-2">
                   <div className="overflow-x-auto">
                     <table className="table w-full">
-    
+
                       <thead>
                         <tr>
                           <th>Cards</th>
@@ -213,17 +191,16 @@ const [brand, setBrand] = useState('')
                         </tr>
                       </thead>
                       <tbody>
-                        { type !== null &&
-                          type[0]?.cardTypes.map((item, index) => {
-                            return (
-                              <tr key={index}>
-                                <td>{item.name}</td>
-                                <td>{item.rate}/S</td>
-                                <td>{item.type_id == 1 ? 'Ecode' : 'Physical Card'}</td>
-                                <td>{item.status == 0 ? 'Not Taking Trading': 'Taking Trades'}</td>
-                              </tr>
-                            )
-                          })
+                        {type[0]?.cardTypes.map((item, index) => {
+                          return (
+                            <tr key={index}>
+                              <td>{item.name}</td>
+                              <td>{item.rate}/S</td>
+                              <td>{item.type_id == 1 ? 'Ecode' : 'Physical Card'}</td>
+                              <td>{item.status == 0 ? 'Not Taking Trading' : 'Taking Trades'}</td>
+                            </tr>
+                          )
+                        })
                         }
                       </tbody>
                     </table>
@@ -231,9 +208,9 @@ const [brand, setBrand] = useState('')
                 </div>
               </div>
             </div>
-            )
-          }
-        
+          )
+        }
+
 
       </section>
 
@@ -317,14 +294,13 @@ const [brand, setBrand] = useState('')
 
 export default Index
 
-// export async function getServerSideProps(context) {
-//   const card = await Server.get('/card')
-//   const cardType = await Server.get('/card/card-type')
-
-//   return {
-//     props: {
-//       cards: card.data.message,
-//       cardType: cardType.data.message
-//     }
-//   }
-// }
+export async function getServerSideProps(context) {
+  const card = await Server.get('/card')
+  const cardType = await Server.get('/card/card-type')
+  return {
+    props: {
+      cards: card.data.message,
+      cardType: cardType.data.message
+    }
+  }
+}

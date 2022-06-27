@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { signIn, getSession, signOut } from "next-auth/react"
+import Router, { useRouter } from 'next/router'
+import { signIn, getSession, useSession, signOut } from "next-auth/react"
 import { ToastContainer, toast } from 'react-toastify';
 
 function Login() {
@@ -8,6 +8,22 @@ function Login() {
     const [password, setPassword] = useState("");
     const [isLoginStarted, setIsLoginStarted] = useState(false);
     const [loginError, setLoginError] = useState("");
+
+    const { data: session, status } = useSession()
+
+    // redirect to dashboard if user is already logged in
+    useEffect(() => {
+        if (session?.error !== null) {
+           console.log(session?.error)
+        }
+        if (session?.user?.role === 1) {
+            Router.push("/admin");
+        }
+        if (session?.user?.role === 2) {
+            Router.push("/agent");
+        }        
+    }, [session]);
+
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -90,47 +106,4 @@ function Login() {
     )
 }
 
-export default Login
-export async function getServerSideProps(context) {
-    const session = await getSession(context);
-    console.log(session)
-    if (session?.user?.role == 1) {
-        return {
-            props: {},
-            redirect: {
-                destination: "/admin",
-                permanent: false,
-            },
-        };
-    } else if (session?.user?.role == 2) {
-        return {
-            props: {},
-            redirect: {
-                destination: "/agent",
-                permanent: false,
-            },
-        };
-    } else if (session?.user?.role == 3) {
-        return {
-            props: {},
-            redirect: {
-                destination: "/support",
-                permanent: false,
-            },
-        };
-    } else if (session?.user?.role == 4) {
-        return {
-            props: {},
-            redirect: {
-                destination: "/user",
-                permanent: false,
-            },
-        };
-    } else {
-        return {
-            props: {
-                session: session,
-            },
-        }
-    }
-}
+export default Login;

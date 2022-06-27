@@ -4,8 +4,8 @@ import Breadcumb from '../../components/breadcumb';
 import Statistics from '../../components/statistics';
 // import AreaChart from '../../components/chart';
 import { FiUserPlus, FiDollarSign, FiActivity } from 'react-icons/fi'
+import Visibility from '@material-ui/icons/Visibility'
 import SupportLayout from '../../dashboard/SupportLayout';
-import { Helmet } from "react-helmet"
 import MaterialTable, { Column } from "@material-table/core";
 import { Tab } from '@headlessui/react'
 import { styled } from '@mui/material/styles';
@@ -99,11 +99,11 @@ const Index = (props) => {
                 return (
                     <p className="text-xs">
                         {rowData.status === 1 ?
-                            (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm"> Pending </span>) :
+                            (<span className="font-semibold leading-tight text-white bg-gray-500 rounded-sm p-2"> Pending </span>) :
                             rowData.status === 2 ?
-                                (<span className="font-semibold leading-tight text-white bg-green-700 rounded-sm"> Completed </span>) :
+                                (<span className="font-semibold leading-tight text-white bg-green-700 rounded-sm p-2"> Completed </span>) :
                                 rowData.status === 3 ?
-                                    (<span className="px-2 py-3 font-semibold leading-tight text-white bg-red-700 rounded-sm"> Failed</span>) :
+                                    (<span className="font-semibold leading-tight text-white bg-red-700 rounded-sm p-2"> Failed</span>) :
                                     (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"></span>)
                         }
                     </p>
@@ -221,7 +221,7 @@ const Index = (props) => {
                                         actions={[
 
                                             rowData => ({
-                                                icon: 'visibility',
+                                                icon: Visibility,
                                                 tooltip: 'View Trade',
                                                 onClick: (event, rowData) => Router.push(`/accountant/withdrawal`),
                                             })
@@ -259,7 +259,7 @@ const Index = (props) => {
                                         actions={[
 
                                             rowData => ({
-                                                icon: 'visibility',
+                                                icon: Visibility,
                                                 tooltip: 'View Trade',
                                                 onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`),
                                             })
@@ -295,7 +295,7 @@ const Index = (props) => {
                                         actions={[
 
                                             rowData => ({
-                                                icon: 'visibility',
+                                                icon: Visibility,
                                                 tooltip: 'View Withdrawal',
                                                 onClick: (event, rowData) => Router.push(`/accountant/withdrawal`),
                                             })
