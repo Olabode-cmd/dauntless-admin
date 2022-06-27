@@ -170,6 +170,7 @@ const [brand, setBrand] = useState('')
             <option>Bart</option>
             <option>Lisa</option>
             <option>Maggie</option>
+            
           </select>
 {/*       
           <select className="select max-w-xs mt-1">
