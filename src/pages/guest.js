@@ -11,16 +11,12 @@ import { getSession } from 'next-auth/react'
 
 
 function Guest () {
-    const [data, setData] = useState([...props.cards]);
+    // const [data, setData] = useState([...props.cards]);
 
 
     return (
         <div>
-            <Navbar
-                login={
-                    status === 'authenticated' ? (true) : (false)
-                }
-            />
+            <Navbar />
 
             <section className="bg-slate-100 dark:bg-slate-900 pt-16">
                 <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
@@ -37,8 +33,8 @@ function Guest () {
             </section>
 
             <section className="bg-slate-200 py-6 dark:bg-slate-800  px-4 md:px-4">
-                <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
-                    <div className="flex-1 justify-center p-6 mt-8 lg:mt-0" data-aos="fade-up" data-aos-duration="1200">
+                <div className="container flex items-center justify-center mx-auto lg:flex-row lg:justify-between">
+                    <div className="w-full lg:w-7/12 justify-center p-6 mt-8 lg:mt-0" data-aos="fade-up" data-aos-duration="1200">
                         <div className="w-full rounded p-8 sm:p-6">
                             <p className="text-2xl font-bold leading-7 text-center text-slate-900 dark:text-slate-100 l-height">Trade</p>
                             <form action="" method="post">
@@ -51,14 +47,21 @@ function Guest () {
                                         <label className="font-semibold leading-none text-slate-800 dark:text-slate-100">Select Card</label>
                                         {/* <input type="email" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-600 rounded" /> */}
                                         <select name="cards" id="card" className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-600 rounded">
-                                            
+                                            <option selected>iTunes</option>
+                                            <option>ebay</option>
+                                            <option>Bart</option>
+                                            <option>Lisa</option>
+                                            <option>Maggie</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div className="md:flex items-center mt-12">
                                     <div className="w-full md:w-1/2 flex flex-col">
                                         <label className="font-semibold leading-none text-slate-800 dark:text-slate-100">Card Type</label>
-                                        <input type="email" className="leading-none p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-600 rounded" />
+                                        <select className="leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 text-slate-900 dark:text-gray-50 bg-slate-200 dark:bg-gray-600 rounded">
+                                            <option selected>Ecode</option>
+                                            <option>Physical</option>
+                                        </select>
                                     </div>
                                     <div className="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
                                         <label className="font-semibold leading-none text-slate-800 dark:text-slate-100">Card Currency</label>
@@ -87,8 +90,8 @@ function Guest () {
                         </div>
                     </div>
 
-                    <div className="flex-1 hidden md:flex" data-aos="fade-up" data-aos-delay="300">
-                        <div className="w-full ml-2">
+                    <div className="w-full lg:w-6/12" data-aos="fade-up" data-aos-delay="300">
+                        <div className="lg:ml-2">
                             <div className="overflow-x-auto">
                                 <table className="table w-full">
 
@@ -99,6 +102,21 @@ function Guest () {
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                        <tr>
+                                            <td>5</td>
+                                            <td>$1500</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>5</td>
+                                            <td>$1500</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>5</td>
+                                            <td>$1500</td>
+                                        </tr>
 
                                         <tr>
                                             <td>5</td>
