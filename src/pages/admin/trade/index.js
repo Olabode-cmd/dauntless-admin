@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Breadcumb from '../../../components/breadcumb';
 import AdminLayout from '../../../dashboard/AdminLayout';
-// import { Helmet } from "react-helmet"
 import MaterialTable, { Column } from "@material-table/core";
 import Visibility from '@material-ui/icons/Visibility'
 import { Tab } from '@headlessui/react'

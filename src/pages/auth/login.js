@@ -13,11 +13,12 @@ function Login() {
 
     // redirect to dashboard if user is already logged in
     useEffect(() => {
+        console.log(session)
         if (session?.user?.role === 1) {
             Router.push("/admin");
         }
         if (session?.user?.role === 2) {
-            Router.push("/agemnt");
+            Router.push("/agent");
         }        
     }, [session]);
 

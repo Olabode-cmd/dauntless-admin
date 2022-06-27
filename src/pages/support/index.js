@@ -4,6 +4,7 @@ import Statistics from '../../components/statistics';
 import AreaChart from '../../components/chart';
 import DoughnutChart from '../../components/donut';
 import DropdownRender from '../../components/dropdown';
+
 import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
 import SupportLayout from '../../dashboard/SupportLayout';
 import { FaFileArchive, FaImage } from "react-icons/fa";
@@ -11,6 +12,7 @@ import { FaFileArchive, FaImage } from "react-icons/fa";
 export default function HomePage() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
+
 
   return (
    

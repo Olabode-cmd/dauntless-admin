@@ -1,8 +1,12 @@
+import Error from "../components/error";
+import Navbar from "../components/navbar";
+
 export default function Custom404(){
     return (
         <div>
-            <h1>404</h1>
-            <p>Page not found</p>
+            <Navbar />
+
+            <Error message="Page not found." code="404" />
         </div>
     );
 }
