@@ -5,11 +5,13 @@ import { useRouter } from 'next/router';
 export default function Logout() {
     const router = useRouter();
     React.useEffect(() => {
-        signOut()
-        .then(() => {
-            router.push('/auth/login');
+        signOut({
+            callbackUrl: `/`
         })
-        .catch(err => {
+            .then(() => {
+                router.push('/');
+            })
+            .catch(err => {
                 console.error(err);
             });
     }, []);

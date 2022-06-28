@@ -4,11 +4,12 @@ import { getSession } from "next-auth/react";
 export default async (req, res) => {
   const session = await getSession({ req });
   const token = session?.accessToken;
-  const {card_id, name, rate, type_id, status,} = req.body
+  const {card, name, type_id, rate, status} = req.body
+  console.log(req.body)
   const result = await Server.post(
     "/admin/create-card-type",
     {
-      card_id : card_id?.id, name, rate, type_id, status,
+      card_id: card, name, type_id, rate, status
     },
     {
       headers: {

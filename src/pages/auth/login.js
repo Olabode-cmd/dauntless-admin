@@ -13,9 +13,6 @@ function Login() {
 
     // redirect to dashboard if user is already logged in
     useEffect(() => {
-        if (session?.error !== null) {
-           console.log(session?.error)
-        }
         if (session?.user?.role === 1) {
             Router.push("/admin");
         }
@@ -23,6 +20,21 @@ function Login() {
             Router.push("/agent");
         }        
     }, [session]);
+
+    // signout user if they click on logout button
+    useEffect(() => {
+        if (status === "signout") {
+            signOut({
+                callbackUrl: `/`
+            })
+                .then(() => {
+                    Router.push("/");
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+    }, [status]);
 
 
     const handleLogin = (e) => {

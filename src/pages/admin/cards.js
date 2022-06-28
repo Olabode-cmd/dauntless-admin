@@ -118,6 +118,7 @@ const Cards = (props) => {
         {
             title: 'Card Type',
             field: 'type_id',
+
             lookup: { 2: 'Physical', 1: 'E-code', },
             headerStyle: {
                 // backgroundColor: 'yellow',
@@ -189,17 +190,17 @@ const Cards = (props) => {
         });
     };
 
-    const createCardType = async (id, card_id, name, rate, type_id, status,) => {
+    const createCardType = async (card, name, type_id, rate, status) => {
+        console.log(card)
         const res = await fetch("/api/create-card-type", {
           body: JSON.stringify({
-            id, card_id, name, rate, type_id, status,
+            card, name, type_id, rate, status
           }),
           headers: {
             "Content-Type": "application/json",
           },
           method: "POST",
         });
-        console.log('motigbana')
     };
 
     const updateCardType = async (id, card_id, name, rate, status) => {
@@ -302,12 +303,15 @@ const Cards = (props) => {
                                                 new Promise((resolve, reject) => {
                                                     setTimeout(() => {
                                                         const dataUpdate = [...data];
-                                                        const index = oldData.tableData.id;
+                                                        const target = dataUpdate.find(
+                                                            (el) => el.id === oldData.tableData.id
+                                                          );
+                                                        const index = dataUpdate.indexOf(target);
                                                         dataUpdate[index] = newData;
-                                                        setData(...dataUpdate);
                                                         const id = newData.id;
                                                         const name = newData.name;
                                                         updateCard(id, name);
+                                                        setData([...dataUpdate]);
                                                         resolve();
                                                       }, 1000);
                                                 }),
@@ -336,7 +340,10 @@ const Cards = (props) => {
                                                 new Promise((resolve, reject) => {
                                                     setTimeout(() => {
                                                         setCardType([...cardType, newData]);
-                                                        createCardType(newData)
+                                                        const { name, type_id, rate, status} = newData
+                                                        const card = newData.card.id
+                                                        console.log(newData)
+                                                        createCardType(card, name, type_id, rate, status)
                                                         resolve();
                                                     }, 1000)
                                                 }),
