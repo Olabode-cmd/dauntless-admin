@@ -16,7 +16,6 @@ import { useRouter } from 'next/router';
 import { Server, imageLoader } from '../../api/lib/service';
 const user = require('../../../images/user.png');
 
-console.log(user);
 export default function Users(props) {
     const [users, setUsers] = React.useState([]);
     const Router = useRouter();
@@ -136,7 +135,7 @@ export default function Users(props) {
                 return (
                     <div className="flex items-center">
                         {
-                            rowData.status == 1 ? (
+                            rowData.status == true ? (
                                 <div className="badge badge-success gap-2">
                                     Active
                                 </div>
@@ -212,8 +211,9 @@ export default function Users(props) {
                                                     onClick: (event, rowData) => {
                                                         if (rowData.is_verified == true) {
                                                             Router.push(`/admin/users/${rowData.id}`);
+                                                        }else{
+                                                            alert("User is not verified")
                                                         }
-                                                        null
                                                     },
                                                 },
                                             ]}
@@ -223,12 +223,16 @@ export default function Users(props) {
                                                     new Promise((resolve, reject) => {
                                                         setTimeout(async () => {
                                                             const dataUpdate = [...users];
-                                                            const index = oldData.tableData.id;
+                                                            const target = dataUpdate.find(
+                                                                (el) => el.id === oldData.tableData.id
+                                                              );
+                                                            const index = dataUpdate.indexOf(target);
                                                             dataUpdate[index] = newData;
-                                                            setUsers([...dataUpdate]);
                                                             const id = newData.id;
                                                             const status = newData.status;
+                                                            console.log(status)
                                                             updateStatus(id, status);
+                                                            setUsers([...dataUpdate]);
                                                             resolve();
                                                         }, 1000);
                                                     })
