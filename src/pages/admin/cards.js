@@ -203,20 +203,16 @@ const Cards = (props) => {
         });
     };
 
-    const updateCardType = async (id, card_id, name, rate, status) => {
-        const res = await fetch("/api/update-card-rate", {
+    const updateCardType = async (id, card, name, type_id, rate, status) => {
+        const res = await fetch("/api/update-card-type", {
           body: JSON.stringify({
-            id,
-            card_id,
-            name,
-            rate
+            id, card, name, type_id, rate, status
           }),
           headers: {
             "Content-Type": "application/json",
           },
           method: "PUT",
-        });
-        // console.log(id, card_id, name, rate)
+        })
     };
 
     return (
@@ -342,7 +338,6 @@ const Cards = (props) => {
                                                         setCardType([...cardType, newData]);
                                                         const { name, type_id, rate, status} = newData
                                                         const card = newData.card.id
-                                                        console.log(newData)
                                                         createCardType(card, name, type_id, rate, status)
                                                         resolve();
                                                     }, 1000)
@@ -351,10 +346,16 @@ const Cards = (props) => {
                                                 new Promise((resolve, reject) => {
                                                     setTimeout(() => {
                                                         const dataUpdate = [...cardType];
-                                                        const index = oldData.tableData.id;
+                                                        const target = dataUpdate.find(
+                                                            (el) => el.id === oldData.tableData.id
+                                                          );
+                                                        const index = dataUpdate.indexOf(target);
                                                         dataUpdate[index] = newData;
+                                                        const id = newData.id;
+                                                        const { name, type_id, rate, status} = newData
+                                                        const card = newData.card.id
                                                         setCardType([...dataUpdate]);
-                                                        updateCardType(newData)
+                                                        updateCardType(id, card, name, type_id, rate, status)
                                                         resolve();
                                                     }, 1000)
                                                 }),
