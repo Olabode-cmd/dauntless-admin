@@ -64,11 +64,11 @@ export default function Admins() {
                     <div className="flex items-center">
                         {
                             rowData.status == 1 ? (
-                                <div className="badge badge-success gap-2">
+                                <div className="font-semibold leading-tight text-green-700 bg-green-100 rounded-sm p-2 gap-2">
                                     Active
                                 </div>
                             ) : (
-                                <div className="badge badge-error gap-2">
+                                    <div className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm p-2 gap-2">
                                     Banned
                                 </div>
                             )
