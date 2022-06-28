@@ -10,7 +10,7 @@ import { Server } from "../lib/service";
  * `accessToken` and `accessTokenExpires`. If an error occurs,
  * returns the old token and an error property
  */
- async function refreshAccessToken(token) {
+async function refreshAccessToken(token) {
   //  console.log(token)
   try {
     const response = await Server.get('/', {
@@ -20,14 +20,16 @@ import { Server } from "../lib/service";
       },
     })
     if (response.status !== 200) {
-      throw Error
+      return {
+        ...token,
+        error: response.data,
     }
-
-   return {
+  }
+    return {
       ...token,
     }
-  } 
-  catch (error){
+  }
+  catch (error) {
     return {
       ...token,
       error: 'RefreshAccessTokenError'
@@ -62,7 +64,7 @@ export default NextAuth({
         const user = result.data.user;
         const token = result.data.message.token;
         const tokenExpires = result.data.message.expires_at;
-        
+
         if (result.status === 200) {
           return {
             user,
@@ -76,13 +78,12 @@ export default NextAuth({
   ],
   callbacks: {
     jwt: ({ token, user }) => {
-      console.log(user)
       if (user) {
         const expire = new Date(user.tokenExpires)
         const expireIn = Date.now() + expire * 1000
         token = {
           accessToken: user.token,
-          expiresIn : expireIn,
+          expiresIn: expireIn,
           user: {
             id: user.user.id,
             name: user.user.name,
@@ -92,19 +93,18 @@ export default NextAuth({
         };
       }
 
-      
+
       // Return previous token if the access token has not expired yet
-      if (Date.now() < token.expiresIn) {
+      if (Date.now() > token.expiresIn) {
         return refreshAccessToken(token)
       }
-     
-      return token
+      return token;
     },
     session: async ({ session, token }) => {
+      // console.log(session)
       session.user = token.user
       session.accessToken = token.accessToken
       session.error = token.error
-      // console.log("i the session works", session)
       return session
     },
   }

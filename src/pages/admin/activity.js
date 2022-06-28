@@ -12,86 +12,7 @@ import moment from 'moment';
 import Error from 'next/error'
 
 export default function HomePage(props) {
-    const role = ['seun', 'tope', 'sade',];
 
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const days = ["Today", "A week ago", "A month ago", "A year ago"];
-    const [trades, setTrades] = useState([]);
-    const [typeValue, setTypeValue] = React.useState('');
-    const [graphValue, setGraphValue] = React.useState('');
-    const [graphData, setGraphData] = React.useState([]);
-
-    const filterDay = useCallback((day) => {
-        const filtered = props.trades.filter(trade => {
-            const date = moment(trade.created_at).format('YYYY-MM-DD');
-            const today = moment().format('YYYY-MM-DD');
-            const lastWeek = moment().subtract(7, 'days').format('YYYY-MM-DD');
-            const lastMonth = moment().subtract(30, 'days').format('YYYY-MM-DD');
-            const lastYear = moment().subtract(365, 'days').format('YYYY-MM-DD');
-            if (day === "Today") {
-                return date === today;
-            } else if (day === "A week ago") {
-                return date === lastWeek;
-            } else if (day === "A month ago") {
-                return date === lastMonth;
-            } else if (day === "A year ago") {
-                return date === lastYear;
-            } else {
-                return day === "24 hours ago";
-            }
-        });
-        setTrades(filtered);
-    }, []);
-
-    // filter by month
-    const filterMonth = useCallback((month) => {
-        const filtered = props.trades.filter(trade => {
-            const date = moment(trade.created_at).format('YYYY-MM');
-            const January = moment().subtract(1, 'months').format('YYYY-MM');
-            const February = moment().subtract(2, 'months').format('YYYY-MM');
-            const March = moment().subtract(3, 'months').format('YYYY-MM');
-            const April = moment().subtract(4, 'months').format('YYYY-MM');
-            const May = moment().subtract(5, 'months').format('YYYY-MM');
-            const June = moment().subtract(6, 'months').format('YYYY-MM');
-            const July = moment().subtract(7, 'months').format('YYYY-MM');
-            const August = moment().subtract(8, 'months').format('YYYY-MM');
-            const September = moment().subtract(9, 'months').format('YYYY-MM');
-            const October = moment().subtract(10, 'months').format('YYYY-MM');
-            const November = moment().subtract(11, 'months').format('YYYY-MM');
-            const December = moment().subtract(12, 'months').format('YYYY-MM');
-            const year = moment().format('YYYY');
-            if (month === "January") {
-                return date === January;
-            } else if (month === "February") {
-                return date === February;
-            } else if (month === "March") {
-                return date === March;
-            } else if (month === "April") {
-                return date === April;
-            } else if (month === "May") {
-                return date === May;
-            } else if (month === "June") {
-                return date === June;
-            } else if (month === "July") {
-                return date === July;
-            } else if (month === "August") {
-                return date === August;
-            } else if (month === "September") {
-                return date === September;
-            } else if (month === "October") {
-                return date === October;
-            } else if (month === "November") {
-                return date === November;
-            } else if (month === "December") {
-                return date === December;
-            } else if (month === "This year") {
-                return date === year;
-            } else {
-                return true;
-            }
-        });
-        setTrades(filtered);
-    }, []);
 
     // loop through each card id and count total time it appears in each trade by there types and put into an array of graphdata
     const graphDataArray = (x) => props.cards.map(card => {
@@ -114,18 +35,6 @@ export default function HomePage(props) {
     });
 
     const sle = (id) => props.cards.filter(card => card.id === id);
-
-    useEffect(() => {
-        filterDay(typeValue)
-    }, [typeValue])
-
-    useEffect(() => {
-        filterMonth(graphValue)
-    }, [graphValue])
-
-    useEffect(() => {
-        filterDay('Today')
-    }, [])
 
 
 
@@ -323,20 +232,20 @@ export default function HomePage(props) {
 
 export async function getServerSideProps(context) {
     const session = await getSession(context);
-    // console.log(session)
-    const trades = await Server.get('/admin/card-transactions', {
-        headers: {
-            Authorization: `Bearer ${session?.accessToken}`,
-        },
-    });
+    console.log(session)
+    // const trades = await Server.get('/admin/card-transactions', {
+    //     headers: {
+    //         Authorization: `Bearer ${session?.accessToken}`,
+    //     },
+    // });
     // const type = await Server.get('/type')
-    const errorCode = trades.status != 200 ? true : false;
-    const cards = await Server.get('/card')
+    const errorCode =''
+    const cards = []
     // console.log(trades.data.message[0])
     return {
         props: {
-            trades: trades.data.message,
-            cards: cards.data.message,
+            trades: [],
+            cards: [],
             paymentLog: 'google',
             errorCode,
         },
