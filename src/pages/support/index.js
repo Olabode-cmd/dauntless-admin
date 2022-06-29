@@ -6,18 +6,19 @@ import DoughnutChart from '../../components/donut';
 import DropdownRender from '../../components/dropdown';
 import { FiUserPlus, FiDollarSign, FiActivity, FiEye } from 'react-icons/fi'
 import SupportLayout from '../../dashboard/SupportLayout';
-import { FaFileArchive, FaImage } from "react-icons/fa";
+import { FiUsers } from "react-icons/fi";
 
 export default function HomePage() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
 
+
   return (
    
     <SupportLayout>
+      
 
-
-      <div className="h-screen flex flex-col">
+      {/* <div className="h-screen flex flex-col">
         <header className="flex flex-shrink-0">
           <div className="flex-shrink-0 px-4 py-3 bg-gray-800 w-80">
             <button className="flex items-center block w-full">
@@ -171,7 +172,7 @@ export default function HomePage() {
 
           </div>
         </div>
-      </div>
+      </div> */}
 
 
     </SupportLayout>

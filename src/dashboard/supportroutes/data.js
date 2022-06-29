@@ -17,7 +17,7 @@ const data = [
     {
         title: 'Trades',
         icon: <RiExchangeLine size={'20px'} color='gold'/>,
-        link: '/admin/trade',
+        link: '/support/trade',
     },
 ];
 

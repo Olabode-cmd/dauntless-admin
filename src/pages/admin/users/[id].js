@@ -8,7 +8,9 @@ import MaterialTable, { Column } from "@material-table/core";
 import { Tab } from '@headlessui/react'
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { FiCamera, FiEye } from 'react-icons/fi';
+import { FiCamera, FiEye  } from 'react-icons/fi';
+import { RiExchangeLine  } from 'react-icons/ri';
+
 import IconButton from '@mui/material/IconButton';
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
@@ -16,6 +18,7 @@ import moment from 'moment';
 import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/react';
 import { Server, imageLoader } from '../../api/lib/service';
+import { FaUsers, FaWallet, FaUserPlus, FaMoneyBillWave, FaDollarSign, FaUserSecret, FaStar } from "react-icons/fa";
 
 
 
@@ -34,8 +37,6 @@ const Id = ({ user, cards }) => {
   const [selectedRow, setSelectedRow] = useState(null);
 
   const sle = (id) => cards?.filter(card => card.id == id);
-
-  console.log(sle(2))
 
   return (
     <AdminLayout>
@@ -75,7 +76,7 @@ const Id = ({ user, cards }) => {
                     )
                   }
                 >
-                  Trades 
+                  Trades
                   <span className="text-md text-green-500"></span>
 
                 </Tab>
@@ -92,7 +93,7 @@ const Id = ({ user, cards }) => {
                     )
                   }
                 >
-                 Withdrawals <span className="text-md text-red-500"></span>
+                  Withdrawals <span className="text-md text-red-500"></span>
                 </Tab>
               </Tab.List>
               <Tab.Panels className="mt-2">
@@ -116,7 +117,7 @@ const Id = ({ user, cards }) => {
                               <span className="mt-10 text-4xl font-extrabold  text-white">{user?.full_name}</span>
                             </div>
                             <div className="flex justify-center">
-                              <img className="object-cover w-24 h-24 mt-4 border-4 border-orange-400 rounded-full" src={imageLoader({src: user?.picture, width: 100, quality: 1})}/>
+                              <img className="object-cover w-24 h-24 mt-4 border-4 border-orange-400 rounded-full" src={imageLoader({ src: user?.picture, width: 100, quality: 1 })} />
                             </div>
                           </div>
                           <div className="px-6 py-4">
@@ -153,6 +154,7 @@ const Id = ({ user, cards }) => {
                                       {item?.account_number}
                                     </p>
                                     <p className="text-gray-400 text-sm">{item?.account_name}</p>
+                                    <p className="text-gray-400 text-sm">{item?.bank_code}</p>
                                   </div>
                                 </div>
                               )) :
@@ -182,27 +184,39 @@ const Id = ({ user, cards }) => {
                     <div className="w-full mt-8 lg:mt-0 lg:w-4/12 lg:pl-4">
                       <div className="dark:bg-gray-800 bg-gray-300 rounded-3xl px-6 pt-6">
                         <div className="flex text-white text-2xl pb-6 font-bold">
-                          <p className='dark:text-gray-100 text-black'>User Activity Log</p>
+                          <p className='dark:text-gray-100 text-black'>User Stats</p>
                         </div>
                         <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full dark:hover:bg-gray-700  hover:bg-gray-200">
 
-                          <div className="pl-4 w-full">
-                            <div className="flex items-center justify-between w-full">
-                              <div className="dark:text-white text-gray-800 font-medium">User 001</div>
+                          <div className="bg-gradient-to-r from-lime-400 to-lime-600 shadow-lg rounded-lg w-full flex justify-between items-center">
+                            <div className="py-5 px-5">
+                              <span className="font-light text-slate-100 text-sm">Available Balance</span>
+                              <div className="flex items-center justify-between">
+                                <div className="text-3xl text-slate-100 font-bold">
+                                  &#x20A6; {user?.userWallet?.amount}
+                                </div>
+                              </div>
                             </div>
-                            <p className="my-2 text-sm dark:text-gray-100 text-gray-800">
-                              Was paid #200.00 on 12/12/2020
-                            </p>
+
+                            <div className='pr-5'>
+                              <FaMoneyBillWave className='text-white' size={40} />
+                            </div>
                           </div>
                         </div>
                         <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full dark:hover:bg-gray-700 hover:bg-gray-200">
-                          <div className="pl-4 w-full">
-                            <div className="flex items-center justify-between w-full">
-                              <div className="dark:text-white text-gray-800 font-medium">User 001</div>
+                          <div className="bg-gradient-to-r from-indigo-400 to-indigo-600 shadow-lg rounded-lg w-full flex justify-between items-center">
+                            <div className="py-5 px-5">
+                              <span className="font-light text-slate-100 text-sm">Total Trades</span>
+                              <div className="flex items-center justify-between">
+                                <div className="text-3xl text-slate-100 font-bold">
+                                  {user?.cardTransactions?.length}
+                                </div>
+                              </div>
                             </div>
-                            <p className="my-2 text-sm dark:text-gray-100 text-gray-800">
-                              Was paid #200.00 on 12/12/2020
-                            </p>
+
+                            <div className='pr-5'>
+                              <RiExchangeLine className='text-white' size={40} />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -232,19 +246,19 @@ const Id = ({ user, cards }) => {
                             <table className="w-full">
                               <thead>
                                 <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100  uppercase border-b border-gray-600">
-                                <th className="px-4 py-3">Reference Id</th>
-                                <th className="px-4 py-3">Trade Type</th>
-                                {/* <th className="px-4 py-3">Customer</th> */}
-                                <th className="px-4 py-3">Total</th>
-                                <th className="px-4 py-3">Status</th>
-                                <th className="px-4 py-3">Date</th>
-                                <th className="px-4 py-3">Updated</th>
-                                <th className="px-4 py-3">Action</th>
-                              </tr>
+                                  <th className="px-4 py-3">Reference Id</th>
+                                  <th className="px-4 py-3">Trade Type</th>
+                                  {/* <th className="px-4 py-3">Customer</th> */}
+                                  <th className="px-4 py-3">Total</th>
+                                  <th className="px-4 py-3">Status</th>
+                                  <th className="px-4 py-3">Date</th>
+                                  <th className="px-4 py-3">Updated</th>
+                                  <th className="px-4 py-3">Action</th>
+                                </tr>
                               </thead>
                               <tbody className="bg-white">
                                 {
-                                  user?.cardTransactions?.length ?
+                                  user?.cardTransactions?.length > 0 ?
                                     user?.cardTransactions.map((item, index) => (
                                       <tr className="text-gray-700" key={index}>
                                         <td className="px-4 py-3 text-ms font-semibold border">Trade00{item?.id}</td>

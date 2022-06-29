@@ -140,8 +140,8 @@ const Cards = (props) => {
                     <p className="text-xs">
                         {
                             lookup[rowData.status] === 'Available' ?
-                                (<span className="font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Available </span>) :
-                                (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Not Available </span>)
+                                (<span className="font-semibold leading-tight text-green-700 bg-green-100 rounded-sm p-2"> Available </span>) :
+                                (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm p-2"> Not Available </span>)
                         }
                     </p>
                 )
@@ -218,7 +218,7 @@ const Cards = (props) => {
     return (
         <AdminLayout>
             <div className="flex flex-wrap">
-                <div className="w-full lg:w-8/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+                <div className="w-full bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
                     <Breadcumb title={'Cards and rates'} />
                     <div className="flex flex-row justify-between">
                         <h1>Add and update cards rate</h1>
@@ -371,48 +371,7 @@ const Cards = (props) => {
 
                 </div>
 
-                <div className="w-full mt-8 lg:mt-0 lg:w-4/12 lg:pl-4">
-                    <div className="dark:bg-gray-800 bg-gray-300 rounded-3xl px-6 pt-6">
-                        <div className="flex text-white text-2xl pb-6 font-bold">
-                            <p className='dark:text-gray-100 text-black'>Today's Cards Log</p>
-                        </div>
-                        <div>
-                            <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
-                                <img
-                                    src="https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-256.png"
-                                    alt="profile image"
-                                    className="object-cover w-10 h-10 rounded-full p-0 bg-white"
-                                />
-                                <div className="pl-4 w-full">
-                                    <div className="flex items-center justify-between w-full">
-                                        <div className="dark:text-white text-black' font-medium">Bestselling Card</div>
-                                    </div>
-                                    <p className="my-2 text-sm dark:text-gray-100 text-black">
-                                        iTunes
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
-                                <img
-                                    src="https://cdn3.iconfinder.com/data/icons/picons-social/57/67-amazon-256.png"
-                                    alt="profile image"
-                                    className="object-cover w-10 h-10 rounded-full bg-white"
-                                />
-                                <div className="pl-4 w-full">
-                                    <div className="flex items-center justify-between w-full">
-                                        <div className="dark:text-white text-black' font-medium">Highest Rate</div>
-                                    </div>
-                                    <p className="my-2 text-sm dark:text-gray-100 text-black'">
-                                        Amazon (N500)
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* <ActivityLog /> */}
-                        </div>
-                    </div>
-                </div>
+        
 
             </div>
 

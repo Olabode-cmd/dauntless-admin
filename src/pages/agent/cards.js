@@ -140,8 +140,8 @@ const Cards = (props) => {
                     <p className="text-xs">
                         {
                             lookup[rowData.status] === 'Available' ?
-                                (<span className="font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Available </span>) :
-                                (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Not Available </span>)
+                                (<span className="font-semibold leading-tight text-green-700 bg-green-100 rounded-sm p-2"> Available </span>) :
+                                (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm p-2"> Not Available </span>)
                         }
                     </p>
                 )
