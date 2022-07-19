@@ -16,7 +16,8 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import moment from 'moment';
 import { useRouter } from 'next/router';
-
+import { Server } from '../../api/lib/service'
+import { getSession } from 'next-auth/react'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -74,16 +75,6 @@ const Index = (props) => {
             }
         },
         {
-            title: 'Payment Type',
-            field: 'pay_id',
-            render: rowData => <p className="text-ms font-semibold">{rowData.pay_id}</p>,
-            headerStyle: {
-                backgroundColor: 'orange',
-                fontWeight: 'bold',
-            },
-            editable: 'never',
-        },
-        {
             title: "User 👷‍♂️", field: "user", editable: false, headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
@@ -92,7 +83,7 @@ const Index = (props) => {
                 return (
                     <div className="flex text-sm">
                         <div>
-                            <p className="font-semibold text-black">Daunt_00{rowData.id}</p>
+                            <p className="font-semibold text-black">{rowData.user?.customer_id}</p>
                         </div>
                     </div>
                 )
@@ -170,22 +161,6 @@ const Index = (props) => {
                                 >
                                     Wallet Withdrawal <span className="text-md text-green-500">({active.length})</span>
                                 </Tab>
-
-                                <Tab
-                                    // key={category}
-                                    className={({ selected }) =>
-                                        classNames(
-                                            'w-full py-2.5 text-sm leading-5 font-medium text-gray-700 rounded-lg',
-                                            'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
-                                            selected
-                                                ? 'bg-white shadow'
-                                                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
-                                        )
-                                    }
-                                >
-                                    Instant Withdrawal <span className="text-md text-green-500">({active.length})</span>
-                                </Tab>
-
                                 <Tab
                                     // key={category}
                                     className={({ selected }) =>
@@ -257,47 +232,7 @@ const Index = (props) => {
 
                                 </Tab.Panel>
 
-                                <Tab.Panel
-                                    // key={idx}
-                                    className={classNames(
-                                        'bg-white dark:bg-gray-700 rounded-xl p-3',
-                                        'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
-                                    )}
-                                >
-                                    <MaterialTable
-                                        title="Instant Withdrawal 🔥"
-                                        columns={columns}
-                                        data={active}
-                                        key={data.id}
-
-                                        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
-                                        options={{
-                                            actionsColumnIndex: -1,
-                                            rowStyle: {
-                                                backgroundColor: '#fafafa',
-                                                color: '#'
-                                            },
-                                            rowStyle: rowData => ({
-                                                backgroundColor: (selectedRow == rowData.tableData.id) ? '#eee' : '#FFF',
-                                            }),
-                                            grouping: true,
-                                        }}
-                                        actions={[
-
-                                            rowData => ({
-                                                icon: Visibility,
-                                                tooltip: 'View Withdrawal',
-                                                // onClick: (event, rowData) => Router.push(`/admin/trade/${rowData.id}`),
-                                                onClick: (event, rowData) => Router.push(`/admin/transactions/${rowData.id}`)
-
-                                            })
-                                        ]}
-
-                                    />
-
-                                </Tab.Panel>
-
-                                <Tab.Panel
+                       <Tab.Panel
                                     // key={idx}
                                     className={classNames(
                                         'bg-white dark:bg-gray-700 rounded-xl p-3',
@@ -386,99 +321,17 @@ const Index = (props) => {
 export default Index;
 
 
-export async function getStaticProps() {
-    // const res = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
-    // const data = await res.json()
-    // const resCardType = await fetch('https://api.jsonbin.io/b/5e9a7b0f6d7e7f3c8b8f7b9e')
-    const data = [
-        {
-            id: 1,
-            user: {
-                user_id: "Daunt_001",
-            },
-            status: 1,
-            amount: '5000',
-            pay_id: "Instant Withdrawal",
-            created_at: '2021-10-28T09:17:50.974Z'
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    const withdraw = await Server.get('/admin/withdrawal', {
+        headers: {
+            Authorization: `Bearer ${session?.accessToken}`,
         },
-        {
-            id: 2,
-            user: {
-                user_id: "Daunt_002",
-            },
-            amount:'12000',
-            status: 3,
-            pay_id: "Wallet",
-            created_at: '2021-12-04T18:32:10.62Z'
-        },
-        {
-            id: 3,
-            user: {
-                user_id: "Daunt_003",
-            },
-            amount:'9000',
-            pay_id: "Wallet",
-            status: 2, created_at: '2021-12-04T18:32:10.62Z'
-        },
-        {
-            id: 4,
-            user: {
-                user_id: "Daunt_004",
-            },
-            amount:'12000',
-            pay_id: "Wallet",
-            status: 2, 
-            created_at: '2022-03-04T18:32:10.62Z'
-        },
-
-        {
-            id: 5,
-            user: {
-                user_id: "Daunt_005",
-            },
-            amount:'12000',
-            status: 2,
-            pay_id: "Wallet",
-            created_at: '2022-03-04T6:32:10.62Z'
-        },
-        {
-            id: 6,
-            user: {
-                user_id: "Daunt_001",
-            },
-            amount:'12000',
-            status: 3,
-            pay_id: "Wallet",
-            created_at: '2021-12-04T18:32:10.62Z'
-        },
-        {
-            id: 7,
-            user: {
-                user_id: "Daunt_002",
-            },
-            amount:'12000',
-            pay_id: "Wallet",
-            status: 3, created_at: '2021-12-04T18:32:10.62Z'
-
-        },
-        {
-            id: 8,
-            user: {
-                user_id: "Daunt_002",
-            },
-            amount:'12000',
-            pay_id: "Wallet",
-            status: 3, created_at: '2021-12-31 1T18:32:10.62Z'
-
-        },
-
-
-    ];
+    });
+;
     return {
         props: {
-            data,
-            // dataCardType
+            data: withdraw.data.message
         },
-        revalidate: 1
     }
 }

@@ -136,17 +136,17 @@ const Index = (props) => {
             }
         },
         {
-            title: "Type", field: "payment", headerStyle: {
+            title: "Payment", field: "payment", headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
             },
-            lookup: { true: "Instant Withdrawal", false: "Wallet" },
+            lookup: { true: "Wallet", false: "Instant" },
             render: rowData => {
                 return (
                     <p className="text-xs">
                         {rowData.payment === true ?
-                            (<span className="font-semibold leading-tight text-white bg-green-500 rounded-sm p-2"> Withdraw </span>) :
-                            (<span className="font-semibold leading-tight text-white bg-emerald-500 rounded-sm p-2"> Wallet </span>)
+                            (<span className="font-semibold leading-tight text-white bg-green-500 rounded-sm p-2"> Wallet </span>) :
+                            (<span className="font-semibold leading-tight text-white bg-emerald-500 rounded-sm p-2"> Instant Withdrawal </span>)
                         }
                     </p>
                 )

@@ -154,7 +154,7 @@ const Id = ({ user, cards }) => {
                                       {item?.account_number}
                                     </p>
                                     <p className="text-gray-400 text-sm">{item?.account_name}</p>
-                                    <p className="text-gray-400 text-sm">{item?.bank_code}</p>
+                                    <p className="text-gray-400 text-sm">{item?.bank_name}</p>
                                   </div>
                                 </div>
                               )) :

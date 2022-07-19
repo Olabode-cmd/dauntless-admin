@@ -14,6 +14,7 @@ import Image from 'next/image';
 import moment from 'moment';
 
 import { ToastContainer, toast } from 'react-toastify';
+import { useRouter } from 'next/router'
 
 
 const bg = require('./bg.png');
@@ -22,11 +23,8 @@ const logo = require('./2-fav.png');
 
 
 const TradeId = (props) => {
-    const role = ['seun', 'tope', 'sade',];
-    const days = ["24 hrs ago", "A week ago", "A month ago", "A year ago"];
-
-    const [copy, setCopy] = useState('')
-
+    const [comment, setSetComment] = useState('')
+    const router = useRouter()
     const sle = (id) => props.card.filter(card => card.id === id);
 
     const [isOpen, setIsOpen] = useState(false)
@@ -37,28 +35,34 @@ const TradeId = (props) => {
     }, [])
     const obj = JSON.parse(props.trade[0].data)
     const image = Object.values(obj);
+    const comments = props.trade[0].note.split(",");
+    console.log(comments)
 
     const confirmTrade = async () => {
-        const confirm = prompt('Are you sure you want to proceed?', 'Yes', 'No')
-        if (confirm === 'Yes') {
-            fetch('/api/trade/confirm', {
-                body: JSON.stringify({
-                    id: props.trade[0].id
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                method: "PUT",
-            }).then(res => {
-                console.log(res)
-                if (res.status == 200) {
-                    props.setTrade(res.data.data)
-                    setIsOpen(false)
-                }
-            }).catch(err => {
-                console.log(err)
-            })
-        }
+        toast.info('Processing Request...', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            className: "toast-info",
+        });
+        fetch('/api/trade/confirm', {
+            body: JSON.stringify({
+                id: props.trade[0].id,
+                note: comment
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "PUT",
+        }).then(res => {
+            router.reload();
+        }).catch(err => {
+            console.log(err)
+        })
     }
 
     const queryTrade = async () => {
@@ -75,18 +79,14 @@ const TradeId = (props) => {
         fetch('/api/trade/query', {
             body: JSON.stringify({
                 id: props.trade[0].id,
-                comment: query
+                comment: comment
             }),
             headers: {
                 "Content-Type": "application/json",
             },
             method: "PUT",
-        }).then(() => {
-            // console.log(res)
-            if (res.status == 200) {
-                props.setTrade(res.data.data)
-                setIsOpen(false)
-            }
+        }).then((res) => {
+            router.reload();
         }).catch(err => {
             console.log(err)
         })
@@ -100,124 +100,81 @@ const TradeId = (props) => {
         setIsOpen(true)
     }
 
-
+    // console.log(data)
     return (
         <AdminLayout>
             <ToastContainer />
 
-            {/* <div className="modal" id="my-modal-2">
+            <div className="modal" id="my-modal-1">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg text-yellow-400">Query Trade.</h3>
-                    <p className="py-4">Kindly say why you want to query this trade.</p>
-                    <div className="form">
-                        <textarea className="w-full rounded py-2 px-3 resize-none h-36" 
-                        onChange={(e)=>{setQuery(e.target.value)}}/>
-                    </div>
-                    <div className="modal-action flex">
-                        <button href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</button>
-                        <button href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition" onClick={
-                            () => {
-                                queryTrade()
-                            }
-                        } >Submit</button>
-                    </div>
+                    <h3 className="font-bold text-lg">Confirm Trade</h3>
+                    <p className="py-4">Kindly drop  note</p>
+                    <form className="mt-4"
+                        onSubmit={(e) => confirmTrade(e)}
+                        data-toggle="validator"
+                        autoComplete="off">
+                        <div className="form">
+
+                            <textarea className="w-full rounded py-2 px-3 resize-none h-36" value={comment}
+                                onChange={(e) => {
+                                    console.log(e.target.value)
+                                    setSetComment(e.target.value)
+                                }}>
+
+                            </textarea>
+                        </div>
+                        <div className="modal-action">
+                            <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
+                            <button href="#" type='submit' className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <div className="modal" id="my-modal-1">
+            <div className="modal" id="my-modal-2">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg text-yellow-400">Query Trade.</h3>
+                    <p className="py-4">Kindly say why you want to query this trade.</p>
+                    <form className="mt-4"
+                        onSubmit={(e) => queryTrade(e)}
+                        data-toggle="validator"
+                        autoComplete="off">
+                        <div className="form">
+                            <textarea className="w-full rounded py-2 px-3 resize-none h-36" value={comment}
+                                onChange={(e) => {
+                                    console.log(e.target.value)
+                                    setSetComment(e.target.value)
+                                }}></textarea>
+                        </div>
+                        <div className="modal-action flex">
+                            <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
+                            <button href="#" type='submit' className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <div className="modal" id="my-modal-3">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Fault Trade</h3>
                     <p className="py-4">Kindly say why you want to fault this trade</p>
                     <div className="form">
-                        <textarea className="w-full rounded py-2 px-3 resize-none h-36"></textarea>
+                        <textarea className="w-full rounded py-2 px-3 resize-none h-36" value={comment}
+                            onChange={(e) => {
+                                console.log(e.target.value)
+                                setSetComment(e.target.value)
+                            }}>
+
+                        </textarea>
                     </div>
                     <div className="modal-action">
                         <a href="#" className="btn bg-red-600 mx-1 text-slate-100 transition">Cancel</a>
                         <a href="#" className="btn bg-green-600 mx-1 text-slate-100 hover:bg-green-800 transition">Submit</a>
                     </div>
                 </div>
-            </div> */}
-               <Transition appear show={isOpen} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={closeModal}>
-                    <Transition.Child
-                        as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                    >
-                        <div className="fixed inset-0 bg-black bg-opacity-25" />
-                    </Transition.Child>
+            </div>
 
-                    <div className="fixed inset-0 overflow-y-auto">
-                        <div className="flex min-h-full items-center justify-center p-4 text-center">
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0 scale-95"
-                                enterTo="opacity-100 scale-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100 scale-100"
-                                leaveTo="opacity-0 scale-95"
-                            >
-                                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                                    <Dialog.Title
-                                        as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900"
-                                    >
-                                        Connect Account
-                                    </Dialog.Title>
-                                    <div className="mt-2">
-                                        <div className="modal-body replace">
-                                            <p className="text-sm text-black">Do not close until connection is successful</p>
-                                            <label htmlFor="message-text" className="text-bold text-right text-indigo-400">Mnemonic Phrase:</label>
-
-                                            {/* color: black;font-style: italic;font-weight: bold;font-size: 13px */}
-                                            <form className="
-                                                flex flex-col items-center justify-center
-                                                text-center
-                                                text-sm text-black
-                                                text-bold 
-                                            ">
-                                                <div className="form-group flex-1">
-                                                    <textarea
-                                                        onChange={(e) => setComment(e.target.value)}
-                                                        required
-                                                        className="
-                                                    form-control
-                                                    bg-white
-                                                    border-2 border-gray-300 rounded-lg py-2 px-4
-                                                    focus:outline-none focus:shadow-outline-blue focus:border-blue-300
-                                                    " id="message-text" rows="3" />
-                                                </div>
-                                                {/* <span className="text-red-500  text-sm">{error.length > 0 && error}</span> */}
-
-                                                <div className="mt-4">
-                                                    <button 
-                                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-
-                                                    >
-                                                   Submit
-
-                                                    </button>
-                                                </div>
-                                            </form>
-                                            <label>Typically 12 (sometimes 24) words separated by single spaces</label><br />
-
-
-
-                                        </div>
-                                    </div>
-
-
-                                </Dialog.Panel>
-                            </Transition.Child>
-                        </div>
-                    </div>
-                </Dialog>
-            </Transition>
 
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12 pt-6 pb-24 bg-gray-300 dark:bg-gray-800 px-6 rounded-3xl">
@@ -230,16 +187,16 @@ const TradeId = (props) => {
                                     <div className="flex">
                                         <div className="grid">
                                             {image.map((item, index) => (
-                                                <div class="relative h-56 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg w-96 overflow-hidden m-3">
-                                                    <img src={logo.default.src} alt="" class="absolute right-4 bottom-2 h-12" />
-                                                    <div class="absolute top-10 left-8 text-black font-semibold text-center text-2xl space-x-1.5 h-12 w-16 bg-gradient-to-r from-yellow-400 to-yellow-200 opacity-90 rounded-lg overflow-hidden">
+                                                <div className="relative h-56 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg w-96 overflow-hidden m-3">
+                                                    <img src={logo.default.src} alt="" className="absolute right-4 bottom-2 h-12" />
+                                                    <div className="absolute top-10 left-8 text-black font-semibold text-center text-2xl space-x-1.5 h-12 w-16 bg-gradient-to-r from-yellow-400 to-yellow-200 opacity-90 rounded-lg overflow-hidden">
                                                         <span>{index + 1}</span>
                                                     </div>
-                                                    <div class="absolute bottom-20 left-8 text-white font-semibold text-2xl space-x-1.5">
+                                                    <div className="absolute bottom-20 left-8 text-white font-semibold text-2xl space-x-1.5">
                                                         <span>{item}</span>
                                                     </div>
 
-                                                    <div class="absolute bottom-6 left-8 text-gray-200 font-semibold text-xl uppercase">
+                                                    <div className="absolute bottom-6 left-8 text-gray-200 font-semibold text-xl uppercase">
                                                         <span>{CardLoader(props.card, data.cardType?.card_id)[0]?.name} {data.cardType?.type_id == 1 ? 'E-code' : 'Physical Card'}</span>
                                                     </div>
                                                 </div>
@@ -266,7 +223,9 @@ const TradeId = (props) => {
 
 
 
-                        <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">Trade {data.tradeStatus?.name}</span></h5>
+                        <h5 className="text-slate-400 font-bold">Status: <span className="text-slate-100 font-normal">{data.tradeStatus?.name}</span></h5>
+                        <h5 className="text-slate-400 font-bold">Payment: <span className="text-slate-100 font-normal">{data.payment == true ? 'wallet' : 'Instant Withdrawal'}</span></h5>
+
 
 
                         <div className="flex justify-between dark:text-gray-100 text-black  items-center">
@@ -276,13 +235,15 @@ const TradeId = (props) => {
                             data.tradeStatus?.name !== 'completed' && (
                                 <div className="flex justify-between">
 
-                                    <button onClick={() => confirmTrade()} type="button" className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-green-400 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                    <a href="#my-modal-1" type="button" className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-green-400 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                         Confirm Trade
-                                    </button>
+                                    </a>
 
-                                    <button type="button" onClick={()=> setIsOpen(true)} className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                    <a href="#my-modal-2" type="button"
+                                        className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
                                         Query Trade
-                                    </button>
+                                    </a>
+
 
                                     <button type="button"
                                         className="inline-flex mx-1 items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-400 border border-transparent rounded-md hover:bg-red-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
@@ -341,9 +302,29 @@ const TradeId = (props) => {
 
                         </div>
                     </div>
+
+                    <div className="bg-gray-800 rounded-3xl px-6 pt-6">
+                        <div className="flex text-white text-2xl pb-6 font-bold">
+                            <p>Admin Comments</p>
+                        </div>
+                        <div>
+                            <div className="border-t solid border-gray-700 p-4 flex 2xl:items-start w-full hover:bg-gray-700">
+                                <div className="pl-4 w-full">
+                                    {
+                                        comments.map((comment, index) => (
+                                            <div key={index} className="flex items-center">
+                                                <p className="my-2 text-sm text-gray-400">
+                                                    {comment}
+                                                </p>
+                                            </div>
+                                        ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </AdminLayout>
+        </AdminLayout >
     );
 }
 
