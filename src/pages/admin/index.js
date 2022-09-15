@@ -137,24 +137,45 @@ export default function HomePage(props) {
     labels: [...props.cards.map(card => card.name)],
     datasets: [
       {
-        label: 'Physical',
-        backgroundColor: 'rgba(217, 188, 41, 0.3)',
-        borderColor: 'rgba(217,188, 41, 1)',
+        label: 'Cash Receipt',
+        backgroundColor: 'rgba(255, 153, 255, 0.3)',
+        borderColor: 'rgba(255, 153, 255, 1)',
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(217, 188, 41,0.8)',
-        hoverBorderColor: 'rgba(217, 188, 41,1)',
+        hoverBackgroundColor: 'rgba(255, 153, 255,0.8)',
+        hoverBorderColor: 'rgba(255, 153, 255,1)',
+        borderCapStyle: 'round',
+        data: [...graphDataArray(1)]
+      },
+      {
+        label: 'Credit Receipt',
+        backgroundColor: 'rgba(153, 76, 0,0.3)',
+        borderColor: 'rgba(153, 76, 0,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(153, 76, 0,0.8)',
+        hoverBorderColor: 'rgba(153, 76, 0, 1)',
         borderCapStyle: 'round',
         data: [...graphDataArray(2)]
       },
+
       {
-        label: 'Ecode',
+        label: 'Debit Receipt',
+        backgroundColor: 'rgba(10, 118, 34,0.3)',
+        borderColor: 'rgba(10, 118, 34,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(10, 118, 34,0.8)',
+        hoverBorderColor: 'rgba(10, 118, 34,1)',
+        borderCapStyle: 'round',
+        data: [...graphDataArray(3)]
+      },
+      {
+        label: 'No Receipt',
         backgroundColor: 'rgba(123, 138, 22,0.3)',
         borderColor: 'rgba(123, 138, 22,1)',
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(123, 138, 22,0.8)',
         hoverBorderColor: 'rgba(123, 138, 22,1)',
         borderCapStyle: 'round',
-        data: [...graphDataArray(1)]
+        data: [...graphDataArray(4)]
       },
     ]
   };
@@ -248,12 +269,12 @@ export default function HomePage(props) {
                               <div className="relative w-8 h-8 mr-3 rounded-full md:block">
                                 {/* <img className="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" /> */}
                                 <Image
-                                                loader={imageLoader}
-                                                src={trade?.user?.picture}
-                                                width={500}
-                                                height={500}
+                                    loader={imageLoader}
+                                    src={trade?.user?.picture}
+                                    width={500}
+                                    height={500}
                                                 // key={index}
-                                                className="object-cover w-full h-full rounded-full"
+                                    className="object-cover w-full h-full rounded-full"
                                             />
                                 <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                               </div>
@@ -333,30 +354,28 @@ export default function HomePage(props) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  // console.log(new Date(session.expires))
-  // if(session?.error){
-  //   return {
-  //     props: {},
-  //     redirect: {
-  //         destination: "/auth/logout",
-  //         permanent: false,
-  //     },
-  // }}
-  const trades = await Server.get('/admin/card-transactions', {
-    headers: {
-      Authorization: `Bearer ${session?.accessToken}`,
-    },
-  });
-  // const type = await Server.get('/type')
-  const errorCode = trades.status != 200 ? true : false;
-  const cards = await Server.get('/card')
-  // console.log(trades.data.message[0])
-  return {
-    props: {
-      trades: trades.data.message,
-      cards: cards.data.message,
-      paymentLog: 'google',
-      errorCode,
-    },
+  try {
+    const trades = await Server.get('/admin/card-transactions', {
+      headers: {
+        Authorization: `Bearer ${session?.accessToken}`,
+      },
+    });
+    const errorCode = trades.status != 200 ? true : false;
+    const cards = await Server.get('/card')
+    return {
+      props: {
+        trades: trades.data.message,
+        cards: cards.data.message,
+        paymentLog: 'google',
+        errorCode,
+      },
+    };
+  } catch(e){
+    return {
+      redirect: {
+          destination: '/auth/logout'
+      }
   };
+  }
+ 
 }

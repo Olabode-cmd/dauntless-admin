@@ -299,8 +299,8 @@ export async function getServerSideProps(context) {
   const cardType = await Server.get('/card/card-type')
   return {
     props: {
-      cards: card.data.message,
-      cardType: cardType.data.message
+      cards: card.data?.message,
+      cardType: cardType.data?.message
     }
   }
 }

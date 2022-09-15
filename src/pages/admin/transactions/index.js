@@ -134,9 +134,7 @@ const Index = (props) => {
         }
     }
 
-
     return (
-      
         <AdminLayout>
 
             <div className="flex flex-wrap">
@@ -232,7 +230,7 @@ const Index = (props) => {
 
                                 </Tab.Panel>
 
-                       <Tab.Panel
+                                <Tab.Panel
                                     // key={idx}
                                     className={classNames(
                                         'bg-white dark:bg-gray-700 rounded-xl p-3',
@@ -323,15 +321,23 @@ export default Index;
 
 export async function getServerSideProps(context) {
     const session = await getSession(context);
-    const withdraw = await Server.get('/admin/withdrawal', {
-        headers: {
-            Authorization: `Bearer ${session?.accessToken}`,
-        },
-    });
-;
-    return {
-        props: {
-            data: withdraw.data.message
-        },
+    try {
+        const withdraw = await Server.get('/admin/withdrawal', {
+            headers: {
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+        });
+        return {
+            props: {
+                data: withdraw.data.message
+            },
+        }
+    } catch (error) {
+        return {
+            redirect: {
+                destination: '/auth/logout'
+            }
+        };
     }
+    
 }

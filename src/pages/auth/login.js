@@ -18,23 +18,8 @@ function Login() {
         }
         if (session?.user?.role === 2) {
             Router.push("/agent");
-        }        
-    }, [session]);
-
-    // signout user if they click on logout button
-    useEffect(() => {
-        if (status === "signout") {
-            signOut({
-                callbackUrl: `/`
-            })
-                .then(() => {
-                    Router.push("/");
-                })
-                .catch(err => {
-                    console.error(err);
-                });
         }
-    }, [status]);
+    }, [session]);
 
 
     const handleLogin = (e) => {
@@ -45,14 +30,17 @@ function Login() {
         signIn("credentials", {
             email,
             password,
-        }).then(() => {
-            toast.success("Login successful");
-            })
-            .catch((error) => {
-                toast.error("Error: " + error.message);
-            });
+            redirect: false,
+           })
+           .then((ok) => {
+            if (ok.error == null) {
+                toast.success("Login successful");
+            } else {
+                toast("Credentials do not match!", { type: "error" });
+            }
+        })
     };
-    
+
     return (
         <>
             <ToastContainer />

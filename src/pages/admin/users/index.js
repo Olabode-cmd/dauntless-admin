@@ -126,7 +126,7 @@ export default function Users(props) {
         },
         {
             title: "Status", field: "status",
-            lookup: { true: "Active", false: "Banned" },
+            lookup: { true: "Active", false: "Banned", 'true': "Active", 'false': "Banned" },
             headerStyle: {
                 backgroundColor: 'orange',
                 fontWeight: 'bold',
@@ -135,7 +135,7 @@ export default function Users(props) {
                 return (
                     <div className="flex items-center">
                         {
-                            rowData.status == true ? (
+                            rowData.status == true || rowData.status == 'true' ? (
                                 <div className="badge badge-success gap-2">
                                     Active
                                 </div>
@@ -204,14 +204,13 @@ export default function Users(props) {
                                             columns={column}
                                             data={users}
                                             actions={[
-
                                                 {
                                                     icon: Visibility,
                                                     tooltip: "View User",
                                                     onClick: (event, rowData) => {
                                                         if (rowData.is_verified == true) {
                                                             Router.push(`/admin/users/${rowData.id}`);
-                                                        }else{
+                                                        } else {
                                                             alert("User is not verified")
                                                         }
                                                     },
@@ -225,14 +224,14 @@ export default function Users(props) {
                                                             const dataUpdate = [...users];
                                                             const target = dataUpdate.find(
                                                                 (el) => el.id === oldData.tableData.id
-                                                              );
+                                                            );
                                                             const index = dataUpdate.indexOf(target);
                                                             dataUpdate[index] = newData;
                                                             const id = newData.id;
                                                             const status = newData.status;
-                                                            console.log(status)
+                                                            console.log(newData)
+                                                            setUsers([...dataUpdate,]);
                                                             updateStatus(id, status);
-                                                            setUsers([...dataUpdate]);
                                                             resolve();
                                                         }, 1000);
                                                     })
@@ -259,15 +258,23 @@ export default function Users(props) {
 
 export async function getServerSideProps(context) {
     const session = await getSession(context);
-    const user = await Server.get('/admin/users', {
-        headers: {
-            Authorization: `Bearer ${session?.accessToken}`,
-        },
-    });
-    // console.log(user);
-    return {
-        props: {
-            userData: user.data.message,
-        },
+    try {
+        const user = await Server.get('/admin/users', {
+            headers: {
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+        });
+        // console.log(user);
+        return {
+            props: {
+                userData: user.data.message,
+            },
+        }
+    } catch (error) {
+        return {
+            redirect: {
+                destination: '/auth/logout'
+            }
+        };
     }
 }

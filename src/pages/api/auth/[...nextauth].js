@@ -71,8 +71,10 @@ export default NextAuth({
             token,
             tokenExpires,
           };
+        } else {
+          // Return an object that will pass error information through to the client-side.
+          throw new Error( JSON.stringify({ errors: user.errors, status: false }))
         }
-        return result;
       },
     })
   ],

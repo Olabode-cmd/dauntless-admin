@@ -4,11 +4,20 @@ const connect = axios.create({
     withCredentials: true,
     timeout: 30000
 })
-// connect.interceptors.response.use((res)=>{
-//     console.log("olamide")
-// , (error)=>{
-//     console.log("motigbana")
-// }});
+const responseErrorHandler = (error) => {
+  if (error.response) {
+    if (error.response.status > 300) {
+      if (typeof window === 'undefined'){
+         throw new error
+      } else {
+        window.location.href = '/auth/logout';
+      }
+    }
+  }
+
+  return error;
+}
+connect.interceptors.response.use((response) => response, responseErrorHandler);
 
 export const Server = connect;
 

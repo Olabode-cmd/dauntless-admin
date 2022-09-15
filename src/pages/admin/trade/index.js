@@ -31,6 +31,7 @@ const Index = (props) => {
     const [cardType, setCardType] = useState([])
     const [selectedRow, setSelectedRow] = useState(null);
     const sle = (id) => props.cards.filter(card => card.id === id);
+    const type =(id) => props.type.filter(e => e.type_id === id)[0].type.name;
 
     const columns = [
         {
@@ -52,14 +53,12 @@ const Index = (props) => {
                 return (
                     <div className="flex items-center text-sm">
                         <div className="relative w-8 h-8 mr-3 rounded-full md:block">
-                            <img className="object-cover w-full h-full rounded-full" src={`${sle(rowData?.cardType?.card_id)[0].picture}`} alt="" />
-                            <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
-                                {/* { sle(rowData?.cardType?.card_id)[0].picture } */}
-                            </div>
+                            <img className="object-cover w-full h-full rounded-full" src={`${sle(rowData?.cardType?.card_id)[0]?.picture}`} alt="" />
                         </div>
                         <div>
                             <p className="font-semibold text-black">{rowData?.cardType?.name}</p>
                             <p className="text-xs text-gray-600">{sle(rowData?.cardType?.card_id)[0].name}</p>
+                            <p className="text-xs text-gray-600">{type(rowData?.cardType?.type_id)}</p>
                         </div>
                     </div>
                 )
@@ -158,71 +157,6 @@ const Index = (props) => {
         },
     ];
 
-    const columnCardType = [
-        {
-            title: 'Card',
-            field: 'card',
-            lookup: { 1: 'Amazon', 2: 'Itunes', 3: 'GooglePlay' },
-            headerStyle: {
-                backgroundColor: 'orange',
-                fontWeight: 'bold',
-            }
-        },
-        {
-            title: 'Code',
-            field: 'code',
-            headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
-
-        {
-            title: 'Card Type',
-            field: 'type',
-            lookup: { 1: 'Physical', 2: 'E-code', 3: 'Virtual' },
-            headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
-
-        {
-            title: "Card Name", field: "name", headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
-        {
-            title: "Status", field: "status",
-            lookup: { true: "Available", false: "Unavailable" },
-            render: rowData => {
-                return (
-                    <p className="text-xs">
-                        {
-                            lookup[rowData.status] === 'Available' ?
-                                (<span className="font-semibold leading-tight text-white bg-green-100 rounded-sm"> Available </span>) :
-                                (<span className="font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Not Available </span>)
-                        }
-                    </p>
-                )
-            },
-            headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
-        {
-            title: 'Rate',
-            field: 'rate',
-            render: rowData => <p className="text-ms font-semibold">#{rowData.rate}</p>,
-
-            headerStyle: {
-                // backgroundColor: 'yellow',
-                fontWeight: 'bold',
-            }
-        },
-    ];
 
 
 
@@ -423,17 +357,27 @@ export default Index;
 
 export async function getServerSideProps(context) {
     const session = await getSession(context);
-    const trades = await Server.get('/admin/card-transactions', {
-        headers: {
-            Authorization: `Bearer ${session?.accessToken}`,
-        },
-    });
-    const card = await Server.get('/card')
-    console.log(trades.data.message);
-    return {
-        props: {
-            data: trades.data.message,
-            cards: card.data.message
-        },
+    try {
+        const trades = await Server.get('/admin/card-transactions', {
+            headers: {
+                Authorization: `Bearer ${session?.accessToken}`,
+            },
+        });
+        const card = await Server.get('/card')
+        const type = await Server.get('/card/cardtype')
+        return {
+            props: {
+                data: trades.data.message,
+                cards: card.data.message,
+                type: type.data.message
+            },
+        }
+
+    } catch (error) {
+        return {
+            redirect: {
+                destination: '/auth/logout'
+            }
+        };
     }
 }

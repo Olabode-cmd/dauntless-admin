@@ -8,8 +8,8 @@ import MaterialTable, { Column } from "@material-table/core";
 import { Tab } from '@headlessui/react'
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { FiCamera, FiEye  } from 'react-icons/fi';
-import { RiExchangeLine  } from 'react-icons/ri';
+import { FiCamera, FiEye } from 'react-icons/fi';
+import { RiExchangeLine } from 'react-icons/ri';
 
 import IconButton from '@mui/material/IconButton';
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
@@ -324,6 +324,78 @@ const Id = ({ user, cards }) => {
                   )}
                 >
 
+<div className="flex flex-wrap mt-8">
+                    <div className="w-full lg:w-12/12 bg-gray-300 dark:bg-gray-800 py-6 px-6 rounded-3xl">
+                      <div className="flex flex-row justify-between">
+                        <p className='dark:text-gray-100 text-black text-2xl pb-6 font-bold'>Trades</p>
+                      </div>
+                      <section className="container mx-auto p-6 font-mono">
+                        <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+                          <div className="w-full overflow-x-auto">
+                            <table className="w-full">
+                              <thead>
+                                <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100  uppercase border-b border-gray-600">
+                                  <th className="px-4 py-3">Reference Id</th>
+                                  <th className="px-4 py-3">amount</th>
+                                  <th className="px-4 py-3">bank</th>
+                                  <th className="px-4 py-3">Account Number</th>
+
+                                  <th className="px-4 py-3">Status</th>
+                                  <th className="px-4 py-3">Date</th>
+                                  <th className="px-4 py-3">Updated</th>
+                                  <th className="px-4 py-3">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody className="bg-white">
+                                {
+                                  user?.userWithdraw?.length > 0 ?
+                                    user?.userWithdraw.map((item, index) => (
+                                      <tr className="text-gray-700" key={index}>
+                                        <td className="px-4 py-3 text-ms font-semibold border">withdraw00{item?.id}</td>
+                                        <td className="px-4 py-3 border">
+                                        {item?.amount}
+                                        </td>
+                                        <td className="px-4 py-3 border">
+                                        {item?.account_number}
+                                        </td>
+                                        <td className="px-4 py-3 text-ms font-semibold border">{item?.bank}</td>
+                                        <td className="px-4 py-3 text-xs border">
+                                          {
+                                            item?.trade_status_id == 2 ? <span className="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-sm"> Pending </span>
+                                              : item?.trade_status_id == 3 ? <span className="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Failed </span>
+                                                : item?.trade_status_id == 1 ? <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Completed </span>
+                                                  : <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Processing </span>
+                                          }
+                                        </td>
+                                        <td className="px-4 py-3 text-sm border">{moment(item?.created_at).calendar()}</td>
+                                        <td className="px-4 py-3 text-sm border">{moment(item?.updated_at).calendar()}</td>
+
+                                        <td className="px-4 py-3 text-sm border">
+                                          <a className="cursor-pointer bg-orange-600 hover:bg-orange-500 text-orange-100 py-2 px-4 rounded inline-flex items-center" href={`../trade/${item?.id}`}>
+                                            <span>
+                                              <FiEye
+                                                size={20}
+                                              />
+                                            </span>
+                                          </a>
+
+                                        </td>
+
+                                      </tr>
+                                    )) : (
+                                      <tr>
+                                        <p>No Trade Yet</p>
+
+                                      </tr>
+                                    )}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
@@ -343,17 +415,26 @@ export async function getServerSideProps(context) {
   const session = await getSession(context);
   const token = session?.accessToken;
   const id = context.params.id;
-  const req = await Server.get(`/admin/user/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const cards = await Server.get('/card/card-type')
-  const user = await req.data.message;
-  return {
-    props: {
-      user,
-      cards: cards.data.message,
-    },
-  };
+  try {
+    const req = await Server.get(`/admin/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const cards = await Server.get('/card/card-type')
+    const user = await req.data.message;
+    console.log(user)
+    return {
+      props: {
+        user,
+        cards: cards.data.message,
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: '/auth/logout'
+      }
+    };
+  }
 }

@@ -15,10 +15,7 @@ export default async (req, res) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    if (result.status === 200) {
-      
-    }
-    return  res.status(500).json({ error: result.data });
+    return  res.status(200).json({ error: result.data });
   } catch (error) {
     console.log(error)
   }

@@ -119,7 +119,7 @@ const Cards = (props) => {
             title: 'Card Type',
             field: 'type_id',
 
-            lookup: { 2: 'Physical', 1: 'E-code', },
+            lookup: { 1: 'Cash Receipt',  2: 'Credit Receipt', 3: 'Debit Receipt', 4: 'No Receipt' },
             headerStyle: {
                 // backgroundColor: 'yellow',
                 fontWeight: 'bold',
@@ -348,7 +348,7 @@ const Cards = (props) => {
                                                         const dataUpdate = [...cardType];
                                                         const target = dataUpdate.find(
                                                             (el) => el.id === oldData.tableData.id
-                                                          );
+                                                        );
                                                         const index = dataUpdate.indexOf(target);
                                                         dataUpdate[index] = newData;
                                                         const id = newData.id;
