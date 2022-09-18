@@ -37,7 +37,7 @@ const TradeId = (props) => {
     const image = Object.values(obj);
     const comments = props.trade[0].note !== null ? props.trade[0].note.split(",") : [];
     const type = (id) => props.type.filter(e => e.type_id === id);
-    console.log(comments)
+    // console.log(comments)
     const confirmTrade = async () => {
         toast.info('Processing Request...', {
             position: "top-right",
@@ -59,6 +59,7 @@ const TradeId = (props) => {
             },
             method: "PUT",
         }).then(res => {
+            closeModal()
             router.reload();
         }).catch(err => {
             console.log(err)
@@ -85,15 +86,19 @@ const TradeId = (props) => {
                 "Content-Type": "application/json",
             },
             method: "PUT",
-        }).then((res) => {
-           console.log(res)
+        }).then(res=> {
+            closeModal()
         }).catch(err => {
             console.log(err)
         })
     }
 
+
+    
+
     function closeModal() {
         setIsOpen(false)
+        setComment('')
     }
 
     function openModal() {

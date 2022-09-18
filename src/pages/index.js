@@ -22,9 +22,10 @@ function Index({ cards, cardType }) {
 
   const cardBrandSelect = async (event) => {
     setBrand(event.target.value);
-    const cardType = data.filter((card) => card.id == event.target.value);
-    console.log(cardType)
-    setType(cardType);
+    console.log(event.target.value)
+    
+    const type =  cardType.filter((card) => card.card_id == event.target.value)
+    setType(type.length > 0 ? type : []);
   }
 
 
@@ -171,11 +172,11 @@ function Index({ cards, cardType }) {
         {
           type.length > 0 && (
             <div className="cards mt-8" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
-              <span className="cardName mb-6 block text-slate-800 dark:text-slate-200 text-2xl font-bold">{type[0]?.name}</span>
+              <span className="cardName mb-6 block text-slate-800 dark:text-slate-200 text-2xl font-bold">{type[0]?.card?.name} Cards</span>
 
               <div className="p-8 space-y-4 rounded-md bg-slate-300 dark:bg-gray-800 flex flex-wrap items-center">
                 <div className="w-full lg:w-4/12">
-                  <img className="rounded" src={type[0]?.picture} alt="giftcard" />
+                  <img className="rounded" src={type[0]?.card.picture} alt="giftcard" />
                 </div>
 
                 <div className="w-full lg:w-7/12 ml-2">
@@ -191,12 +192,13 @@ function Index({ cards, cardType }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {type[0]?.cardTypes.map((item, index) => {
+                        {
+                        type.map((item, index) => {
                           return (
                             <tr key={index}>
                               <td>{item.name}</td>
-                              <td>{item.rate}/S</td>
-                              <td>{item.type_id == 1 ? 'Ecode' : 'Physical Card'}</td>
+                              <td>&#8358;{item.rate}/$</td>
+                              <td>{item.type?.name}</td>
                               <td>{item.status == 0 ? 'Not Taking Trading' : 'Taking Trades'}</td>
                             </tr>
                           )
@@ -297,6 +299,7 @@ export default Index
 export async function getServerSideProps(context) {
   const card = await Server.get('/card')
   const cardType = await Server.get('/card/card-type')
+  console.log(cardType.data.message)
   return {
     props: {
       cards: card.data?.message,
