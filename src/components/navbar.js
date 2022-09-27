@@ -53,8 +53,8 @@ export default function Navbar({ login }) {
                         </li>
                         <li>
                             <Link
-                                href="/guest">
-                                <a className="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400">Trade as Guest</a>
+                                href="/policy">
+                                <a className="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400">Privacy Policy</a>
                             </Link>
                         </li>
                         <li>
@@ -150,7 +150,7 @@ export default function Navbar({ login }) {
                                             <li>
                                                 <Link
                                                     href="/">
-                                                    <a className="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">Trade as Guest</a>
+                                                    <a className="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">Privacy Policy</a>
                                                 </Link>
                                             </li>
                                             <li>

@@ -56,7 +56,7 @@ function Index({ cards, cardType }) {
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 sm:pt-24 lg:py-20 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
             <h1 className="text-3xl md:text-5xl font-bold leading-none dark:text-slate-100 text-zinc-900">Welcome to <br />
-              <span className="text-yellow-400">Dauntless</span>.trade
+              <span className="text-yellow-400">Dauntless</span> GC Trader
             </h1>
             <p className="mt-6 mb-8 text-sm md:text-lg sm:mb-12 text-zinc-900 dark:text-slate-400">Exchange your gift cards at your convenience,
               <br className="hidden md:inline lg:hidden" /> sweet deals, discount and more. Anywhere in the world.
@@ -70,7 +70,7 @@ function Index({ cards, cardType }) {
           </div>
 
 
-          <div className="items-center relative text-center p-6 md:p-6 mt-4 md:mt-8 flex">
+          <div className="items-center relative text-center py-6 md:py-6 mt-4 md:mt-8 flex">
             <img src="images/header-img.png" alt="" className="header-img" data-aos="fade-up" data-aos-duration="500" data-aos-delay="6000" />
             <img src="images/card-float.png" alt="" className="card-float one" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="600" />
             <img src="images/card-float2.png" alt="" className="card-float two" data-aos="fade-left" data-aos-duration="1700" data-aos-delay="800" />
@@ -83,8 +83,8 @@ function Index({ cards, cardType }) {
 
 
       <section className="pt-8 pb-6 px-16 md:px-36 bgimg">
-        <span className="block mb-2 text-sm font-medium  uppercase lg:text-center text-yellow-400">How it works</span>
-        <h2 className="text-3xl md:text-5xl font-bold lg:text-center text-slate-200">Exchange Gift Cards at High Rates</h2>
+        <span className="block mb-2 text-sm font-medium  uppercase lg:text-center text-yellow-400">&nbsp;</span>
+        <h2 className="text-3xl md:text-5xl font-bold lg:text-center text-slate-200">How it works</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
 
           <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 dark:hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000">
@@ -109,12 +109,11 @@ function Index({ cards, cardType }) {
       </section>
 
       <div className="p-8 space-y-8 text-center lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200">Trade with us</h2>
-        <p className="dark:text-slate-400 text-slate-700 w-9/12 inline-block">We provide the best value return for your gift card assets on Dauntless.
-          We believe that everyone deserves the opportunity to profit, which motivates us to assist those who share this belief.
-          Our gift card rates are automatically updated to keep up with market rates.
-          The goal is not only to make money, but also to ensure that every user has a fantastic experience while using the platform.
+        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200">Why Us?</h2>
+        <p className="dark:text-slate-400 text-slate-700 w-9/12 inline-block">Dauntless GC Trader offers you the best trading experience
+        when you sell your Vanilla , American Express, Visa, and Mastercard Prepaid Debit Cards to us.
         </p>
+        <p>Once your trade is confirmed, you'll get your money in your in-app wallet.</p>
       </div>
 
       <section className="bg-slate-200 dark:bg-slate-800 dark:text-coolGray-100">
@@ -139,12 +138,10 @@ function Index({ cards, cardType }) {
               </p>
               <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
                 <a href="#my-modal-1" type="button"
-                  className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center"
-                >
+                  className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
                   Read More
                 </a>
               </div>
-
 
             </div>
           </div>
@@ -220,7 +217,7 @@ function Index({ cards, cardType }) {
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left" data-aos="fade-right">
             <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-900 dark:text-slate-200">Download
-              <span className="text-yellow-400"> Dauntless</span> Mobile App
+              <span className="text-yellow-400"> Dauntless</span> GC Trader App
             </h1>
             <p className="mt-6 mb-8 text-lg sm:mb-12 text-slate-800 dark:text-slate-200">Experience the best of Dauntless as you download our mobile application to your phone or tablet.
               <br /> Available for iOS and Android operating systems.
@@ -240,10 +237,10 @@ function Index({ cards, cardType }) {
         </div>
       </section>
 
-      <section className="bg-slate-100 py-6 dark:bg-slate-900  px-4 md:px-4">
+      <section className="bg-slate-100 py-6 dark:bg-slate-900">
         <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:justify-between">
-          <div className="flex-1 justify-center p-6 mt-8 lg:mt-0" data-aos="fade-up" data-aos-duration="1200">
-            <div className="w-full rounded p-8 sm:p-6">
+          <div className="flex-1 justify-center pb-8 mt-8 lg:mt-0" data-aos="fade-up" data-aos-duration="1200">
+            <div className="w-full rounded">
               <p className="text-5xl font-bold leading-7 text-center text-slate-900 dark:text-slate-100 l-height">Contact Us</p>
               <form action="" method="post">
                 <div className="md:flex items-center mt-12">

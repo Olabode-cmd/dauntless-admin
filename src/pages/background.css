@@ -7,7 +7,6 @@
 nav {
     font-family: 'Open Sans', sans-serif;
 }
-
 /* Header Sytling */
 .header-img {
     /* max-width: 100%; */
@@ -15,7 +14,6 @@ nav {
     margin: 0 auto;
     transform: translateX(-40px);
 }
-
 .relative {
     position: relative;
 }
@@ -29,6 +27,15 @@ nav {
     top: 30%;
     left: -35%;
     animation: floating 2.9s infinite linear;
+}
+@media (max-width: 550px) {
+    .header-img {
+        max-width: 300px;
+    }
+
+    .card-float {
+        width: 200px
+    }
 }
 @media(max-width: 768px) {
     .one {
