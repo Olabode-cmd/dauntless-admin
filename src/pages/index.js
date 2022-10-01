@@ -56,7 +56,7 @@ function Index({ cards, cardType }) {
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 sm:pt-24 lg:py-20 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
             <h1 className="text-3xl md:text-5xl font-bold leading-none dark:text-slate-100 text-zinc-900">Welcome to <br />
-              <span className="text-yellow-400">Dauntless</span> GC Trader
+              <span className="text-yellow-400">Dauntless</span> GC
             </h1>
             <p className="mt-6 mb-8 text-sm md:text-lg sm:mb-12 text-zinc-900 dark:text-slate-400">Exchange your gift cards at your convenience,
               <br className="hidden md:inline lg:hidden" /> sweet deals, discount and more. Anywhere in the world.
@@ -103,17 +103,17 @@ function Index({ cards, cardType }) {
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaMobileAlt /> </span>
 
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Cross-Platform Availiability</h3>
-            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android, iOS and web browser.</p>
+            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android and iOS.</p>
           </div>
         </div>
       </section>
 
-      <div className="p-8 space-y-8 text-center lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
+      <div className="p-8 space-y-8 lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
         <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200">Why Us?</h2>
-        <p className="dark:text-slate-400 text-slate-700 w-9/12 inline-block">Dauntless GC Trader offers you the best trading experience
+        <p className="dark:text-slate-400 text-slate-700 w-7/12 inline-block">Dauntless GC Trader offers you the best trading experience
         when you sell your Vanilla , American Express, Visa, and Mastercard Prepaid Debit Cards to us.
         </p>
-        <p>Once your trade is confirmed, you'll get your money in your in-app wallet.</p>
+        <p className="dark:text-slate-400 text-slate-700 w-7/12 inline-block">Once your trade is confirmed, you'll get your money in your in-app wallet.</p>
       </div>
 
       <section className="bg-slate-200 dark:bg-slate-800 dark:text-coolGray-100">
@@ -125,7 +125,7 @@ function Index({ cards, cardType }) {
           <div className="flex-1">
             <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
               <h1 className="text-2xl font-bold leading-none sm:text-5xl text-slate-900 dark:text-slate-200">Trade with us on
-                <span className="text-yellow-400"> Dauntless</span> Platform
+                <span className="text-yellow-400"> Dauntless</span> Mobile App
               </h1>
               <p className="mt-6 text-lg sm:mb-3 medium-font text-slate-800 dark:text-slate-200">
                 Dauntless allows you to trade gift cards from a variety of retailers,
