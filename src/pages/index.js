@@ -108,7 +108,7 @@ function Index({ cards, cardType }) {
         </div>
       </section>
 
-      <div className="p-8 space-y-8 lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
+      <div className="p-8 text-center space-y-8 lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
         <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200">Why Us?</h2>
         <p className="dark:text-slate-400 text-slate-700 w-7/12 inline-block">Dauntless GC Trader offers you the best trading experience
         when you sell your Vanilla , American Express, Visa, and Mastercard Prepaid Debit Cards to us.
