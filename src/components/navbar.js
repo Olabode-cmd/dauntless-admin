@@ -26,12 +26,6 @@ export default function Navbar({ login }) {
                         </li>
                         <li>
                             <Link
-                                href="/about">
-                                <a className="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400"> About Us</a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
                                 href="https://dauntless.tawk.help/">
                                 
                                 <a target="_blank"
@@ -121,12 +115,6 @@ export default function Navbar({ login }) {
                                                 <Link
                                                     href="/">
                                                     <a className="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">Home</a>
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    href="/about">
-                                                    <a className="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400"> About Us</a>
                                                 </Link>
                                             </li>
                                             <li>

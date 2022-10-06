@@ -58,8 +58,8 @@ function Index({ cards, cardType }) {
             <h1 className="text-3xl md:text-5xl font-bold leading-none dark:text-slate-100 text-zinc-900">Welcome to <br />
               <span className="text-yellow-400">Dauntless</span> GC
             </h1>
-            <p className="mt-6 mb-8 text-sm md:text-lg sm:mb-12 text-zinc-900 dark:text-slate-400">Exchange your gift cards at your convenience,
-              <br className="hidden md:inline lg:hidden" /> sweet deals, discount and more. Anywhere in the world.
+            <p className="mt-6 mb-8 text-sm md:text-lg sm:mb-12 text-zinc-900 dark:text-slate-400">
+              <br className="hidden md:inline lg:hidden" />Welcome to trading experience and satisfaction you won't find anywhere else.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
               <a href="#" className="px-8 py-3 text-lg font-semibold rounded bg-yellow-400 hover:bg-yellow-600 text-slate-100 flex items-center justify-center">
@@ -83,37 +83,70 @@ function Index({ cards, cardType }) {
 
 
       <section className="pt-8 pb-6 px-16 md:px-36 bgimg">
-        <span className="block mb-2 text-sm font-medium  uppercase lg:text-center text-yellow-400">&nbsp;</span>
-        <h2 className="text-3xl md:text-5xl font-bold lg:text-center text-slate-200">How it works</h2>
+        <span className="block mb-2 text-sm font-bold  uppercase lg:text-center text-yellow-400">Exchange your gift card at your convenience.</span>
+        <h2 className="text-3xl md:text-5xl font-bold lg:text-center text-slate-200">Our Values</h2>
         <div className="grid gap-6 my-16 lg:grid-cols-3">
 
           <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 dark:hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaHandshake /> </span>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Trusted.</h3>
-            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Trade with high confidence, as we assure you the highest level of encryption and professionally audited exchange system.</p>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Honesty.</h3>
+            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Trade with high confidence, as we assure you the highest level of honesty and professionalism.</p>
+            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Doing what is ethical because it is the right thing to do is the essential core belief at Dauntless.</p>
+            {/* <p className="text-slate-700 dark:text-slate-100 hover:text-white">Trade with high confidence, as we assure you the highest level of encryption and professionally audited exchange system.</p> */}
           </div>
 
           <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 dark:hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaDollarSign /> </span>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Instant Payment</h3>
-            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Using state-of-the-art payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Fast Payment</h3>
+            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Using fast and reliable payment procedures, you are guaranteed to get your payment sent to your account within minutes.</p>
           </div>
 
           <div className="card-info bg-slate-100 dark:bg-slate-900 hover:bg-yellow-400 dark:hover:bg-yellow-400 space-y-4 p-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <span className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full"> <FaMobileAlt /> </span>
 
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Cross-Platform Availiability</h3>
-            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Sell any gift card, anywhere, anytime, using our modern gift card trading application available on Android and iOS.</p>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white hover:text-white">Transparency</h3>
+            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Transparency and Trust are the core pillars of any company to customer relationship.</p>
+            <p className="text-slate-700 dark:text-slate-100 hover:text-white">Dauntless looks to build trust and loyalty with their customers by promoting a transparent culture.</p>
           </div>
         </div>
       </section>
 
-      <div className="p-8 text-center space-y-8 lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
-        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200">Why Us?</h2>
-        <p className="dark:text-slate-400 text-slate-700 w-7/12 inline-block">Dauntless GC Trader offers you the best trading experience
-        when you sell your Vanilla , American Express, Visa, and Mastercard Prepaid Debit Cards to us.
-        </p>
-        <p className="dark:text-slate-400 text-slate-700 w-7/12 inline-block">Once your trade is confirmed, you'll get your money in your in-app wallet.</p>
+      <div className="p-8 space-y-8 lg:col-span-full lg:py-12 bg-slate-100 dark:bg-slate-900">
+        <div className="md:w-7/12 w-full mx-auto">
+          <h2 className="text-3xl md:text-5xl text-center mb-4 font-bold text-slate-900 dark:text-slate-200">Why Us?</h2>
+          <p className="mt-2 text-lg medium-font text-slate-800 dark:text-slate-200">
+            Dauntless is a registered gift card trading platform dedicated to providing you with the best trading experience.</p>
+          <p className="mt-2 text-lg medium-font text-slate-800 dark:text-slate-200">At Dauntless, we believe there is a better way to do Gift card trading. Our expertise lies in providing you with fast and easy trades and transactions.</p>
+
+          <p className="mt-2 text-lg medium-font text-slate-800 dark:text-slate-200">With the following features, we are able to provide you with the best trading experience.
+          </p>
+          <div className="grid gap-6 my-16 lg:grid-cols-3">
+
+            <div>
+              <p className="font-bold text-yellow-400 inline-block"> - TRADING IS EASY AND FAST
+              </p>
+              <p className="dark:text-slate-200 text-slate-700 mb-2 inline-block">Selling a gift card is quick and simple.
+                Create an account, link your Nigerian bank account, and then begin trading and withdrawing money. </p>
+            </div>
+
+            <div>
+              <p className="font-bold text-yellow-400 inline-block"> - 20+ GIFT CARDS SUPPORTED
+              </p>
+              <p className="dark:text-slate-200 text-slate-700 mb-2 inline-block">We offer you the best experience when you trade your Vanilla, American Express, Visa and Mastercard Prepaid Debit Cards to us.
+                We also support and trade Steam, Apple iTunes, Sephora, Google Play, Nordstrom and many more.
+              </p>
+            </div>
+
+            <div>
+              <p className="font-bold text-yellow-400 inline-block"> - QUICK CONFIRMATIONS
+              </p>
+              <p className="dark:text-slate-200 text-slate-700 mb-2 inline-block">We know you like to trade fast and get paid fast, this is what the DC Trader offers you as we believe our app was built for this and once trade is confirmed, we will release your funds.
+              </p>
+            </div>
+          </div>
+        
+    
+        </div>  
       </div>
 
       <section className="bg-slate-200 dark:bg-slate-800 dark:text-coolGray-100">
@@ -125,21 +158,24 @@ function Index({ cards, cardType }) {
           <div className="flex-1">
             <div className="flex-col justify-center px-6 py-12 text-left rounded-sm lg:max-w-md xl:max-w-lg">
               <h1 className="text-2xl font-bold leading-none sm:text-5xl text-slate-900 dark:text-slate-200">Trade with us on
-                <span className="text-yellow-400"> Dauntless</span> Mobile App
+                <span className="text-yellow-400"> Dauntless GC</span> Mobile App
               </h1>
               <p className="mt-6 text-lg sm:mb-3 medium-font text-slate-800 dark:text-slate-200">
-                Dauntless allows you to trade gift cards from a variety of retailers,
+                Dauntless GC Trader offers you the best trading experience
+                when you sell your Vanilla , American Express, Visa, and Mastercard Prepaid Debit Cards to us.
+              </p>
+              <p className="mt-6 text-lg sm:mb-3 medium-font text-slate-800 dark:text-slate-200">You're also allowed to trade gift cards from a variety of retailers,
                 including iTunes, Amazon, Steam Wallet, Google Play, Apple Store, eBay, Walmart, Sephora,
                 OneVanilla, Nordstrom, Target, JCPenney, Best Buy, Nike, Hotels.com, Macy's, Gamestop,
-                and others.
-              </p>
-              <p className="mt-2 text-lg sm:mb-12 medium-font text-slate-800 dark:text-slate-200">Our payment system is amazingly coherent. You get your money almost instantly, no fees attached and no limits.
+                and others.</p>
+              <p className="mt-2 text-lg sm:mb-12 medium-font text-slate-800 dark:text-slate-200">Our payment system is superb. Once your trade is confirmed, you'll get your money in your in-app wallet.
+              Simply login, go to <span className="italic text-yellow-400">My Money</span> tab, and you'll find your money there.
                 <br /> Don't worry about rates. We offer the best payout for your assets based on the current market value.
               </p>
               <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                <a href="#my-modal-1" type="button"
+                <a href="#rates" type="button"
                   className="px-8 py-3 text-lg font-semibold rounded border border-yellow-400 hover:bg-yellow-400 dark:text-slate-100 text-zinc-900 flex items-center justify-center">
-                  Read More
+                  Check Out Our Rates Below
                 </a>
               </div>
 
@@ -149,7 +185,7 @@ function Index({ cards, cardType }) {
       </section>
 
 
-      <section className="bg-slate-100 dark:bg-slate-900 px-16 pb-16 md:px-36" data-aos="fade-up" data-aos-duration="1200">
+      <section id="rates" className="bg-slate-100 dark:bg-slate-900 px-16 pb-16 md:px-36" data-aos="fade-up" data-aos-duration="1200">
         <span className="font-bold block text-2xl dark:text-yellow-400 pt-10 text-yellow-400">Cards Rate and Values</span>
 
         <div className="flex flex-wrap items-center justify-between w-full mt-6">
@@ -217,9 +253,9 @@ function Index({ cards, cardType }) {
         <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left" data-aos="fade-right">
             <h1 className="text-4xl font-bold leading-none sm:text-5xl text-slate-900 dark:text-slate-200">Download
-              <span className="text-yellow-400"> Dauntless</span> GC Trader App
+              <span className="text-yellow-400"> Dauntless GC</span> App
             </h1>
-            <p className="mt-6 mb-8 text-lg sm:mb-12 text-slate-800 dark:text-slate-200">Experience the best of Dauntless as you download our mobile application to your phone or tablet.
+            <p className="mt-6 mb-8 text-lg sm:mb-12 text-slate-800 dark:text-slate-200">Experience the best of Dauntless GC Trading platform as you download our mobile application to your phone or tablet.
               <br /> Available for iOS and Android operating systems.
             </p>
             <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
