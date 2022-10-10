@@ -26,7 +26,7 @@ export default function Navbar({ login }) {
                         </li>
                         <li>
                             <Link
-                                href="https://dauntless.tawk.help/">
+                                href="https://dauntlessgc.tawk.help/">
                                 
                                 <a target="_blank"
                                     className="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400">
@@ -36,15 +36,6 @@ export default function Navbar({ login }) {
                     </ul>
                     <img src="/images/2.png" width={45} />
                     <ul className="flex items-center hidden space-x-8 lg:flex">
-                        <li>
-                            <Link
-                                href="https://dauntless.tawk.help/category/faq" >
-                                <a target="_blank"
-                                    className="text-sm tracking-wide text-white transition-colors duration-200 hover:text-teal-accent-400">
-                                    FAQs
-                                </a>
-                            </Link>
-                        </li>
                         <li>
                             <Link
                                 href="/policy">
@@ -119,20 +110,11 @@ export default function Navbar({ login }) {
                                             </li>
                                             <li>
                                                 <Link
-                                                    href="https://dauntless.tawk.help/">
+                                                    href="https://dauntlessgc.tawk.help/">
 
                                                     <a target="_blank"
                                                         className="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">
                                                         Help Center</a>
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    href="https://dauntless.tawk.help/category/faq" >
-                                                    <a target="_blank"
-                                                        className="text-sm tracking-wide text-slate-900 transition-colors duration-200 hover:text-teal-accent-400">
-                                                        FAQs
-                                                    </a>
                                                 </Link>
                                             </li>
                                             <li>
